@@ -4,10 +4,10 @@ GeetSunam is a Nepali Music Streaming Platform with a focus on genre based music
 
 ## Team Members
 
-- Kushal Pangeni
-- Mishan Khatri [Github](https://github.com/Mishankhatri)
-- Paras Panta [Github](https://github.com/ParasPanta)
-- Prabin Gautam [Github](https://github.com/PrabeenGautam)
+- Kushal Pangeni 
+- Mishan Khatri  |[(Github)](https://github.com/Mishankhatri)
+- Paras Panta    |[(Github)](https://github.com/ParasPanta)
+- Prabin Gautam  |[(Github)](https://github.com/PrabeenGautam)
 
 ## Proposed Datasets collection
 
