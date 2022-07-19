@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&family=Roboto:wght@400;500;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Initializing color palettes */
+  --primary: #222831;
+  --secondary: #393e46;
+  --tertiary: hsl(183, 100%, 45%);
+  --text: #f6f6f6;
+  --divider: #eeeeee;
+  --menu-head: #cfc5c5;
+}
+
+body {
+  background-color: var(--secondary);
+  font-family: "Poppins", sans-serif;
+}
+
+.main-container {
+  grid-template-columns: 14.5rem 1fr 18.5rem;
+  grid-template-rows: 1fr 3.5rem;
+  height: 100vh;
+}
+
+/* Sidebar Starts */
+
+.left-sidebar,
+.right-sidebar {
+  background-color: var(--primary);
+  color: var(--text);
+}
+
+.player {
+  grid-column: -1/1;
+  border-top: 1px solid var(--divider);
+  background-color: var(--primary);
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 2rem 0;
+
+  display: flex;
+  column-gap: 10px;
+  justify-content: center;
+}
+
+.logo .logo__primary,
+.logo__music,
+.icons {
+  color: var(--tertiary);
+}
+
+.logo__music {
+  font-size: 2.1rem;
+}
+
+/**************************/
+.menu-list {
+  margin: 0 2rem 0 3rem;
+}
+
+.menu-data {
+  margin-top: 2rem;
+}
+
+.menu-list ul {
+  list-style-type: none;
+}
+
+.menu-head {
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #cfc5c5;
+  margin-bottom: 0.75rem;
+}
+
+.icons {
+  font-size: 1.3rem;
+  vertical-align: middle;
+}
+
+.submenus {
+  display: flex;
+  column-gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+
+  cursor: pointer;
+}
+
+.submenus:hover {
+  color: var(--tertiary);
+}
+
+.submenus:hover .icons {
+  color: var(--menu-head);
+}
+
+.submenus .menu-text {
+  font-size: 0.85rem;
+}
+
+.title {
+  margin: 20px 0;
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.genre {
+  cursor: pointer;
+}
+
+.genre-image img {
+  width: 100%;
+  height: 60px;
+  border-radius: 10px;
+}
+
+.genre .genre-name {
+  font-size: 0.7rem;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.content {
+  margin: 1.9rem;
+}
