@@ -1,13 +1,11 @@
-import React from "react";
-import FeaturedImage from "../../assets/featured.jpg";
-
+import FeaturedImage from "assets/images/featured.jpg";
 import SearchBar from "./SearchBar";
 
 function Featured() {
   return (
     <div className="featured">
       <SearchBar />
-      <img src={FeaturedImage} alt="featured-image" className="featured-img" />
+      <img src={FeaturedImage} alt="cover" className="featured-img" />
       <div className="details">
         <div className="title">Featured Songs</div>
         <div className="song-details">

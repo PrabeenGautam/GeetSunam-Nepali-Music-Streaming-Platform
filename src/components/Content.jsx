@@ -1,8 +1,7 @@
-import React from "react";
 import Featured from "./Featured/Featured";
 import * as BiIcons from "react-icons/bi";
-import MusicContainer from "./MusicContainer";
 import { Link } from "react-router-dom";
+import MusicContainer from "./MusicContainer";
 
 function Content() {
   return (

@@ -1,6 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { genreMenu } from "./SidebarMenu";
+import genreMenu from "./genreMenu.data";
 
 function SidebarRight() {
   return (
