@@ -1,15 +1,18 @@
 import React from "react";
 import * as FaIcons from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { sidebarMenu } from "./SidebarMenu";
 
 function SidebarLeft() {
   return (
     <div className="left-sidebar">
       <div className="logo">
-        <FaIcons.FaMusic className="logo__music" />
-        <div className="logo__text">
-          <span className="logo__primary">Geet</span>Sunam
-        </div>
+        <Link to={"/"} id="home">
+          <FaIcons.FaMusic className="logo__music" />
+          <div className="logo__text">
+            <span className="logo__primary">Geet</span>Sunam
+          </div>
+        </Link>
       </div>
       <div className="menu-list">
         {sidebarMenu.map((value, index) => {
@@ -19,10 +22,12 @@ function SidebarLeft() {
               <ul>
                 {value.menus.map((d, index) => {
                   return (
-                    <li className="submenus" key={index}>
-                      <span className="menu-icon">{d.icons}</span>
-                      <span className="menu-text">{d.text}</span>
-                    </li>
+                    <Link to={d.link} key={index}>
+                      <li className="submenus">
+                        <span className="menu-icon">{d.icons}</span>
+                        <span className="menu-text">{d.text}</span>
+                      </li>
+                    </Link>
                   );
                 })}
               </ul>

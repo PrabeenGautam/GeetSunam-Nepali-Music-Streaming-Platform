@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&family=Roboto:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700&family=Poppins:wght@400;500;600;700;900&family=Roboto:wght@400;500;700&display=swap");
 
 * {
   padding: 0;
@@ -14,6 +14,7 @@
   --text: #f6f6f6;
   --divider: #eeeeee;
   --menu-head: #cfc5c5;
+  --highlight: #f96666;
 }
 
 body {
@@ -28,7 +29,6 @@ body {
 }
 
 /* Sidebar Starts */
-
 .left-sidebar,
 .right-sidebar {
   background-color: var(--primary);
@@ -44,8 +44,20 @@ body {
 .logo {
   font-weight: 600;
   font-size: 1.5rem;
-  margin: 2rem 0;
+  margin: 2rem 20px;
+}
 
+.logo:hover *,
+.logo:hover .logo__primary {
+  color: var(--tertiary);
+}
+
+a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+#home {
   display: flex;
   column-gap: 10px;
   justify-content: center;
@@ -54,7 +66,7 @@ body {
 .logo .logo__primary,
 .logo__music,
 .icons {
-  color: var(--tertiary);
+  color: var(--highlight);
 }
 
 .logo__music {
@@ -79,7 +91,7 @@ body {
   font-size: 0.75rem;
   text-transform: uppercase;
   color: #cfc5c5;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .icons {
@@ -91,8 +103,7 @@ body {
   display: flex;
   column-gap: 0.8rem;
   align-items: center;
-  margin-bottom: 0.5rem;
-
+  margin-bottom: 0.75rem;
   cursor: pointer;
 }
 
@@ -101,14 +112,14 @@ body {
 }
 
 .submenus:hover .icons {
-  color: var(--menu-head);
+  color: var(--tertiary);
 }
 
 .submenus .menu-text {
   font-size: 0.85rem;
 }
 
-.title {
+.sidebar-title {
   margin: 20px 0;
   font-weight: 500;
   font-size: 1.25rem;
@@ -131,5 +142,172 @@ body {
 }
 
 .content {
-  margin: 1.9rem;
+  margin: 2rem 2.5rem;
+  overflow-y: scroll;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+.featured {
+  position: relative;
+  font-family: "Inter";
+}
+
+.featured .featured-img {
+  width: 100%;
+  height: 22.5rem;
+  object-fit: cover;
+  object-position: 0% 92%;
+  border-radius: 7.63014px;
+}
+
+.featured .details {
+  position: absolute;
+  min-width: 6.25rem;
+  text-align: end;
+  bottom: 25px;
+  right: 20px;
+  color: var(--text);
+}
+
+.details .title {
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 13.3527px;
+  line-height: 16px;
+}
+
+.details .artists {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.1em;
+}
+
+.details .song-name {
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 46px;
+}
+
+.btn {
+  padding: 10px;
+  border: none;
+  min-width: 95px;
+  height: 40px;
+  border-radius: 4px;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.btn-play {
+  background: var(--highlight);
+}
+
+.play-featured {
+  margin-top: 1.875rem;
+}
+
+.search-bar {
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  padding: 8px;
+  width: 20rem;
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translate(-50%);
+  user-select: none;
+}
+
+.search-bar .input {
+  border: none;
+  outline: none;
+  margin: 0 10px;
+  width: 100%;
+}
+
+.main-section {
+  margin-top: 20px;
+}
+
+.main-section .heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-section .see-more {
+  font-weight: 500;
+  font-size: 15.2603px;
+  color: var(--tertiary);
+}
+
+.main-section .subheading {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--text);
+  align-items: center;
+}
+
+.main-section .heading_icons {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--highlight);
+}
+
+.content-section {
+  display: flex;
+  gap: 20px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.music-container {
+  max-width: 180px;
+}
+
+.music-container .thumbnail-new {
+  width: 10rem;
+  height: 10.5rem;
+  object-fit: cover;
+}
+
+.music-container .song-name {
+  font-size: 14px;
+  line-height: 18px;
+  color: #e4e7e6;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+.music-container .song-artists {
+  font-weight: 400;
+  margin-top: 2px;
+  font-size: 13px;
+  line-height: 16px;
+  color: #afb6b3;
+}
+
+table {
+  width: 100%;
+  color: #afb6b3;
+}
+
+.recent-images {
+  width: 100px;
+  height: 100px;
 }
