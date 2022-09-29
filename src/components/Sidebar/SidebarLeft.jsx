@@ -1,7 +1,6 @@
-import React from "react";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { sidebarMenu } from "./SidebarMenu";
+import sidebarMenu from "./sidebarMenu.data";
 
 function SidebarLeft() {
   return (

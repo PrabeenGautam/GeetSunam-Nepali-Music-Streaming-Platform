@@ -1,10 +1,7 @@
-import "./App.css";
-import Content from "./component/Content";
+import Content from "components/Content";
+import { SidebarLeft, SidebarRight } from "components/Sidebar";
 
-import SidebarLeft from "./component/Sidebar/SidebarLeft";
-import SidebarRight from "./component/Sidebar/SidebarRight";
-
-function App() {
+function HomePage() {
   return (
     <div className="grid main-container">
       <SidebarLeft />
@@ -19,4 +16,4 @@ function App() {
   );
 }
 
-export default App;
+export default HomePage;
