@@ -16,7 +16,7 @@ function Content() {
             <span>New Releases</span>
             <BiIcons.BiPlay className="heading_icons" />
           </div>
-          <Link to={"/more"} className="see-more">
+          <Link to={"/releases"} className="see-more">
             See more
           </Link>
         </div>

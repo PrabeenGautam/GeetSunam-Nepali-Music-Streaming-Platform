@@ -1,24 +1,24 @@
-import React from "react";
-import FeaturedImage from "assets/images/featured.jpg";
-import { Btn } from "components/StyledUI";
-import * as Icons from "react-icons/fi";
-import { recentPlayed } from "components/recentPlayed.data";
-import RecentPlayed from "components/RecentPlayed";
 import CustomBreadcrumbs from "components/Breadcrumbs";
+import RecentPlayed from "components/RecentPlayed";
+import { Btn } from "components/StyledUI";
+import React from "react";
+import * as Icons from "react-icons/fi";
+import FeaturedImage from "assets/images/featured.jpg";
+import { recentPlayed } from "components/recentPlayed.data";
 
-function Trends() {
+function NewReleases() {
   return (
     <>
       <div className="trends">
-        <CustomBreadcrumbs link={"trends"} textName="Trending" />
+        <CustomBreadcrumbs link={"trends"} textName="New Releases" />
         <section className="top-trends">
           <img src={FeaturedImage} className="trend-image"></img>
           <div className="trend-section">
-            <h2>Trending Songs</h2>
+            <h2>New Releases</h2>
             <span className="details">
-              <div>Top trending hits, refreshed daily</div>
+              <div>New releases songs, refreshed daily</div>
               <div>Created by GeetSunam</div>
-              <div>16 Tracks</div>
+              <div>Tracks from 16 days</div>
             </span>
             <Btn className="btn-play">Play</Btn>
           </div>
@@ -53,4 +53,4 @@ function Trends() {
   );
 }
 
-export default Trends;
+export default NewReleases;

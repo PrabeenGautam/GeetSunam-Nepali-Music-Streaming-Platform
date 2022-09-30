@@ -444,6 +444,10 @@ table {
   margin-bottom: 20px;
 }
 
+.breadcrumbs .root-link:hover {
+  text-decoration: underline;
+}
+
 .trends .top-trends {
   display: flex;
   gap: 40px;

@@ -17,11 +17,11 @@ const sidebarMenu = [
         text: "Trends",
         link: "trends",
       },
-      // {
-      //   icons: <FIIcons.FiMusic className="icons" />,
-      //   text: "Library",
-      //   link: "library",
-      // },
+      {
+        icons: <FIIcons.FiMusic className="icons" />,
+        text: "New Releases",
+        link: "releases",
+      },
       {
         icons: <RIIcons.RiCompassDiscoverFill className="icons" />,
         text: "Explore",

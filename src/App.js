@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Trends from "pages/trends/trends";
 import Explore from "pages/explore/explore";
 import MainPlayer from "components/Player/Player";
+import NewReleases from "pages/NewReleases";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Content />} />
             <Route path="/trends" element={<Trends />} />
             <Route path="/explore" element={<Explore />} />
+            <Route path="/releases" element={<NewReleases />} />
           </Routes>
         </div>
         <div className="right-sidebar">
