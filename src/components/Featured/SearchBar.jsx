@@ -6,7 +6,7 @@ function SearchBar() {
       <FiIcons.FiSearch className="icon-search" />
       <input
         type="text"
-        className="input"
+        className="text-input"
         placeholder="Search artists, songs,..."
       />
       <div style={{ borderLeft: "2px solid black", paddingRight: 5 }}></div>

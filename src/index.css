@@ -47,7 +47,7 @@ a:not([class]) {
 }
 
 /* Make images easier to work with */
-img,
+img:not(.thumbnail-new),
 picture {
   max-width: 100%;
   display: block;
@@ -80,7 +80,8 @@ select {
 :root {
   /* Initializing color palettes */
   --primary: #222831;
-  --secondary: #393e46;
+  /* --secondary: #393e46; */
+  --secondary: #262a2f;
   --tertiary: hsl(183, 100%, 45%);
   --text: #f6f6f6;
   --divider: #eeeeee;
@@ -299,11 +300,12 @@ a {
   user-select: none;
 }
 
-.search-bar .input {
+.search-bar .text-input {
   border: none;
   outline: none;
   margin: 0 10px;
   width: 100%;
+  font-size: 12px;
 }
 
 .main-section {
@@ -381,4 +383,99 @@ table {
 .recent-images {
   width: 100px;
   height: 100px;
+  object-fit: cover;
+}
+
+.recent-container {
+  display: grid;
+  grid-template-columns: 20px 2.5rem 2fr 1fr 0.5fr 60px 40px;
+  gap: 20px;
+  margin-bottom: 20px;
+  align-items: center;
+  padding: 5px;
+}
+
+.thumbnail-recent {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: cover;
+}
+
+.recent-container .song-name {
+  color: #afb6b3;
+  font-size: 0.93rem;
+}
+
+.recent-container *:not(.song-name) {
+  color: #7a8580;
+  font-size: 0.91rem;
+}
+
+.recent-container .recent-play {
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.recent-container.playing * {
+  color: var(--tertiary);
+}
+
+.recent-container.playing .recent-play {
+  border-color: var(--tertiary);
+}
+
+.recent-container .heart {
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.recent-container .heart.favourite {
+  fill: var(--highlight);
+  stroke: var(--highlight);
+}
+
+/* Trending Sections */
+.trends {
+  color: rgb(216, 213, 213);
+}
+
+.breadcrumbs {
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+.trends .top-trends {
+  display: flex;
+  gap: 40px;
+  align-items: flex-end;
+}
+
+.trends .trend-image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.top-trends h2 {
+  margin-bottom: 24px;
+  font-size: 2rem;
+  color: var(--text);
+}
+
+.trend-section .details * {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.song-list {
+  margin-top: 20px;
+}
+
+.song-list .list_heading {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 5px;
+  text-transform: capitalize;
+  padding-bottom: 10px;
 }
