@@ -8,7 +8,7 @@ import { recentPlayed } from "components/recentPlayed.data";
 
 function NewReleases() {
   return (
-    <>
+    <div className="content-container">
       <div className="trends">
         <CustomBreadcrumbs link={"/releases"} textName="New Releases" />
         <section className="top-trends">
@@ -49,7 +49,7 @@ function NewReleases() {
           })}
         </section>
       </div>
-    </>
+    </div>
   );
 }
 

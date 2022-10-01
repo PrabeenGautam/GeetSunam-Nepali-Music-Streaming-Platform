@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import MusicContainer from "./MusicContainer";
 import RecentPlayed from "./RecentPlayed";
 import { recentPlayed } from "./recentPlayed.data";
-import * as Icons from "react-icons/fi";
+import * as HiIcons from "react-icons/hi";
+import FeaturedArtists from "./Featured/FeaturedArtists";
+import CustomBreadcrumbs from "./Breadcrumbs";
 
 function Content() {
   return (
-    <div>
+    <div className="content-container">
+      <CustomBreadcrumbs link={"/"} textName="Home" />
       <Featured />
       <div className="main-section">
         <div className="heading">
@@ -29,6 +32,19 @@ function Content() {
           <MusicContainer />
           <MusicContainer />
           <MusicContainer />
+        </div>
+      </div>
+
+      <div className="main-section">
+        <div className="heading">
+          <div className="subheading">
+            <span>Featured Artists</span>
+            <HiIcons.HiOutlineUser className="heading_icons" />
+          </div>
+        </div>
+
+        <div className="content-section">
+          <FeaturedArtists />
         </div>
       </div>
 

@@ -1,9 +1,13 @@
+import { SearchBar } from "components/Featured";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import genreMenu from "./genreMenu.data";
 
 function SidebarRight() {
   return (
-    <div style={{ padding: "0 30px 20px" }}>
+    <div className="sidebar-right">
+      <SearchBar className="custom-search" inputClass="custom-input" />
+
       <div className="sidebar-title">Genre</div>
       <div className="grid grid-column-3 gap-sm">
         {genreMenu.map((value, index) => {

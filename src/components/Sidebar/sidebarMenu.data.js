@@ -25,14 +25,14 @@ const sidebarMenu = [
     title: "Discover",
     menus: [
       {
-        icons: <FIIcons.FiMusic className="icons" />,
-        text: "New Releases",
-        link: "releases",
-      },
-      {
         icons: <RIIcons.RiCompassDiscoverFill className="icons" />,
         text: "Explore",
         link: "explore",
+      },
+      {
+        icons: <FIIcons.FiMusic className="icons" />,
+        text: "New Releases",
+        link: "releases",
       },
       {
         icons: <MdIcons.MdRecommend className="icons" />,
