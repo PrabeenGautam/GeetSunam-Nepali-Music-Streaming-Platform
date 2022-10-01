@@ -2,6 +2,7 @@ import * as AIIcons from "react-icons/ai";
 import * as FIIcons from "react-icons/fi";
 import * as RIIcons from "react-icons/ri";
 import * as FaIcons from "react-icons/fa";
+import * as MdIcons from "react-icons/md";
 
 const sidebarMenu = [
   {
@@ -14,9 +15,15 @@ const sidebarMenu = [
       },
       {
         icons: <FIIcons.FiTrendingUp className="icons" />,
-        text: "Trends",
+        text: "Trending",
         link: "trends",
       },
+    ],
+  },
+
+  {
+    title: "Discover",
+    menus: [
       {
         icons: <FIIcons.FiMusic className="icons" />,
         text: "New Releases",
@@ -27,9 +34,13 @@ const sidebarMenu = [
         text: "Explore",
         link: "explore",
       },
+      {
+        icons: <MdIcons.MdRecommend className="icons" />,
+        text: "Made for You",
+        link: "recommendation",
+      },
     ],
   },
-
   {
     title: "Your Collection",
     menus: [
@@ -43,11 +54,6 @@ const sidebarMenu = [
         text: "Favourite Artists",
         link: "artists",
       },
-      // {
-      //   icons: <AIIcons.AiFillFolder className="icons" />,
-      //   text: "Local",
-      //   link: "local",
-      // },
       {
         icons: <RIIcons.RiPlayListFill className="icons" />,
         text: "Playlists",

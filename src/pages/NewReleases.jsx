@@ -10,7 +10,7 @@ function NewReleases() {
   return (
     <>
       <div className="trends">
-        <CustomBreadcrumbs link={"trends"} textName="New Releases" />
+        <CustomBreadcrumbs link={"/releases"} textName="New Releases" />
         <section className="top-trends">
           <img src={FeaturedImage} className="trend-image"></img>
           <div className="trend-section">
@@ -31,7 +31,7 @@ function NewReleases() {
             <span className="artists">artists</span>
             <span className="recent-genre">genre</span>
             <span className="length">duration</span>
-            <Icons.FiHeart className="heart" />
+            <span style={{ visibility: "hidden" }}>#</span>
           </div>
           {recentPlayed.map((value, index) => {
             return (

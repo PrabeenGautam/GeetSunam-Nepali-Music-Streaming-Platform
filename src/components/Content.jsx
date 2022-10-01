@@ -17,7 +17,7 @@ function Content() {
             <BiIcons.BiPlay className="heading_icons" />
           </div>
           <Link to={"/releases"} className="see-more">
-            See more
+            See All
           </Link>
         </div>
 
@@ -46,7 +46,7 @@ function Content() {
             <span className="artists">artists</span>
             <span className="recent-genre">genre</span>
             <span className="length">duration</span>
-            <Icons.FiHeart className="heart" />
+            <span style={{ visibility: "hidden" }}>#</span>
           </div>
           {recentPlayed.map((value, index) => {
             return (

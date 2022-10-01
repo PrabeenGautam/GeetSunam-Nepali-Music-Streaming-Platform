@@ -7,7 +7,9 @@ function MusicContainer() {
           alt="thumbnail"
           className="thumbnail-new"
         />
-        <div className="song-name">Aayo Teejko Lahar</div>
+        <div className="song-name" title="Aayo Teejko Lahar">
+          Aayo Teejko Lahar
+        </div>
         <div className="song-artists">Princy Khatiwada</div>
       </div>
     </>

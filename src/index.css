@@ -326,7 +326,7 @@ a {
 .main-section .subheading {
   display: flex;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   font-family: "Inter";
   font-weight: 600;
   font-size: 18px;
@@ -340,23 +340,25 @@ a {
   height: 24px;
   border-radius: 50%;
   background-color: var(--highlight);
+  padding: 3px;
 }
 
 .content-section {
   display: flex;
-  gap: 20px;
+  gap: 2.5rem;
   overflow-x: hidden;
   overflow-y: hidden;
 }
 
 .music-container {
-  max-width: 180px;
+  max-width: 128px;
 }
 
 .music-container .thumbnail-new {
-  width: 10rem;
-  height: 10.5rem;
+  width: 9rem;
+  height: 9rem;
   object-fit: cover;
+  border-radius: 5px;
 }
 
 .music-container .song-name {
@@ -365,6 +367,10 @@ a {
   color: #e4e7e6;
   text-transform: uppercase;
   margin-top: 5px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .music-container .song-artists {
@@ -372,11 +378,6 @@ a {
   margin-top: 2px;
   font-size: 13px;
   line-height: 16px;
-  color: #afb6b3;
-}
-
-table {
-  width: 100%;
   color: #afb6b3;
 }
 
@@ -482,4 +483,29 @@ table {
   padding: 5px;
   text-transform: capitalize;
   padding-bottom: 10px;
+}
+
+.artists-container {
+  display: flex;
+  gap: 2rem;
+}
+
+.artists-container .song-artists {
+  font-size: 14px;
+  line-height: 18px;
+  color: #e4e7e6;
+  text-transform: uppercase;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.artists-container .thumbnail-new {
+  border-radius: 50%;
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+}
+
+.artists-container .artists {
+  cursor: pointer;
 }
