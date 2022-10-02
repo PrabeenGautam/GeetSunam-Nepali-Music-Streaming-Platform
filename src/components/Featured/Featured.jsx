@@ -5,7 +5,10 @@ import * as BiIcons from "react-icons/bi";
 function Featured() {
   return (
     <div className="featured">
-      <SearchBar />
+      <div className="featured-searchbar">
+        <SearchBar />
+      </div>
+
       <div className="image-section img">
         <img src={FeaturedImage} alt="cover" className="featured-img" />
       </div>

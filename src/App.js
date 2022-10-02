@@ -7,7 +7,7 @@ import Explore from "pages/explore/explore";
 import MainPlayer from "components/Player/Player";
 import NewReleases from "pages/NewReleases";
 import Recommnedations from "pages/Recommendations";
-import LikedSongs from "pages/LikedSongs";
+import LikedSongs from "pages/LikedSongs/LikedSongs";
 
 function App() {
   return (

@@ -6,7 +6,9 @@ import genreMenu from "./genreMenu.data";
 function SidebarRight() {
   return (
     <div className="sidebar-right">
-      <SearchBar className="custom-search" inputClass="custom-input" />
+      <div className="custom-searchbar">
+        <SearchBar />
+      </div>
 
       <div className="sidebar-title">Genre</div>
       <div className="grid grid-column-3 gap-sm">

@@ -1,5 +1,5 @@
 import React from "react";
-import Playlist from "./Playlist";
+import Playlist from "../Playlists/Playlist";
 
 function LikedSongs() {
   return (

@@ -1,6 +1,20 @@
 import * as FaIcons from "react-icons/fa";
-import { Link } from "react-router-dom";
+
 import sidebarMenu from "./sidebarMenu.data";
+import { Link, useLocation } from "react-router-dom";
+
+function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
+  const location = useLocation();
+  let isActive =
+    location.pathname === `${to}` || location.pathname === `/${to}`;
+  return (
+    <Link
+      className={isActive ? ` ${activeClassName}` : ` ${inactiveClassName}`}
+      to={to}
+      {...rest}
+    />
+  );
+}
 
 function SidebarLeft() {
   return (
@@ -21,12 +35,16 @@ function SidebarLeft() {
               <ul>
                 {value.menus.map((d, index) => {
                   return (
-                    <Link to={d.link} key={index}>
+                    <NavLink
+                      to={d.link}
+                      key={index}
+                      activeClassName="active"
+                      inactiveClassName="">
                       <li className="submenus">
                         <span className="menu-icon">{d.icons}</span>
                         <span className="menu-text">{d.text}</span>
                       </li>
-                    </Link>
+                    </NavLink>
                   );
                 })}
               </ul>

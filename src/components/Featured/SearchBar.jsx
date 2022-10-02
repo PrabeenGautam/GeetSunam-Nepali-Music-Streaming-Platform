@@ -1,12 +1,12 @@
 import * as FiIcons from "react-icons/fi";
 
-function SearchBar({ className = "search-bar", inputClass = "text-input" }) {
+function SearchBar() {
   return (
-    <div className={className}>
+    <div className="search-bar">
       <FiIcons.FiSearch className="icon-search" />
       <input
         type="text"
-        className={inputClass}
+        className="text-input"
         placeholder="Search artists, songs,..."
       />
       <div style={{ borderLeft: "2px solid black", paddingRight: 5 }}></div>

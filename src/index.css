@@ -124,6 +124,14 @@ body {
   color: var(--tertiary);
 }
 
+.active {
+  color: var(--tertiary);
+}
+
+.active .submenus .icons {
+  color: var(--tertiary);
+}
+
 a {
   text-decoration: none;
   color: var(--text);
@@ -328,33 +336,31 @@ a {
   justify-content: flex-end;
 }
 
-.search-bar {
-  background: white;
-  border-radius: 5px;
-  display: flex;
-  padding: 8px;
+.featured-searchbar {
   width: 20rem;
   position: absolute;
   left: 50%;
   top: 20px;
   transform: translate(-50%);
-  user-select: none;
-  z-index: 150;
+  z-index: 3;
 }
 
-.custom-search {
+.custom-searchbar {
   margin-top: 2rem;
+}
+
+.search-bar {
   background: white;
   border-radius: 5px;
   display: flex;
   padding: 8px;
   width: 100%;
+
   user-select: none;
   z-index: 150;
 }
 
-.search-bar .text-input,
-.custom-search .custom-input {
+.search-bar .text-input {
   border: none;
   outline: none;
   margin: 0 10px;
