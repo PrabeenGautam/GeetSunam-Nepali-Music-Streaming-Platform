@@ -27,4 +27,8 @@ export const featuredArtists = [
     name: "Raju Lama",
     img: "https://i.ytimg.com/vi/meC6VLzE29c/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAj3HW6MJHWxmHdZWdQAj4hheJiPg",
   },
+  {
+    name: "Prabisha Adhikari",
+    img: "https://scontent.fktm14-1.fna.fbcdn.net/v/t1.6435-9/115907866_3827294617287577_5248677023194109564_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a26aad&_nc_ohc=7kDPRJ_3TYIAX-e3ToJ&_nc_ht=scontent.fktm14-1.fna&oh=00_AT9ORfQai8mBWgo5xhBgPWzuWkR62SK9c_W0r7Z4JdSEGg&oe=6360404A",
+  },
 ];

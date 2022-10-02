@@ -8,6 +8,9 @@ import MainPlayer from "components/Player/Player";
 import NewReleases from "pages/NewReleases";
 import Recommnedations from "pages/Recommendations";
 import LikedSongs from "pages/LikedSongs/LikedSongs";
+import FavouriteArtists from "pages/FavouriteArtists/FavouriteArtists";
+import PlaylistSection from "pages/Playlists/PlaylistSection";
+import Settings from "pages/Settings/settings";
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
             <Route path="/releases" element={<NewReleases />} />
             <Route path="/recommendation" element={<Recommnedations />} />
             <Route path="/likedsongs" element={<LikedSongs />} />
+            <Route path="/artists" element={<FavouriteArtists />} />
+            <Route path="/playlists" element={<PlaylistSection />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </div>
         <div className="right-sidebar">

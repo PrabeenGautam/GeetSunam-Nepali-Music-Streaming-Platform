@@ -25,7 +25,6 @@ function SidebarRight() {
           );
         })}
       </div>
-      <div className="sidebar-title">You may Like</div>
     </div>
   );
 }
