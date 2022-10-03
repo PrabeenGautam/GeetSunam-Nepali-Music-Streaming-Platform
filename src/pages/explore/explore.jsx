@@ -5,6 +5,7 @@ import * as BiIcons from "react-icons/bi";
 import * as MdIcons from "react-icons/md";
 import FeaturedImage from "assets/images/featured.jpg";
 import { Link } from "react-router-dom";
+import { Btn } from "components/StyledUI";
 
 function Explore() {
   const array = new Array(12).fill(1);
@@ -24,7 +25,7 @@ function Explore() {
               <div className="song-name">Ko Hola Tyo</div>
             </div>
             <div style={{ marginTop: "1.875rem", display: "flex" }}>
-              <button className="btn btn-play">Play</button>
+              <Btn className="btn-play">Play</Btn>
               <BiIcons.BiHeart
                 style={{
                   width: 40,

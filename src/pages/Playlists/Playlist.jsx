@@ -28,6 +28,7 @@ function Playlist({ playlistName = "No Name" }) {
             <span></span>
             <span className="artists">artists</span>
             <span className="recent-genre">genre</span>
+            <span></span>
             <span className="length">
               <Icons.FiClock />
             </span>
@@ -42,8 +43,8 @@ function Playlist({ playlistName = "No Name" }) {
                 artists={value.artists}
                 genre={value.genre}
                 time={value.time}
-                isfavorite={value.favourite}
-                isplaying={value?.play}
+                isFavourite={value.favourite}
+                isPlaying={value?.play}
               />
             );
           })}

@@ -2,8 +2,8 @@ import React from "react";
 import * as Icons from "react-icons/fi";
 
 function RecentPlayed({
-  isplaying = false,
-  isfavorite = false,
+  isPlaying = false,
+  isFavourite = false,
   thumbnail,
   name,
   artists,
@@ -12,8 +12,8 @@ function RecentPlayed({
 }) {
   return (
     <div
-      className={`recent-container hover-effect ${isplaying ? "playing" : ""}`}>
-      {isplaying ? (
+      className={`recent-container hover-effect ${isPlaying ? "playing" : ""}`}>
+      {isPlaying ? (
         <Icons.FiPauseCircle className="recent-play" />
       ) : (
         <Icons.FiPlayCircle className="recent-play" />
@@ -22,7 +22,7 @@ function RecentPlayed({
       <span className="song-name">{name}</span>
       <span className="artists">{artists}</span>
       <span className="recent-genre">{genre}</span>
-      <Icons.FiHeart className={isfavorite ? "heart favourite" : "heart"} />
+      <Icons.FiHeart className={isFavourite ? "heart favourite" : "heart"} />
       <span className="length">{time}</span>
       <span className="more">...</span>
     </div>

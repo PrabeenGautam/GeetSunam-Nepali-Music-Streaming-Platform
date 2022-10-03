@@ -12,4 +12,9 @@ export const Btn = styled.button`
   line-height: 18px;
   color: var(--text);
   cursor: pointer;
+  z-index: 999;
+  &:hover {
+    background: var(--tertiary);
+    color: black;
+  }
 `;

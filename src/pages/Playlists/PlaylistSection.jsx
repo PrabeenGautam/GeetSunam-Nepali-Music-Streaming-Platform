@@ -2,6 +2,7 @@ import React from "react";
 import PlaylistsCover from "assets/images/playlists-cover.png";
 import PlaylistsContainer from "./PlaylistContainer";
 import { useNavigate } from "react-router-dom";
+import { Btn } from "components/StyledUI";
 
 function PlaylistSection() {
   const navigate = useNavigate();
@@ -26,6 +27,9 @@ function PlaylistSection() {
             <span>6 playlist</span>
           </div>
         </div>
+        <Btn style={{ color: "#333", position: "absolute", right: 20 }}>
+          Create Playlists
+        </Btn>
       </section>
 
       <PlaylistsContainer data={array} onClickPlaylists={onClickPlaylists} />

@@ -4,6 +4,7 @@ import { Btn } from "components/StyledUI";
 import React from "react";
 import Recommended from "../assets/images/Recommended.png";
 import { recentPlayed } from "components/recentPlayed.data";
+import * as Icons from "react-icons/fi";
 
 function Recommnedations() {
   return (
@@ -29,7 +30,10 @@ function Recommnedations() {
             <span className="song-name">name</span>
             <span className="artists">artists</span>
             <span className="recent-genre">genre</span>
-            <span className="length">duration</span>
+            <span></span>
+            <span className="length">
+              <Icons.FiClock />
+            </span>
             <span style={{ visibility: "hidden" }}>#</span>
           </div>
           {recentPlayed.map((value, index) => {
@@ -41,8 +45,8 @@ function Recommnedations() {
                 artists={value.artists}
                 genre={value.genre}
                 time={value.time}
-                isfavorite={value.favourite}
-                isplaying={value?.play}
+                isFavourite={value.favourite}
+                isPlaying={value?.play}
               />
             );
           })}

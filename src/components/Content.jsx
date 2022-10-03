@@ -71,14 +71,14 @@ function Content() {
           {recentPlayed.map((value, index) => {
             return (
               <RecentPlayed
-                key={index}
+                key={index} 
                 thumbnail={value.thumbnail}
                 name={value.name}
                 artists={value.artists}
                 genre={value.genre}
                 time={value.time}
-                isfavorite={value.favourite}
-                isplaying={value?.play}
+                isFavourite={value.favourite}
+                isPlaying={value?.play}
               />
             );
           })}

@@ -1,6 +1,7 @@
 import FeaturedImage from "assets/images/featured.jpg";
 import SearchBar from "./SearchBar";
 import * as BiIcons from "react-icons/bi";
+import { Btn } from "components/StyledUI";
 
 function Featured() {
   return (
@@ -20,7 +21,7 @@ function Featured() {
           <div className="song-name">Ko Hola Tyo</div>
         </div>
         <div className="play-featured">
-          <button className="btn btn-play">Play</button>
+          <Btn className="btn-play">Play</Btn>
           <BiIcons.BiHeart
             style={{
               width: 40,
