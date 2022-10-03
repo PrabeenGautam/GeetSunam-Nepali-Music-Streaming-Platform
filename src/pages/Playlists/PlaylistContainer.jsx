@@ -1,14 +1,18 @@
 import React from "react";
 import PlaylistsPlaceholder from "assets/images/playlists.png";
 
-function PlaylistsContainer({ data }) {
+function PlaylistsContainer({ data, onClickPlaylists }) {
   return (
     <section
       className="fav-artists-container"
       style={{ padding: "1rem 1.5rem" }}>
       {data.map((value, index) => {
         return (
-          <div className="artists" title={value.name} key={index}>
+          <div
+            className="artists"
+            title={value.name}
+            key={index}
+            onClick={() => onClickPlaylists(index)}>
             <img
               src={PlaylistsPlaceholder}
               alt="playlists"

@@ -88,6 +88,7 @@ select {
   --menu-head: #cfc5c5;
   --highlight: #f96666;
   --text-base: hsla(0, 0%, 100%, 0.7);
+  --playerHeight: 3.6875rem;
 }
 
 body {
@@ -96,9 +97,12 @@ body {
 }
 
 .main-container {
-  grid-template-columns: 14.5rem 1fr 18.5rem;
-  grid-template-rows: 1fr 3.5rem;
   height: 100vh;
+}
+
+.content {
+  margin: 0 18.5rem 0 14.5rem;
+  padding-bottom: 3.5rem;
 }
 
 /* Sidebar Starts */
@@ -106,12 +110,29 @@ body {
 .right-sidebar {
   background-color: var(--primary);
   color: var(--text);
+  z-index: 29;
+  height: calc(100% - var(--playerHeight));
+}
+
+.left-sidebar {
+  position: fixed;
+  top: 0;
+  width: 14.5rem;
+}
+
+.right-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 18.5rem;
 }
 
 .player {
-  grid-column: -1/1;
   border-top: 1px solid var(--divider);
   background-color: var(--primary);
+  z-index: 999;
+  position: fixed;
+  height: var(--playerHeight);
 }
 
 .logo {
@@ -225,14 +246,6 @@ a {
   font-size: 0.7rem;
   text-align: center;
   margin-top: 5px;
-}
-
-.content {
-  overflow-y: scroll;
-}
-
-.content::-webkit-scrollbar {
-  display: none;
 }
 
 .featured {
@@ -411,7 +424,7 @@ a {
 
 .content-section {
   display: flex;
-  gap: 2rem;
+  gap: 1.79rem;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -422,12 +435,13 @@ a {
 
 .music-section {
   display: flex;
-  gap: 2rem;
+  gap: 1.79rem;
   flex-wrap: wrap;
 }
 
 .music-container {
   max-width: 128px;
+  position: relative;
 }
 
 .music-container .thumbnail-new {
@@ -563,7 +577,7 @@ a {
 
 .artists-container {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   cursor: pointer;
 }
 
@@ -748,7 +762,6 @@ a {
   outline: none;
   font-size: 1rem;
   font-weight: 400;
-  transition: box-shadow 0.1s ease-in-out 0s, color 0.1s ease-in-out 0s;
   border-radius: 5px;
   padding: 5px;
 }

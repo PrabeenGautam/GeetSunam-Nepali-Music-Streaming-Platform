@@ -11,28 +11,32 @@ import LikedSongs from "pages/LikedSongs/LikedSongs";
 import FavouriteArtists from "pages/FavouriteArtists/FavouriteArtists";
 import PlaylistSection from "pages/Playlists/PlaylistSection";
 import Settings from "pages/Settings/settings";
+import PlaylistsDetails from "pages/Playlists/PlaylistsDetails";
 
 function App() {
   return (
     <>
-      <div className="grid main-container">
-        <SidebarLeft />
+      <div className="main-container">
+        <div>
+          <SidebarLeft />
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Content />} />
+              <Route path="/trends" element={<Trends />} />
+              <Route path="/explore" element={<Explore />} />
+              <Route path="/releases" element={<NewReleases />} />
+              <Route path="/recommendation" element={<Recommnedations />} />
+              <Route path="/likedsongs" element={<LikedSongs />} />
+              <Route path="/artists" element={<FavouriteArtists />} />
+              <Route path="/playlists" element={<PlaylistSection />} />
+              <Route path="/playlists:id" element={<PlaylistsDetails />} />
+              <Route path="/settings" element={<Settings />} />
+            </Routes>
+          </div>
 
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<Content />} />
-            <Route path="/trends" element={<Trends />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/releases" element={<NewReleases />} />
-            <Route path="/recommendation" element={<Recommnedations />} />
-            <Route path="/likedsongs" element={<LikedSongs />} />
-            <Route path="/artists" element={<FavouriteArtists />} />
-            <Route path="/playlists" element={<PlaylistSection />} />
-            <Route path="/settings" element={<Settings />} />
-          </Routes>
-        </div>
-        <div className="right-sidebar">
-          <SidebarRight />
+          <div className="right-sidebar">
+            <SidebarRight />
+          </div>
         </div>
         <div className="player">
           <MainPlayer />

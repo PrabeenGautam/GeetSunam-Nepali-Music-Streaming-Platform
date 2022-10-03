@@ -59,7 +59,7 @@ function Settings() {
               <input
                 type="password"
                 name="new-password"
-                autocomplete="new-password"
+                autoComplete="new-password"
               />
             </div>
             <div>
@@ -67,7 +67,7 @@ function Settings() {
               <input
                 type="password"
                 name="repeat-password"
-                autocomplete="new-password"
+                autoComplete="new-password"
               />
             </div>
           </div>

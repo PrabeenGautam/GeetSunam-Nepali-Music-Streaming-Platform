@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 
 function Explore() {
   const array = new Array(12).fill(1);
-  console.log(array);
   return (
     <div className="content-container">
       <CustomBreadcrumbs link={"/explore"} textName="Explore" />
