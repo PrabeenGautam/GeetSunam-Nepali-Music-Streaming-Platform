@@ -5,6 +5,7 @@ import MusicContainer from "./MusicContainer";
 import RecentPlayed from "./RecentPlayed";
 import { recentPlayed } from "./recentPlayed.data";
 import * as HiIcons from "react-icons/hi";
+import * as FiIcons from "react-icons/fi";
 import FeaturedArtists from "./Featured/FeaturedArtists";
 import CustomBreadcrumbs from "./Breadcrumbs";
 
@@ -61,8 +62,11 @@ function Content() {
             <span className="song-name">name</span>
             <span className="artists">artists</span>
             <span className="recent-genre">genre</span>
-            <span className="length">duration</span>
             <span style={{ visibility: "hidden" }}>#</span>
+            <span className="length">
+              <FiIcons.FiClock />
+            </span>
+            <span style={{ visibility: "hidden" }}></span>
           </div>
           {recentPlayed.map((value, index) => {
             return (

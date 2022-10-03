@@ -8,7 +8,7 @@ function PlaylistSection() {
   const array = new Array(6).fill(0);
 
   const onClickPlaylists = (playlists) => {
-    navigate(`/playlists:${playlists}`);
+    navigate(`/playlists/${playlists}`);
   };
 
   return (

@@ -12,7 +12,7 @@ function RecentPlayed({
 }) {
   return (
     <div
-      className={isplaying ? "recent-container playing" : "recent-container"}>
+      className={`recent-container hover-effect ${isplaying ? "playing" : ""}`}>
       {isplaying ? (
         <Icons.FiPauseCircle className="recent-play" />
       ) : (
@@ -22,8 +22,9 @@ function RecentPlayed({
       <span className="song-name">{name}</span>
       <span className="artists">{artists}</span>
       <span className="recent-genre">{genre}</span>
-      <span className="length">{time}</span>
       <Icons.FiHeart className={isfavorite ? "heart favourite" : "heart"} />
+      <span className="length">{time}</span>
+      <span className="more">...</span>
     </div>
   );
 }
