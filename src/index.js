@@ -11,7 +11,7 @@ import "styles/common.css";
 import { queryClient } from "services/queryClient";
 import store from "redux/store";
 
-const Wrapper = ({ children }) => {
+const ScrollToTop = ({ children }) => {
   const location = useLocation();
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -24,9 +24,9 @@ root.render(
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Wrapper>
+        <ScrollToTop>
           <App />
-        </Wrapper>
+        </ScrollToTop>
       </BrowserRouter>
     </QueryClientProvider>
   </Provider>

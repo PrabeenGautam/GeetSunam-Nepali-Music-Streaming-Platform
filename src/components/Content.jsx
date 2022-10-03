@@ -3,9 +3,7 @@ import * as BiIcons from "react-icons/bi";
 import { Link } from "react-router-dom";
 import MusicContainer from "./MusicContainer";
 import RecentPlayed from "./RecentPlayed";
-import { recentPlayed } from "./recentPlayed.data";
 import * as HiIcons from "react-icons/hi";
-import * as FiIcons from "react-icons/fi";
 import FeaturedArtists from "./Featured/FeaturedArtists";
 import CustomBreadcrumbs from "./Breadcrumbs";
 
@@ -55,34 +53,7 @@ function Content() {
           <BiIcons.BiPause className="heading_icons" />
         </div>
 
-        <section className="song-list">
-          <div className="recent-container list_heading ">
-            <span style={{ visibility: "hidden" }}>#</span>
-            <span></span>
-            <span className="song-name">name</span>
-            <span className="artists">artists</span>
-            <span className="recent-genre">genre</span>
-            <span style={{ visibility: "hidden" }}>#</span>
-            <span className="length">
-              <FiIcons.FiClock />
-            </span>
-            <span style={{ visibility: "hidden" }}></span>
-          </div>
-          {recentPlayed.map((value, index) => {
-            return (
-              <RecentPlayed
-                key={index} 
-                thumbnail={value.thumbnail}
-                name={value.name}
-                artists={value.artists}
-                genre={value.genre}
-                time={value.time}
-                isFavourite={value.favourite}
-                isPlaying={value?.play}
-              />
-            );
-          })}
-        </section>
+        <RecentPlayed removeFromPlaylist={false} />
       </div>
     </div>
   );

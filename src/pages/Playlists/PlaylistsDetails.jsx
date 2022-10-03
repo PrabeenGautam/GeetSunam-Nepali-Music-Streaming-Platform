@@ -1,3 +1,4 @@
+import EditPlaylistsModel from "components/Playlists/EditPlaylistsModal";
 import React from "react";
 import { useParams } from "react-router-dom";
 import Playlist from "./Playlist";

@@ -9,7 +9,7 @@ function Settings() {
       <h2 style={{ color: "#f6f6f6", marginBottom: 40 }}>Settings</h2>
       <div className="settings-section">
         <h3>Language</h3>
-        <div className="grid gap-sm languages">
+        <div className="grid gap-sm languages languages-grid">
           Choose language - Changes will be applied after restarting the web
           <select defaultValue="en">
             <option value="en">English (English)</option>

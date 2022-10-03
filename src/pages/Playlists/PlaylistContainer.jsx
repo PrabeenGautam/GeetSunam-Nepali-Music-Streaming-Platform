@@ -10,7 +10,7 @@ function PlaylistsContainer({ data, onClickPlaylists }) {
         return (
           <div
             className="artists"
-            title={value.name}
+            title={value}
             key={index}
             onClick={() => onClickPlaylists(index)}>
             <img

@@ -6,8 +6,8 @@ export const recentPlayed = [
     artists: "Sunil Giri",
     genre: "Pop",
     time: "3:54",
-    favourite: true,
-    play: "true",
+    isFavourite: true,
+    isPlaying: "true",
   },
   {
     thumbnail: "https://img.youtube.com/vi/Bn5Qpr79LQw/maxresdefault.jpg",
@@ -15,7 +15,7 @@ export const recentPlayed = [
     artists: "Princy Khatiwada",
     genre: "Teej",
     time: "3:54",
-    favourite: true,
+    isFavourite: true,
   },
   {
     thumbnail: "https://img.youtube.com/vi/Bn5Qpr79LQw/maxresdefault.jpg",
@@ -23,7 +23,7 @@ export const recentPlayed = [
     artists: "Princy Khatiwada",
     genre: "Teej",
     time: "3:54",
-    favourite: false,
+    isFavourite: false,
   },
   {
     thumbnail: "https://img.youtube.com/vi/Bn5Qpr79LQw/maxresdefault.jpg",
@@ -31,7 +31,7 @@ export const recentPlayed = [
     artists: "Princy Khatiwada",
     genre: "Teej",
     time: "3:54",
-    favourite: false,
+    isFavourite: false,
   },
   {
     thumbnail: "https://img.youtube.com/vi/Bn5Qpr79LQw/maxresdefault.jpg",
@@ -39,6 +39,6 @@ export const recentPlayed = [
     artists: "Princy Khatiwada",
     genre: "Teej",
     time: "3:54",
-    favourite: true,
+    isFavourite: true,
   },
 ];

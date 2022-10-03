@@ -10,11 +10,11 @@ export const Btn = styled.button`
   font-weight: 700;
   font-size: 18px;
   line-height: 18px;
-  color: var(--text);
+  color: #d3d3d3;
   cursor: pointer;
-  z-index: 999;
+  z-index: 900;
   &:hover {
-    background: var(--tertiary);
     color: black;
+    background-color: var(--text);
   }
 `;

@@ -23,34 +23,7 @@ function Trends() {
             <Btn className="btn-play">Play</Btn>
           </div>
         </section>
-        <section className="song-list">
-          <div className="recent-container list_heading ">
-            <span style={{ visibility: "hidden" }}>#</span>
-            <span></span>
-            <span className="song-name">name</span>
-            <span className="artists">artists</span>
-            <span className="recent-genre">genre</span>
-            <span></span>
-            <span className="length">
-              <Icons.FiClock />
-            </span>
-            <span style={{ visibility: "hidden" }}>#</span>
-          </div>
-          {recentPlayed.map((value, index) => {
-            return (
-              <RecentPlayed
-                key={index}
-                thumbnail={value.thumbnail}
-                name={value.name}
-                artists={value.artists}
-                genre={value.genre}
-                time={value.time}
-                isFavourite={value.favourite}
-                isPlaying={value?.play}
-              />
-            );
-          })}
-        </section>
+        <RecentPlayed removeFromPlaylist={false} />
       </div>
     </div>
   );
