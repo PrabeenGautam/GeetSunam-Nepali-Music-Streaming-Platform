@@ -4,7 +4,7 @@ import { featuredArtists } from "components/Featured/featureArtists.data";
 import ArtistsContainer from "components/Artists/ArtistsContainer";
 import { useNavigate } from "react-router-dom";
 
-function FavouriteArtists() {
+function Artists() {
   const navigate = useNavigate();
 
   const onClickArtists = (id) => {
@@ -19,9 +19,9 @@ function FavouriteArtists() {
         </div>
         <div className="playlist-details">
           <div>Collection</div>
-          <div>Favourite Artists</div>
+          <div>Artists</div>
           <div>
-            <span>Created By: PrabinGautam</span>
+            <span>GeetSunam</span>
             <span style={{ fontWeight: "bold" }}>.</span>
             <span>12 artists</span>
           </div>
@@ -36,4 +36,4 @@ function FavouriteArtists() {
   );
 }
 
-export default FavouriteArtists;
+export default Artists;

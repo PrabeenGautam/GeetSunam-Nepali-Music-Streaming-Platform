@@ -8,11 +8,12 @@ import MainPlayer from "components/Player/Player";
 import NewReleases from "pages/NewReleases";
 import Recommnedations from "pages/Recommendations";
 import LikedSongs from "pages/LikedSongs/LikedSongs";
-import FavouriteArtists from "pages/FavouriteArtists/FavouriteArtists";
+import FavouriteArtists from "pages/Artists/FavouriteArtists";
 import PlaylistSection from "pages/Playlists/PlaylistSection";
 import Settings from "pages/Settings/settings";
 import PlaylistsDetails from "pages/Playlists/PlaylistsDetails";
 import ArtistsDetails from "components/Artists/ArtistsDetails";
+import Artists from "pages/Artists/Artists";
 
 function App() {
   return (
@@ -28,8 +29,10 @@ function App() {
               <Route path="/releases" element={<NewReleases />} />
               <Route path="/recommendation" element={<Recommnedations />} />
               <Route path="/likedsongs" element={<LikedSongs />} />
-              <Route path="/artists" element={<FavouriteArtists />} />
+              <Route path="/artists" element={<Artists />} />
               <Route path="/artists/:id" element={<ArtistsDetails />} />
+              <Route path="/fav-artists" element={<FavouriteArtists />} />
+              <Route path="/fav-artists/:id" element={<ArtistsDetails />} />
               <Route path="/playlists" element={<PlaylistSection />} />
               <Route path="/playlists/:id" element={<PlaylistsDetails />} />
               <Route path="/settings" element={<Settings />} />

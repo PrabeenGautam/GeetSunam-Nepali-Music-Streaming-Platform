@@ -39,6 +39,11 @@ const sidebarMenu = [
         text: "Made for You",
         link: "recommendation",
       },
+      {
+        icons: <FaIcons.FaUserShield className="icons" />,
+        text: "Artists",
+        link: "artists",
+      },
     ],
   },
   {
@@ -52,7 +57,7 @@ const sidebarMenu = [
       {
         icons: <FaIcons.FaUserShield className="icons" />,
         text: "Favourite Artists",
-        link: "artists",
+        link: "fav-artists",
       },
       {
         icons: <RIIcons.RiPlayListFill className="icons" />,

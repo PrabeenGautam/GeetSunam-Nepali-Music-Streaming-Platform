@@ -3,11 +3,12 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import * as FiIcons from "react-icons/fi";
 import ArtistsPlayed from "./ArtistsPlayed";
-import FeaturedArtists from "components/Featured/FeaturedArtists";
+import FeaturedArtists from "components/Artists/FeaturedArtists";
 
-function ArtistsDetails({ setDeleteClick = false }) {
+function ArtistsDetails() {
   const { id } = useParams();
   const artistsDetails = featuredArtists[id];
+
   const recommendedArtists = featuredArtists.filter(
     (value) => value.id !== Number(id)
   );
@@ -29,10 +30,7 @@ function ArtistsDetails({ setDeleteClick = false }) {
             </div>
           </div>
           <div style={{ position: "absolute", right: 20, zIndex: 999 }}>
-            <button
-              className="custom-btn"
-              title="Remove from Favourite"
-              onClick={() => setDeleteClick(true)}>
+            <button className="custom-btn" title="Remove from Favourite">
               <FiIcons.FiHeart
                 style={{
                   fill: "var(--highlight)",

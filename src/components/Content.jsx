@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import MusicContainer from "./MusicContainer";
 import RecentPlayed from "./RecentPlayed";
 import * as HiIcons from "react-icons/hi";
-import FeaturedArtists from "./Featured/FeaturedArtists";
+import FeaturedArtists from "./Artists/FeaturedArtists";
 import CustomBreadcrumbs from "./Breadcrumbs";
 import { featuredArtists } from "./Featured/featureArtists.data";
 

@@ -1,10 +1,18 @@
-function FeaturedArtists({featuredArtists}) {
+import { useNavigate } from "react-router-dom";
+
+function FeaturedArtists({ featuredArtists }) {
+  const navigate = useNavigate();
+  const onClickContainer = (id) => navigate(`artists/${id}`);
   return (
     <>
       <div className="artists-container">
         {featuredArtists.map((value, index) => {
           return (
-            <div key={index} className="artists" title={value.name}>
+            <div
+              key={index}
+              className="artists"
+              title={value.name}
+              onClick={() => onClickContainer(index)}>
               <img
                 src={value.img}
                 alt="artists"
