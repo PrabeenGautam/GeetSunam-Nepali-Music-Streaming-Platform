@@ -6,6 +6,7 @@ import RecentPlayed from "./RecentPlayed";
 import * as HiIcons from "react-icons/hi";
 import FeaturedArtists from "./Featured/FeaturedArtists";
 import CustomBreadcrumbs from "./Breadcrumbs";
+import { featuredArtists } from "./Featured/featureArtists.data";
 
 function Content() {
   return (
@@ -43,7 +44,7 @@ function Content() {
         </div>
 
         <div className="content-section">
-          <FeaturedArtists />
+          <FeaturedArtists featuredArtists={featuredArtists} />
         </div>
       </div>
 

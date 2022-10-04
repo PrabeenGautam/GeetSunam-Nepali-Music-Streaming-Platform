@@ -1,10 +1,16 @@
 import React from "react";
-import * as Icons from "react-icons/fi";
 import artists from "assets/images/music-artists.png";
 import { featuredArtists } from "components/Featured/featureArtists.data";
-import ArtistsContainer from "components/ArtistsContainer";
+import ArtistsContainer from "components/Artists/ArtistsContainer";
+import { useNavigate } from "react-router-dom";
 
 function FavouriteArtists() {
+  const navigate = useNavigate();
+
+  const onClickArtists = (id) => {
+    navigate(`/artists/${id}`);
+  };
+
   return (
     <div className="playlist-container gradient">
       <section className="playlist">
@@ -22,7 +28,10 @@ function FavouriteArtists() {
         </div>
       </section>
 
-      <ArtistsContainer artistsData={featuredArtists} />
+      <ArtistsContainer
+        artistsData={featuredArtists}
+        onClickArtists={onClickArtists}
+      />
     </div>
   );
 }

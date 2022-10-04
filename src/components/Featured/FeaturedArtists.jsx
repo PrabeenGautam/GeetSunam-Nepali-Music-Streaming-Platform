@@ -1,6 +1,4 @@
-import { featuredArtists } from "./featureArtists.data";
-
-function FeaturedArtists() {
+function FeaturedArtists({featuredArtists}) {
   return (
     <>
       <div className="artists-container">

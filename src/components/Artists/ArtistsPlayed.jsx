@@ -1,21 +1,15 @@
-import React, { useState } from "react";
+import { recentPlayed } from "components/recentPlayed.data";
+import React from "react";
 import * as Icons from "react-icons/fi";
-import DeleteModel from "./Playlists/DeleteModel";
-import { recentPlayed } from "./recentPlayed.data";
 
-function RecentPlayed({ removeFromPlaylist = false }) {
-  const [deleteClick, setDeleteClick] = useState(false);
-  const [idToDelete, setIdDelete] = useState(null);
-
+function ArtistsPlayed() {
   return (
     <>
-      {deleteClick && <DeleteModel setClick={setDeleteClick} id={idToDelete} />}
       <section className="song-list">
-        <div className="recent-container list_heading ">
+        <div className="recent-container list_heading artists-details">
           <span>#</span>
           <span className="song-name">name</span>
           <span></span>
-          <span className="artists">artists</span>
           <span className="recent-genre">genre</span>
           <span></span>
           <span className="length">
@@ -27,7 +21,7 @@ function RecentPlayed({ removeFromPlaylist = false }) {
           return (
             <div
               key={index}
-              className={`recent-container hover-effect ${
+              className={`recent-container hover-effect artists-details ${
                 value.isPlaying ? "playing" : ""
               }`}>
               {value.isPlaying ? (
@@ -41,28 +35,15 @@ function RecentPlayed({ removeFromPlaylist = false }) {
                 className="thumbnail-recent"
               />
               <span className="song-name">{value.name}</span>
-              <span className="artists">{value.artists}</span>
+
               <span className="recent-genre">{value.genre}</span>
               <Icons.FiHeart
                 className={value.isFavourite ? "heart favourite" : "heart"}
               />
               <span className="length">{value.time}</span>
-              {removeFromPlaylist ? (
-                <span className="more">
-                  <Icons.FiTrash
-                    style={{ stroke: "white" }}
-                    title="Remove from Playlists"
-                    onClick={() => {
-                      setIdDelete(index);
-                      setDeleteClick(true);
-                    }}
-                  />
-                </span>
-              ) : (
-                <span className="add-more" title="Add to Playlists">
-                  Add
-                </span>
-              )}
+              <span className="add-more" title="Add to Playlists">
+                Add
+              </span>
             </div>
           );
         })}
@@ -71,4 +52,4 @@ function RecentPlayed({ removeFromPlaylist = false }) {
   );
 }
 
-export default RecentPlayed;
+export default ArtistsPlayed;

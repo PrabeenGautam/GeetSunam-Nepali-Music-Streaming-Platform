@@ -253,6 +253,11 @@ a {
 
 .genre {
   cursor: pointer;
+  transition: transform 0.25s ease-in-out;
+}
+
+.genre:hover {
+  transform: scale(1.05);
 }
 
 .genre-image img {
@@ -369,7 +374,7 @@ a {
 }
 
 .custom-btn {
-  padding: 5px 10px;
+  padding: 7px 10px;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -521,6 +526,10 @@ a {
   padding: 5px 10px;
 }
 
+.artists-details {
+  grid-template-columns: 20px 2.5rem 1.5fr 0.5fr 50px 40px 50px;
+}
+
 .hover-effect:hover {
   background-color: rgba(0, 0, 0, 0.35);
   border-radius: 5px;
@@ -596,10 +605,13 @@ a {
   border-radius: 12px;
 }
 
-.top-trends h2 {
-  margin-bottom: 24px;
-  font-size: 2rem;
+h2 {
   color: var(--text);
+  margin-bottom: 24px;
+}
+
+.top-trends h2 {
+  font-size: 2rem;
 }
 
 .trend-section .details * {
@@ -621,6 +633,10 @@ a {
 .artists-container {
   display: flex;
   gap: 1.4rem;
+  user-select: none;
+}
+
+.artists-container .artists {
   cursor: pointer;
 }
 
@@ -695,6 +711,19 @@ a {
   justify-content: center;
   box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
   background-color: var(--highlight);
+}
+
+.playlist-container .artists-images {
+  width: 15rem;
+  height: 15rem;
+  align-self: flex-end;
+  box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
+}
+
+.playlist-container .artists-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .playlist .playlist-images * {

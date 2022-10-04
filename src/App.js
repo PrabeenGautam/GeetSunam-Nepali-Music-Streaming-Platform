@@ -12,6 +12,7 @@ import FavouriteArtists from "pages/FavouriteArtists/FavouriteArtists";
 import PlaylistSection from "pages/Playlists/PlaylistSection";
 import Settings from "pages/Settings/settings";
 import PlaylistsDetails from "pages/Playlists/PlaylistsDetails";
+import ArtistsDetails from "components/Artists/ArtistsDetails";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path="/recommendation" element={<Recommnedations />} />
               <Route path="/likedsongs" element={<LikedSongs />} />
               <Route path="/artists" element={<FavouriteArtists />} />
+              <Route path="/artists/:id" element={<ArtistsDetails />} />
               <Route path="/playlists" element={<PlaylistSection />} />
               <Route path="/playlists/:id" element={<PlaylistsDetails />} />
               <Route path="/settings" element={<Settings />} />

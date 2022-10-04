@@ -15,7 +15,7 @@ function Playlist({ playlistName = "No Name" }) {
   if (click || deleteClick) {
     document.body.style.overflow = "hidden";
   } else {
-    document.body.style.overflow = "auto";
+    document.body.style.removeProperty("overflow");
   }
 
   return (
@@ -41,11 +41,18 @@ function Playlist({ playlistName = "No Name" }) {
           </div>
         </div>
         {!isLikedSongs && (
-          <div style={{ position: "absolute", right: 20, zIndex: 999 }}>
+          <div
+            style={{
+              position: "absolute",
+              right: 20,
+              zIndex: 999,
+            }}>
             <button
               className="custom-btn"
               title="Edit Playlists"
-              style={{ marginRight: 10 }}
+              style={{
+                marginRight: 10,
+              }}
               onClick={() => setClick(true)}>
               <MdIcons.MdEditNote />
             </button>
@@ -53,7 +60,11 @@ function Playlist({ playlistName = "No Name" }) {
               className="custom-btn btn-play"
               title="Delete Playlists"
               onClick={() => setDeleteClick(true)}>
-              <MdIcons.MdDeleteOutline style={{ fill: "white" }} />
+              <MdIcons.MdDeleteOutline
+                style={{
+                  fill: "white",
+                }}
+              />
             </button>
           </div>
         )}
