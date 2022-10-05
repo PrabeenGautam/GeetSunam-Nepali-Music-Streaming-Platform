@@ -636,6 +636,10 @@ h2:not(.h2) {
   user-select: none;
 }
 
+.featured-container {
+  gap: 1.6rem;
+}
+
 .artists-container .artists {
   cursor: pointer;
 }

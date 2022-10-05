@@ -5,7 +5,7 @@ function FeaturedArtists({ featuredArtists }) {
   const onClickContainer = (id) => navigate(`artists/${id}`);
   return (
     <>
-      <div className="artists-container">
+      <div className="artists-container featured-container">
         {featuredArtists.map((value, index) => {
           return (
             <div
