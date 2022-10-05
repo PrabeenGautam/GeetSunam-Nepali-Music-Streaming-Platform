@@ -950,6 +950,13 @@ h3 {
   gap: 30px;
 }
 
+.custom-field {
+  display: grid;
+  grid-template-columns: 0.4fr 1fr;
+  gap: 20;
+  align-items: center;
+}
+
 .edit-section .form {
   display: flex;
   flex-direction: column;

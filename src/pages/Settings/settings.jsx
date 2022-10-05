@@ -1,10 +1,14 @@
 import CustomBreadcrumbs from "components/Breadcrumbs";
+import EditUserProfile from "components/Settings/EditUserProfile";
 import { Btn } from "components/StyledUI";
 import React from "react";
+import { useState } from "react";
 
 function Settings() {
+  const [click, setClick] = useState(false);
   return (
     <div className="content-container">
+      {click && <EditUserProfile setClick={setClick} />}
       <CustomBreadcrumbs link={"/settings"} textName="Settings" />
       <h2 style={{ color: "#f6f6f6", marginBottom: 40 }}>Settings</h2>
       <div className="settings-section">
@@ -37,6 +41,7 @@ function Settings() {
           </tbody>
         </table>
         <Btn
+          onClick={() => setClick(true)}
           style={{
             backgroundColor: "hsla(0, 0%, 100%, 0.7)",
             width: "150px",

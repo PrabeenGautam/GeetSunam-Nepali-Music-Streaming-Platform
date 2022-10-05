@@ -3,7 +3,6 @@ import * as Icons from "react-icons/gi";
 import Placeholder from "assets/images/genre/placeholder-image.jpg";
 import { Btn } from "../StyledUI";
 import { useState } from "react";
-import { useEffect } from "react";
 
 function EditPlaylistsModel({ setClick }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);
@@ -32,7 +31,7 @@ function EditPlaylistsModel({ setClick }) {
       <div className="model-container">
         <div className="container">
           <div className="header">
-            <h2>Edit Details</h2>
+            <h2 className="h2">Edit Details</h2>
             <Icons.GiTireIronCross
               style={{ cursor: "pointer" }}
               onClick={() => setClick(false)}
@@ -40,7 +39,7 @@ function EditPlaylistsModel({ setClick }) {
           </div>
           <div className="edit-section">
             <form action="">
-              <div className="input-field">
+              <div className="input-field ">
                 <div className="playlists-image">
                   <img
                     src={selectedImage}
