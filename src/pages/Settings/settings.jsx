@@ -6,6 +6,7 @@ import { useState } from "react";
 
 function Settings() {
   const [click, setClick] = useState(false);
+
   return (
     <div className="content-container">
       {click && <EditUserProfile setClick={setClick} />}

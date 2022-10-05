@@ -923,7 +923,7 @@ h3 {
 
 .edit-section .playlists-image {
   position: relative;
-  width: 320px;
+  width: 180px;
 }
 
 .edit-section .playlists-image img {
@@ -946,30 +946,24 @@ h3 {
 }
 
 .edit-section .input-field {
-  display: flex;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 20px;
 }
 
-.custom-field {
-  display: grid;
-  grid-template-columns: 0.4fr 1fr;
-  gap: 20;
-  align-items: center;
+.custom-input label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.custom-input input {
+  margin-bottom: 22px;
 }
 
 .edit-section .form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 100%;
-}
-
-.form div {
-  position: relative;
-}
-
-.form div:last-child {
-  height: 100%;
 }
 
 .edit-section input,
@@ -1006,4 +1000,18 @@ h3 {
 
 .save-playlist {
   margin-top: 24px;
+}
+
+.userprofile {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.userprofile img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
 }
