@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Icons from "react-icons/gi";
 import Placeholder from "assets/images/genre/placeholder-image.jpg";
+import { Btn } from "../StyledUI";
+import { useState } from "react";
 
-function EditUserProfile({ setClick }) {
+function EditPlaylistsModel({ setClick }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);
 
   const getBase64 = (file, callback) => {
@@ -23,6 +25,7 @@ function EditUserProfile({ setClick }) {
       });
     }
   };
+
   return (
     <>
       <div className="model-container">
@@ -34,10 +37,9 @@ function EditUserProfile({ setClick }) {
               onClick={() => setClick(false)}
             />
           </div>
-
           <div className="edit-section">
             <form action="">
-              <div className="input-field">
+              <div className="input-field ">
                 <div className="playlists-image">
                   <img
                     src={selectedImage}
@@ -53,22 +55,27 @@ function EditUserProfile({ setClick }) {
                   />
                 </div>
 
-                <span className="custom-input">
-                  <label htmlFor="username">Username</label>
-                  <input type="text" name="username" />
+                <div>
+                  <div className="custom-field " style={{ marginBottom: 20 }}>
+                    <input type="text" name="username" id="" />
+                  </div>
 
-                  <label htmlFor="email">Email</label>
-                  <input type="email" name="email" />
-                </span>
+                  <div className="custom-field" style={{ marginBottom: 20 }}>
+                    <textarea
+                      name="playlistDescription"
+                      id="playlist-description"
+                      placeholder="Enter Description (Optional)"></textarea>
+                  </div>
+                </div>
               </div>
-
-              <button
-                type="submit"
-                className="btn btn-play"
-                style={{ marginTop: 20 }}>
+              <button type="submit" className="btn btn-play">
                 Save
               </button>
             </form>
+          </div>
+          <div className="guildlines">
+            Please ensure that you have uploaded the correct images and make
+            sure you have the right to upload the image.
           </div>
         </div>
       </div>
@@ -76,4 +83,4 @@ function EditUserProfile({ setClick }) {
   );
 }
 
-export default EditUserProfile;
+export default EditPlaylistsModel;

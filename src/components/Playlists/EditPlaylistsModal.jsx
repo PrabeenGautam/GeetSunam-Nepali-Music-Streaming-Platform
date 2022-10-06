@@ -38,7 +38,7 @@ function EditPlaylistsModel({ setClick }) {
             />
           </div>
           <div className="edit-section">
-            <form action="">
+            <form>
               <div className="input-field ">
                 <div className="playlists-image">
                   <img

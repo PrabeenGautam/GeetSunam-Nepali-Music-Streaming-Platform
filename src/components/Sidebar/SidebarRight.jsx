@@ -1,11 +1,23 @@
 import { SearchBar } from "components/Featured";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import genreMenu from "./genreMenu.data";
+import ProfileImage from "assets/images/pas075bct029.jpg";
 
 function SidebarRight() {
   return (
     <div className="sidebar-right">
+      <Link
+        to="/settings"
+        className="userprofile"
+        style={{
+          marginTop: 20,
+          borderBottom: "1px solid rgba(255,255,255,0.4",
+          paddingBottom: 20,
+        }}>
+        <img src={ProfileImage} alt="" />
+        <div className="userName">PrabinGautam</div>
+      </Link>
+
       <div className="custom-searchbar">
         <SearchBar />
       </div>
