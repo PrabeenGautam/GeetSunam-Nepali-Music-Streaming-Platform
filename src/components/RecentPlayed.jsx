@@ -51,12 +51,14 @@ function RecentPlayed({ removeFromPlaylist = false }) {
                     <Icons.FiPlayCircle className="recent-play" />
                   </PlaySong>
                 )}
-                <img
-                  src={value.thumbnail}
-                  alt="thumbnail"
-                  className="thumbnail-recent"
-                />
-                <span className="song-name">{value.name}</span>
+                <PlaySong trackDetails={value.trackDetails}>
+                  <img
+                    src={value.thumbnail}
+                    alt="thumbnail"
+                    className="thumbnail-recent"
+                  />
+                  <span className="song-name">{value.name}</span>
+                </PlaySong>
                 <span className="artists">{value.artists}</span>
                 <span className="recent-genre">{value.genre}</span>
                 <Icons.FiHeart

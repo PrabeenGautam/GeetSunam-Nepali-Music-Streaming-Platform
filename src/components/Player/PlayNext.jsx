@@ -1,6 +1,7 @@
 import { shallowEqual, useSelector } from "react-redux";
 
 import { PlayerInterface, Track } from "react-mui-player";
+import React from "react";
 
 const PlayNext = ({ trackDetails = {}, children }) => {
   const playlist = useSelector((state) => state.playlist, shallowEqual);
@@ -22,7 +23,13 @@ const PlayNext = ({ trackDetails = {}, children }) => {
       ]);
     }
   };
-  return <div onClick={() => addToPlayNext()}>{children}</div>;
+
+  return React.Children.map(children, (child) => {
+    return React.cloneElement(child, {
+      onClick: () => addToPlayNext(),
+      style: { cursor: "pointer" },
+    });
+  });
 };
 
 export default PlayNext;
