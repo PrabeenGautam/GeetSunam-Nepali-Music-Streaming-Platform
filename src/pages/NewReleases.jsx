@@ -4,7 +4,7 @@ import { Btn } from "components/StyledUI";
 import React from "react";
 import * as Icons from "react-icons/fi";
 import FeaturedImage from "assets/images/featured.jpg";
-import { recentPlayed } from "components/recentPlayed.data";
+import { recentPlayed } from "assets/data/recentPlayed.data";
 
 function NewReleases() {
   return (

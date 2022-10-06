@@ -9,7 +9,9 @@ import "./index.css";
 import "styles/common.css";
 
 import { queryClient } from "services/queryClient";
-import store from "redux/store";
+import geetSunamStore from "redux/store";
+import geetSunamStoreContext from "redux/storeContext";
+import playerStore from "react-mui-player/redux/store";
 
 const ScrollToTop = ({ children }) => {
   const location = useLocation();
@@ -21,13 +23,15 @@ const ScrollToTop = ({ children }) => {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ScrollToTop>
-          <App />
-        </ScrollToTop>
-      </BrowserRouter>
-    </QueryClientProvider>
+  <Provider store={playerStore}>
+    <Provider store={geetSunamStore} context={geetSunamStoreContext}>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ScrollToTop>
+            <App />
+          </ScrollToTop>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </Provider>
   </Provider>
 );
