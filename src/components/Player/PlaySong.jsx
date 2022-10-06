@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 
 import { PlayerInterface, Track } from "react-mui-player";
 
@@ -8,7 +8,12 @@ const PlaySong = ({ trackDetails = {}, children }) => {
   const playSong = () => {
     PlayerInterface.play([new Track(ID, coverArt, title, artist, source)]);
   };
-  return <div onClick={() => playSong()}>{children}</div>;
+  return React.Children.map(children, (child) => {
+    return React.cloneElement(child, {
+      onClick: () => playSong(),
+      style: { cursor: "pointer" },
+    });
+  });
 };
 
 export default PlaySong;
