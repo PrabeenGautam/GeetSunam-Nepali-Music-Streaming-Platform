@@ -6,7 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
   const location = useLocation();
   let isActive =
-    location.pathname === `${to}` || location.pathname === `/${to}`;
+    location.pathname === to || location.pathname.includes(`/${to}`);
   return (
     <Link
       className={isActive ? ` ${activeClassName}` : ` ${inactiveClassName}`}

@@ -281,7 +281,7 @@ a {
   width: 100%;
   height: 22.5rem;
   object-fit: cover;
-  object-position: 0% 92%;
+  /* object-position: 0% 92%; */
   border-radius: 7.63014px;
   user-select: none;
 }
@@ -1014,4 +1014,46 @@ h3 {
   height: 3rem;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.index-button {
+  color: white;
+  width: 32px;
+  height: 32px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.index-button:hover {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.carosel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  gap: 10px;
+}
+
+.carosel div {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+
+.carosel div.active {
+  background-color: var(--highlight);
+}
+
+.carosel div:hover {
+  background-color: white;
 }
