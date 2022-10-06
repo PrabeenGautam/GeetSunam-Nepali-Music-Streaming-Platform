@@ -2,7 +2,7 @@ import React from "react";
 import FeaturedImage from "assets/images/featured.jpg";
 import { Btn } from "components/StyledUI";
 import * as Icons from "react-icons/fi";
-import { recentPlayed } from "components/recentPlayed.data";
+import { recentPlayed } from "assets/data/recentPlayed.data";
 import RecentPlayed from "components/RecentPlayed";
 import CustomBreadcrumbs from "components/Breadcrumbs";
 

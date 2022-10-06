@@ -3,7 +3,7 @@ import RecentPlayed from "components/RecentPlayed";
 import { Btn } from "components/StyledUI";
 import React from "react";
 import Recommended from "../assets/images/Recommended.png";
-import { recentPlayed } from "components/recentPlayed.data";
+import { recentPlayed } from "assets/data/recentPlayed.data";
 import * as Icons from "react-icons/fi";
 
 function Recommnedations() {

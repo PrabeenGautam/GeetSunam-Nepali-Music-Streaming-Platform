@@ -7,6 +7,7 @@ import * as HiIcons from "react-icons/hi";
 import FeaturedArtists from "./Artists/FeaturedArtists";
 import CustomBreadcrumbs from "./Breadcrumbs";
 import { featuredArtists } from "./Featured/featureArtists.data";
+import { tracksData } from "assets/data/tracks.data";
 
 function Content() {
   return (
@@ -25,13 +26,9 @@ function Content() {
         </div>
 
         <div className="content-section">
-          <MusicContainer />
-          <MusicContainer />
-          <MusicContainer />
-          <MusicContainer />
-          <MusicContainer />
-          <MusicContainer />
-          <MusicContainer />
+          {tracksData.map((_, i) => (
+            <MusicContainer key={i} />
+          ))}
         </div>
       </div>
 

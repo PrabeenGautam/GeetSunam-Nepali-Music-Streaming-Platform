@@ -524,6 +524,7 @@ a {
   margin-bottom: 20px;
   align-items: center;
   padding: 5px 10px;
+  user-select: none;
 }
 
 .artists-details {

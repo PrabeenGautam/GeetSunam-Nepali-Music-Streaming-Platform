@@ -1,4 +1,4 @@
-import { recentPlayed } from "components/recentPlayed.data";
+import { recentPlayed } from "assets/data/recentPlayed.data";
 import React from "react";
 import * as Icons from "react-icons/fi";
 
@@ -23,7 +23,8 @@ function ArtistsPlayed() {
               key={index}
               className={`recent-container hover-effect artists-details ${
                 value.isPlaying ? "playing" : ""
-              }`}>
+              }`}
+            >
               {value.isPlaying ? (
                 <Icons.FiPauseCircle className="recent-play" />
               ) : (

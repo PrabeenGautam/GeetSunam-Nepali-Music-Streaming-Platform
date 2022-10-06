@@ -1,9 +1,8 @@
 import React from "react";
-import Player from "react-material-music-player";
+import Player from "react-mui-player/components/Player";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import { createTheme } from "@mui/material/styles";
 import { green } from "@mui/material/colors";
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -36,14 +35,10 @@ function MainPlayer() {
     <>
       {
         <ThemeProvider theme={theme}>
-          <Player
-            sx={{ borderTop: `1px solid #eeeeee` }}
-            disableDrawer={true}
-          />
+          <Player sx={{ borderTop: `1px solid #eeeeee` }} />
         </ThemeProvider>
       }
     </>
   );
 }
-
 export default MainPlayer;
