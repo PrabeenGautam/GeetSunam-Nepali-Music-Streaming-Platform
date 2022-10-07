@@ -8,12 +8,13 @@ import FeaturedArtists from "./Artists/FeaturedArtists";
 import CustomBreadcrumbs from "./Breadcrumbs";
 import { featuredArtists } from "./Featured/featureArtists.data";
 import { tracksData } from "assets/data/tracks.data";
+import featuredSongs from "assets/data/featuredSongs.json";
 
 function Content() {
   return (
     <div className="content-container">
       <CustomBreadcrumbs link={"/"} textName="Home" />
-      <Featured />
+      <Featured data={featuredSongs} showSearchBar={true} />
       <div className="main-section">
         <div className="heading">
           <div className="subheading">

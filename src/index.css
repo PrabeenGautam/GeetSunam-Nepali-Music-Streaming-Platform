@@ -1041,6 +1041,10 @@ h3 {
   align-items: center;
   margin-top: 8px;
   gap: 10px;
+
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 }
 
 .carosel div {

@@ -1,11 +1,10 @@
 import CustomBreadcrumbs from "components/Breadcrumbs";
 import MusicContainer from "components/MusicContainer";
 import React from "react";
-import * as BiIcons from "react-icons/bi";
 import * as MdIcons from "react-icons/md";
-import FeaturedImage from "assets/images/featured.jpg";
 import { Link } from "react-router-dom";
-import { Btn } from "components/StyledUI";
+import { Featured } from "components/Featured";
+import featuredSongs from "assets/data/featuredSongs.json";
 
 function Explore() {
   const array = new Array(12).fill(1);
@@ -14,33 +13,7 @@ function Explore() {
       <CustomBreadcrumbs link={"/explore"} textName="Explore" />
 
       <div className="main-section">
-        <div className="featured">
-          <div className="image-section custom-img">
-            <img src={FeaturedImage} alt="cover" className="featured-img" />
-          </div>
-
-          <div className="custom-details">
-            <div className="song-details">
-              <div className="artists">Sunil Giri</div>
-              <div className="song-name">Ko Hola Tyo</div>
-            </div>
-            <div style={{ marginTop: "1.875rem", display: "flex" }}>
-              <Btn className="btn-play">Play</Btn>
-              <BiIcons.BiHeart
-                style={{
-                  width: 40,
-                  height: 40,
-                  padding: 10,
-                  color: "#f96666",
-                  backgroundColor: "rgba(0, 0, 0, 0.6)",
-                  marginLeft: 15,
-                  borderRadius: "50%",
-                  cursor: "pointer",
-                }}
-              />
-            </div>
-          </div>
-        </div>
+        <Featured data={featuredSongs} />
       </div>
 
       <div className="main-section">

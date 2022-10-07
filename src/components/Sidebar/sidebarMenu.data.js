@@ -11,7 +11,7 @@ const sidebarMenu = [
       {
         icons: <AIIcons.AiFillHome className="icons" />,
         text: "Home",
-        link: "/",
+        link: "home",
       },
       {
         icons: <FIIcons.FiTrendingUp className="icons" />,

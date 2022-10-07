@@ -25,7 +25,8 @@ function App() {
           <SidebarLeft />
           <div className="content">
             <Routes>
-              <Route path="/" element={<Content />} />
+              <Route path="/home" element={<Content />} />
+              <Route path="/" element={<Navigate replace to="/home" />} />
               <Route path="/trends" element={<Trends />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/releases" element={<NewReleases />} />

@@ -3,9 +3,8 @@ import SearchBar from "./SearchBar";
 import * as BiIcons from "react-icons/bi";
 import { Btn } from "components/StyledUI";
 import { useState } from "react";
-import featuredSongs from "assets/data/featuredSongs.json";
 
-function Featured() {
+function Featured({ data: featuredSongs, showSearchBar = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const songsDetails = featuredSongs[currentIndex];
   const buttonContainer = {
@@ -43,9 +42,11 @@ function Featured() {
             <BiIcons.BiRightArrow />
           </div>
         </div>
-        <div className="featured-searchbar">
-          <SearchBar />
-        </div>
+        {showSearchBar && (
+          <div className="featured-searchbar">
+            <SearchBar />
+          </div>
+        )}
 
         <div className="image-section img">
           <img src={songsDetails.url} alt="cover" className="featured-img" />
@@ -73,16 +74,17 @@ function Featured() {
             />
           </div>
         </div>
-      </div>
-      <div className="carosel">
-        {featuredSongs.map((value, index) => {
-          return (
-            <div
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={currentIndex === index ? "active" : ""}></div>
-          );
-        })}
+
+        <div className="carosel">
+          {featuredSongs.map((value, index) => {
+            return (
+              <div
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={currentIndex === index ? "active" : ""}></div>
+            );
+          })}
+        </div>
       </div>
     </>
   );
