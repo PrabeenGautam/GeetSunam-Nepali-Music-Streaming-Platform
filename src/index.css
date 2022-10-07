@@ -281,7 +281,7 @@ a {
   width: 100%;
   height: 22.5rem;
   object-fit: cover;
-  /* object-position: 0% 92%; */
+
   border-radius: 7.63014px;
   user-select: none;
 }
@@ -1061,4 +1061,19 @@ h3 {
 
 .carosel div:hover {
   background-color: white;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 3s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

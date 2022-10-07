@@ -1,4 +1,3 @@
-import FeaturedImage from "assets/images/featured.jpg";
 import SearchBar from "./SearchBar";
 import * as BiIcons from "react-icons/bi";
 import { Btn } from "components/StyledUI";
@@ -7,6 +6,7 @@ import { useState } from "react";
 function Featured({ data: featuredSongs, showSearchBar = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const songsDetails = featuredSongs[currentIndex];
+
   const buttonContainer = {
     position: "absolute",
     right: "20px",
@@ -16,16 +16,24 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
     zIndex: 999,
   };
 
+  const fadeAnimation = (image) => {
+    image[0].classList.remove("fade");
+    void image[0].offsetWidth;
+    image[0].classList.add("fade");
+  };
+
   const goToPrevious = () => {
     const isFirstIndex = currentIndex === 0;
     const newIndex = isFirstIndex ? featuredSongs.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
+    fadeAnimation(document.getElementsByClassName("featured-img"));
   };
 
   const goToNext = () => {
     const isLastIndex = currentIndex === featuredSongs.length - 1;
     const newIndex = isLastIndex ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
+    fadeAnimation(document.getElementsByClassName("featured-img"));
   };
 
   return (
@@ -49,7 +57,7 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
         )}
 
         <div className="image-section img">
-          <img src={songsDetails.url} alt="cover" className="featured-img" />
+          <img src={songsDetails.url} alt="cover" className="featured-img " />
         </div>
 
         <div className="details">
@@ -80,7 +88,12 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
             return (
               <div
                 key={index}
-                onClick={() => setCurrentIndex(index)}
+                onClick={() => {
+                  setCurrentIndex(index);
+                  fadeAnimation(
+                    document.getElementsByClassName("featured-img")
+                  );
+                }}
                 className={currentIndex === index ? "active" : ""}></div>
             );
           })}
