@@ -11,9 +11,10 @@ export const recentPlayed = [
     isPlaying: true,
     trackDetails: {
       ID: "1",
-      coverArt: "https://img.youtube.com/vi/Bn5Qpr79LQw/maxresdefault.jpg",
-      title: "Aaayo Teej Ko Lahar",
-      artist: "Princy Khatiwada",
+      coverArt:
+        "http://localhost:3000/static/media/featured.a99a359d45de545b4654.jpg",
+      title: "Ko Hola Tyo",
+      artist: "Sunil Giri",
       source: songsList.g1,
     },
   },

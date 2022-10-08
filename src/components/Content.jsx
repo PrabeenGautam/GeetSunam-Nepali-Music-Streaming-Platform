@@ -13,7 +13,7 @@ import featuredSongs from "assets/data/featuredSongs.json";
 function Content() {
   return (
     <div className="content-container">
-      <CustomBreadcrumbs link={"/"} textName="Home" />
+      <CustomBreadcrumbs link={"/home"} textName="Home" />
       <Featured data={featuredSongs} showSearchBar={true} />
       <div className="main-section">
         <div className="heading">

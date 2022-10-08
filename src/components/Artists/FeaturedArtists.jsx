@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 function FeaturedArtists({ featuredArtists }) {
   const navigate = useNavigate();
-  const onClickContainer = (id) => navigate(`artists/${id}`);
+  const onClickContainer = (id) => navigate(`/artists/${id}`);
   return (
     <>
       <div className="artists-container featured-container">

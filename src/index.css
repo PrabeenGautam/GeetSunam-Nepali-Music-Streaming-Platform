@@ -465,8 +465,6 @@ a {
 .content-section {
   display: flex;
   gap: 1.75rem;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 .content-container {
@@ -638,7 +636,8 @@ h2:not(.h2) {
 }
 
 .featured-container {
-  gap: 1.6rem;
+  gap: 1.62rem;
+  overflow: hidden;
 }
 
 .artists-container .artists {

@@ -1,16 +1,20 @@
 import RecentPlayed from "components/RecentPlayed";
+import { genreMenu } from "components/Sidebar";
 import React from "react";
-import * as Icons from "react-icons/fi";
 import { useParams } from "react-router-dom";
 
 function GenreContainer() {
   const { genreName } = useParams();
+  const indexOfGenre = genreMenu.findIndex(
+    (value) => value.name.toLowerCase() === genreName
+  );
+
   return (
     <>
       <div className="playlist-container">
         <section className="playlist">
-          <div className="playlist-images">
-            <Icons.FiHeart />
+          <div className="artists-images">
+            <img src={genreMenu[indexOfGenre].image} alt="genre" />
           </div>
           <div className="playlist-details">
             <div>Genre</div>
