@@ -5,6 +5,7 @@ import * as MdIcons from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Featured } from "components/Featured";
 import featuredSongs from "assets/data/featuredSongs.json";
+import RecommendedSlider from "components/Slider/RecommendedSlider";
 
 function Explore() {
   const array = new Array(12).fill(1);
@@ -28,13 +29,7 @@ function Explore() {
         </div>
 
         <div className="content-section">
-          <MusicContainer />
-          <MusicContainer />
-          <MusicContainer />
-          <MusicContainer />
-          <MusicContainer />
-          <MusicContainer />
-          <MusicContainer />
+          <RecommendedSlider />
         </div>
       </div>
 

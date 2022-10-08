@@ -1,15 +1,11 @@
-function MusicContainer() {
+function MusicContainer({ trackData }) {
   return (
     <div className="music-container">
-      <img
-        src="https://img.youtube.com/vi/Bn5Qpr79LQw/maxresdefault.jpg"
-        alt="thumbnail"
-        className="thumbnail-new"
-      />
-      <div className="song-name" title="Aayo Teejko Lahar">
-        Aayo Teejko Lahar
+      <img src={trackData.coverArt} alt="thumbnail" className="thumbnail-new" />
+      <div className="song-name" title={trackData.title}>
+        {trackData.title}
       </div>
-      <div className="song-artists">Princy Khatiwada</div>
+      <div className="song-artists">{trackData.artists}</div>
     </div>
   );
 }

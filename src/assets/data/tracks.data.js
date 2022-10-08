@@ -42,4 +42,18 @@ export const tracksData = [
     artist: "Princy Khatiwada",
     source: songsList.g6,
   },
+  {
+    ID: "6",
+    coverArt: "https://img.youtube.com/vi/Bn5Qpr79LQw/maxresdefault.jpg",
+    title: "Aaayo Teej Ko Lahar",
+    artist: "Princy Khatiwada",
+    source: songsList.g6,
+  },
+  {
+    ID: "7",
+    coverArt: "https://img.youtube.com/vi/Bn5Qpr79LQw/maxresdefault.jpg",
+    title: "Aaayo Teej Ko Lahar",
+    artist: "Princy Khatiwada",
+    source: songsList.g6,
+  },
 ];

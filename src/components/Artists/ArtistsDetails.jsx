@@ -3,15 +3,10 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import * as FiIcons from "react-icons/fi";
 import ArtistsPlayed from "./ArtistsPlayed";
-import FeaturedArtists from "components/Artists/FeaturedArtists";
 
 function ArtistsDetails() {
   const { id } = useParams();
   const artistsDetails = featuredArtists[id];
-
-  const recommendedArtists = featuredArtists.filter(
-    (value) => value.id !== Number(id)
-  );
 
   return (
     <>
@@ -46,9 +41,6 @@ function ArtistsDetails() {
 
         <div className="padding">
           <ArtistsPlayed />
-          <h2>People Also Likes</h2>
-
-          <FeaturedArtists featuredArtists={recommendedArtists} />
         </div>
       </div>
     </>

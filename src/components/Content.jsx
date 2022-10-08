@@ -1,7 +1,6 @@
 import Featured from "./Featured/Featured";
 import * as BiIcons from "react-icons/bi";
 import { Link } from "react-router-dom";
-import MusicContainer from "./MusicContainer";
 import RecentPlayed from "./RecentPlayed";
 import * as HiIcons from "react-icons/hi";
 import FeaturedArtists from "./Artists/FeaturedArtists";
@@ -9,6 +8,8 @@ import CustomBreadcrumbs from "./Breadcrumbs";
 import { featuredArtists } from "./Featured/featureArtists.data";
 import { tracksData } from "assets/data/tracks.data";
 import featuredSongs from "assets/data/featuredSongs.json";
+import RecentlyPlayedSlider from "./Slider/RecentlyPlayedSlider";
+import ArtistsSlider from "./Slider/ArtistsSlider";
 
 function Content() {
   return (
@@ -27,9 +28,7 @@ function Content() {
         </div>
 
         <div className="content-section">
-          {tracksData.map((_, i) => (
-            <MusicContainer key={i} />
-          ))}
+          <RecentlyPlayedSlider />
         </div>
       </div>
 
@@ -42,7 +41,7 @@ function Content() {
         </div>
 
         <div className="content-section">
-          <FeaturedArtists featuredArtists={featuredArtists} />
+          <ArtistsSlider />
         </div>
       </div>
 
