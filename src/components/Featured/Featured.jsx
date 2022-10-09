@@ -57,14 +57,18 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
         )}
 
         <div className="image-section img">
-          <img src={songsDetails.url} alt="cover" className="featured-img " />
+          <img
+            src={songsDetails.trackDetails.coverArt}
+            alt="cover"
+            className="featured-img "
+          />
         </div>
 
         <div className="details">
           <div className="title">Featured Songs</div>
           <div className="song-details">
-            <div className="artists">{songsDetails.artists}</div>
-            <div className="song-name">{songsDetails.songName}</div>
+            <div className="artists">{songsDetails.artistsDetails.name}</div>
+            <div className="song-name">{songsDetails.trackDetails.title}</div>
           </div>
           <div className="play-featured">
             <Btn className="btn-play">Play</Btn>

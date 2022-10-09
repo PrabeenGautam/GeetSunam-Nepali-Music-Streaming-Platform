@@ -3,17 +3,19 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import * as FiIcons from "react-icons/fi";
 import ArtistsPlayed from "./ArtistsPlayed";
+import { musicList } from "assets/data/musicList";
 
 function ArtistsDetails() {
   const { id } = useParams();
   const artistsDetails = featuredArtists[id];
+  const data = musicList.filter((value) => value.artistsDetails.id == id);
 
   return (
     <>
       <div className="playlist-container gradient">
         <section className="playlist">
           <div className="artists-images">
-            <img src={artistsDetails.img} alt="thumbnail" />
+            <img src={artistsDetails.profile} alt="thumbnail" />
           </div>
           <div className="playlist-details">
             <div>Artists</div>
@@ -21,7 +23,7 @@ function ArtistsDetails() {
             <div>
               <span>GeetSunam</span>
               <span style={{ fontWeight: "bold" }}>.</span>
-              <span>12 songs</span>
+              <span>{data.length} songs</span>
             </div>
           </div>
           <div style={{ position: "absolute", right: 20, zIndex: 999 }}>
@@ -40,7 +42,7 @@ function ArtistsDetails() {
         </section>
 
         <div className="padding">
-          <ArtistsPlayed />
+          <ArtistsPlayed data={data} />
         </div>
       </div>
     </>

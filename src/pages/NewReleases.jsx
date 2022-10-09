@@ -2,11 +2,11 @@ import CustomBreadcrumbs from "components/Breadcrumbs";
 import RecentPlayed from "components/RecentPlayed";
 import { Btn } from "components/StyledUI";
 import React from "react";
-import * as Icons from "react-icons/fi";
 import FeaturedImage from "assets/images/featured.jpg";
-import { recentPlayed } from "assets/data/recentPlayed.data";
+import { musicList } from "assets/data/musicList";
 
 function NewReleases() {
+  const releaseSongs = musicList.slice(30, 41);
   return (
     <div className="content-container">
       <div className="trends">
@@ -23,7 +23,7 @@ function NewReleases() {
             <Btn className="btn-play">Play</Btn>
           </div>
         </section>
-        <RecentPlayed removeFromPlaylist={false} />
+        <RecentPlayed removeFromPlaylist={false} data={releaseSongs} />
       </div>
     </div>
   );

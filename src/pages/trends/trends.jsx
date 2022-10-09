@@ -1,12 +1,12 @@
 import React from "react";
 import FeaturedImage from "assets/images/featured.jpg";
 import { Btn } from "components/StyledUI";
-import * as Icons from "react-icons/fi";
-import { recentPlayed } from "assets/data/recentPlayed.data";
 import RecentPlayed from "components/RecentPlayed";
 import CustomBreadcrumbs from "components/Breadcrumbs";
+import { musicList } from "assets/data/musicList";
 
 function Trends() {
+  const musicData = musicList.slice(4, 12);
   return (
     <div className="content-container">
       <div className="trends">
@@ -23,7 +23,7 @@ function Trends() {
             <Btn className="btn-play">Play</Btn>
           </div>
         </section>
-        <RecentPlayed removeFromPlaylist={false} />
+        <RecentPlayed removeFromPlaylist={false} data={musicData} />
       </div>
     </div>
   );

@@ -1,11 +1,15 @@
-function MusicContainer({ trackData }) {
+function MusicContainer({ data }) {
   return (
     <div className="music-container">
-      <img src={trackData.coverArt} alt="thumbnail" className="thumbnail-new" />
-      <div className="song-name" title={trackData.title}>
-        {trackData.title}
+      <img
+        src={data.trackDetails.coverArt}
+        alt="thumbnail"
+        className="thumbnail-new"
+      />
+      <div className="song-name" title={data.trackDetails.title}>
+        {data.trackDetails.title}
       </div>
-      <div className="song-artists">{trackData.artists}</div>
+      <div className="song-artists">{data.artistsDetails.name}</div>
     </div>
   );
 }

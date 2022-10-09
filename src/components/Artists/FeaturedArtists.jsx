@@ -15,7 +15,7 @@ function FeaturedArtists({ data }) {
           title={artistsData.name}
           onClick={() => onClickContainer(artistsData.id)}>
           <img
-            src={artistsData.img}
+            src={artistsData.profile}
             alt="artists"
             className="thumbnail-new"
             style={{ border: `2px solid white` }}

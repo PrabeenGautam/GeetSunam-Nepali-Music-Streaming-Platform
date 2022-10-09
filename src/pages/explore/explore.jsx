@@ -1,14 +1,14 @@
 import CustomBreadcrumbs from "components/Breadcrumbs";
-import MusicContainer from "components/MusicContainer";
 import React from "react";
 import * as MdIcons from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Featured } from "components/Featured";
-import featuredSongs from "assets/data/featuredSongs.json";
 import RecommendedSlider from "components/Slider/RecommendedSlider";
+import { musicList } from "assets/data/musicList";
 
 function Explore() {
-  const array = new Array(12).fill(1);
+  const recommendedSongs = musicList.slice(4, 14);
+  const featuredSongs = musicList.filter((value) => value.isFeatured === true);
   return (
     <div className="content-container">
       <CustomBreadcrumbs link={"/explore"} textName="Explore" />
@@ -29,7 +29,7 @@ function Explore() {
         </div>
 
         <div className="content-section">
-          <RecommendedSlider />
+          <RecommendedSlider data={recommendedSongs} />
         </div>
       </div>
 
@@ -42,16 +42,16 @@ function Explore() {
         </div>
 
         <div className="music-section">
-          {array.map((values, index) => {
+          {musicList.map((values, index) => {
             return (
               <div className="music-container" key={index}>
                 <img
-                  src="https://img.youtube.com/vi/Bn5Qpr79LQw/maxresdefault.jpg"
+                  src={values.trackDetails.coverArt}
                   alt="thumbnail"
                   className="thumbnail-new"
                 />
-                <div className="song-name" title="Aayo Teejko Lahar">
-                  Aayo Teejko Lahar
+                <div className="song-name" title={values.trackDetails.title}>
+                  {values.trackDetails.title}
                 </div>
               </div>
             );

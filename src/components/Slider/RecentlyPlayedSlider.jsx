@@ -3,10 +3,9 @@ import React, { useRef } from "react";
 import * as BiIcons from "react-icons/bi";
 
 import "swiper/css";
-import { tracksData } from "assets/data/tracks.data";
 import MusicContainer from "components/MusicContainer";
 
-function RecentlyPlayedSlider() {
+function RecentlyPlayedSlider({ musicList }) {
   const swiperRef = useRef();
   const prevBtn = document.getElementsByClassName("swipe-prev");
   const nextBtn = document.getElementsByClassName("swipe-next");
@@ -44,9 +43,19 @@ function RecentlyPlayedSlider() {
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
         }}>
-        {tracksData.map((value, index) => (
+        {musicList.map((value, index) => (
           <SwiperSlide key={index}>
-            <MusicContainer trackData={value} />
+            <div className="music-container">
+              <img
+                src={value.trackDetails.coverArt}
+                alt="thumbnail"
+                className="thumbnail-new"
+              />
+              <div className="song-name" title={value.trackDetails.title}>
+                {value.trackDetails.title}
+              </div>
+              <div className="song-artists">{value.artistsDetails.name}</div>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

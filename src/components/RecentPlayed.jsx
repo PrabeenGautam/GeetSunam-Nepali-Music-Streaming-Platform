@@ -3,14 +3,13 @@ import * as Icons from "react-icons/fi";
 import { useSelector } from "react-redux";
 
 import DeleteModel from "./Playlists/DeleteModel";
-import { recentPlayed } from "assets/data/recentPlayed.data";
 import AddToPlaylist from "./Player/AddToPlayList";
 import PlaySong from "./Player/PlaySong";
 import PauseSong from "./Player/PauseSong";
 import useCurrentSong from "hooks/useCurrentSong";
 import { possibleMediaState } from "./Player/possibleMediaState.types";
 
-function RecentPlayed({ removeFromPlaylist = false }) {
+function RecentPlayed({ removeFromPlaylist = false, data }) {
   const [deleteClick, setDeleteClick] = useState(false);
   const [idToDelete, setIdDelete] = useState(null);
 
@@ -32,15 +31,14 @@ function RecentPlayed({ removeFromPlaylist = false }) {
           </span>
           <span style={{ visibility: "hidden" }}>#</span>
         </div>
-        {recentPlayed &&
-          recentPlayed.map((value, index) => {
+        {data &&
+          data.map((value, index) => {
             return (
               <div
                 key={index}
                 className={`recent-container hover-effect ${
                   currentSong?.ID === value.trackDetails.ID ? "playing" : ""
-                }`}
-              >
+                }`}>
                 {currentSong?.ID === value.trackDetails.ID &&
                 mediaState === possibleMediaState.PLAYING ? (
                   <PauseSong>
@@ -53,14 +51,16 @@ function RecentPlayed({ removeFromPlaylist = false }) {
                 )}
                 <PlaySong trackDetails={value.trackDetails}>
                   <img
-                    src={value.thumbnail}
+                    src={value.trackDetails.coverArt}
                     alt="thumbnail"
                     className="thumbnail-recent"
                   />
-                  <span className="song-name">{value.name}</span>
+                  <span className="song-name">{value.trackDetails.title}</span>
                 </PlaySong>
-                <span className="artists">{value.artists}</span>
-                <span className="recent-genre">{value.genre}</span>
+                <span className="artists">{value.artistsDetails.name}</span>
+                <span className="recent-genre">
+                  {value.genre.toUpperCase()}
+                </span>
                 <Icons.FiHeart
                   className={value.isFavourite ? "heart favourite" : "heart"}
                 />

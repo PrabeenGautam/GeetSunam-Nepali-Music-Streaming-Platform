@@ -3,12 +3,9 @@ import React, { useRef } from "react";
 import * as BiIcons from "react-icons/bi";
 
 import "swiper/css";
-
-//Change import Data
-import { tracksData } from "assets/data/tracks.data";
 import MusicContainer from "components/MusicContainer";
 
-function RecommendedSlider() {
+function RecommendedSlider({ data }) {
   const swiperRef = useRef();
   const prevBtn = document.getElementsByClassName("swipe-prev");
   const nextBtn = document.getElementsByClassName("swipe-next");
@@ -47,9 +44,9 @@ function RecommendedSlider() {
           swiperRef.current = swiper;
         }}>
         {/*Change import Data*/}
-        {tracksData.map((value, index) => (
+        {data.map((value, index) => (
           <SwiperSlide key={index}>
-            <MusicContainer trackData={value} />
+            <MusicContainer data={value} />
           </SwiperSlide>
         ))}
       </Swiper>

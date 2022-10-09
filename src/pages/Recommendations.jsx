@@ -3,10 +3,10 @@ import RecentPlayed from "components/RecentPlayed";
 import { Btn } from "components/StyledUI";
 import React from "react";
 import Recommended from "../assets/images/Recommended.png";
-import { recentPlayed } from "assets/data/recentPlayed.data";
-import * as Icons from "react-icons/fi";
+import { musicList } from "assets/data/musicList";
 
 function Recommnedations() {
+  const recommendedSongs = musicList.slice(14, 24);
   return (
     <div className="content-container">
       <div className="trends">
@@ -23,7 +23,7 @@ function Recommnedations() {
             <Btn className="btn-play">Play</Btn>
           </div>
         </section>
-        <RecentPlayed removeFromPlaylist={false} />
+        <RecentPlayed removeFromPlaylist={false} data={recommendedSongs} />
       </div>
     </div>
   );

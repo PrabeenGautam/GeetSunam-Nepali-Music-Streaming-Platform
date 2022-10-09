@@ -12,7 +12,7 @@ function ArtistsContainer({ artistsData, onClickArtists }) {
             title={value.name}
             key={index}
             onClick={() => onClickArtists(index)}>
-            <img src={value.img} alt="artists" className="thumbnail-new" />
+            <img src={value.profile} alt="artists" className="thumbnail-new" />
             <div className="song-artists">{value.name}</div>
           </div>
         );

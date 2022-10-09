@@ -4,9 +4,8 @@ import * as BiIcons from "react-icons/bi";
 
 import "swiper/css";
 import FeaturedArtists from "components/Artists/FeaturedArtists";
-import { featuredArtists } from "components/Featured/featureArtists.data";
 
-function ArtistsSlider() {
+function ArtistsSlider({ featuredArtists }) {
   const swiperRef = useRef();
   const prevBtn = document.getElementsByClassName("swipe-prev-artists");
   const nextBtn = document.getElementsByClassName("swipe-next-artists");
