@@ -6,6 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 function FavouriteArtists() {
   const navigate = useNavigate();
+  const favouriteArtists = featuredArtists.filter(
+    (value) => value.isFavourite === true
+  );
+
+  console.log(favouriteArtists);
 
   const onClickArtists = (id) => {
     navigate(`/fav-artists/${id}`);
@@ -29,7 +34,7 @@ function FavouriteArtists() {
       </section>
 
       <ArtistsContainer
-        artistsData={featuredArtists}
+        artistsData={favouriteArtists}
         onClickArtists={onClickArtists}
       />
     </div>

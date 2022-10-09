@@ -28,15 +28,26 @@ function ArtistsDetails() {
           </div>
           <div style={{ position: "absolute", right: 20, zIndex: 999 }}>
             <button className="custom-btn" title="Remove from Favourite">
-              <FiIcons.FiHeart
-                style={{
-                  fill: "var(--highlight)",
-                  stroke: "var(--highlight)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              />
+              {artistsDetails.isFavourite ? (
+                <FiIcons.FiHeart
+                  style={{
+                    fill: "var(--highlight)",
+                    stroke: "var(--highlight)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                />
+              ) : (
+                <FiIcons.FiHeart
+                  style={{
+                    stroke: "var(--highlight)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                />
+              )}
             </button>
           </div>
         </section>

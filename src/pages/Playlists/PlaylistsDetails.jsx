@@ -7,10 +7,11 @@ import Playlist from "./Playlist";
 function PlaylistsDetails() {
   const { id } = useParams();
   const playlistName = `Playlist ${id}`;
+  const data = false;
 
   return (
     <>
-      <Playlist playlistName={playlistName} />
+      <Playlist playlistName={playlistName} data={data} />
       <div>
         <section
           className="search-music padding"
