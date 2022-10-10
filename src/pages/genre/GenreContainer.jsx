@@ -1,3 +1,4 @@
+import { musicList } from "assets/data/musicList";
 import RecentPlayed from "components/RecentPlayed";
 import { genreMenu } from "components/Sidebar";
 import React from "react";
@@ -7,6 +8,10 @@ function GenreContainer() {
   const { genreName } = useParams();
   const indexOfGenre = genreMenu.findIndex(
     (value) => value.name.toLowerCase() === genreName
+  );
+
+  const musicData = musicList.filter(
+    (value) => value.genre.toLowerCase() === genreName
   );
 
   return (
@@ -33,13 +38,17 @@ function GenreContainer() {
             <div>
               <span>GeetSunam</span>
               <span style={{ fontWeight: "bold" }}>.</span>
-              <span>12 songs</span>
+              <span>
+                {musicData.length === 0
+                  ? "No Songs"
+                  : `${musicData.length} Songs`}
+              </span>
             </div>
           </div>
         </section>
 
         <section className="padding">
-          <RecentPlayed />
+          <RecentPlayed data={musicData} />
         </section>
       </div>
     </>
