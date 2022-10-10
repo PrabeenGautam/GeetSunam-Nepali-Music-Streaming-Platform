@@ -3,7 +3,6 @@ import React, { useRef } from "react";
 import { PlayerInterface, Track } from "react-mui-player";
 
 const PlaySong = ({ trackDetails = {}, children }) => {
-  console.log(trackDetails);
   const currTrackRef = useRef(trackDetails);
   const { ID, coverArt, title, artist, source } = currTrackRef.current;
   const playSong = () => {

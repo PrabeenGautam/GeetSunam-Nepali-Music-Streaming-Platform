@@ -5,13 +5,9 @@ import withoutPropagation from "react-mui-player/utils/withoutPropagation";
 import { useSelector } from "react-redux";
 
 export default function Favourite(props) {
-  const isFavourite = false;
+  const bool = [true, false];
+  const isFavourite = bool[Math.floor(Math.random() * 2)];
   const sx = props.sx;
-
-  // const value = useSelector(
-  //   /**@type {import("../redux/types").useSelectCb} */
-  //   (state) => state.volume
-  // );
 
   const onClickHandler = () => {
     console.log("Click");
