@@ -11,14 +11,14 @@ export const musicList = [
     },
     genre: "pop",
     time: "4:19",
-    isFavourite: true,
-    isFeatured: true,
     trackDetails: {
       ID: "1",
       coverArt: "https://img.youtube.com/vi/fUk527d7LFU/maxresdefault.jpg",
       title: "Ko Hola Tyo",
       artist: "Sunil Giri",
       source: songsList.music1,
+      isFavourite: true,
+      isFeatured: true,
     },
   },
   {
@@ -30,13 +30,14 @@ export const musicList = [
     },
     genre: "pop",
     time: "3:27",
-    isFavourite: false,
+
     trackDetails: {
       ID: "2",
       coverArt: "https://img.youtube.com/vi/PTVkQJLiDRk/maxresdefault.jpg",
       title: "Deurali Bhanjyang",
       artist: "Sunil Giri",
       source: songsList.music2,
+      isFavourite: false,
     },
   },
   {
@@ -48,14 +49,15 @@ export const musicList = [
     },
     genre: "pop",
     time: "4:46",
-    isFavourite: true,
-    isFeatured: true,
+
     trackDetails: {
       ID: "3",
       coverArt: "https://img.youtube.com/vi/lWH1vNzepFA/maxresdefault.jpg",
       title: "Pachheuri",
       artist: "Indira Joshi ",
       source: songsList.music3,
+      isFavourite: true,
+      isFeatured: true,
     },
   },
   {
@@ -67,13 +69,14 @@ export const musicList = [
     },
     genre: "pop",
     time: "3:51",
-    isFavourite: false,
+
     trackDetails: {
       ID: "4",
       coverArt: "https://img.youtube.com/vi/2FYssTym5jU/maxresdefault.jpg",
       title: "Behuli",
       artist: "Indira Joshi ",
       source: songsList.music4,
+      isFavourite: false,
     },
   },
   {
@@ -85,13 +88,14 @@ export const musicList = [
     },
     genre: "pop",
     time: "5:02",
-    isFavourite: false,
+
     trackDetails: {
       ID: "5",
       coverArt: "https://img.youtube.com/vi/XcEC2q4CotY/maxresdefault.jpg",
       title: "Sasto Mutu",
       artist: "Sajjan Raj Vaidya",
       source: songsList.music5,
+      isFavourite: false,
     },
   },
   {
@@ -103,13 +107,14 @@ export const musicList = [
     },
     genre: "pop",
     time: "5:03",
-    isFavourite: false,
+
     trackDetails: {
       ID: "6",
       coverArt: "https://img.youtube.com/vi/GrlAInfP990/maxresdefault.jpg",
       title: "Chitthi Bhitra",
       artist: "Sajjan Raj Vaidya",
       source: songsList.music6,
+      isFavourite: false,
     },
   },
   {
@@ -121,14 +126,15 @@ export const musicList = [
     },
     genre: "pop",
     time: "4:19",
-    isFavourite: true,
-    isFeatured: true,
+
     trackDetails: {
       ID: "7",
       coverArt: "https://img.youtube.com/vi/cNBmzxE6Jf0/maxresdefault.jpg",
       title: "Risaune Bhaye",
       artist: "Sushant KC",
       source: songsList.music7,
+      isFavourite: true,
+      isFeatured: true,
     },
   },
   {
@@ -140,13 +146,14 @@ export const musicList = [
     },
     genre: "pop",
     time: "4:19",
-    isFavourite: false,
+
     trackDetails: {
       ID: "8",
       coverArt: "https://img.youtube.com/vi/0RekzkfMa-Y/maxresdefault.jpg",
       title: "TIMLE BATO FEREU ARE-2",
       artist: "Melina Rai",
       source: songsList.music8,
+      isFavourite: false,
     },
   },
   {
@@ -158,13 +165,14 @@ export const musicList = [
     },
     genre: "Adhunik",
     time: "5:42",
-    isFavourite: false,
+
     trackDetails: {
       ID: "9",
       coverArt: "https://img.youtube.com/vi/IIsDnRjdANI/maxresdefault.jpg",
       title: "Ma Bachekai",
       artist: "Pramod Kharel",
       source: songsList.music9,
+      isFavourite: false,
     },
   },
   {
@@ -176,13 +184,14 @@ export const musicList = [
     },
     genre: "pop",
     time: "4:19",
-    isFavourite: false,
+
     trackDetails: {
       ID: "10",
       coverArt: "https://img.youtube.com/vi/xy1gicNITfs/maxresdefault.jpg",
       title: "Yo Kura Gopya",
       artist: "Pramod Kharel",
       source: songsList.music10,
+      isFavourite: false,
     },
   },
   {
@@ -194,14 +203,15 @@ export const musicList = [
     },
     genre: "pop",
     time: "6:05",
-    isFavourite: true,
-    isFeatured: true,
+
     trackDetails: {
       ID: "11",
       coverArt: "https://img.youtube.com/vi/fF2uVCQEUdQ/maxresdefault.jpg",
       title: "Rato Tika Nidar Ma",
       artist: "Pramod Kharel",
       source: songsList.music11,
+      isFavourite: true,
+      isFeatured: true,
     },
   },
   {
@@ -213,13 +223,14 @@ export const musicList = [
     },
     genre: "Adhunik",
     time: "4:24",
-    isFavourite: false,
+
     trackDetails: {
       ID: "12",
       coverArt: "https://img.youtube.com/vi/0zU9v8UyEuY/maxresdefault.jpg",
       title: "Mero Aafno Bhannu Timi",
       artist: "Pramod Kharel",
       source: songsList.music12,
+      isFavourite: false,
     },
   },
   {
@@ -231,13 +242,14 @@ export const musicList = [
     },
     genre: "Adhunik",
     time: "6:05",
-    isFavourite: false,
+
     trackDetails: {
       ID: "13",
       coverArt: "https://img.youtube.com/vi/3PVUmi_S3So/maxresdefault.jpg",
       title: "Anta Maya Lako Bhaye",
       artist: "Pramod Kharel",
       source: songsList.music13,
+      isFavourite: false,
     },
   },
   {
@@ -249,13 +261,14 @@ export const musicList = [
     },
     genre: "Adhunik",
     time: "5:17",
-    isFavourite: false,
+
     trackDetails: {
       ID: "14",
       coverArt: "https://img.youtube.com/vi/rgNAMWo8xsQ/maxresdefault.jpg",
       title: "Malai Jasle Pani",
       artist: "Pramod Kharel",
       source: songsList.music14,
+      isFavourite: false,
     },
   },
   {
@@ -267,13 +280,14 @@ export const musicList = [
     },
     genre: "pop",
     time: "4:50",
-    isFavourite: false,
+
     trackDetails: {
       ID: "15",
       coverArt: "https://img.youtube.com/vi/gkq4sOmjWXY/maxresdefault.jpg",
       title: "Oye Jhuma Jhumkawali",
       artist: "Pramod Kharel",
       source: songsList.music15,
+      isFavourite: false,
     },
   },
   {
@@ -285,14 +299,15 @@ export const musicList = [
     },
     genre: "pop",
     time: "5:23",
-    isFavourite: true,
-    isFeatured: true,
+
     trackDetails: {
       ID: "16",
       coverArt: "https://img.youtube.com/vi/OlYoCjUGPJ4/maxresdefault.jpg",
       title: "Timilai Dekherw",
       artist: "Raju Lama",
       source: songsList.music16,
+      isFavourite: true,
+      isFeatured: true,
     },
   },
   {
@@ -304,13 +319,14 @@ export const musicList = [
     },
     genre: "pop",
     time: "5:02",
-    isFavourite: false,
+
     trackDetails: {
       ID: "17",
       coverArt: "https://img.youtube.com/vi/cCxjAMIB0-k/maxresdefault.jpg",
       title: "Parkhaima ",
       artist: "Raju Lama",
       source: songsList.music17,
+      isFavourite: false,
     },
   },
   {
@@ -322,13 +338,14 @@ export const musicList = [
     },
     genre: "pop",
     time: "4:32",
-    isFavourite: false,
+
     trackDetails: {
       ID: "18",
       coverArt: "https://img.youtube.com/vi/49l3WFQe0Q4/maxresdefault.jpg",
       title: "PHOOL HOINA",
       artist: "Prabisha Adhikari",
       source: songsList.music18,
+      isFavourite: false,
     },
   },
   {
@@ -340,13 +357,14 @@ export const musicList = [
     },
     genre: "pop",
     time: "4:32",
-    isFavourite: false,
+
     trackDetails: {
       ID: "19",
       coverArt: "https://img.youtube.com/vi/iLnmTe5Q2Qw/maxresdefault.jpg",
       title: "Jindagi Nai Bhandina",
       artist: "Prabisha Adhikari",
       source: songsList.music19,
+      isFavourite: false,
     },
   },
   {
@@ -358,13 +376,14 @@ export const musicList = [
     },
     genre: "Adhunik",
     time: "8:33",
-    isFavourite: false,
+
     trackDetails: {
       ID: "20",
       coverArt: "https://img.youtube.com/vi/dWv2ZytVwDI/maxresdefault.jpg",
       title: "Na Birse Timilai Na Paye Timilai",
       artist: "Anju Panta",
       source: songsList.music20,
+      isFavourite: false,
     },
   },
   {
@@ -376,13 +395,14 @@ export const musicList = [
     },
     genre: "Adhunik",
     time: "8:33",
-    isFavourite: false,
+
     trackDetails: {
       ID: "21",
       coverArt: "https://img.youtube.com/vi/rZVXbFaWuvU/maxresdefault.jpg",
       title: "Timrai Yadma Bhitra Bhitrai",
       artist: "Anju Panta",
       source: songsList.music21,
+      isFavourite: false,
     },
   },
   {
@@ -394,13 +414,14 @@ export const musicList = [
     },
     genre: "Pop",
     time: "8:33",
-    isFavourite: false,
+
     trackDetails: {
       ID: "22",
       coverArt: "https://img.youtube.com/vi/HLM3qSenf2c/maxresdefault.jpg",
       title: "बुट्टे रुमाल Butte Rumal",
       artist: "Anju Panta",
       source: songsList.music22,
+      isFavourite: false,
     },
   },
 
@@ -413,13 +434,14 @@ export const musicList = [
     },
     genre: "Adhunik",
     time: "4:59",
-    isFavourite: false,
+
     trackDetails: {
       ID: "23",
       coverArt: "https://img.youtube.com/vi/w-mW193oesM/maxresdefault.jpg",
       title: "Malai Bich Batomai",
       artist: "Anju Panta",
       source: songsList.music23,
+      isFavourite: false,
     },
   },
 
@@ -432,13 +454,14 @@ export const musicList = [
     },
     genre: "Classical",
     time: "5:29",
-    isFavourite: false,
+
     trackDetails: {
       ID: "24",
       coverArt: "https://img.youtube.com/vi/D-mERpuyZV8/maxresdefault.jpg",
       title: "Kehi Mitho Baat Gara",
       artist: "Narayan Gopal",
       source: songsList.music24,
+      isFavourite: false,
     },
   },
 
@@ -451,13 +474,14 @@ export const musicList = [
     },
     genre: "Classical",
     time: "5:29",
-    isFavourite: false,
+
     trackDetails: {
       ID: "25",
       coverArt: "https://img.youtube.com/vi/TLpNryu1AsI/maxresdefault.jpg",
       title: "Soora Barse Umerai Ma",
       artist: "Kalyan Sherchan",
       source: songsList.music25,
+      isFavourite: false,
     },
   },
 
@@ -469,14 +493,15 @@ export const musicList = [
     },
     genre: "Classical",
     time: "2:38",
-    isFavourite: true,
-    isFeatured: true,
+
     trackDetails: {
       ID: "26",
       coverArt: "https://img.youtube.com/vi/t_pK2lBuxVw/maxresdefault.jpg",
       title: "KALILO TAMALAI",
       artist: "TARA THAPA",
       source: songsList.music26,
+      isFavourite: true,
+      isFeatured: true,
     },
   },
 
@@ -489,13 +514,14 @@ export const musicList = [
     },
     genre: "Classical",
     time: "5:29",
-    isFavourite: false,
+
     trackDetails: {
       ID: "27",
       coverArt: "https://img.youtube.com/vi/pzcBs8XrvyQ/maxresdefault.jpg",
       title: "Mohani Lagla Hai",
       artist: "Narayan Gopal",
       source: songsList.music27,
+      isFavourite: false,
     },
   },
 
@@ -508,13 +534,14 @@ export const musicList = [
     },
     genre: "Rock",
     time: "4:53",
-    isFavourite: false,
+
     trackDetails: {
       ID: "28",
       coverArt: "https://img.youtube.com/vi/A0GOxBvHNNg/maxresdefault.jpg",
       title: "Man Magan",
       artist: "Deepak Bajracharya",
       source: songsList.music28,
+      isFavourite: false,
     },
   },
 
@@ -527,14 +554,15 @@ export const musicList = [
     },
     genre: "Rock",
     time: "5:16",
-    isFavourite: true,
-    isFeatured: true,
+
     trackDetails: {
       ID: "29",
       coverArt: "https://img.youtube.com/vi/5WyX9LMFf5I/maxresdefault.jpg",
       title: "Gurasai Fulyo Banaima",
       artist: "1974 AD ",
       source: songsList.music29,
+      isFavourite: true,
+      isFeatured: true,
     },
   },
 
@@ -547,13 +575,14 @@ export const musicList = [
     },
     genre: "Rock",
     time: "5:16",
-    isFavourite: false,
+
     trackDetails: {
       ID: "30",
       coverArt: "https://img.youtube.com/vi/g5mxbO3IyNk/maxresdefault.jpg",
       title: "Mai Nache Cham Chami",
       artist: "Nepathya ",
       source: songsList.music30,
+      isFavourite: false,
     },
   },
 
@@ -566,13 +595,14 @@ export const musicList = [
     },
     genre: "pop",
     time: "4:27",
-    isFavourite: false,
+
     trackDetails: {
       ID: "31",
       coverArt: "https://img.youtube.com/vi/zrsJoj0LBmU/maxresdefault.jpg",
       title: "Resham",
       artist: "Nepathya ",
       source: songsList.music31,
+      isFavourite: false,
     },
   },
 
@@ -586,13 +616,14 @@ export const musicList = [
     },
     genre: "Dohori",
     time: "14:27",
-    isFavourite: false,
+
     trackDetails: {
       ID: "32",
       coverArt: "https://img.youtube.com/vi/GUV6BJ5MGqE/maxresdefault.jpg",
       title: "सालको पातको टपरी",
       artist: "Bishnu Majhi",
       source: songsList.music32,
+      isFavourite: false,
     },
   },
 
@@ -605,13 +636,14 @@ export const musicList = [
     },
     genre: "Dohori",
     time: "10:20",
-    isFavourite: false,
+
     trackDetails: {
       ID: "33",
       coverArt: "https://img.youtube.com/vi/FEDmaS7A0do/maxresdefault.jpg",
       title: "Lalumai",
       artist: "Bishnu Majhi",
       source: songsList.music33,
+      isFavourite: false,
     },
   },
 
@@ -624,14 +656,15 @@ export const musicList = [
     },
     genre: "Dohori",
     time: "10:41",
-    isFavourite: true,
-    isFeatured: true,
+
     trackDetails: {
       ID: "34",
       coverArt: "https://img.youtube.com/vi/v73QW4UbeLg/maxresdefault.jpg",
       title: "Dada Ghare Saili",
       artist: "Prakash Saput",
       source: songsList.music34,
+      isFavourite: true,
+      isFeatured: true,
     },
   },
 
@@ -644,13 +677,14 @@ export const musicList = [
     },
     genre: "Dohori",
     time: "8:41",
-    isFavourite: false,
+
     trackDetails: {
       ID: "35",
       coverArt: "https://img.youtube.com/vi/QNInfBuBcOA/maxresdefault.jpg",
       title: "Galbandi गलबन्दी",
       artist: "Prakash Saput",
       source: songsList.music35,
+      isFavourite: false,
     },
   },
 
@@ -663,13 +697,14 @@ export const musicList = [
     },
     genre: "Dohori",
     time: "17:24",
-    isFavourite: false,
+
     trackDetails: {
       ID: "36",
       coverArt: "https://img.youtube.com/vi/YfLPXZ8q48g/maxresdefault.jpg",
       title: "Nabhana Bideshi नभन बिदेशी",
       artist: "Prakash Saput",
       source: songsList.music36,
+      isFavourite: false,
     },
   },
 
@@ -684,14 +719,15 @@ export const musicList = [
     },
     genre: "Teej",
     time: "11:07",
-    isFavourite: true,
-    isFeatured: true,
+
     trackDetails: {
       ID: "37",
       coverArt: "https://img.youtube.com/vi/zAScwHCwvMQ/maxresdefault.jpg",
       title: "Ghankide Madalu घन्कीदे मादलु",
       artist: "Sumitra Koirala",
       source: songsList.music37,
+      isFavourite: true,
+      isFeatured: true,
     },
   },
 
@@ -703,13 +739,14 @@ export const musicList = [
     },
     genre: "Teej",
     time: "8:26",
-    isFavourite: false,
+
     trackDetails: {
       ID: "38",
       coverArt: "https://img.youtube.com/vi/_7fgKnmCcwc/maxresdefault.jpg",
       title: "Hong Kong Ko Sadile",
       artist: "Tilak Oli",
       source: songsList.music38,
+      isFavourite: false,
     },
   },
 
@@ -722,13 +759,14 @@ export const musicList = [
     },
     genre: "Teej",
     time: "17:17",
-    isFavourite: false,
+
     trackDetails: {
       ID: "39",
       coverArt: "https://img.youtube.com/vi/csmm5xD6UV0/maxresdefault.jpg",
       title: "HAI MERO FARIYAE",
       artist: "Bishnu Majhi",
       source: songsList.music39,
+      isFavourite: false,
     },
   },
 
@@ -741,13 +779,14 @@ export const musicList = [
     },
     genre: "Teej",
     time: "17:17",
-    isFavourite: false,
+
     trackDetails: {
       ID: "40",
       coverArt: "https://img.youtube.com/vi/lsKAqFo0Yck/maxresdefault.jpg",
       title: "चरी जेलैमा",
       artist: "Bishnu Majhi",
       source: songsList.music40,
+      isFavourite: false,
     },
   },
 
@@ -760,14 +799,15 @@ export const musicList = [
     },
     genre: "Teej",
     time: "5:11",
-    isFavourite: true,
-    isFeatured: true,
+
     trackDetails: {
       ID: "41",
       coverArt: "https://img.youtube.com/vi/Bn5Qpr79LQw/maxresdefault.jpg",
       title: "AAYO TEEJAKO LAHAR",
       artist: "Melina Rai",
       source: songsList.music41,
+      isFavourite: true,
+      isFeatured: true,
     },
   },
 ];

@@ -8,7 +8,9 @@ import { musicList } from "assets/data/musicList";
 
 function Explore() {
   const recommendedSongs = musicList.slice(4, 14);
-  const featuredSongs = musicList.filter((value) => value.isFeatured === true);
+  const featuredSongs = musicList.filter(
+    (value) => value.trackDetails.isFeatured === true
+  );
   return (
     <div className="content-container">
       <CustomBreadcrumbs link={"/explore"} textName="Explore" />

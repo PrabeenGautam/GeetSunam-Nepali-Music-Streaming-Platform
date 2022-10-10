@@ -10,7 +10,9 @@ import CustomBreadcrumbs from "./Breadcrumbs";
 import { featuredArtists } from "./Featured/featureArtists.data";
 
 function Content() {
-  const featuredSongs = musicList.filter((value) => value.isFeatured === true);
+  const featuredSongs = musicList.filter(
+    (value) => value.trackDetails.isFeatured === true
+  );
   const releaseSongs = musicList.slice(0, 10);
   const artists = featuredArtists.slice(0, 10);
   const recentSongs = musicList.slice(0, 6);

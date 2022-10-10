@@ -5,8 +5,10 @@ import actionCreators from "../redux/actionCreators";
 
 import { Slider, IconButton, Box } from "@mui/material";
 import {
-  VolumeUp as VolumeUpIcon,
-  VolumeDown as VolumeDownIcon,
+  VolumeUp as VolumeFullIcon,
+  RemoveCircle,
+  VolumeOff,
+  AddCircle,
 } from "@mui/icons-material";
 
 import withoutPropagation from "../utils/withoutPropagation";
@@ -31,6 +33,7 @@ export default function VolumeControl(props) {
     <Box
       sx={{
         display: "flex",
+        width: "70px",
         direction: "row",
         wrap: "nowrap",
         alignItems: "center",
@@ -38,21 +41,20 @@ export default function VolumeControl(props) {
           mx: 1,
         },
         ...sx,
-      }}
-    >
+      }}>
       <IconButton
         className="children"
         onClick={withoutPropagation(
           onVolumeChange,
           value < 10 ? 0 : value - 10
         )}
-        size="large"
-      >
-        <VolumeDownIcon />
+        size="large">
+        {value === 0 ? <VolumeOff /> : <RemoveCircle />}
       </IconButton>
       <Slider
         className="children"
         value={value}
+        valueLabelDisplay="auto"
         aria-labelledby="continuous-slider"
         onChange={handleSliderChange}
       />
@@ -62,9 +64,8 @@ export default function VolumeControl(props) {
           onVolumeChange,
           value > 90 ? 100 : value + 10
         )}
-        size="large"
-      >
-        <VolumeUpIcon />
+        size="large">
+        {value === 100 ? <VolumeFullIcon /> : <AddCircle />}
       </IconButton>
     </Box>
   );

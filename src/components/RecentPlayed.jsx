@@ -62,7 +62,9 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                   {value.genre.toUpperCase()}
                 </span>
                 <Icons.FiHeart
-                  className={value.isFavourite ? "heart favourite" : "heart"}
+                  className={
+                    value.trackDetails.isFavourite ? "heart favourite" : "heart"
+                  }
                 />
                 <span className="length">{value.time}</span>
                 {removeFromPlaylist ? (

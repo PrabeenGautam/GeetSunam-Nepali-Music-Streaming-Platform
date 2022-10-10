@@ -1104,3 +1104,9 @@ h3 {
 .swipe-next-artists {
   right: 10px;
 }
+
+.css-nnid7-MuiSlider-valueLabel.MuiSlider-valueLabelOpen {
+  top: 40px;
+  left: 10px;
+  background-color: transparent;
+}
