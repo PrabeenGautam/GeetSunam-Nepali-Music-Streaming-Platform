@@ -1,12 +1,9 @@
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import PlaylistAddRoundedIcon from "@mui/icons-material/PlaylistAddRounded";
 import { Box, IconButton } from "@mui/material";
 import React from "react";
 import withoutPropagation from "react-mui-player/utils/withoutPropagation";
-import { useSelector } from "react-redux";
 
-export default function Favourite(props) {
-  const bool = [true, false];
-  const isFavourite = bool[Math.floor(Math.random() * 2)];
+export default function AddToPlaylists(props) {
   const sx = props.sx;
 
   const onClickHandler = () => {
@@ -29,8 +26,9 @@ export default function Favourite(props) {
       <IconButton
         className="children"
         onClick={withoutPropagation(onClickHandler)}
+        title="Add to Playlist"
         size="large">
-        {isFavourite ? <Favorite /> : <FavoriteBorder />}
+        <PlaylistAddRoundedIcon />
       </IconButton>
     </Box>
   );

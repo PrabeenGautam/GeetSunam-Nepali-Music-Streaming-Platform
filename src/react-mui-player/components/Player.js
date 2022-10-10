@@ -12,6 +12,7 @@ import Controls from "./Controls.js";
 import VolumeControl from "./VolumeControl.js";
 import PlaylistControl from "./Playlist/PlaylistControl.js";
 import Favourite from "./Favourite.js";
+import AddToPlaylists from "./AddToPlaylists.js";
 
 const PREFIX = "Player";
 
@@ -149,7 +150,11 @@ export default function Player(props) {
           <ProgressBar sx={{ flexGrow: 6 }} />
           <VolumeControl sx={{ flexGrow: 2 }} />
           <PlaylistControl playlistViewMode="popover" />
+          <div style={{ height: "100%", fontSize: 24, userSelect: "none" }}>
+            |
+          </div>
           <Favourite />
+          <AddToPlaylists />
         </>
       ) : null}
     </RowBox>
@@ -179,7 +184,9 @@ export default function Player(props) {
       <Controls />
       <VolumeControl />
       <PlaylistControl playlistViewMode="expand" />
+      <div style={{ height: "100%", fontSize: 24, userSelect: "none" }}>|</div>
       <Favourite />
+      <AddToPlaylists />
     </ColumnBox>
   );
 
