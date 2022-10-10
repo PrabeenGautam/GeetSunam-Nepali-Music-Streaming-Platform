@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Featured } from "components/Featured";
 import RecommendedSlider from "components/Slider/RecommendedSlider";
 import { musicList } from "assets/data/musicList";
+import AutoMarquee from "components/Slider/AutoMarquee";
 
 function Explore() {
   const recommendedSongs = musicList.slice(4, 14);
@@ -52,9 +53,10 @@ function Explore() {
                   alt="thumbnail"
                   className="thumbnail-new"
                 />
-                <div className="song-name" title={values.trackDetails.title}>
-                  {values.trackDetails.title}
-                </div>
+                <AutoMarquee
+                  className={"song-name"}
+                  value={values.trackDetails.title}
+                />
               </div>
             );
           })}

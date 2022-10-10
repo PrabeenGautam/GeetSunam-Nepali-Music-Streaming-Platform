@@ -1,4 +1,5 @@
 import { featuredArtists } from "components/Featured/featureArtists.data";
+import AutoMarquee from "components/Slider/AutoMarquee";
 import { useNavigate } from "react-router-dom";
 
 function FeaturedArtists({ data }) {
@@ -20,7 +21,7 @@ function FeaturedArtists({ data }) {
             className="thumbnail-new"
             style={{ border: `2px solid white` }}
           />
-          <div className="song-artists">{artistsData.name}</div>
+          <AutoMarquee className={"song-artists"} value={artistsData.name} />
         </div>
       </div>
     </>

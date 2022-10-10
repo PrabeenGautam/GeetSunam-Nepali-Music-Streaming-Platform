@@ -1,3 +1,5 @@
+import AutoMarquee from "./Slider/AutoMarquee";
+
 function MusicContainer({ data }) {
   return (
     <div className="music-container">
@@ -6,9 +8,8 @@ function MusicContainer({ data }) {
         alt="thumbnail"
         className="thumbnail-new"
       />
-      <div className="song-name" title={data.trackDetails.title}>
-        {data.trackDetails.title}
-      </div>
+      <AutoMarquee className={"song-name"} value={data.trackDetails.title} />
+
       <div className="song-artists">{data.artistsDetails.name}</div>
     </div>
   );

@@ -4,6 +4,7 @@ import * as BiIcons from "react-icons/bi";
 
 import "swiper/css";
 import MusicContainer from "components/MusicContainer";
+import AutoMarquee from "./AutoMarquee";
 
 function RecentlyPlayedSlider({ musicList }) {
   const swiperRef = useRef();
@@ -51,9 +52,10 @@ function RecentlyPlayedSlider({ musicList }) {
                 alt="thumbnail"
                 className="thumbnail-new"
               />
-              <div className="song-name" title={value.trackDetails.title}>
-                {value.trackDetails.title}
-              </div>
+              <AutoMarquee
+                className={"song-name"}
+                value={value.trackDetails.title}
+              />
               <div className="song-artists">{value.artistsDetails.name}</div>
             </div>
           </SwiperSlide>

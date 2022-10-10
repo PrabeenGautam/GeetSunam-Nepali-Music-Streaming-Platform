@@ -19,7 +19,7 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
   return (
     <>
       {deleteClick && <DeleteModel setClick={setDeleteClick} id={idToDelete} />}
-      {data.length !== 0 ? (
+      {data?.length !== 0 ? (
         <section className="song-list">
           <div className="recent-container list_heading ">
             <span>#</span>

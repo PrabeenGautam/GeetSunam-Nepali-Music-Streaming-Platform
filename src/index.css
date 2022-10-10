@@ -476,6 +476,7 @@ a {
 .artists-container {
   max-width: 128px;
   position: relative;
+  cursor: pointer;
 }
 
 .music-container .thumbnail-new {
@@ -493,8 +494,7 @@ a {
   margin-top: 5px;
 
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  height: 100%;
 }
 
 .music-container .song-artists {
@@ -566,6 +566,12 @@ a {
 .recent-container .heart {
   cursor: pointer;
   font-size: 1.1rem;
+  transition: transform 0.35s ease-in-out;
+}
+
+.recent-container .heart:hover {
+  transform: scale(1.2);
+  stroke: white;
 }
 
 .recent-container .heart.favourite {
@@ -669,8 +675,6 @@ h2:not(.h2) {
   text-align: center;
 
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .artists-container .artists .thumbnail-new,

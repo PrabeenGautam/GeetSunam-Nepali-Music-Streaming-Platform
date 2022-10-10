@@ -20,13 +20,21 @@ export default function TrackDetails(props) {
   return (
     <Box sx={sx}>
       {title ? (
-        <div width="120px" className="bounce">
+        <div
+          width="120px"
+          className="bounce"
+          onMouseEnter={(e) => {
+            e.target.classList.remove("innerText");
+          }}
+          onMouseLeave={(e) => {
+            e.target.classList.add("innerText");
+          }}>
           <Box
+            className="innerText"
             sx={{
               typography: "subtitl3",
               whiteSpace: "nowrap",
             }}>
-            {" "}
             {title}
           </Box>
         </div>
