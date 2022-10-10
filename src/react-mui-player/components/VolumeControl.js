@@ -44,6 +44,7 @@ export default function VolumeControl(props) {
       }}>
       <IconButton
         className="children"
+        title="Reduce Volume"
         onClick={withoutPropagation(
           onVolumeChange,
           value < 10 ? 0 : value - 10
@@ -60,6 +61,7 @@ export default function VolumeControl(props) {
       />
       <IconButton
         className="children"
+        title="Increase Volume"
         onClick={withoutPropagation(
           onVolumeChange,
           value > 90 ? 100 : value + 10

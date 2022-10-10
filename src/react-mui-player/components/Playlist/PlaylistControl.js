@@ -49,8 +49,7 @@ function RepeatButton(props) {
     <ToggleButton
       value="repeat"
       selected={value !== RepeatMode.NORMAL}
-      {...other}
-    >
+      {...other}>
       {value === RepeatMode.NORMAL ? (
         <RepeatRounded />
       ) : value === RepeatMode.REPEAT_ALL ? (
@@ -123,8 +122,7 @@ export default function PlaylistControl(props) {
                 .parentElement.parentElement
             );
             showPlaylist(!playlistVisible);
-          }}
-        >
+          }}>
           <PlaylistIcon />
         </ToggleButton>
       </BouttonContainer>
@@ -142,8 +140,7 @@ export default function PlaylistControl(props) {
           transformOrigin={{
             vertical: "bottom",
             horizontal: "right",
-          }}
-        >
+          }}>
           <Playlist
             sx={{
               width: "400px",

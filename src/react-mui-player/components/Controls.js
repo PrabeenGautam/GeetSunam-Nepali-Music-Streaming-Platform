@@ -43,13 +43,15 @@ export default function Controls(props) {
       <IconButton
         onClick={withoutPropagation(onSkipPrev)}
         size="large"
+        title="Previous Song"
         sx={{ padding: "4px" }}>
         <SkipPreviousIcon fontSize="large" />
       </IconButton>
 
       <IconButton
         onClick={withoutPropagation(playing ? onPause : onPlay)}
-        size="large">
+        size="large"
+        title={playing ? "Pause Song" : "Play Song"}>
         {playing ? (
           <PauseIcon fontSize="large" />
         ) : (
@@ -57,7 +59,10 @@ export default function Controls(props) {
         )}
       </IconButton>
 
-      <IconButton onClick={withoutPropagation(onSkipNext)} size="large">
+      <IconButton
+        onClick={withoutPropagation(onSkipNext)}
+        size="large"
+        title="Next Song">
         <SkipNextIcon fontSize="large" />
       </IconButton>
     </Box>
