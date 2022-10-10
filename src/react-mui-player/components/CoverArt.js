@@ -2,6 +2,8 @@ import React from "react";
 
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import MusicPlayedAnimation from "components/MusicPlayed";
+import { useSelector } from "react-redux";
 
 const StyledImg = styled("img")(() => ({
   height: "100%",
@@ -11,6 +13,8 @@ const StyledImg = styled("img")(() => ({
 
 export default function CoverArt(props) {
   const { src, sx } = props;
+  const mediaState = useSelector((state) => state.mediaState);
+  const isPlaying = mediaState === "PLAYING";
 
   return (
     <Box
@@ -19,10 +23,12 @@ export default function CoverArt(props) {
         borderColor: "divider",
         borderRadius: 2,
         overflow: "hidden",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         ...sx,
-      }}
-    >
-      <StyledImg src={src} alt={""} />
+      }}>
+      {isPlaying ? <MusicPlayedAnimation /> : <StyledImg src={src} alt={""} />}
     </Box>
   );
 }
