@@ -34,20 +34,22 @@ export default function Controls(props) {
       sx={{
         display: "flex",
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-evenly",
         alignItems: "center",
         flexWrap: "nowrap",
+        width: "160px",
         ...sx,
-      }}
-    >
-      <IconButton onClick={withoutPropagation(onSkipPrev)} size="large">
+      }}>
+      <IconButton
+        onClick={withoutPropagation(onSkipPrev)}
+        size="large"
+        sx={{ padding: "4px" }}>
         <SkipPreviousIcon fontSize="large" />
       </IconButton>
 
       <IconButton
         onClick={withoutPropagation(playing ? onPause : onPlay)}
-        size="large"
-      >
+        size="large">
         {playing ? (
           <PauseIcon fontSize="large" />
         ) : (

@@ -6,7 +6,7 @@ import { useTheme, styled } from "@mui/material/styles";
 import { Box, SwipeableDrawer, Paper } from "@mui/material";
 
 import CoverArt from "./CoverArt.js";
-import TrackDetails from "./TrackDetials.js";
+import TrackDetails from "./TrackDetails.js";
 import ProgressBar from "./ProgressBar.js";
 import Controls from "./Controls.js";
 import VolumeControl from "./VolumeControl.js";
@@ -219,8 +219,7 @@ export default function Player(props) {
           open={maximised}
           anchor="bottom"
           onClose={closeSwipeableDrawer}
-          onOpen={openSwipeableDrawer}
-        >
+          onOpen={openSwipeableDrawer}>
           <SwipeableDrawerRoot>
             <Box
               className={`${PREFIX}-swipeable-puller`}

@@ -1,7 +1,5 @@
 import React from "react";
-
 import { shallowEqual, useSelector } from "react-redux";
-
 import Box from "@mui/material/Box";
 
 export default function TrackDetails(props) {
@@ -21,22 +19,33 @@ export default function TrackDetails(props) {
 
   return (
     <Box sx={sx}>
-      <Box
-        sx={{
-          typography: "subtitl3",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-        }}
-      >
-        {title}
-      </Box>
+      {title ? (
+        <div width="120px" className="bounce">
+          <Box
+            sx={{
+              typography: "subtitl3",
+              whiteSpace: "nowrap",
+            }}>
+            {" "}
+            {title}
+          </Box>
+        </div>
+      ) : (
+        <Box
+          sx={{
+            typography: "subtitl3",
+            whiteSpace: "nowrap",
+          }}>
+          {""}
+        </Box>
+      )}
+
       <Box
         sx={{
           typography: "subtitle2",
           whiteSpace: "nowrap",
           overflow: "hidden",
-        }}
-      >
+        }}>
         {artist}
       </Box>
     </Box>
