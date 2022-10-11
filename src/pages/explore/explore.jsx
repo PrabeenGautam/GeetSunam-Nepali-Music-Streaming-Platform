@@ -6,6 +6,8 @@ import { Featured } from "components/Featured";
 import RecommendedSlider from "components/Slider/RecommendedSlider";
 import { musicList } from "assets/data/musicList";
 import AutoMarquee from "components/Slider/AutoMarquee";
+import { BiPlayCircle } from "react-icons/bi";
+import PlaySong from "components/Player/PlaySong";
 
 function Explore() {
   const recommendedSongs = musicList.slice(4, 14);
@@ -48,11 +50,19 @@ function Explore() {
           {musicList.map((values, index) => {
             return (
               <div className="music-container" key={index}>
-                <img
-                  src={values.trackDetails.coverArt}
-                  alt="thumbnail"
-                  className="thumbnail-new"
-                />
+                <PlaySong trackDetails={values.trackDetails}>
+                  <div className="play-icon-container">
+                    <img
+                      src={values.trackDetails.coverArt}
+                      alt="thumbnail"
+                      className="thumbnail-new"
+                    />
+
+                    <span className="play-icon">
+                      <BiPlayCircle />
+                    </span>
+                  </div>
+                </PlaySong>
                 <AutoMarquee
                   className={"song-name"}
                   value={values.trackDetails.title}

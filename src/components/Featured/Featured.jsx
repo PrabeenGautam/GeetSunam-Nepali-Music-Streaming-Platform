@@ -72,7 +72,6 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
             <div className="song-name">{songsDetails.trackDetails.title}</div>
           </div>
           {featuredSongs.map((value, index) => {
-            console.log(index === currentIndex);
             return (
               <div
                 className={`play-featured ${

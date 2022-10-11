@@ -605,7 +605,7 @@ a {
 }
 
 .trends .trend-image {
-  width: 300px;
+  width: 360px;
   height: 300px;
   object-fit: cover;
   border-radius: 12px;
@@ -1156,4 +1156,35 @@ h3 {
 
 #bar-4 {
   animation: 1s ease-out 0.75s infinite both play;
+}
+
+.play-icon-container {
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+}
+
+.play-icon {
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  display: none;
+}
+
+.play-icon * {
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  stroke: white;
+  fill: white;
+}
+
+.play-icon-container:hover .play-icon {
+  display: flex;
 }

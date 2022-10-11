@@ -10,8 +10,6 @@ function FavouriteArtists() {
     (value) => value.isFavourite === true
   );
 
-  console.log(favouriteArtists);
-
   const onClickArtists = (id) => {
     navigate(`/fav-artists/${id}`);
   };

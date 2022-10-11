@@ -1,10 +1,14 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import React, { useRef } from "react";
-import * as BiIcons from "react-icons/bi";
 
 import "swiper/css";
-import MusicContainer from "components/MusicContainer";
 import AutoMarquee from "./AutoMarquee";
+import {
+  BiChevronLeft,
+  BiChevronRight,
+  BiPlayCircle as BiPlay,
+} from "react-icons/bi";
+import PlaySong from "components/Player/PlaySong";
 
 function RecentlyPlayedSlider({ musicList }) {
   const swiperRef = useRef();
@@ -16,12 +20,12 @@ function RecentlyPlayedSlider({ musicList }) {
       <div
         onClick={() => swiperRef.current?.slidePrev()}
         className="swiper-btn swipe-prev">
-        <BiIcons.BiChevronLeft />
+        <BiChevronLeft />
       </div>
       <div
         onClick={() => swiperRef.current?.slideNext()}
         className="swiper-btn swipe-next">
-        <BiIcons.BiChevronRight />
+        <BiChevronRight />
       </div>
       <Swiper
         slidesPerView={6}
@@ -47,11 +51,19 @@ function RecentlyPlayedSlider({ musicList }) {
         {musicList.map((value, index) => (
           <SwiperSlide key={index}>
             <div className="music-container">
-              <img
-                src={value.trackDetails.coverArt}
-                alt="thumbnail"
-                className="thumbnail-new"
-              />
+              <PlaySong trackDetails={value.trackDetails}>
+                <div className="play-icon-container">
+                  <img
+                    src={value.trackDetails.coverArt}
+                    alt="thumbnail"
+                    className="thumbnail-new"
+                  />
+
+                  <span className="play-icon">
+                    <BiPlay />
+                  </span>
+                </div>
+              </PlaySong>
               <AutoMarquee
                 className={"song-name"}
                 value={value.trackDetails.title}

@@ -4,6 +4,7 @@ import { Btn } from "components/StyledUI";
 import React from "react";
 import FeaturedImage from "assets/images/featured.jpg";
 import { musicList } from "assets/data/musicList";
+import PlaySong from "components/Player/PlaySong";
 
 function NewReleases() {
   const releaseSongs = musicList.slice(30, 41);
@@ -12,15 +13,19 @@ function NewReleases() {
       <div className="trends">
         <CustomBreadcrumbs link={"/releases"} textName="New Releases" />
         <section className="top-trends">
-          <img src={FeaturedImage} className="trend-image"></img>
+          <img
+            src={releaseSongs[0].trackDetails.coverArt}
+            className="trend-image"></img>
           <div className="trend-section">
             <h2>New Releases</h2>
             <span className="details">
               <div>New releases songs, refreshed daily</div>
               <div>Created by GeetSunam</div>
-              <div>Tracks from 16 days</div>
+              <div>Tracks from 2 weeks</div>
             </span>
-            <Btn className="btn-play">Play</Btn>
+            <PlaySong trackDetails={releaseSongs[0].trackDetails}>
+              <Btn className="btn-play">Play</Btn>
+            </PlaySong>
           </div>
         </section>
         <RecentPlayed removeFromPlaylist={false} data={releaseSongs} />
