@@ -14,10 +14,12 @@ import {
 } from "@mui/icons-material";
 
 import withoutPropagation from "../utils/withoutPropagation";
+import { Box } from "@mui/system";
 
 export default function VolumeControl() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
   const id = open ? "simple-popover" : undefined;
 
   const dispatch = useDispatch();
@@ -45,7 +47,7 @@ export default function VolumeControl() {
     <div>
       <IconButton
         className="children"
-        title="Reduce Volume"
+        title="Change Volume"
         size="large"
         aria-describedby={id}
         onClick={handleClick}>
@@ -73,9 +75,10 @@ export default function VolumeControl() {
           vertical: "top",
           horizontal: "left",
         }}>
-        <div className="volume-popover">
-          <IconButton
+        <Box sx={{ bgcolor: "rgba(0,0,0,0.8)" }} className="volume-popover">
+          <div
             className="children"
+            style={{ marginTop: 10, cursor: "pointer" }}
             title="Increase Volume"
             onClick={withoutPropagation(
               onVolumeChange,
@@ -83,18 +86,26 @@ export default function VolumeControl() {
             )}
             size="large">
             <AddCircle />
-          </IconButton>
+          </div>
           <Slider
             className="children"
             value={value}
             orientation="vertical"
-            sx={{ height: 120 }}
+            sx={[
+              { height: 140, color: "white" },
+              {
+                "&:hover": {
+                  color: "var(--highlight)",
+                },
+              },
+            ]}
             valueLabelDisplay="auto"
             aria-labelledby="continuous-slider"
             onChange={handleSliderChange}
           />
 
-          <IconButton
+          <div
+            style={{ marginBottom: 10, marginTop: 5, cursor: "pointer" }}
             className="children"
             title="Reduce Volume"
             onClick={withoutPropagation(
@@ -103,8 +114,8 @@ export default function VolumeControl() {
             )}
             size="large">
             <RemoveCircle />
-          </IconButton>
-        </div>
+          </div>
+        </Box>
       </Popover>
     </div>
   );
