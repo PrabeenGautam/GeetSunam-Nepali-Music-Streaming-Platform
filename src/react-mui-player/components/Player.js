@@ -148,11 +148,11 @@ export default function Player(props) {
       {isLarge ? (
         <>
           <ProgressBar sx={{ flexGrow: 6 }} />
-          <VolumeControl sx={{ flexGrow: 2 }} />
           <PlaylistControl playlistViewMode="popover" />
           <div style={{ height: "100%", fontSize: 24, userSelect: "none" }}>
             |
           </div>
+          <VolumeControl />
           <Favourite />
           <AddToPlaylists />
         </>
@@ -182,9 +182,9 @@ export default function Player(props) {
       </CenterChildBox>
       <ProgressBar />
       <Controls />
-      <VolumeControl />
       <PlaylistControl playlistViewMode="expand" />
       <div style={{ height: "100%", fontSize: 24, userSelect: "none" }}>|</div>
+      <VolumeControl />
       <Favourite />
       <AddToPlaylists />
     </ColumnBox>

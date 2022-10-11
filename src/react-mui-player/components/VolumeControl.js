@@ -1,20 +1,24 @@
-import React from "react";
+import { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import actionCreators from "../redux/actionCreators";
 
-import { Slider, IconButton, Box, Popover } from "@mui/material";
+import { Slider, IconButton, Popover } from "@mui/material";
 import {
-  VolumeUp as VolumeFullIcon,
+  VolumeUp,
   RemoveCircle,
   VolumeOff,
+  VolumeMute,
   AddCircle,
+  VolumeDown,
 } from "@mui/icons-material";
 
 import withoutPropagation from "../utils/withoutPropagation";
 
-export default function VolumeControl(props) {
-  const sx = props.sx;
+export default function VolumeControl() {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
 
   const dispatch = useDispatch();
   const onVolumeChange = (value) =>
@@ -29,46 +33,79 @@ export default function VolumeControl(props) {
     onVolumeChange(newValue);
   };
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        width: "70px",
-        direction: "row",
-        wrap: "nowrap",
-        alignItems: "center",
-        "& > .children": {
-          mx: 1,
-        },
-        ...sx,
-      }}>
+    <div>
       <IconButton
         className="children"
         title="Reduce Volume"
-        onClick={withoutPropagation(
-          onVolumeChange,
-          value < 10 ? 0 : value - 10
+        size="large"
+        aria-describedby={id}
+        onClick={handleClick}>
+        {value === 0 ? (
+          <VolumeOff />
+        ) : value < 25 ? (
+          <VolumeMute />
+        ) : value < 100 ? (
+          <VolumeDown />
+        ) : (
+          <VolumeUp />
         )}
-        size="large">
-        {value === 0 ? <VolumeOff /> : <RemoveCircle />}
       </IconButton>
-      <Slider
-        className="children"
-        value={value}
-        valueLabelDisplay="auto"
-        aria-labelledby="continuous-slider"
-        onChange={handleSliderChange}
-      />
-      <IconButton
-        className="children"
-        title="Increase Volume"
-        onClick={withoutPropagation(
-          onVolumeChange,
-          value > 90 ? 100 : value + 10
-        )}
-        size="large">
-        {value === 100 ? <VolumeFullIcon /> : <AddCircle />}
-      </IconButton>
-    </Box>
+
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}>
+        <div className="volume-popover">
+          <IconButton
+            className="children"
+            title="Increase Volume"
+            onClick={withoutPropagation(
+              onVolumeChange,
+              value > 90 ? 100 : value + 10
+            )}
+            size="large">
+            <AddCircle />
+          </IconButton>
+          <Slider
+            className="children"
+            value={value}
+            orientation="vertical"
+            sx={{ height: 120 }}
+            valueLabelDisplay="auto"
+            aria-labelledby="continuous-slider"
+            onChange={handleSliderChange}
+          />
+
+          <IconButton
+            className="children"
+            title="Reduce Volume"
+            onClick={withoutPropagation(
+              onVolumeChange,
+              value < 10 ? 0 : value - 10
+            )}
+            size="large">
+            <RemoveCircle />
+          </IconButton>
+        </div>
+      </Popover>
+    </div>
   );
 }

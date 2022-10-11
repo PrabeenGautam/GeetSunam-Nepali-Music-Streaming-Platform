@@ -32,8 +32,7 @@ function ArtistsPlayed({ data }) {
                 key={index}
                 className={`recent-container hover-effect ${
                   currentSong?.ID === value.trackDetails.ID ? "playing" : ""
-                }`}
-              >
+                }`}>
                 {currentSong?.ID === value.trackDetails.ID &&
                 mediaState === possibleMediaState.PLAYING ? (
                   <PauseSong>

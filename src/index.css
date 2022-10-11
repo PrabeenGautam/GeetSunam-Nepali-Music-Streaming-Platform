@@ -1207,3 +1207,11 @@ h3 {
 #bar-4 {
   animation: 1s ease-out 0.75s infinite both play;
 }
+
+.volume-popover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
