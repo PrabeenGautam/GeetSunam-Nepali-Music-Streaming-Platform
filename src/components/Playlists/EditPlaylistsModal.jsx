@@ -1,8 +1,8 @@
-import React from "react";
-import Placeholder from "assets/images/genre/placeholder-image.jpg";
-import { Btn } from "../StyledUI";
 import { useState } from "react";
 import { GiTireIronCross } from "react-icons/gi";
+
+import Placeholder from "assets/images/genre/placeholder-image.jpg";
+import { Btn } from "../StyledUI";
 
 function EditPlaylistsModel({ setClick }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);
@@ -65,7 +65,8 @@ function EditPlaylistsModel({ setClick }) {
                   <textarea
                     name="playlistDescription"
                     id="playlist-description"
-                    placeholder="Enter Description (Optional)"></textarea>
+                    placeholder="Enter Description (Optional)"
+                  ></textarea>
                 </div>
               </div>
               <Btn className="btn-play save-playlist">Save</Btn>

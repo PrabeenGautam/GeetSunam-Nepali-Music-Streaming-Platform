@@ -1,8 +1,9 @@
+import { useState } from "react";
+import { BiHeart, BiLeftArrow, BiRightArrow } from "react-icons/bi";
+
 import SearchBar from "./SearchBar";
 import { Btn } from "components/StyledUI";
-import { useState } from "react";
 import PlaySong from "components/Player/PlaySong";
-import { BiHeart, BiLeftArrow, BiRightArrow } from "react-icons/bi";
 
 function Featured({ data: featuredSongs, showSearchBar = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -44,7 +45,8 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
           <div
             className="index-button"
             title="Go to Previous"
-            onClick={goToPrevious}>
+            onClick={goToPrevious}
+          >
             <BiLeftArrow />
           </div>
           <div className="index-button" title="Go to Next" onClick={goToNext}>
@@ -77,7 +79,8 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
                 className={`play-featured ${
                   index === currentIndex ? "" : "hidden"
                 }`}
-                key={index}>
+                key={index}
+              >
                 <PlaySong trackDetails={value.trackDetails}>
                   <Btn className="btn-play">Play</Btn>
                 </PlaySong>
@@ -109,7 +112,8 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
                     document.getElementsByClassName("featured-img")
                   );
                 }}
-                className={currentIndex === index ? "active" : ""}></div>
+                className={currentIndex === index ? "active" : ""}
+              ></div>
             );
           })}
         </div>

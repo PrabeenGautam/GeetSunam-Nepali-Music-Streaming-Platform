@@ -1,7 +1,7 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import React, { useRef } from "react";
-
 import "swiper/css";
+import { useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import MusicContainer from "components/MusicContainer";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
@@ -14,12 +14,14 @@ function RecommendedSlider({ data }) {
     <div className="swiper-class">
       <div
         onClick={() => swiperRef.current?.slidePrev()}
-        className="swiper-btn swipe-prev">
+        className="swiper-btn swipe-prev"
+      >
         <BiChevronLeft />
       </div>
       <div
         onClick={() => swiperRef.current?.slideNext()}
-        className="swiper-btn swipe-next">
+        className="swiper-btn swipe-next"
+      >
         <BiChevronRight />
       </div>
       <Swiper
@@ -42,7 +44,8 @@ function RecommendedSlider({ data }) {
         }}
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
-        }}>
+        }}
+      >
         {/*Change import Data*/}
         {data.map((value, index) => (
           <SwiperSlide key={index}>

@@ -1,5 +1,3 @@
-import React from "react";
-
 function AutoMarquee({ value, className }) {
   return (
     <div
@@ -9,7 +7,8 @@ function AutoMarquee({ value, className }) {
       }}
       onMouseLeave={(e) => {
         e.target.classList.add("innerText");
-      }}>
+      }}
+    >
       <div className={`${className} innerText`} title={value}>
         {value}
       </div>

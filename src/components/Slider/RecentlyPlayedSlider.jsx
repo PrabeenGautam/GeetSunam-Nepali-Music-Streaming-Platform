@@ -1,13 +1,13 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import React, { useRef } from "react";
-
 import "swiper/css";
-import AutoMarquee from "./AutoMarquee";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useRef } from "react";
 import {
   BiChevronLeft,
   BiChevronRight,
   BiPlayCircle as BiPlay,
 } from "react-icons/bi";
+
+import AutoMarquee from "./AutoMarquee";
 import PlaySong from "components/Player/PlaySong";
 
 function RecentlyPlayedSlider({ musicList }) {
@@ -19,12 +19,14 @@ function RecentlyPlayedSlider({ musicList }) {
     <div className="swiper-class">
       <div
         onClick={() => swiperRef.current?.slidePrev()}
-        className="swiper-btn swipe-prev">
+        className="swiper-btn swipe-prev"
+      >
         <BiChevronLeft />
       </div>
       <div
         onClick={() => swiperRef.current?.slideNext()}
-        className="swiper-btn swipe-next">
+        className="swiper-btn swipe-next"
+      >
         <BiChevronRight />
       </div>
       <Swiper
@@ -47,7 +49,8 @@ function RecentlyPlayedSlider({ musicList }) {
         }}
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
-        }}>
+        }}
+      >
         {musicList.map((value, index) => (
           <SwiperSlide key={index}>
             <PlaySong trackDetails={value.trackDetails}>

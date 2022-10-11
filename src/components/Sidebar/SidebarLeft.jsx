@@ -1,6 +1,7 @@
-import sidebarMenu from "./sidebarMenu.data";
 import { Link, useLocation } from "react-router-dom";
 import { FaMusic } from "react-icons/fa";
+
+import sidebarMenu from "./sidebarMenu.data";
 
 function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
   const location = useLocation();
@@ -38,7 +39,8 @@ function SidebarLeft() {
                       to={d.link}
                       key={index}
                       activeClassName="active"
-                      inactiveClassName="">
+                      inactiveClassName=""
+                    >
                       <li className="submenus">
                         <span className="menu-icon">{d.icons}</span>
                         <span className="menu-text">{d.text}</span>

@@ -1,6 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 import { featuredArtists } from "components/Featured/featureArtists.data";
 import AutoMarquee from "components/Slider/AutoMarquee";
-import { useNavigate } from "react-router-dom";
 
 function FeaturedArtists({ data }) {
   const artistsData = featuredArtists.find((value) => value.id === data.id);
@@ -14,7 +15,8 @@ function FeaturedArtists({ data }) {
         <div
           className="artists"
           title={artistsData.name}
-          onClick={() => onClickContainer(artistsData.id)}>
+          onClick={() => onClickContainer(artistsData.id)}
+        >
           <img
             src={artistsData.profile}
             alt="artists"

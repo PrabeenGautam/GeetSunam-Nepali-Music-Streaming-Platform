@@ -1,4 +1,3 @@
-import React from "react";
 import Playlist from "../Playlists/Playlist";
 
 function LikedSongs() {

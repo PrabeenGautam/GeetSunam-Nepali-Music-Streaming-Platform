@@ -1,6 +1,6 @@
-import { featuredArtists } from "components/Featured/featureArtists.data";
-import React from "react";
 import { useParams } from "react-router-dom";
+
+import { featuredArtists } from "components/Featured/featureArtists.data";
 import ArtistsPlayed from "./ArtistsPlayed";
 import { musicList } from "assets/data/musicList";
 import { FiHeart } from "react-icons/fi";
@@ -8,7 +8,7 @@ import { FiHeart } from "react-icons/fi";
 function ArtistsDetails() {
   const { id } = useParams();
   const artistsDetails = featuredArtists[id];
-  const data = musicList.filter((value) => value.artistsDetails.id == id);
+  const data = musicList.filter((value) => value.artistsDetails.id === id);
 
   return (
     <>

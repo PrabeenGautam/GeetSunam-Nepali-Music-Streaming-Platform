@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import Placeholder from "assets/images/genre/placeholder-image.jpg";
+import { useState } from "react";
 import { GiTireIronCross } from "react-icons/gi";
+
+import Placeholder from "assets/images/genre/placeholder-image.jpg";
 
 function EditUserProfile({ setClick }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);
@@ -65,7 +66,8 @@ function EditUserProfile({ setClick }) {
               <button
                 type="submit"
                 className="btn btn-play"
-                style={{ marginTop: 20 }}>
+                style={{ marginTop: 20 }}
+              >
                 Save
               </button>
             </form>

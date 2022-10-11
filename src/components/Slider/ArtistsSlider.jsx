@@ -1,9 +1,9 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import React, { useRef } from "react";
-
 import "swiper/css";
-import FeaturedArtists from "components/Artists/FeaturedArtists";
+import { useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+
+import FeaturedArtists from "components/Artists/FeaturedArtists";
 
 function ArtistsSlider({ featuredArtists }) {
   const swiperRef = useRef();
@@ -14,12 +14,14 @@ function ArtistsSlider({ featuredArtists }) {
     <div className="swiper-class">
       <div
         onClick={() => swiperRef.current?.slidePrev()}
-        className="swiper-btn swipe-artists-btn swipe-prev-artists">
+        className="swiper-btn swipe-artists-btn swipe-prev-artists"
+      >
         <BiChevronLeft />
       </div>
       <div
         onClick={() => swiperRef.current?.slideNext()}
-        className="swiper-btn swipe-artists-btn swipe-next-artists">
+        className="swiper-btn swipe-artists-btn swipe-next-artists"
+      >
         <BiChevronRight />
       </div>
       <Swiper
@@ -42,7 +44,8 @@ function ArtistsSlider({ featuredArtists }) {
         }}
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
-        }}>
+        }}
+      >
         {featuredArtists.map((value, index) => (
           <SwiperSlide key={index}>
             <FeaturedArtists data={value} />

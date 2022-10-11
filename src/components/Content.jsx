@@ -1,13 +1,14 @@
-import Featured from "./Featured/Featured";
 import { Link } from "react-router-dom";
+import { BiPause, BiPlay } from "react-icons/bi";
+import { HiOutlineUser } from "react-icons/hi";
+
+import Featured from "./Featured/Featured";
 import RecentPlayed from "./RecentPlayed";
 import RecentlyPlayedSlider from "./Slider/RecentlyPlayedSlider";
 import ArtistsSlider from "./Slider/ArtistsSlider";
 import { musicList } from "assets/data/musicList";
 import CustomBreadcrumbs from "./Breadcrumbs";
 import { featuredArtists } from "./Featured/featureArtists.data";
-import { BiPause, BiPlay } from "react-icons/bi";
-import { HiOutlineUser } from "react-icons/hi";
 
 function Content() {
   const featuredSongs = musicList.filter(

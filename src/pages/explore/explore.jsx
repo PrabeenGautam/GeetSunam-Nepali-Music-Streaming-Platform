@@ -1,14 +1,13 @@
-import CustomBreadcrumbs from "components/Breadcrumbs";
-import React from "react";
 import { Link } from "react-router-dom";
+import { BiPlayCircle } from "react-icons/bi";
+import { MdRecommend, MdLibraryMusic } from "react-icons/md";
+
+import CustomBreadcrumbs from "components/Breadcrumbs";
 import { Featured } from "components/Featured";
 import RecommendedSlider from "components/Slider/RecommendedSlider";
 import { musicList } from "assets/data/musicList";
 import AutoMarquee from "components/Slider/AutoMarquee";
-import { BiPlayCircle } from "react-icons/bi";
 import PlaySong from "components/Player/PlaySong";
-import { MdRecommend, MdLibraryMusic } from "react-icons/md";
-import Placeholder from "assets/images/genre/placeholder-image.jpg";
 
 function Explore() {
   const recommendedSongs = musicList.slice(4, 14);

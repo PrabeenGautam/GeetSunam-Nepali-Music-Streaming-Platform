@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 function CustomBreadcrumbs({ link, textName, search = false }) {
@@ -19,7 +18,8 @@ function CustomBreadcrumbs({ link, textName, search = false }) {
           style={{
             marginLeft: 7,
             color: "white",
-          }}>
+          }}
+        >
           Search Results
         </span>
       )}

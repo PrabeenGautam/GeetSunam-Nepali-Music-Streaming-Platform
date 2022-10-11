@@ -1,4 +1,3 @@
-import React from "react";
 import { Btn } from "components/StyledUI";
 import RecentPlayed from "components/RecentPlayed";
 import CustomBreadcrumbs from "components/Breadcrumbs";
@@ -14,7 +13,9 @@ function Trends() {
         <section className="top-trends">
           <img
             src={musicData[0].trackDetails.coverArt}
-            className="trend-image"></img>
+            className="trend-image"
+            alt="trending"
+          ></img>
           <div className="trend-section">
             <h2>Trending Songs</h2>
             <span className="details">
