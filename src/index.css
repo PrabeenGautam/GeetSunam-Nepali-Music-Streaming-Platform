@@ -169,6 +169,11 @@ body {
   color: var(--tertiary);
 }
 
+.hidden,
+.play-featured.hidden {
+  display: none;
+}
+
 .active .submenus .icons {
   color: var(--tertiary);
 }
@@ -1138,17 +1143,17 @@ h3 {
 }
 
 #bar-1 {
-  animation: 1.5s ease-out infinite both play;
+  animation: 1s ease-out infinite both play;
 }
 
 #bar-2 {
-  animation: 1.5s ease-out 0.5s infinite both play;
+  animation: 1s ease-out 0.5s infinite both play;
 }
 
 #bar-3 {
-  animation: 1.5s ease-out 0.2s infinite both play;
+  animation: 1s ease-out 0.2s infinite both play;
 }
 
 #bar-4 {
-  animation: 1.5s ease-out 0.75s infinite both play;
+  animation: 1s ease-out 0.75s infinite both play;
 }

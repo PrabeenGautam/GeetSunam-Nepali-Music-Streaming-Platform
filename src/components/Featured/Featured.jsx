@@ -2,6 +2,7 @@ import SearchBar from "./SearchBar";
 import * as BiIcons from "react-icons/bi";
 import { Btn } from "components/StyledUI";
 import { useState } from "react";
+import PlaySong from "components/Player/PlaySong";
 
 function Featured({ data: featuredSongs, showSearchBar = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -70,25 +71,36 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
             <div className="artists">{songsDetails.artistsDetails.name}</div>
             <div className="song-name">{songsDetails.trackDetails.title}</div>
           </div>
-          <div className="play-featured">
-            <Btn className="btn-play">Play</Btn>
-            <BiIcons.BiHeart
-              style={{
-                width: 40,
-                height: 40,
-                padding: 10,
-                color: "#f96666",
-                backgroundColor: "rgba(0, 0, 0, 0.6)",
-                marginLeft: 15,
-                borderRadius: "50%",
-                cursor: "pointer",
-              }}
-            />
-          </div>
+          {featuredSongs.map((value, index) => {
+            console.log(index === currentIndex);
+            return (
+              <div
+                className={`play-featured ${
+                  index === currentIndex ? "" : "hidden"
+                }`}
+                key={index}>
+                <PlaySong trackDetails={value.trackDetails}>
+                  <Btn className="btn-play">Play</Btn>
+                </PlaySong>
+                <BiIcons.BiHeart
+                  style={{
+                    width: 40,
+                    height: 40,
+                    padding: 10,
+                    color: "#f96666",
+                    backgroundColor: "rgba(0, 0, 0, 0.6)",
+                    marginLeft: 15,
+                    borderRadius: "50%",
+                    cursor: "pointer",
+                  }}
+                />
+              </div>
+            );
+          })}
         </div>
 
         <div className="carosel">
-          {featuredSongs.map((value, index) => {
+          {featuredSongs.map((_, index) => {
             return (
               <div
                 key={index}
