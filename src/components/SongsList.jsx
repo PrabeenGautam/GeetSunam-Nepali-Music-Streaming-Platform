@@ -47,8 +47,7 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                   tabIndex="0"
                   className={`recent-container hover-effect ${
                     currentSong?.ID === value.trackDetails.ID ? "playing" : ""
-                  }`}
-                >
+                  }`}>
                   {currentSong?.ID === value.trackDetails.ID &&
                   mediaState === possibleMediaState.PLAYING ? (
                     <PauseSong>
@@ -107,7 +106,14 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
             })}
         </section>
       ) : (
-        <h2>No Music To Show</h2>
+        <h4
+          style={{
+            color: "rgba(255,255,255,0.8)",
+            marginTop: 20,
+            marginBottom: 20,
+          }}>
+          No Music To Show
+        </h4>
       )}
     </>
   );
