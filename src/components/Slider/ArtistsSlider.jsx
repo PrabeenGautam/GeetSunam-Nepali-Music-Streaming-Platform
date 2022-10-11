@@ -7,20 +7,22 @@ import FeaturedArtists from "components/Artists/FeaturedArtists";
 
 function ArtistsSlider({ featuredArtists }) {
   const swiperRef = useRef();
-  const prevBtn = document.getElementsByClassName("swipe-prev-artists");
-  const nextBtn = document.getElementsByClassName("swipe-next-artists");
+  const prevBtnRef = useRef();
+  const nextBtnRef = useRef();
 
   return (
     <div className="swiper-class">
       <div
         onClick={() => swiperRef.current?.slidePrev()}
         className="swiper-btn swipe-artists-btn swipe-prev-artists"
+        ref={prevBtnRef}
       >
         <BiChevronLeft />
       </div>
       <div
         onClick={() => swiperRef.current?.slideNext()}
         className="swiper-btn swipe-artists-btn swipe-next-artists"
+        ref={nextBtnRef}
       >
         <BiChevronRight />
       </div>
@@ -28,18 +30,19 @@ function ArtistsSlider({ featuredArtists }) {
         slidesPerView={6}
         grabCursor={true}
         onSwiper={(swiper) => {
-          swiper.isBeginning === true && prevBtn[0].classList.add("deactivate");
+          swiper.isBeginning === true &&
+            prevBtnRef.current.classList.add("deactivate");
         }}
         onSlideChange={(swiper) => {
-          nextBtn[0].classList.remove("deactivate");
-          prevBtn[0].classList.remove("deactivate");
+          nextBtnRef.current.classList.remove("deactivate");
+          prevBtnRef.current.classList.remove("deactivate");
 
           if (swiper.isBeginning === true) {
-            prevBtn[0].classList.add("deactivate");
+            prevBtnRef.current.classList.add("deactivate");
           }
 
           if (swiper.isEnd === true) {
-            nextBtn[0].classList.add("deactivate");
+            nextBtnRef.current.classList.add("deactivate");
           }
         }}
         onBeforeInit={(swiper) => {
