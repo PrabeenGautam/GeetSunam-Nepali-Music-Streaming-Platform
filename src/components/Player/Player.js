@@ -1,8 +1,9 @@
-import React from "react";
-import Player from "react-mui-player/components/Player";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import { createTheme } from "@mui/material/styles";
 import { green } from "@mui/material/colors";
+
+import Player from "react-mui-player/components/Player";
+
 const theme = createTheme({
   palette: {
     primary: {

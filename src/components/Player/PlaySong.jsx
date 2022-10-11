@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
+
 import { PlayerInterface, Track } from "react-mui-player";
 
 const PlaySong = ({ trackDetails = {}, children }) => {
@@ -7,6 +8,16 @@ const PlaySong = ({ trackDetails = {}, children }) => {
   const playSong = () => {
     PlayerInterface.play([new Track(ID, coverArt, title, artist, source)]);
   };
+
+  useEffect(() => {
+    if (trackDetails) {
+      currTrackRef.current = trackDetails;
+    }
+    return () => {
+      currTrackRef.current = {};
+    };
+  }, [currTrackRef, trackDetails]);
+
   return React.Children.map(children, (child) => {
     return React.cloneElement(child, {
       onClick: () => playSong(),

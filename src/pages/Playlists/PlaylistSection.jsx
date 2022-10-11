@@ -1,7 +1,7 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import PlaylistsCover from "assets/images/playlists-cover.png";
 import PlaylistsContainer from "./PlaylistContainer";
-import { useNavigate } from "react-router-dom";
 import { Btn } from "components/StyledUI";
 
 function PlaylistSection() {

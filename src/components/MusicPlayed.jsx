@@ -1,5 +1,3 @@
-import React from "react";
-
 function MusicPlayedAnimation() {
   return (
     <div className="music-bars">

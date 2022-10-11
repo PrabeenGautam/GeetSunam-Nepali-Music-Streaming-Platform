@@ -1,11 +1,11 @@
+import { FiClock, FiHeart, FiPauseCircle, FiPlayCircle } from "react-icons/fi";
+import { useSelector } from "react-redux";
+
 import AddToPlaylist from "components/Player/AddToPlayList";
 import PauseSong from "components/Player/PauseSong";
 import PlaySong from "components/Player/PlaySong";
 import { possibleMediaState } from "components/Player/possibleMediaState.types";
 import useCurrentSong from "hooks/useCurrentSong";
-import React from "react";
-import { FiClock, FiHeart, FiPauseCircle, FiPlayCircle } from "react-icons/fi";
-import { useSelector } from "react-redux";
 
 function ArtistsPlayed({ data }) {
   const currentSong = useCurrentSong();
@@ -32,7 +32,8 @@ function ArtistsPlayed({ data }) {
                 key={index}
                 className={`recent-container hover-effect ${
                   currentSong?.ID === value.trackDetails.ID ? "playing" : ""
-                }`}>
+                }`}
+              >
                 {currentSong?.ID === value.trackDetails.ID &&
                 mediaState === possibleMediaState.PLAYING ? (
                   <PauseSong>

@@ -1,7 +1,6 @@
 import CustomBreadcrumbs from "components/Breadcrumbs";
 import RecentPlayed from "components/RecentPlayed";
 import { Btn } from "components/StyledUI";
-import React from "react";
 import { musicList } from "assets/data/musicList";
 import PlaySong from "components/Player/PlaySong";
 
@@ -14,7 +13,9 @@ function NewReleases() {
         <section className="top-trends">
           <img
             src={releaseSongs[0].trackDetails.coverArt}
-            className="trend-image"></img>
+            className="trend-image"
+            alt="trending"
+          ></img>
           <div className="trend-section">
             <h2>New Releases</h2>
             <span className="details">

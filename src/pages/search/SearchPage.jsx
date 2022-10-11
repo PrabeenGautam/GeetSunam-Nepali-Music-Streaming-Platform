@@ -1,11 +1,12 @@
+import { useMemo } from "react";
+import { useLocation } from "react-router-dom";
+
 import CustomBreadcrumbs from "components/Breadcrumbs";
 import RecentPlayed from "components/RecentPlayed";
-import React from "react";
-import { useLocation } from "react-router-dom";
 
 function useQuery() {
   const { search } = useLocation();
-  return React.useMemo(() => new URLSearchParams(search), [search]);
+  return useMemo(() => new URLSearchParams(search), [search]);
 }
 
 function SearchPage() {
@@ -17,7 +18,8 @@ function SearchPage() {
         style={{
           borderBottom: "1px solid rgba(0,0,0,0.8)",
           padding: "2rem 2.5rem",
-        }}>
+        }}
+      >
         <CustomBreadcrumbs search={true} />
         <h2>
           Search results for:{" "}

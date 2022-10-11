@@ -1,11 +1,10 @@
-import DeleteModel from "components/Playlists/DeleteModel";
-import EditPlaylistsModel from "components/Playlists/EditPlaylistsModal";
-import RecentPlayed from "components/RecentPlayed";
-
-import React from "react";
 import { useState } from "react";
 import { FiHeart, FiMic, FiSearch } from "react-icons/fi";
 import { MdDeleteOutline, MdEditNote } from "react-icons/md";
+
+import DeleteModel from "components/Playlists/DeleteModel";
+import EditPlaylistsModel from "components/Playlists/EditPlaylistsModal";
+import RecentPlayed from "components/RecentPlayed";
 
 function Playlist({ playlistName = "No Name", data }) {
   const isLikedSongs = playlistName === "Liked Songs";
@@ -54,20 +53,23 @@ function Playlist({ playlistName = "No Name", data }) {
               position: "absolute",
               right: 20,
               zIndex: 999,
-            }}>
+            }}
+          >
             <button
               className="custom-btn"
               title="Edit Playlists"
               style={{
                 marginRight: 10,
               }}
-              onClick={() => setClick(true)}>
+              onClick={() => setClick(true)}
+            >
               <MdEditNote />
             </button>
             <button
               className="custom-btn btn-play"
               title="Delete Playlists"
-              onClick={() => setDeleteClick(true)}>
+              onClick={() => setDeleteClick(true)}
+            >
               <MdDeleteOutline
                 style={{
                   fill: "white",
@@ -79,7 +81,8 @@ function Playlist({ playlistName = "No Name", data }) {
       </section>
       <section
         className="playlist-songs padding"
-        style={{ borderBottom: "1px solid rgba(0,0,0,0.8)" }}>
+        style={{ borderBottom: "1px solid rgba(0,0,0,0.8)" }}
+      >
         {data ? (
           <RecentPlayed removeFromPlaylist={true} />
         ) : (
@@ -103,7 +106,8 @@ function Playlist({ playlistName = "No Name", data }) {
                   style={{
                     borderLeft: "2px solid black",
                     paddingRight: 5,
-                  }}></div>
+                  }}
+                ></div>
                 <FiMic className="icon-mic" />
               </form>
             </div>

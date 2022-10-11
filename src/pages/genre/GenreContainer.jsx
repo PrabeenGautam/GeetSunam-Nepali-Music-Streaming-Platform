@@ -1,8 +1,9 @@
+import React from "react";
+import { useParams } from "react-router-dom";
+
 import { musicList } from "assets/data/musicList";
 import RecentPlayed from "components/RecentPlayed";
 import { genreMenu } from "components/Sidebar";
-import React from "react";
-import { useParams } from "react-router-dom";
 
 function GenreContainer() {
   const { genreName } = useParams();
@@ -31,7 +32,8 @@ function GenreContainer() {
                   fontWeight: 700,
                   color: "white",
                   textTransform: "capitalize",
-                }}>
+                }}
+              >
                 {genreName}
               </span>
             </div>

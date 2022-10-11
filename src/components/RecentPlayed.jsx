@@ -1,11 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-import DeleteModel from "./Playlists/DeleteModel";
-import AddToPlaylist from "./Player/AddToPlayList";
-import PlaySong from "./Player/PlaySong";
-import PauseSong from "./Player/PauseSong";
-import useCurrentSong from "hooks/useCurrentSong";
-import { possibleMediaState } from "./Player/possibleMediaState.types";
 import {
   FiClock,
   FiHeart,
@@ -13,6 +7,13 @@ import {
   FiPlayCircle,
   FiTrash,
 } from "react-icons/fi";
+
+import DeleteModel from "./Playlists/DeleteModel";
+import AddToPlaylist from "./Player/AddToPlayList";
+import PlaySong from "./Player/PlaySong";
+import PauseSong from "./Player/PauseSong";
+import useCurrentSong from "hooks/useCurrentSong";
+import { possibleMediaState } from "./Player/possibleMediaState.types";
 
 function RecentPlayed({ removeFromPlaylist = false, data }) {
   const [deleteClick, setDeleteClick] = useState(false);
@@ -45,7 +46,8 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                   key={index}
                   className={`recent-container hover-effect ${
                     currentSong?.ID === value.trackDetails.ID ? "playing" : ""
-                  }`}>
+                  }`}
+                >
                   {currentSong?.ID === value.trackDetails.ID &&
                   mediaState === possibleMediaState.PLAYING ? (
                     <PauseSong>

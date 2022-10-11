@@ -1,4 +1,5 @@
 import { BiPlayCircle } from "react-icons/bi";
+
 import PlaySong from "./Player/PlaySong";
 import AutoMarquee from "./Slider/AutoMarquee";
 

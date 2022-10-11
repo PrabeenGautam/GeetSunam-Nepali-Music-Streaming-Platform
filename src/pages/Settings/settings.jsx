@@ -1,8 +1,8 @@
+import { useState } from "react";
+
 import CustomBreadcrumbs from "components/Breadcrumbs";
 import EditUserProfile from "components/Settings/EditUserProfile";
 import { Btn } from "components/StyledUI";
-import React from "react";
-import { useState } from "react";
 
 function Settings() {
   const [click, setClick] = useState(false);
@@ -47,7 +47,8 @@ function Settings() {
             backgroundColor: "hsla(0, 0%, 100%, 0.7)",
             width: "150px",
             color: "#333",
-          }}>
+          }}
+        >
           Edit Profile
         </Btn>
       </div>
@@ -82,7 +83,8 @@ function Settings() {
               backgroundColor: "hsla(0, 0%, 100%, 0.7)",
               width: "200px",
               color: "#333",
-            }}>
+            }}
+          >
             Set New Password
           </Btn>
         </form>
