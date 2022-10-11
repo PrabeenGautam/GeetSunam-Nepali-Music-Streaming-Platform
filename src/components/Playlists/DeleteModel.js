@@ -1,6 +1,7 @@
 import { Btn } from "components/StyledUI";
 import React from "react";
-import * as Icons from "react-icons/gi";
+import { GiTireIronCross } from "react-icons/gi";
+
 
 function DeleteModel({ setClick, data, id, modalMessage = "Delete" }) {
   console.log(id);
@@ -12,7 +13,7 @@ function DeleteModel({ setClick, data, id, modalMessage = "Delete" }) {
           style={{ minWidth: "24rem", maxWidth: "25rem" }}>
           <div className="header">
             <h2 className="h2">{`${modalMessage} ${data} ?`}</h2>
-            <Icons.GiTireIronCross
+            <GiTireIronCross
               style={{ cursor: "pointer" }}
               onClick={() => setClick(false)}
             />

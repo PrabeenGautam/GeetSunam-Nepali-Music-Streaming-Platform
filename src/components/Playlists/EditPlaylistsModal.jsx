@@ -1,8 +1,8 @@
 import React from "react";
-import * as Icons from "react-icons/gi";
 import Placeholder from "assets/images/genre/placeholder-image.jpg";
 import { Btn } from "../StyledUI";
 import { useState } from "react";
+import { GiTireIronCross } from "react-icons/gi";
 
 function EditPlaylistsModel({ setClick }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);
@@ -32,7 +32,7 @@ function EditPlaylistsModel({ setClick }) {
         <div className="container">
           <div className="header">
             <h2 className="h2">Edit Details</h2>
-            <Icons.GiTireIronCross
+            <GiTireIronCross
               style={{ cursor: "pointer" }}
               onClick={() => setClick(false)}
             />

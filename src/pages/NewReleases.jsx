@@ -2,7 +2,6 @@ import CustomBreadcrumbs from "components/Breadcrumbs";
 import RecentPlayed from "components/RecentPlayed";
 import { Btn } from "components/StyledUI";
 import React from "react";
-import FeaturedImage from "assets/images/featured.jpg";
 import { musicList } from "assets/data/musicList";
 import PlaySong from "components/Player/PlaySong";
 

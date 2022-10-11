@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-
 import { PlayerInterface, Track } from "react-mui-player";
 
 const PlaySong = ({ trackDetails = {}, children }) => {

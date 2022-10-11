@@ -1,4 +1,4 @@
-import * as FiIcons from "react-icons/fi";
+import { FiMic, FiSearch } from "react-icons/fi";
 import { useNavigate, createSearchParams } from "react-router-dom";
 
 function SearchBar() {
@@ -22,7 +22,7 @@ function SearchBar() {
   return (
     <div>
       <form className="search-bar" onSubmit={onSubmitValue}>
-        <FiIcons.FiSearch className="icon-search" />
+        <FiSearch className="icon-search" />
         <input
           type="text"
           className="text-input"
@@ -31,7 +31,7 @@ function SearchBar() {
         />
         <input type="submit" hidden />
         <div style={{ borderLeft: "2px solid black", paddingRight: 5 }}></div>
-        <FiIcons.FiMic className="icon-mic" />
+        <FiMic className="icon-mic" />
       </form>
     </div>
   );

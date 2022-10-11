@@ -1,5 +1,4 @@
 import { shallowEqual, useSelector } from "react-redux";
-
 import { PlayerInterface, Track } from "react-mui-player";
 import React from "react";
 

@@ -1,6 +1,5 @@
 import CustomBreadcrumbs from "components/Breadcrumbs";
 import React from "react";
-import * as MdIcons from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Featured } from "components/Featured";
 import RecommendedSlider from "components/Slider/RecommendedSlider";
@@ -8,6 +7,8 @@ import { musicList } from "assets/data/musicList";
 import AutoMarquee from "components/Slider/AutoMarquee";
 import { BiPlayCircle } from "react-icons/bi";
 import PlaySong from "components/Player/PlaySong";
+import { MdRecommend, MdLibraryMusic } from "react-icons/md";
+import Placeholder from "assets/images/genre/placeholder-image.jpg";
 
 function Explore() {
   const recommendedSongs = musicList.slice(4, 14);
@@ -26,7 +27,7 @@ function Explore() {
         <div className="heading">
           <div className="subheading">
             <span>Recommended for you</span>
-            <MdIcons.MdRecommend className="heading_icons" />
+            <MdRecommend className="heading_icons" />
           </div>
           <Link to={"/recommendation"} className="see-more">
             See All
@@ -42,7 +43,7 @@ function Explore() {
         <div className="heading">
           <div className="subheading">
             <span>Library</span>
-            <MdIcons.MdLibraryMusic className="heading_icons" />
+            <MdLibraryMusic className="heading_icons" />
           </div>
         </div>
 

@@ -1,9 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import React, { useRef } from "react";
-import * as BiIcons from "react-icons/bi";
 
 import "swiper/css";
 import FeaturedArtists from "components/Artists/FeaturedArtists";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 function ArtistsSlider({ featuredArtists }) {
   const swiperRef = useRef();
@@ -15,12 +15,12 @@ function ArtistsSlider({ featuredArtists }) {
       <div
         onClick={() => swiperRef.current?.slidePrev()}
         className="swiper-btn swipe-artists-btn swipe-prev-artists">
-        <BiIcons.BiChevronLeft />
+        <BiChevronLeft />
       </div>
       <div
         onClick={() => swiperRef.current?.slideNext()}
         className="swiper-btn swipe-artists-btn swipe-next-artists">
-        <BiIcons.BiChevronRight />
+        <BiChevronRight />
       </div>
       <Swiper
         slidesPerView={6}

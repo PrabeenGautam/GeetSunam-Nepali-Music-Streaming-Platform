@@ -14,8 +14,9 @@ function Recommnedations() {
         <CustomBreadcrumbs link={"/recommendation"} textName="Recommendation" />
         <section className="top-trends">
           <img
-            src={recommendedSongs[0].trackDetails.coverArt}
-            className="trend-image"></img>
+            src={Recommended}
+            className="trend-image"
+            style={{ width: 300 }}></img>
           <div className="trend-section">
             <h2>Made For You</h2>
             <span className="details">

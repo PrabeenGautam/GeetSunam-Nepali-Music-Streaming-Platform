@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import * as Icons from "react-icons/gi";
 import Placeholder from "assets/images/genre/placeholder-image.jpg";
+import { GiTireIronCross } from "react-icons/gi";
 
 function EditUserProfile({ setClick }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);
@@ -29,7 +29,7 @@ function EditUserProfile({ setClick }) {
         <div className="container">
           <div className="header">
             <h2 className="h2">Edit Details</h2>
-            <Icons.GiTireIronCross
+            <GiTireIronCross
               style={{ cursor: "pointer" }}
               onClick={() => setClick(false)}
             />

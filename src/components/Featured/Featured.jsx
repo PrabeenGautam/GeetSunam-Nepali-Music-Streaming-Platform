@@ -1,8 +1,8 @@
 import SearchBar from "./SearchBar";
-import * as BiIcons from "react-icons/bi";
 import { Btn } from "components/StyledUI";
 import { useState } from "react";
 import PlaySong from "components/Player/PlaySong";
+import { BiHeart, BiLeftArrow, BiRightArrow } from "react-icons/bi";
 
 function Featured({ data: featuredSongs, showSearchBar = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,10 +45,10 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
             className="index-button"
             title="Go to Previous"
             onClick={goToPrevious}>
-            <BiIcons.BiLeftArrow />
+            <BiLeftArrow />
           </div>
           <div className="index-button" title="Go to Next" onClick={goToNext}>
-            <BiIcons.BiRightArrow />
+            <BiRightArrow />
           </div>
         </div>
         {showSearchBar && (
@@ -81,7 +81,7 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
                 <PlaySong trackDetails={value.trackDetails}>
                   <Btn className="btn-play">Play</Btn>
                 </PlaySong>
-                <BiIcons.BiHeart
+                <BiHeart
                   style={{
                     width: 40,
                     height: 40,

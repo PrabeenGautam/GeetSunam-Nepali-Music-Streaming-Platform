@@ -1,12 +1,11 @@
-import * as FiIcons from "react-icons/fi";
 import DeleteModel from "components/Playlists/DeleteModel";
 import EditPlaylistsModel from "components/Playlists/EditPlaylistsModal";
 import RecentPlayed from "components/RecentPlayed";
 
 import React from "react";
 import { useState } from "react";
-import * as Icons from "react-icons/fi";
-import * as MdIcons from "react-icons/md";
+import { FiHeart, FiMic, FiSearch } from "react-icons/fi";
+import { MdDeleteOutline, MdEditNote } from "react-icons/md";
 
 function Playlist({ playlistName = "No Name", data }) {
   const isLikedSongs = playlistName === "Liked Songs";
@@ -35,7 +34,7 @@ function Playlist({ playlistName = "No Name", data }) {
       )}
       <section className="playlist">
         <div className="playlist-images">
-          <Icons.FiHeart />
+          <FiHeart />
         </div>
         <div className="playlist-details">
           <div>Playlist</div>
@@ -63,13 +62,13 @@ function Playlist({ playlistName = "No Name", data }) {
                 marginRight: 10,
               }}
               onClick={() => setClick(true)}>
-              <MdIcons.MdEditNote />
+              <MdEditNote />
             </button>
             <button
               className="custom-btn btn-play"
               title="Delete Playlists"
               onClick={() => setDeleteClick(true)}>
-              <MdIcons.MdDeleteOutline
+              <MdDeleteOutline
                 style={{
                   fill: "white",
                 }}
@@ -89,7 +88,7 @@ function Playlist({ playlistName = "No Name", data }) {
             <h3>Search for songs to add them</h3>
             <div style={{ width: "30rem" }}>
               <form className="search-bar" onSubmit={onSubmitValue}>
-                <FiIcons.FiSearch className="icon-search" />
+                <FiSearch className="icon-search" />
                 <input
                   type="text"
                   className="text-input"
@@ -105,7 +104,7 @@ function Playlist({ playlistName = "No Name", data }) {
                     borderLeft: "2px solid black",
                     paddingRight: 5,
                   }}></div>
-                <FiIcons.FiMic className="icon-mic" />
+                <FiMic className="icon-mic" />
               </form>
             </div>
             {showData ? <RecentPlayed /> : ""}

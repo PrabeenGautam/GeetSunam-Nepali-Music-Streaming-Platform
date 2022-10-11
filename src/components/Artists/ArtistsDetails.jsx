@@ -1,9 +1,9 @@
 import { featuredArtists } from "components/Featured/featureArtists.data";
 import React from "react";
 import { useParams } from "react-router-dom";
-import * as FiIcons from "react-icons/fi";
 import ArtistsPlayed from "./ArtistsPlayed";
 import { musicList } from "assets/data/musicList";
+import { FiHeart } from "react-icons/fi";
 
 function ArtistsDetails() {
   const { id } = useParams();
@@ -29,7 +29,7 @@ function ArtistsDetails() {
           <div style={{ position: "absolute", right: 20, zIndex: 999 }}>
             <button className="custom-btn" title="Remove from Favourite">
               {artistsDetails.isFavourite ? (
-                <FiIcons.FiHeart
+                <FiHeart
                   style={{
                     fill: "var(--highlight)",
                     stroke: "var(--highlight)",
@@ -39,7 +39,7 @@ function ArtistsDetails() {
                   }}
                 />
               ) : (
-                <FiIcons.FiHeart
+                <FiHeart
                   style={{
                     stroke: "var(--highlight)",
                     display: "flex",

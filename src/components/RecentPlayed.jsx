@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import * as Icons from "react-icons/fi";
 import { useSelector } from "react-redux";
-
 import DeleteModel from "./Playlists/DeleteModel";
 import AddToPlaylist from "./Player/AddToPlayList";
 import PlaySong from "./Player/PlaySong";
 import PauseSong from "./Player/PauseSong";
 import useCurrentSong from "hooks/useCurrentSong";
 import { possibleMediaState } from "./Player/possibleMediaState.types";
+import {
+  FiClock,
+  FiHeart,
+  FiPauseCircle,
+  FiPlayCircle,
+  FiTrash,
+} from "react-icons/fi";
 
 function RecentPlayed({ removeFromPlaylist = false, data }) {
   const [deleteClick, setDeleteClick] = useState(false);
@@ -29,7 +34,7 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
             <span className="recent-genre">genre</span>
             <span></span>
             <span className="length">
-              <Icons.FiClock />
+              <FiClock />
             </span>
             <span style={{ visibility: "hidden" }}>#</span>
           </div>
@@ -44,11 +49,11 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                   {currentSong?.ID === value.trackDetails.ID &&
                   mediaState === possibleMediaState.PLAYING ? (
                     <PauseSong>
-                      <Icons.FiPauseCircle className="recent-play" />
+                      <FiPauseCircle className="recent-play" />
                     </PauseSong>
                   ) : (
                     <PlaySong trackDetails={value.trackDetails}>
-                      <Icons.FiPlayCircle className="recent-play" />
+                      <FiPlayCircle className="recent-play" />
                     </PlaySong>
                   )}
                   <PlaySong trackDetails={value.trackDetails}>
@@ -65,7 +70,7 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                   <span className="recent-genre">
                     {value.genre.toUpperCase()}
                   </span>
-                  <Icons.FiHeart
+                  <FiHeart
                     className={
                       value.trackDetails.isFavourite
                         ? "heart favourite"
@@ -75,7 +80,7 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                   <span className="length">{value.time}</span>
                   {removeFromPlaylist ? (
                     <span className="more">
-                      <Icons.FiTrash
+                      <FiTrash
                         style={{ stroke: "white" }}
                         title="Remove from Playlists"
                         onClick={() => {

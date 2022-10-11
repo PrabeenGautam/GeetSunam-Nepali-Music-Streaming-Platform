@@ -1,7 +1,6 @@
-import * as FaIcons from "react-icons/fa";
-
 import sidebarMenu from "./sidebarMenu.data";
 import { Link, useLocation } from "react-router-dom";
+import { FaMusic } from "react-icons/fa";
 
 function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
   const location = useLocation();
@@ -21,7 +20,7 @@ function SidebarLeft() {
     <div className="left-sidebar">
       <div className="logo">
         <Link to={"/"} id="home">
-          <FaIcons.FaMusic className="logo__music" />
+          <FaMusic className="logo__music" />
           <div className="logo__text">
             <span className="logo__primary">Geet</span>Sunam
           </div>
