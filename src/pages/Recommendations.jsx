@@ -1,5 +1,5 @@
 import CustomBreadcrumbs from "components/Breadcrumbs";
-import RecentPlayed from "components/RecentPlayed";
+import RecentPlayed from "components/SongsList";
 import { Btn } from "components/StyledUI";
 import Recommended from "../assets/images/Recommended.png";
 import { musicList } from "assets/data/musicList";
@@ -16,8 +16,7 @@ function Recommnedations() {
             src={Recommended}
             className="trend-image"
             style={{ width: 300 }}
-            alt="recommendation"
-          ></img>
+            alt="recommendation"></img>
           <div className="trend-section">
             <h2>Made For You</h2>
             <span className="details">

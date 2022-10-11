@@ -3,7 +3,7 @@ import { BiPause, BiPlay } from "react-icons/bi";
 import { HiOutlineUser } from "react-icons/hi";
 
 import Featured from "./Featured/Featured";
-import RecentPlayed from "./RecentPlayed";
+import RecentPlayed from "./SongsList";
 import RecentlyPlayedSlider from "./Slider/RecentlyPlayedSlider";
 import ArtistsSlider from "./Slider/ArtistsSlider";
 import { musicList } from "assets/data/musicList";

@@ -1,5 +1,5 @@
 import CustomBreadcrumbs from "components/Breadcrumbs";
-import RecentPlayed from "components/RecentPlayed";
+import RecentPlayed from "components/SongsList";
 import { Btn } from "components/StyledUI";
 import { musicList } from "assets/data/musicList";
 import PlaySong from "components/Player/PlaySong";
@@ -14,8 +14,7 @@ function NewReleases() {
           <img
             src={releaseSongs[0].trackDetails.coverArt}
             className="trend-image"
-            alt="trending"
-          ></img>
+            alt="trending"></img>
           <div className="trend-section">
             <h2>New Releases</h2>
             <span className="details">

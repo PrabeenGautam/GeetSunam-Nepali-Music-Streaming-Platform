@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
 import CustomBreadcrumbs from "components/Breadcrumbs";
-import RecentPlayed from "components/RecentPlayed";
+import RecentPlayed from "components/SongsList";
 
 function useQuery() {
   const { search } = useLocation();
@@ -18,8 +18,7 @@ function SearchPage() {
         style={{
           borderBottom: "1px solid rgba(0,0,0,0.8)",
           padding: "2rem 2.5rem",
-        }}
-      >
+        }}>
         <CustomBreadcrumbs search={true} />
         <h2>
           Search results for:{" "}

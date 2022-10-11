@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import RecentPlayed from "components/RecentPlayed";
+import RecentPlayed from "components/SongsList";
 import Playlist from "./Playlist";
 
 function PlaylistsDetails() {
@@ -16,8 +16,7 @@ function PlaylistsDetails() {
           <>
             <section
               className="search-music padding"
-              style={{ margin: "0 2.5rem" }}
-            >
+              style={{ margin: "0 2.5rem" }}>
               <h3>Recommended</h3>
               <div className="languages">Based on what's in this playlist</div>
             </section>
@@ -27,8 +26,7 @@ function PlaylistsDetails() {
               style={{
                 borderBottom: "1px solid rgba(0,0,0,0.8)",
                 padding: "0 2.5rem",
-              }}
-            >
+              }}>
               <RecentPlayed removeFromPlaylist={false} />
             </section>
           </>
