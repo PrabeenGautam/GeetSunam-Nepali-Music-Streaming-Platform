@@ -18,7 +18,7 @@ const lastPlayedMusic = localStorageMusic
       ...localStorageMusic,
       currentTime: 0,
       timeLeft: localStorageMusic.currentTime + localStorageMusic.timeLeft,
-      mediaState: "PAUSED",
+      mediaState: MediaState.PAUSED,
     }
   : {
       mediaState: MediaState.STOPPED,

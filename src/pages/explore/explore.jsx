@@ -50,8 +50,8 @@ function Explore() {
         <div className="music-section">
           {musicList.map((values, index) => {
             return (
-              <div className="music-container" key={index}>
-                <PlaySong trackDetails={values.trackDetails}>
+              <PlaySong trackDetails={values.trackDetails}>
+                <div className="music-container" key={index}>
                   <div className="play-icon-container">
                     <img
                       src={values.trackDetails.coverArt}
@@ -63,12 +63,16 @@ function Explore() {
                       <BiPlayCircle />
                     </span>
                   </div>
-                </PlaySong>
-                <AutoMarquee
-                  className={"song-name"}
-                  value={values.trackDetails.title}
-                />
-              </div>
+
+                  <AutoMarquee
+                    className={"song-name"}
+                    value={values.trackDetails.title}
+                  />
+                  <div className="song-artists">
+                    {values.artistsDetails.name}
+                  </div>
+                </div>
+              </PlaySong>
             );
           })}
         </div>

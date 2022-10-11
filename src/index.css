@@ -473,11 +473,20 @@ a {
 
 .music-section {
   display: flex;
-  gap: 1.75rem;
+  gap: 1.1rem;
   flex-wrap: wrap;
 }
 
-.music-container,
+.music-container {
+  max-width: 10.5rem;
+  height: 12rem;
+  position: relative;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 20px 12px;
+  border-radius: 10px;
+}
+
 .artists-container {
   max-width: 128px;
   position: relative;
@@ -485,10 +494,41 @@ a {
 }
 
 .music-container .thumbnail-new {
-  width: 8rem;
-  height: 8rem;
+  width: 9rem;
+  height: 6.5rem;
   object-fit: cover;
   border-radius: 5px;
+}
+
+.play-icon-container {
+  position: relative;
+  width: 9rem;
+  height: 7rem;
+}
+
+.play-icon {
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  display: none;
+}
+
+.play-icon * {
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  stroke: white;
+  fill: white;
+}
+
+.play-icon-container:hover .play-icon {
+  display: flex;
 }
 
 .music-container .song-name {
@@ -522,7 +562,7 @@ a {
   gap: 20px;
   margin-bottom: 20px;
   align-items: center;
-  padding: 5px 10px;
+  padding: 5px 20px;
   user-select: none;
 }
 
@@ -530,12 +570,21 @@ a {
   grid-template-columns: 20px 2.5rem 1.5fr 0.5fr 50px 40px 50px;
 }
 
-.hover-effect:hover {
+.recent-container.hover-effect:hover {
   background-color: rgba(0, 0, 0, 0.35);
   border-radius: 5px;
 }
 
-.hover-effect:hover .more {
+.recent-container.hover-effect:focus {
+  background-color: rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.recent-container.hover-effect:focus * {
+  color: white;
+}
+
+.recent-container.hover-effect:hover .more {
   visibility: visible;
 }
 
@@ -560,7 +609,8 @@ a {
   cursor: pointer;
 }
 
-.recent-container.playing * {
+.recent-container.playing *,
+.recent-container.playing:focus * {
   color: var(--tertiary);
 }
 
@@ -1156,35 +1206,4 @@ h3 {
 
 #bar-4 {
   animation: 1s ease-out 0.75s infinite both play;
-}
-
-.play-icon-container {
-  position: relative;
-  width: 8rem;
-  height: 8rem;
-}
-
-.play-icon {
-  position: absolute;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  display: none;
-}
-
-.play-icon * {
-  vertical-align: middle;
-  width: 40px;
-  height: 40px;
-  stroke: white;
-  fill: white;
-}
-
-.play-icon-container:hover .play-icon {
-  display: flex;
 }
