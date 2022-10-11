@@ -16,8 +16,12 @@ import ArtistsDetails from "components/Artists/ArtistsDetails";
 import Artists from "pages/Artists/Artists";
 import GenreContainer from "pages/genre/GenreContainer";
 import SearchPage from "pages/search/SearchPage";
+import { useSelector } from "react-redux";
 
 function App() {
+  const playerData = useSelector((state) => state);
+  localStorage.setItem("lastPlayedMusic", JSON.stringify(playerData));
+
   return (
     <>
       <div className="main-container">
