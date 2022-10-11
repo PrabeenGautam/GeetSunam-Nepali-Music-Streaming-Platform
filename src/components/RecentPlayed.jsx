@@ -44,6 +44,7 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
               return (
                 <div
                   key={index}
+                  tabIndex="0"
                   className={`recent-container hover-effect ${
                     currentSong?.ID === value.trackDetails.ID ? "playing" : ""
                   }`}
@@ -64,10 +65,13 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                       alt="thumbnail"
                       className="thumbnail-recent"
                     />
-                    <span className="song-name">
-                      {value.trackDetails.title}
-                    </span>
                   </PlaySong>
+                  <span className="song-name">
+                    <PlaySong trackDetails={value.trackDetails}>
+                      <span>{value.trackDetails.title}</span>
+                    </PlaySong>
+                  </span>
+
                   <span className="artists">{value.artistsDetails.name}</span>
                   <span className="recent-genre">
                     {value.genre.toUpperCase()}

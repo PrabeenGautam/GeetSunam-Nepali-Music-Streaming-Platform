@@ -5,23 +5,23 @@ import AutoMarquee from "./Slider/AutoMarquee";
 
 function MusicContainer({ data }) {
   return (
-    <div className="music-container">
-      <PlaySong trackDetails={data.trackDetails}>
+    <PlaySong trackDetails={data.trackDetails}>
+      <div className="music-container">
         <div className="play-icon-container">
           <img
             src={data.trackDetails.coverArt}
             alt="thumbnail"
             className="thumbnail-new"
           />
-
           <span className="play-icon">
             <BiPlayCircle />
           </span>
         </div>
-      </PlaySong>
-      <AutoMarquee className={"song-name"} value={data.trackDetails.title} />
-      <div className="song-artists">{data.artistsDetails.name}</div>
-    </div>
+
+        <AutoMarquee className={"song-name"} value={data.trackDetails.title} />
+        <div className="song-artists">{data.artistsDetails.name}</div>
+      </div>
+    </PlaySong>
   );
 }
 

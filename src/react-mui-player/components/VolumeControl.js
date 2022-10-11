@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import actionCreators from "../redux/actionCreators";
 
-import { Slider, IconButton, Box } from "@mui/material";
+import { Slider, IconButton, Box, Popover } from "@mui/material";
 import {
   VolumeUp as VolumeFullIcon,
   RemoveCircle,

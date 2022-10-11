@@ -30,7 +30,7 @@ function RecentlyPlayedSlider({ musicList }) {
         <BiChevronRight />
       </div>
       <Swiper
-        slidesPerView={6}
+        slidesPerView={5}
         grabCursor={true}
         onSwiper={(swiper) => {
           swiper.isBeginning === true && prevBtn[0].classList.add("deactivate");
@@ -53,8 +53,8 @@ function RecentlyPlayedSlider({ musicList }) {
       >
         {musicList.map((value, index) => (
           <SwiperSlide key={index}>
-            <div className="music-container">
-              <PlaySong trackDetails={value.trackDetails}>
+            <PlaySong trackDetails={value.trackDetails}>
+              <div className="music-container">
                 <div className="play-icon-container">
                   <img
                     src={value.trackDetails.coverArt}
@@ -66,13 +66,14 @@ function RecentlyPlayedSlider({ musicList }) {
                     <BiPlay />
                   </span>
                 </div>
-              </PlaySong>
-              <AutoMarquee
-                className={"song-name"}
-                value={value.trackDetails.title}
-              />
-              <div className="song-artists">{value.artistsDetails.name}</div>
-            </div>
+
+                <AutoMarquee
+                  className={"song-name"}
+                  value={value.trackDetails.title}
+                />
+                <div className="song-artists">{value.artistsDetails.name}</div>
+              </div>
+            </PlaySong>
           </SwiperSlide>
         ))}
       </Swiper>

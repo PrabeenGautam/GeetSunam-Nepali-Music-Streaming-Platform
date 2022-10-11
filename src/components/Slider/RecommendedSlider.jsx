@@ -25,7 +25,7 @@ function RecommendedSlider({ data }) {
         <BiChevronRight />
       </div>
       <Swiper
-        slidesPerView={6}
+        slidesPerView={5}
         grabCursor={true}
         onSwiper={(swiper) => {
           swiper.isBeginning === true && prevBtn[0].classList.add("deactivate");
