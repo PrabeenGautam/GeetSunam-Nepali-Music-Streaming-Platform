@@ -1,11 +1,13 @@
 import { FaMusic } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { useRef } from "react";
+import { useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
+import jwtDecode from "jwt-decode";
 
-import entranceGif from "assets/images/landing/MusicEntrance1.gif";
+import entranceGif from "assets/images/landing/MusicEntrance2.gif";
 
 function LoginPage() {
   const [passwordShown, setPasswordShow] = useState(false);
@@ -17,6 +19,16 @@ function LoginPage() {
     password: "",
   });
   const [formData, setFormData] = useState(initialFormData);
+
+  useGoogleOneTapLogin({
+    onSuccess: (credentialResponse) => {
+      const decode = jwtDecode(credentialResponse.credential);
+      console.log(decode);
+    },
+    onError: () => {
+      console.log("Login Failed");
+    },
+  });
 
   const handleChange = (e) => {
     setFormData({
@@ -32,6 +44,11 @@ function LoginPage() {
     console.log(user);
     navigate("/home");
   };
+
+  const handleGoogleLogin = useGoogleLogin({
+    //Give Access Token
+    onSuccess: (tokenResponse) => console.log(tokenResponse),
+  });
 
   return (
     <div className="log-container">
@@ -92,19 +109,21 @@ function LoginPage() {
                   <button type="submit" className="login__btn">
                     Log in
                   </button>
-                  <button className="login__google" ref={signInDivRef}>
-                    <FcGoogle className="icon" />{" "}
-                    <span>Log in with Google</span>
-                  </button>
-                </div>
-                <div className="account">
-                  <span style={{ fontWeight: 400 }}>
-                    Don't have an account?{" "}
-                  </span>
-                  {"  "}
-                  <Link to="/signup">Sign Up Here</Link>
                 </div>
               </form>
+              <div className="login-btn">
+                <button
+                  className="login__google"
+                  ref={signInDivRef}
+                  onClick={handleGoogleLogin}>
+                  <FcGoogle className="icon" /> <span>Log in with Google</span>
+                </button>
+              </div>
+              <div className="account">
+                <span style={{ fontWeight: 400 }}>Don't have an account? </span>
+                {"  "}
+                <Link to="/signup">Sign Up Here</Link>
+              </div>
             </div>
           </div>
         </section>

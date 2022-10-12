@@ -1225,7 +1225,7 @@ h3 {
 }
 
 .land-log {
-  width: 80vw;
+  width: 90vw;
   min-height: 100vh;
   height: 100%;
   display: grid;
@@ -1257,7 +1257,7 @@ h3 {
 .land-log .form-section .logo {
   position: absolute;
   top: 10px;
-  left: 20px;
+  left: 40px;
 }
 
 /* Login Form Start */
