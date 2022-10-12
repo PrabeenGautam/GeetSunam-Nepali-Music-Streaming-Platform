@@ -12,45 +12,54 @@ import PlaySong from "components/Player/PlaySong";
 
 function RecentlyPlayedSlider({ musicList }) {
   const swiperRef = useRef();
-  const prevBtn = document.getElementsByClassName("swipe-prev");
-  const nextBtn = document.getElementsByClassName("swipe-next");
+  const prevBtnRef = useRef();
+  const nextBtnRef = useRef();
+  const slidesPerView = 5;
 
   return (
     <div className="swiper-class">
       <div
-        onClick={() => swiperRef.current?.slidePrev()}
-        className="swiper-btn swipe-prev"
-      >
+        ref={prevBtnRef}
+        onClick={() => {
+          for (let i = 0; i < slidesPerView; i++) {
+            swiperRef.current?.slidePrev();
+          }
+        }}
+        className="swiper-btn swipe-prev">
         <BiChevronLeft />
       </div>
       <div
-        onClick={() => swiperRef.current?.slideNext()}
-        className="swiper-btn swipe-next"
-      >
+        ref={nextBtnRef}
+        onClick={() => {
+          for (let i = 0; i < slidesPerView; i++) {
+            swiperRef.current?.slideNext();
+          }
+        }}
+        className="swiper-btn swipe-next">
         <BiChevronRight />
       </div>
       <Swiper
-        slidesPerView={5}
+        slidesPerView={slidesPerView}
         grabCursor={true}
         onSwiper={(swiper) => {
-          swiper.isBeginning === true && prevBtn[0].classList.add("deactivate");
+          swiper.isBeginning === true &&
+            prevBtnRef.current.classList.add("deactivate");
         }}
         onSlideChange={(swiper) => {
-          nextBtn[0].classList.remove("deactivate");
-          prevBtn[0].classList.remove("deactivate");
+          nextBtnRef.current.classList.remove("deactivate");
+          prevBtnRef.current.classList.remove("deactivate");
 
           if (swiper.isBeginning === true) {
-            prevBtn[0].classList.add("deactivate");
+            prevBtnRef.current.classList.add("deactivate");
           }
 
           if (swiper.isEnd === true) {
-            nextBtn[0].classList.add("deactivate");
+            nextBtnRef.current.classList.add("deactivate");
           }
         }}
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
-        }}
-      >
+        }}>
         {musicList.map((value, index) => (
           <SwiperSlide key={index}>
             <PlaySong trackDetails={value.trackDetails}>

@@ -49,7 +49,7 @@ function Explore() {
         <div className="music-section">
           {musicList.map((values, index) => {
             return (
-              <PlaySong trackDetails={values.trackDetails}>
+              <PlaySong trackDetails={values.trackDetails} key={index}>
                 <div className="music-container" key={index}>
                   <div className="play-icon-container">
                     <img

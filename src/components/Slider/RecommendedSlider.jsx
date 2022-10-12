@@ -7,45 +7,45 @@ import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 function RecommendedSlider({ data }) {
   const swiperRef = useRef();
-  const prevBtn = document.getElementsByClassName("swipe-prev");
-  const nextBtn = document.getElementsByClassName("swipe-next");
+  const prevBtnRef = useRef();
+  const nextBtnRef = useRef();
 
   return (
     <div className="swiper-class">
       <div
+        ref={prevBtnRef}
         onClick={() => swiperRef.current?.slidePrev()}
-        className="swiper-btn swipe-prev"
-      >
+        className="swiper-btn swipe-prev">
         <BiChevronLeft />
       </div>
       <div
+        ref={nextBtnRef}
         onClick={() => swiperRef.current?.slideNext()}
-        className="swiper-btn swipe-next"
-      >
+        className="swiper-btn swipe-next">
         <BiChevronRight />
       </div>
       <Swiper
         slidesPerView={5}
         grabCursor={true}
         onSwiper={(swiper) => {
-          swiper.isBeginning === true && prevBtn[0].classList.add("deactivate");
+          swiper.isBeginning === true &&
+            prevBtnRef.current.classList.add("deactivate");
         }}
         onSlideChange={(swiper) => {
-          nextBtn[0].classList.remove("deactivate");
-          prevBtn[0].classList.remove("deactivate");
+          nextBtnRef.current.classList.remove("deactivate");
+          prevBtnRef.current.classList.remove("deactivate");
 
           if (swiper.isBeginning === true) {
-            prevBtn[0].classList.add("deactivate");
+            prevBtnRef.current.classList.add("deactivate");
           }
 
           if (swiper.isEnd === true) {
-            nextBtn[0].classList.add("deactivate");
+            nextBtnRef.current.classList.add("deactivate");
           }
         }}
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
-        }}
-      >
+        }}>
         {/*Change import Data*/}
         {data.map((value, index) => (
           <SwiperSlide key={index}>
