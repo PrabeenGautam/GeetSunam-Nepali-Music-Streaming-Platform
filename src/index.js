@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -33,9 +33,11 @@ root.render(
         <GoogleOAuthProvider clientId="529881800719-0kd1fqipp0vhpoci34cnpqlpghnn2msk.apps.googleusercontent.com">
           <BrowserRouter>
             <ScrollToTop>
-              <App />
-              {/* <LoginPage /> */}
-              {/* <SignUpPage /> */}
+              <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignUpPage />} />
+                <Route path="/*" element={<App />} />
+              </Routes>
             </ScrollToTop>
           </BrowserRouter>
         </GoogleOAuthProvider>
