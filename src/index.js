@@ -13,6 +13,7 @@ import { queryClient } from "services/queryClient";
 import geetSunamStore from "redux/store";
 import geetSunamStoreContext from "redux/storeContext";
 import playerStore from "react-mui-player/redux/store";
+import LoginPage from "pages/auth/Login.page";
 
 const ScrollToTop = ({ children }) => {
   const location = useLocation();
@@ -29,7 +30,8 @@ root.render(
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <ScrollToTop>
-            <App />
+            {/* <App /> */}
+            <LoginPage />
           </ScrollToTop>
         </BrowserRouter>
       </QueryClientProvider>

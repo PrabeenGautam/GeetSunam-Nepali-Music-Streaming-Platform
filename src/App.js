@@ -17,7 +17,7 @@ import Artists from "pages/Artists/Artists";
 import GenreContainer from "pages/genre/GenreContainer";
 import SearchPage from "pages/search/SearchPage";
 
-function App() {
+function App({ artistsDashboard = false }) {
   return (
     <>
       <div className="main-container">
@@ -45,6 +45,9 @@ function App() {
               <Route path="/results" element={<SearchPage />} />
 
               <Route path="/settings" element={<Settings />} />
+              {/* {artistsDashboard && (
+                <Route path="/upload" element={<UploadSongs />} />
+              )} */}
             </Routes>
           </div>
 
