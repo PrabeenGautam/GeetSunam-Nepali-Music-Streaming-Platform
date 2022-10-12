@@ -1267,6 +1267,11 @@ h3 {
   color: #fefefe;
 }
 
+.land-log .form .title.custom-title {
+  font: normal 500 32px "Roboto";
+  color: #fefefe;
+}
+
 .land-log .form .subtitle {
   font-weight: 400;
   font-size: 14px;

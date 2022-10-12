@@ -15,6 +15,7 @@ import geetSunamStore from "redux/store";
 import geetSunamStoreContext from "redux/storeContext";
 import playerStore from "react-mui-player/redux/store";
 import LoginPage from "pages/auth/Login.page";
+import SignUpPage from "pages/auth/SignUp.page";
 
 const ScrollToTop = ({ children }) => {
   const location = useLocation();
@@ -32,8 +33,9 @@ root.render(
         <GoogleOAuthProvider clientId="529881800719-0kd1fqipp0vhpoci34cnpqlpghnn2msk.apps.googleusercontent.com">
           <BrowserRouter>
             <ScrollToTop>
-              {/* <App /> */}
-              <LoginPage />
+              <App />
+              {/* <LoginPage /> */}
+              {/* <SignUpPage /> */}
             </ScrollToTop>
           </BrowserRouter>
         </GoogleOAuthProvider>
