@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -16,6 +16,7 @@ import geetSunamStoreContext from "redux/storeContext";
 import playerStore from "react-mui-player/redux/store";
 import LoginPage from "pages/auth/Login.page";
 import SignUpPage from "pages/auth/SignUp.page";
+import "./components/i18n";
 
 const ScrollToTop = ({ children }) => {
   const location = useLocation();
@@ -32,13 +33,15 @@ root.render(
       <QueryClientProvider client={queryClient}>
         <GoogleOAuthProvider clientId="529881800719-0kd1fqipp0vhpoci34cnpqlpghnn2msk.apps.googleusercontent.com">
           <BrowserRouter>
-            <ScrollToTop>
-              <Routes>
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<SignUpPage />} />
-                <Route path="/*" element={<App />} />
-              </Routes>
-            </ScrollToTop>
+            <Suspense fallback={"Loading..."}>
+              <ScrollToTop>
+                <Routes>
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/signup" element={<SignUpPage />} />
+                  <Route path="/*" element={<App />} />
+                </Routes>
+              </ScrollToTop>
+            </Suspense>
           </BrowserRouter>
         </GoogleOAuthProvider>
       </QueryClientProvider>

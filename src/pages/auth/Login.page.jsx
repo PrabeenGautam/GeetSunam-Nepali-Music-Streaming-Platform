@@ -6,11 +6,14 @@ import { FcGoogle } from "react-icons/fc";
 import { useRef } from "react";
 import { useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
 import jwtDecode from "jwt-decode";
+import { useTranslation } from "react-i18next";
 
 import entranceGif from "assets/images/landing/MusicEntrance2.gif";
+import i18n from "components/i18n";
 
 function LoginPage() {
   const [passwordShown, setPasswordShow] = useState(false);
+  const { t, i18n } = useTranslation("translation", { keyPrefix: "login" });
 
   const signInDivRef = useRef();
   const navigate = useNavigate();
@@ -50,27 +53,40 @@ function LoginPage() {
     onSuccess: (tokenResponse) => console.log(tokenResponse),
   });
 
+  const handleLanguage = (e) => {
+    i18n.changeLanguage(e.target.value);
+  };
+
   return (
     <div className="log-container">
+      <div className="nav-section">
+        <div className="logo">
+          <Link to={"/"} style={{ display: "flex", gap: 10 }}>
+            <FaMusic className="logo__music" />
+            <div className="logo__text">
+              <span className="logo__primary">Geet</span>Sunam
+            </div>
+          </Link>
+        </div>
+        <div className="languages">
+          <select
+            onChange={handleLanguage}
+            defaultValue={localStorage.getItem("i18nextLng")}>
+            <option value="en">English (English)</option>
+            <option value="np">नेपाली (Nepali)</option>
+          </select>
+        </div>
+      </div>
+
       <div className="land-log">
         <section className="form-section">
-          <div className="logo">
-            <Link to={"/"} style={{ display: "flex", gap: 10 }}>
-              <FaMusic className="logo__music" />
-              <div className="logo__text">
-                <span className="logo__primary">Geet</span>Sunam
-              </div>
-            </Link>
-          </div>
           <div className="form">
-            <div className="title">Welcome Back</div>
-            <div className="subtitle">
-              Please enter your contact details to connect.
-            </div>
+            <div className="title">{t("welcome")}</div>
+            <div className="subtitle">{t("subtitle")}</div>
             <div className="form-data">
               <form onSubmit={handleSubmit}>
                 <div className="input-field">
-                  <label>Email</label>
+                  <label>{t("email")}</label>
                   <input
                     type="email"
                     name="email"
@@ -81,7 +97,7 @@ function LoginPage() {
                 </div>
 
                 <div className="input-field password">
-                  <label>Password</label>
+                  <label>{t("password")}</label>
                   <div className="input-icon-container">
                     <input
                       type={passwordShown ? "text" : "password"}
@@ -102,12 +118,12 @@ function LoginPage() {
                 </div>
                 <div className="section">
                   <Link to="/forgetpassword" className="links">
-                    Forget Password?
+                    {t("forgetPassword")}
                   </Link>
                 </div>
                 <div className="login-btn">
                   <button type="submit" className="login__btn">
-                    Log in
+                    {t("login")}
                   </button>
                 </div>
               </form>
@@ -116,13 +132,13 @@ function LoginPage() {
                   className="login__google"
                   ref={signInDivRef}
                   onClick={handleGoogleLogin}>
-                  <FcGoogle className="icon" /> <span>Log in with Google</span>
+                  <FcGoogle className="icon" /> <span>{t("googleLogin")}</span>
                 </button>
               </div>
               <div className="account">
-                <span style={{ fontWeight: 400 }}>Don't have an account? </span>
+                <span style={{ fontWeight: 400 }}>{t("account")}</span>
                 {"  "}
-                <Link to="/signup">Sign Up Here</Link>
+                <Link to="/signup">{t("signUp")}</Link>
               </div>
             </div>
           </div>

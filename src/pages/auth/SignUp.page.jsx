@@ -5,12 +5,14 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { useRef } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 import userflow from "assets/images/landing/Userflow.gif";
-import axios from "axios";
 
 function SignUpPage() {
   const [passwordShown, setPasswordShow] = useState(false);
+  const { t, i18n } = useTranslation("translation", { keyPrefix: "signUp" });
 
   const signInDivRef = useRef();
   const navigate = useNavigate();
@@ -50,27 +52,39 @@ function SignUpPage() {
     },
   });
 
+  const handleLanguage = (e) => {
+    i18n.changeLanguage(e.target.value);
+  };
+
   return (
     <div className="log-container">
+      <div className="nav-section">
+        <div className="logo">
+          <Link to={"/"} style={{ display: "flex", gap: 10 }}>
+            <FaMusic className="logo__music" />
+            <div className="logo__text">
+              <span className="logo__primary">Geet</span>Sunam
+            </div>
+          </Link>
+        </div>
+        <div className="languages">
+          <select
+            onChange={handleLanguage}
+            defaultValue={localStorage.getItem("i18nextLng")}>
+            <option value="en">English (English)</option>
+            <option value="np">नेपाली (Nepali)</option>
+          </select>
+        </div>
+      </div>
       <div className="land-log">
         <section className="form-section">
-          <div className="logo">
-            <Link to={"/"} style={{ display: "flex", gap: 10 }}>
-              <FaMusic className="logo__music" />
-              <div className="logo__text">
-                <span className="logo__primary">Geet</span>Sunam
-              </div>
-            </Link>
-          </div>
           <div className="form">
-            <div className="title custom-title">Account Signup</div>
-            <div className="subtitle">
-              Become a member and enjoy exclusive free music
-            </div>
+            <div className="title custom-title">{t("account")}</div>
+            <div className="subtitle">{t("subtitle")}</div>
             <div className="form-data">
               <form onSubmit={handleSubmit}>
                 <div className="input-field">
-                  <label>Full Name</label>
+                  <label>{t("fullName")}</label>
                   <input
                     type="text"
                     name="fullname"
@@ -81,7 +95,7 @@ function SignUpPage() {
                 </div>
 
                 <div className="input-field">
-                  <label>Email</label>
+                  <label>{t("email")}</label>
                   <input
                     type="email"
                     name="email"
@@ -92,7 +106,7 @@ function SignUpPage() {
                 </div>
 
                 <div className="input-field password">
-                  <label>Password</label>
+                  <label>{t("password")}</label>
                   <div className="input-icon-container">
                     <input
                       type={passwordShown ? "text" : "password"}
@@ -115,7 +129,7 @@ function SignUpPage() {
 
                 <div className="login-btn">
                   <button type="submit" className="login__btn">
-                    Sign Up
+                    {t("signUp")}
                   </button>
                 </div>
               </form>
@@ -124,7 +138,7 @@ function SignUpPage() {
                   className="login__google"
                   ref={signInDivRef}
                   onClick={handleGoogleLogin}>
-                  <FcGoogle className="icon" /> <span>Sign Up with Google</span>
+                  <FcGoogle className="icon" /> <span>{t("googleSignUp")}</span>
                 </button>
               </div>
             </div>

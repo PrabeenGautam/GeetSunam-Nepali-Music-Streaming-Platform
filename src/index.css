@@ -852,6 +852,7 @@ h3 {
 }
 
 .languages select {
+  cursor: pointer;
   background-color: #333;
   border: 0;
   outline: none;
@@ -1254,10 +1255,17 @@ h3 {
   min-width: 22rem;
 }
 
-.land-log .form-section .logo {
-  position: absolute;
-  top: 10px;
-  left: 40px;
+.log-container .nav-section {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2rem 2.5rem;
+  z-index: 1000;
+}
+
+.log-container .nav-section .logo {
+  margin: 0;
 }
 
 /* Login Form Start */

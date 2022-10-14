@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import CustomBreadcrumbs from "components/Breadcrumbs";
 import EditUserProfile from "components/Settings/EditUserProfile";
 import { Btn } from "components/StyledUI";
+import { useTranslation } from "react-i18next";
 
 function Settings() {
   const [click, setClick] = useState(false);
+  const { i18n } = useTranslation();
+  const languageRef = useRef();
+
+  const handleLanguage = (e) => {
+    i18n.changeLanguage(e.target.value);
+  };
 
   return (
     <div className="content-container">
@@ -16,7 +23,10 @@ function Settings() {
         <h3>Language</h3>
         <div className="grid gap-sm languages languages-grid">
           Choose language - Changes will be applied after restarting the web
-          <select defaultValue="en">
+          <select
+            onChange={handleLanguage}
+            defaultValue={localStorage.getItem("i18nextLng")}
+            ref={languageRef}>
             <option value="en">English (English)</option>
             <option value="np">नेपाली (Nepali)</option>
           </select>
@@ -47,8 +57,7 @@ function Settings() {
             backgroundColor: "hsla(0, 0%, 100%, 0.7)",
             width: "150px",
             color: "#333",
-          }}
-        >
+          }}>
           Edit Profile
         </Btn>
       </div>
@@ -83,8 +92,7 @@ function Settings() {
               backgroundColor: "hsla(0, 0%, 100%, 0.7)",
               width: "200px",
               color: "#333",
-            }}
-          >
+            }}>
             Set New Password
           </Btn>
         </form>
