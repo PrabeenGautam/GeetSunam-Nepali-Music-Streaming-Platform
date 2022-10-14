@@ -55,7 +55,7 @@ const ActionCreators = {
 
   getMusicDetails: (data) => ({
     type: ActionTypes.GET_TRACK_DETAILS,
-    payload: { favourite: data.isFavourite, trackId: data.ID },
+    payload: { favourite: data.favourite, trackId: data.ID },
   }),
 
   seek: (time) => ({

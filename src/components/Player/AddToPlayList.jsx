@@ -17,9 +17,9 @@ const AddToPlaylist = ({ trackDetails = {}, children }) => {
   const addToPlaylist = () => {
     if (!isOnPlaylist()) {
       //maintain order!
-      const { ID, coverArt, title, artist, source } = trackDetails;
+      const { ID, coverArt, title, artist, source, isFavourite } = trackDetails;
       PlayerInterface.playLater([
-        new Track(ID, coverArt, title, artist, source),
+        new Track(ID, coverArt, title, artist, source, isFavourite),
       ]);
     }
   };

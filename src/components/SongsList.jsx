@@ -98,11 +98,11 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                       />
                     </span>
                   ) : (
-                    // <AddToPlaylist trackDetails={value.trackDetails}>
-                    <span className="add-more" title="Add to Playlists">
-                      Add
-                    </span>
-                    // </AddToPlaylist>
+                    <AddToPlaylist trackDetails={value.trackDetails}>
+                      <span className="add-more" title="Add to Playlists">
+                        Add
+                      </span>
+                    </AddToPlaylist>
                   )}
                 </div>
               );

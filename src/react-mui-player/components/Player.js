@@ -126,6 +126,7 @@ export default function Player(props) {
   const rowView = () => (
     <RowBox onClick={openSwipeableDrawer}>
       <CoverArt
+        id={Number(playlist[currentTrack].ID)}
         src={playlist[currentTrack].coverArt}
         sx={{
           height: "48px",

@@ -1,12 +1,8 @@
 import React from "react";
-
 import Box from "@mui/material/Box";
-
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import ActionCreators from "../../redux/actionCreators.js";
-
 import ReactDraggableList from "react-draggable-list";
-
 import PlaylistItemTemplate from "./PlaylistItemTemplate.js";
 
 export default function Playlist(props) {
@@ -25,9 +21,12 @@ export default function Playlist(props) {
   const onReorder = (newList) =>
     dispatch(ActionCreators.updatePlaylist(newList));
   const onTrackSelect = (index) => {
+    const { ID, favourite } = playlist[index];
+
     // change and play track immediately
     dispatch(ActionCreators.changeTrack(index));
     dispatch(ActionCreators.play());
+    dispatch(ActionCreators.getMusicDetails({ ID, favourite }));
   };
 
   const draggablelistContainerRef = React.createRef();
@@ -40,8 +39,7 @@ export default function Playlist(props) {
         width: "10vw",
         height: "10vh",
         ...sx, // should be able to overwrite default width and height
-      }}
-    >
+      }}>
       <ReactDraggableList
         list={playlist}
         itemKey="ID"

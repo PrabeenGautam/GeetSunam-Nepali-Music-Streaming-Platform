@@ -13,6 +13,7 @@ const StyledImg = styled("img")(() => ({
 
 export default function CoverArt(props) {
   const { src, sx, id } = props;
+
   const state = useSelector((state) => state);
   const isPlaying = state.mediaState === "PLAYING";
 
@@ -28,7 +29,11 @@ export default function CoverArt(props) {
         alignItems: "center",
         ...sx,
       }}>
-      {isPlaying ? <MusicPlayedAnimation /> : <StyledImg src={src} alt={""} />}
+      {isPlaying && Number(state.trackID) === Number(id) ? (
+        <MusicPlayedAnimation />
+      ) : (
+        <StyledImg src={src} alt={""} />
+      )}
     </Box>
   );
 }

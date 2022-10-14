@@ -24,7 +24,7 @@ const lastPlayedMusic = localStorageMusic
       mediaState: MediaState.STOPPED,
       currentTrack: 0,
       shuffled: false,
-      playlist: [new Track("", "", "", "", "")], // single default empty track
+      playlist: [new Track("", "", "", "", "", "")], // single default empty track
       volume: 25,
       repeatMode: RepeatMode.NORMAL,
     };

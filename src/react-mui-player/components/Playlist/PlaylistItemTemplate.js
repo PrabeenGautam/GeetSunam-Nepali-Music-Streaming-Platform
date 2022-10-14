@@ -1,10 +1,10 @@
 import React from "react";
-
 import PropTypes from "prop-types";
 
 import {
   PlayArrowRounded as PlayIcon,
   Menu as ReorderIcon,
+  PauseCircle,
 } from "@mui/icons-material/";
 import Box from "@mui/material/Box";
 
@@ -44,20 +44,19 @@ class PlaylistItemTemplate extends React.Component {
           padding: 0.5,
           // elvate when selected
           boxShadow: itemSelected > 0 ? 16 : 0,
-        }}
-      >
+        }}>
         <Box
           sx={{ display: "flex", flexGrow: 1, alignItems: "center" }}
-          onClick={withoutPropagation(this.handleSelect.bind(this))}
-        >
+          onClick={withoutPropagation(this.handleSelect.bind(this))}>
           {/*render now playing icon or empty box matching icon size */}
           {commonProps.currentTrackID === item.ID ? (
-            <PlayIcon />
+            <PauseCircle sx={{ marginRight: 1, cursor: "pointer" }} />
           ) : (
-            <Box sx={{ width: "24px", height: "24px" }} />
+            <PlayIcon sx={{ marginRight: 1, cursor: "pointer" }} />
           )}
           <CoverArt
             src={item.coverArt}
+            id={item.ID}
             sx={{
               height: "48px",
               width: "48px",
@@ -71,8 +70,7 @@ class PlaylistItemTemplate extends React.Component {
                 typography: "subtitl3",
                 whiteSpace: "nowrap",
                 overflow: "hidden",
-              }}
-            >
+              }}>
               {item.title}
             </Box>
             <Box
@@ -81,8 +79,7 @@ class PlaylistItemTemplate extends React.Component {
                 typography: "subtitle2",
                 whiteSpace: "nowrap",
                 overflow: "hidden",
-              }}
-            >
+              }}>
               {item.artist}
             </Box>
           </Box>

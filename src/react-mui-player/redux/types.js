@@ -6,8 +6,9 @@
  * @param {!string} title
  * @param {!string} artist
  * @param {!string} source - URL to music file
+ * @param {!string} favourite - URL to music file
  */
-function Track(trackID, coverArt, title, artist, source) {
+function Track(trackID, coverArt, title, artist, source, favourite) {
   /** @readonly*/
   this.ID = trackID;
   /** @readonly*/
@@ -18,6 +19,8 @@ function Track(trackID, coverArt, title, artist, source) {
   this.artist = artist;
   /** @readonly*/
   this.source = source;
+  /** @readonly*/
+  this.favourite = favourite;
 
   this.getSource = function () {
     return source;
@@ -34,7 +37,7 @@ function Track(trackID, coverArt, title, artist, source) {
  * @prop {number}  timeLeft - Time left to end play in seconds
  * @prop {number} volume - Volme level
  * @prop {RepeatMode} repeatMode - Repeat mode
- * @prop {number} trackID - Repeat mode
+
  */
 
 /**
@@ -93,7 +96,7 @@ class AudioOutput extends Audio {
   constructor() {
     super();
     /**@private */
-    this.track = new Track("", "", "", "", ""); // default track
+    this.track = new Track("", "", "", "", "", ""); // default track
   }
 
   /**
@@ -127,7 +130,7 @@ class AudioOutput extends Audio {
    */
   clear() {
     if (this.src === "") return;
-    this.setSrc(new Track("", "", "", "", ""));
+    this.setSrc(new Track("", "", "", "", "", ""));
     this.setMediaMetadata(null);
   }
 
