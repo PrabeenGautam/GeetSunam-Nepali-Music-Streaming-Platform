@@ -28,8 +28,13 @@ function EditPlaylistsModel({ setClick }) {
 
   return (
     <>
-      <div className="model-container">
-        <div className="container">
+      <div>
+        <div
+          className="model-container"
+          onClick={() => {
+            setClick(false);
+          }}></div>
+        <div className="container" style={{ zIndex: 9999 }}>
           <div className="header">
             <h2 className="h2">Edit Details</h2>
             <GiTireIronCross
@@ -65,8 +70,7 @@ function EditPlaylistsModel({ setClick }) {
                   <textarea
                     name="playlistDescription"
                     id="playlist-description"
-                    placeholder="Enter Description (Optional)"
-                  ></textarea>
+                    placeholder="Enter Description (Optional)"></textarea>
                 </div>
               </div>
               <Btn className="btn-play save-playlist">Save</Btn>

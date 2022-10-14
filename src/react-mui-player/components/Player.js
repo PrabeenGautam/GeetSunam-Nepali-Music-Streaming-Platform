@@ -167,6 +167,7 @@ export default function Player(props) {
         <CoverArt
           className="children"
           src={playlist[currentTrack].coverArt}
+          id={playlist[currentTrack].ID}
           sx={{
             height: "300px",
             width: "300px",

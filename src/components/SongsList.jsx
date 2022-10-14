@@ -14,9 +14,11 @@ import PlaySong from "./Player/PlaySong";
 import PauseSong from "./Player/PauseSong";
 import useCurrentSong from "hooks/useCurrentSong";
 import { possibleMediaState } from "./Player/possibleMediaState.types";
+import PlaylistAddContainer from "./Playlists/PlaylistAddContainer";
 
 function RecentPlayed({ removeFromPlaylist = false, data }) {
   const [deleteClick, setDeleteClick] = useState(false);
+  const [playlist, setPlaylistAdd] = useState(false);
   const [idToDelete, setIdDelete] = useState(null);
 
   const currentSong = useCurrentSong();
@@ -25,6 +27,7 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
   return (
     <>
       {deleteClick && <DeleteModel setClick={setDeleteClick} id={idToDelete} />}
+      {playlist && <PlaylistAddContainer setClick={setPlaylistAdd} />}
       {data?.length !== 0 ? (
         <section className="song-list">
           <div className="recent-container list_heading ">
@@ -95,11 +98,11 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                       />
                     </span>
                   ) : (
-                    <AddToPlaylist trackDetails={value.trackDetails}>
-                      <span className="add-more" title="Add to Playlists">
-                        Add
-                      </span>
-                    </AddToPlaylist>
+                    // <AddToPlaylist trackDetails={value.trackDetails}>
+                    <span className="add-more" title="Add to Playlists">
+                      Add
+                    </span>
+                    // </AddToPlaylist>
                   )}
                 </div>
               );

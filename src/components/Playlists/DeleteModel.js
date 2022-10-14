@@ -5,11 +5,15 @@ function DeleteModel({ setClick, data, id, modalMessage = "Delete" }) {
   console.log(id);
   return (
     <>
-      <div className="model-container">
+      <div>
+        <div
+          className="model-container"
+          onClick={() => {
+            setClick(false);
+          }}></div>
         <div
           className="container"
-          style={{ minWidth: "24rem", maxWidth: "25rem" }}
-        >
+          style={{ minWidth: "24rem", maxWidth: "25rem", zIndex: 9999 }}>
           <div className="header">
             <h2 className="h2">{`${modalMessage} ${data} ?`}</h2>
             <GiTireIronCross
@@ -24,8 +28,7 @@ function DeleteModel({ setClick, data, id, modalMessage = "Delete" }) {
               marginTop: 30,
               display: "flex",
               justifyContent: "space-evenly",
-            }}
-          >
+            }}>
             <Btn style={{ color: "#333" }} onClick={() => setClick(false)}>
               Cancel
             </Btn>

@@ -12,9 +12,9 @@ const StyledImg = styled("img")(() => ({
 }));
 
 export default function CoverArt(props) {
-  const { src, sx } = props;
-  const mediaState = useSelector((state) => state.mediaState);
-  const isPlaying = mediaState === "PLAYING";
+  const { src, sx, id } = props;
+  const state = useSelector((state) => state);
+  const isPlaying = state.mediaState === "PLAYING";
 
   return (
     <Box
