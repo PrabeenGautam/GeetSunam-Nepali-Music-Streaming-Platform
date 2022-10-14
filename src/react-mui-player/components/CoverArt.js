@@ -29,7 +29,7 @@ export default function CoverArt(props) {
         alignItems: "center",
         ...sx,
       }}>
-      {isPlaying && Number(state.trackID) === Number(id) ? (
+      {isPlaying && Number(state.trackID) === id ? (
         <MusicPlayedAnimation />
       ) : (
         <StyledImg src={src} alt={""} />

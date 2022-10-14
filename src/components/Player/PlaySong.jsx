@@ -4,7 +4,7 @@ import { PlayerInterface, Track } from "react-mui-player";
 import { useDispatch } from "react-redux";
 import ActionCreators from "react-mui-player/redux/actionCreators";
 
-const PlaySong = ({ trackDetails = {}, children }) => {
+const PlaySong = ({ trackDetails = {}, children, musicList = [] }) => {
   const currTrackRef = useRef(trackDetails);
   const {
     ID,
@@ -20,6 +20,7 @@ const PlaySong = ({ trackDetails = {}, children }) => {
     PlayerInterface.play([
       new Track(ID, coverArt, title, artist, source, favourite),
     ]);
+    PlayerInterface.setPlaylist(musicList);
     dispatch(ActionCreators.getMusicDetails({ ID, favourite }));
   };
 

@@ -24,6 +24,17 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
   const currentSong = useCurrentSong();
   const { mediaState } = useSelector(({ mediaState }) => ({ mediaState }));
 
+  const musicList =
+    data &&
+    data.map(({ trackDetails }) => ({
+      ID: trackDetails.ID,
+      coverArt: trackDetails.coverArt,
+      title: trackDetails.title,
+      artist: trackDetails.artist,
+      source: trackDetails.source,
+      favourite: trackDetails.isFavourite,
+    }));
+
   return (
     <>
       {deleteClick && <DeleteModel setClick={setDeleteClick} id={idToDelete} />}
@@ -57,11 +68,15 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                       <FiPauseCircle className="recent-play" />
                     </PauseSong>
                   ) : (
-                    <PlaySong trackDetails={value.trackDetails}>
+                    <PlaySong
+                      trackDetails={value.trackDetails}
+                      musicList={musicList}>
                       <FiPlayCircle className="recent-play" />
                     </PlaySong>
                   )}
-                  <PlaySong trackDetails={value.trackDetails}>
+                  <PlaySong
+                    trackDetails={value.trackDetails}
+                    musicList={musicList}>
                     <img
                       src={value.trackDetails.coverArt}
                       alt="thumbnail"
@@ -69,7 +84,9 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                     />
                   </PlaySong>
                   <span className="song-name">
-                    <PlaySong trackDetails={value.trackDetails}>
+                    <PlaySong
+                      trackDetails={value.trackDetails}
+                      musicList={musicList}>
                       <span>{value.trackDetails.title}</span>
                     </PlaySong>
                   </span>
