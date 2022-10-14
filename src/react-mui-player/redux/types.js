@@ -34,6 +34,7 @@ function Track(trackID, coverArt, title, artist, source) {
  * @prop {number}  timeLeft - Time left to end play in seconds
  * @prop {number} volume - Volme level
  * @prop {RepeatMode} repeatMode - Repeat mode
+ * @prop {number} trackID - Repeat mode
  */
 
 /**
@@ -75,6 +76,7 @@ const CustomNativeEventTypes = {
   PLAY_NEXT: "PLAY_NEXT",
   SET_PLAYLIST: "SET_PLAYLIST",
   CLEAR_PLAYLIST: "CLEAR_PLAYLIST",
+  GET_TRACK_DETAILS: "GET_TRACK_DETAILS",
 };
 
 /** Call back for useSelect hook
@@ -159,6 +161,7 @@ const ActionTypes = {
   SET_REPEAT_MODE: "SET_REPEAT_MODE",
   SKIP_NEXT: "SKIP_NEXT",
   SKIP_PREV: "SKIP_PREV",
+  GET_TRACK_DETAILS: "GET_TRACK_DETAILS",
 };
 
 export {

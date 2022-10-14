@@ -17,7 +17,7 @@ export const musicList = [
       title: "Ko Hola Tyo",
       artist: "Sunil Giri",
       source: songsList.music1,
-      isFavourite: true,
+      isFavourite: false,
       isFeatured: true,
     },
   },

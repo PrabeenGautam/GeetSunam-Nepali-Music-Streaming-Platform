@@ -38,6 +38,18 @@ function currentTime(state = 0, action) {
   else return state;
 }
 
+function favourite(state = null, action) {
+  if (action.type === ActionTypes.GET_TRACK_DETAILS)
+    return action.payload.favourite;
+  else return state;
+}
+
+function trackID(state = null, action) {
+  if (action.type === ActionTypes.GET_TRACK_DETAILS)
+    return action.payload.trackId;
+  else return state;
+}
+
 function timeLeft(state = 0, action) {
   if (action.type === ActionTypes.SET_TIME_LEFT) return action.payload.timeLeft;
   else return state;
@@ -71,4 +83,6 @@ export default combineReducers({
   timeLeft,
   volume,
   repeatMode,
+  favourite,
+  trackID,
 });

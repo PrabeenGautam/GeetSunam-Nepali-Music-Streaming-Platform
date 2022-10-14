@@ -53,6 +53,11 @@ const ActionCreators = {
     },
   }),
 
+  getMusicDetails: (data) => ({
+    type: ActionTypes.GET_TRACK_DETAILS,
+    payload: { favourite: data.isFavourite, trackId: data.ID },
+  }),
+
   seek: (time) => ({
     type: ActionTypes.SEEK,
     payload: {
