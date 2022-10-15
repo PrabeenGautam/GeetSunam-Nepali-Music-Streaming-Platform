@@ -101,12 +101,20 @@ export default function PlaylistControl(props) {
         <RepeatButton
           value={repeatMode}
           className={classes.button}
+          title={
+            repeatMode === "NORMAL"
+              ? "Repeat All"
+              : repeatMode === "REPEAT_ALL"
+              ? "Repeat One"
+              : "Normal"
+          }
           onClick={() => {
             onRepeat();
           }}
         />
         <ShuffleButton
           value={shuffled}
+          title={"Shuffle Songs"}
           className={classes.button}
           onClick={() => {
             onShuffle(!shuffled);
@@ -115,6 +123,7 @@ export default function PlaylistControl(props) {
         <ToggleButton
           className={classes.button}
           value="show playlist"
+          title="Show Playlist"
           selected={playlistVisible}
           onChange={(e) => {
             setAnchor(

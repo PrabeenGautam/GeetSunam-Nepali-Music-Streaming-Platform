@@ -136,9 +136,7 @@ export default function Player(props) {
       />
       <TrackDetails
         sx={{
-          // fixed size to stop resize on content change
           width: "120px",
-          // grow if screen is small to cover extra space
           flexGrow: isLarge ? 0 : 1,
           textAlign: "left",
           margin: 1,
