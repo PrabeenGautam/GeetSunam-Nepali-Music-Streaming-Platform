@@ -46,7 +46,12 @@ class PlaylistItemTemplate extends React.Component {
           boxShadow: itemSelected > 0 ? 16 : 0,
         }}>
         <Box
-          sx={{ display: "flex", flexGrow: 1, alignItems: "center" }}
+          sx={{
+            display: "flex",
+            flexGrow: 1,
+            alignItems: "center",
+            cursor: "pointer",
+          }}
           onClick={withoutPropagation(this.handleSelect.bind(this))}>
           {/*render now playing icon or empty box matching icon size */}
           {commonProps.currentTrackID === item.ID ? (
@@ -85,7 +90,7 @@ class PlaylistItemTemplate extends React.Component {
           </Box>
         </Box>
         <ReorderIcon
-          sx={{ mx: 1 }}
+          sx={{ mx: 1, cursor: "grab" }}
           {...dragHandleProps}
           onClick={(e) => {
             e.stopPropagation();

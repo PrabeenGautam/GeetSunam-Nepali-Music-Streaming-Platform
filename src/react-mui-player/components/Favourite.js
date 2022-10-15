@@ -5,8 +5,8 @@ import withoutPropagation from "react-mui-player/utils/withoutPropagation";
 import { useSelector } from "react-redux";
 
 export default function Favourite(props) {
-  const isFavourite = true;
   const sx = props.sx;
+  const favourite = useSelector((state) => state.favourite);
 
   const onClickHandler = () => {
     console.log("Click");
@@ -29,7 +29,7 @@ export default function Favourite(props) {
         className="children"
         onClick={withoutPropagation(onClickHandler)}
         size="large">
-        {isFavourite ? <Favorite /> : <FavoriteBorder />}
+        {favourite ? <Favorite /> : <FavoriteBorder />}
       </IconButton>
     </Box>
   );
