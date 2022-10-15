@@ -53,9 +53,7 @@ export default function VolumeControl() {
         onClick={handleClick}>
         {value === 0 ? (
           <VolumeOff />
-        ) : value < 25 ? (
-          <VolumeMute />
-        ) : value < 100 ? (
+        ) : value < 50 ? (
           <VolumeDown />
         ) : (
           <VolumeUp />

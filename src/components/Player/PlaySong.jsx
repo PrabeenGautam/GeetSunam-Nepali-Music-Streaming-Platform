@@ -20,7 +20,9 @@ const PlaySong = ({ trackDetails = {}, children, musicList = [] }) => {
     PlayerInterface.play([
       new Track(ID, coverArt, title, artist, source, favourite),
     ]);
-    PlayerInterface.setPlaylist(musicList);
+    if (musicList.length !== 0) {
+      PlayerInterface.setPlaylist(musicList);
+    }
     dispatch(ActionCreators.getMusicDetails({ ID, favourite }));
   };
 
