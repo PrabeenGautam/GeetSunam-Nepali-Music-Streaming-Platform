@@ -1,15 +1,39 @@
-import { Checkbox } from "@mui/material";
+import { useRef, useState } from "react";
 import { BiPlusCircle } from "react-icons/bi";
 import { GiTireIronCross } from "react-icons/gi";
 
-function PlaylistAddContainer({ setClick }) {
-  const playlistHandler = (e) => {
-    console.log(e.target.id);
-    // alert(`Added to Playlist`)
+function PlaylistAddContainer({ setClick, data }) {
+  let checkedMap = {};
+  let checkboxRef = useRef();
+
+  const playlist = [
+    "Playlist 1",
+    "Playlist 2",
+    "Playlist 3",
+    "Playlist 4",
+    "Playlist 5",
+    "Playlist 6",
+  ];
+
+  const handleChange = (obtainedId, checked) => {
+    checkedMap[obtainedId] = checked === true ? "true" : "false";
+
+    if (checked)
+      alert(
+        ` Data ${
+          data?.trackDetails?.title || data.title
+        } Added to Playlist having ID ${obtainedId}`
+      );
+    else
+      alert(
+        `Data ${
+          data?.trackDetails?.title || data.title
+        } Removed from Playlist having ID ${obtainedId}`
+      );
   };
   return (
     <>
-      <div>
+      <div className="model">
         <div
           className="model-container"
           onClick={() => {
@@ -31,14 +55,38 @@ function PlaylistAddContainer({ setClick }) {
               overflowY: "auto",
               maxHeight: "10rem",
             }}>
-            {[1, 1, 1, 1, 1, 1, 1].map((value, index) => (
+            {playlist.map((value, id) => (
               <div
-                key={index}
+                key={id}
                 className="playlist-container"
-                style={{ cursor: "pointer" }}
-                id={index}>
-                <Checkbox sx={{ color: "white" }} />
-                <span style={{ verticalAlign: "middle" }}>Playlist 1</span>
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  height: 40,
+                }}
+                id={String(id)}>
+                <input
+                  ref={checkboxRef}
+                  type="checkbox"
+                  style={{ width: 20, height: 20 }}
+                  onChange={(e) => {
+                    handleChange(String(id), e.target.checked);
+                  }}
+                  name="checkPlaylist"
+                  id={String(id)}
+                />
+                <div
+                  onClick={() => {
+                    checkboxRef.current.checked = true;
+                  }}
+                  style={{
+                    verticalAlign: "middle",
+                    width: "100%",
+                  }}>
+                  {value}
+                </div>
               </div>
             ))}
           </div>

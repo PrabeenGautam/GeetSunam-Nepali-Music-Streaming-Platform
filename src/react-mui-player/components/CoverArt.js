@@ -32,7 +32,7 @@ export default function CoverArt(props) {
       {isPlaying && Number(state.trackID) === id ? (
         <MusicPlayedAnimation />
       ) : (
-        <StyledImg src={src} alt={""} />
+        <StyledImg src={src} alt={""} style={{ objectFit: "cover" }} />
       )}
     </Box>
   );

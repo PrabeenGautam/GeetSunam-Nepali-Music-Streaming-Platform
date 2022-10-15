@@ -1,15 +1,19 @@
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { Box, IconButton } from "@mui/material";
 import React from "react";
-import withoutPropagation from "react-mui-player/utils/withoutPropagation";
-import { useSelector } from "react-redux";
+import ActionCreators from "react-mui-player/redux/actionCreators";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Favourite(props) {
   const sx = props.sx;
   const favourite = useSelector((state) => state.favourite);
+  const trackID = useSelector((state) => state.trackID);
+  const dispatch = useDispatch();
 
   const onClickHandler = () => {
-    console.log("Click");
+    dispatch(
+      ActionCreators.getMusicDetails({ ID: trackID, favourite: !favourite })
+    );
   };
 
   return (
@@ -25,10 +29,7 @@ export default function Favourite(props) {
         },
         ...sx,
       }}>
-      <IconButton
-        className="children"
-        onClick={withoutPropagation(onClickHandler)}
-        size="large">
+      <IconButton className="children" onClick={onClickHandler} size="large">
         {favourite ? <Favorite /> : <FavoriteBorder />}
       </IconButton>
     </Box>

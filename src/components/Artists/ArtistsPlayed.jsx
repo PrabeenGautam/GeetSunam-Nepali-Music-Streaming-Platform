@@ -1,17 +1,45 @@
 import { FiClock, FiHeart, FiPauseCircle, FiPlayCircle } from "react-icons/fi";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 import AddToPlaylist from "components/Player/AddToPlayList";
 import PauseSong from "components/Player/PauseSong";
 import PlaySong from "components/Player/PlaySong";
 import { possibleMediaState } from "components/Player/possibleMediaState.types";
 import useCurrentSong from "hooks/useCurrentSong";
+import PlaylistAddContainer from "components/Playlists/PlaylistAddContainer";
 
 function ArtistsPlayed({ data }) {
   const currentSong = useCurrentSong();
   const { mediaState } = useSelector(({ mediaState }) => ({ mediaState }));
+  const [playlist, setPlaylistAdd] = useState(false);
+  const [playlistData, setPlaylistData] = useState(null);
+
+  const musicList =
+    data &&
+    data.map(({ trackDetails }) => ({
+      ID: trackDetails.ID,
+      coverArt: trackDetails.coverArt,
+      title: trackDetails.title,
+      artist: trackDetails.artist,
+      source: trackDetails.source,
+      favourite: trackDetails.isFavourite,
+    }));
+
+  const handleFavourite = (data) => {
+    console.log(data);
+  };
+
+  const handlePlaylist = (data) => {
+    setPlaylistAdd(true);
+    setPlaylistData(data);
+  };
+
   return (
     <>
+      {playlist && playlistData && (
+        <PlaylistAddContainer setClick={setPlaylistAdd} data={playlistData} />
+      )}
       <section className="song-list">
         <div className="recent-container list_heading ">
           <span>#</span>
@@ -39,11 +67,15 @@ function ArtistsPlayed({ data }) {
                     <FiPauseCircle className="recent-play" />
                   </PauseSong>
                 ) : (
-                  <PlaySong trackDetails={value.trackDetails}>
+                  <PlaySong
+                    trackDetails={value.trackDetails}
+                    musicList={musicList}>
                     <FiPlayCircle className="recent-play" />
                   </PlaySong>
                 )}
-                <PlaySong trackDetails={value.trackDetails}>
+                <PlaySong
+                  trackDetails={value.trackDetails}
+                  musicList={musicList}>
                   <img
                     src={value.trackDetails.coverArt}
                     alt="thumbnail"
@@ -56,15 +88,17 @@ function ArtistsPlayed({ data }) {
                   {value.genre.toUpperCase()}
                 </span>
                 <FiHeart
+                  onClick={() => handleFavourite(value)}
                   className={value.isFavourite ? "heart favourite" : "heart"}
                 />
                 <span className="length">{value.time}</span>
                 {
-                  <AddToPlaylist trackDetails={value.trackDetails}>
-                    <span className="add-more" title="Add to Playlists">
-                      Add
-                    </span>
-                  </AddToPlaylist>
+                  <span
+                    className="add-more"
+                    title="Add to Playlists"
+                    onClick={() => handlePlaylist(value)}>
+                    Add
+                  </span>
                 }
               </div>
             );

@@ -28,7 +28,7 @@ function EditPlaylistsModel({ setClick }) {
 
   return (
     <>
-      <div>
+      <div className="model">
         <div
           className="model-container"
           onClick={() => {

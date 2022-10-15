@@ -5,7 +5,7 @@ function DeleteModel({ setClick, data, id, modalMessage = "Delete" }) {
   console.log(id);
   return (
     <>
-      <div>
+      <div className="model">
         <div
           className="model-container"
           onClick={() => {

@@ -9,7 +9,6 @@ import {
 } from "react-icons/fi";
 
 import DeleteModel from "./Playlists/DeleteModel";
-import AddToPlaylist from "./Player/AddToPlayList";
 import PlaySong from "./Player/PlaySong";
 import PauseSong from "./Player/PauseSong";
 import useCurrentSong from "hooks/useCurrentSong";
@@ -19,6 +18,7 @@ import PlaylistAddContainer from "./Playlists/PlaylistAddContainer";
 function RecentPlayed({ removeFromPlaylist = false, data }) {
   const [deleteClick, setDeleteClick] = useState(false);
   const [playlist, setPlaylistAdd] = useState(false);
+  const [playlistData, setPlaylistData] = useState(null);
   const [idToDelete, setIdDelete] = useState(null);
 
   const currentSong = useCurrentSong();
@@ -35,10 +35,21 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
       favourite: trackDetails.isFavourite,
     }));
 
+  const handleFavourite = (data) => {
+    console.log(data);
+  };
+
+  const handlePlaylist = (data) => {
+    setPlaylistAdd(true);
+    setPlaylistData(data);
+  };
+
   return (
     <>
       {deleteClick && <DeleteModel setClick={setDeleteClick} id={idToDelete} />}
-      {playlist && <PlaylistAddContainer setClick={setPlaylistAdd} />}
+      {playlist && playlistData && (
+        <PlaylistAddContainer setClick={setPlaylistAdd} data={playlistData} />
+      )}
       {data?.length !== 0 ? (
         <section className="song-list">
           <div className="recent-container list_heading ">
@@ -96,6 +107,7 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                     {value.genre.toUpperCase()}
                   </span>
                   <FiHeart
+                    onClick={() => handleFavourite(value)}
                     className={
                       value.trackDetails.isFavourite
                         ? "heart favourite"
@@ -115,11 +127,12 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                       />
                     </span>
                   ) : (
-                    <AddToPlaylist trackDetails={value.trackDetails}>
-                      <span className="add-more" title="Add to Playlists">
-                        Add
-                      </span>
-                    </AddToPlaylist>
+                    <span
+                      className="add-more"
+                      title="Add to Playlists"
+                      onClick={() => handlePlaylist(value)}>
+                      Add
+                    </span>
                   )}
                 </div>
               );
