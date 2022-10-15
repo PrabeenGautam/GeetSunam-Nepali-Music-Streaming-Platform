@@ -5,7 +5,6 @@ import shuffle from "../../utils/shuffle.js";
 
 const shuffler = (store) => (next) => (action) => {
   let state = store.getState();
-
   if (
     action.type === ActionTypes.SHUFFLE &&
     state.shuffled !== action.payload.shuffle
@@ -23,9 +22,11 @@ const shuffler = (store) => (next) => (action) => {
       : withoutCurrent.sort((first, second) => first.ID < second.ID);
 
     // update playlist with current track on top
+
     store.dispatch(
       actionCreators.updatePlaylist([currentTrack, ...withoutCurrent])
     );
+
     store.dispatch(actionCreators.changeTrack(0));
   }
 

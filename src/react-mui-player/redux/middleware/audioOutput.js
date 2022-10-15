@@ -1,6 +1,5 @@
 import actionCreators from "../actionCreators.js";
 import { MediaState, RepeatMode } from "../types";
-
 import { AudioOutput, ActionTypes } from "../types";
 
 const audio = new AudioOutput();
@@ -39,11 +38,23 @@ const audioOutput = (store) => {
     let state = store.getState();
     let currentTrack = state.currentTrack;
     let isLastTrack = currentTrack === state.playlist.length - 1;
+    let nextSong = state.playlist[currentTrack + 1];
 
     switch (state.repeatMode) {
       case RepeatMode.REPEAT_ALL:
-        if (isLastTrack) store.dispatch(actionCreators.changeTrack(0));
-        else store.dispatch(actionCreators.changeTrack(++currentTrack));
+        if (isLastTrack) {
+          const { ID, favourite } = state.playlist[0];
+          store.dispatch(actionCreators.changeTrack(0));
+          store.dispatch(actionCreators.getMusicDetails({ ID, favourite }));
+        } else {
+          if (nextSong) {
+            const { ID, favourite } = nextSong;
+            store.dispatch(actionCreators.changeTrack(++currentTrack));
+            store.dispatch(actionCreators.getMusicDetails({ ID, favourite }));
+          } else {
+            store.dispatch(actionCreators.changeTrack(++currentTrack));
+          }
+        }
         break;
       case RepeatMode.REPEAT_ONE:
         audio.play(); // play again
@@ -51,7 +62,15 @@ const audioOutput = (store) => {
       case RepeatMode.NORMAL:
       default:
         if (isLastTrack) store.dispatch(actionCreators.stop());
-        else store.dispatch(actionCreators.changeTrack(++currentTrack));
+        else {
+          if (nextSong) {
+            const { ID, favourite } = nextSong;
+            store.dispatch(actionCreators.changeTrack(++currentTrack));
+            store.dispatch(actionCreators.getMusicDetails({ ID, favourite }));
+          } else {
+            store.dispatch(actionCreators.changeTrack(++currentTrack));
+          }
+        }
     }
   });
 

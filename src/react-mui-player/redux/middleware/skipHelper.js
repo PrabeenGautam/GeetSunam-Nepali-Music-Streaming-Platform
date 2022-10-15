@@ -3,12 +3,27 @@ import { ActionTypes } from "../types.js";
 
 const skipHelper = (store) => {
   return (next) => (action) => {
-    let currentTrack = store.getState().currentTrack;
+    let state = store.getState();
+    let currentTrack = state.currentTrack;
+    let nextSong = state.playlist[currentTrack + 1];
+    let prevSong = state.playlist[currentTrack - 1];
 
     if (action.type === ActionTypes.SKIP_NEXT)
-      store.dispatch(ActionCreators.changeTrack(currentTrack + 1));
+      if (nextSong) {
+        const { ID, favourite } = nextSong;
+        store.dispatch(ActionCreators.changeTrack(currentTrack + 1));
+        store.dispatch(ActionCreators.getMusicDetails({ ID, favourite }));
+      } else {
+        store.dispatch(ActionCreators.changeTrack(currentTrack + 1));
+      }
     else if (action.type === ActionTypes.SKIP_PREV)
-      store.dispatch(ActionCreators.changeTrack(currentTrack - 1));
+      if (prevSong) {
+        const { ID, favourite } = prevSong;
+        store.dispatch(ActionCreators.changeTrack(currentTrack - 1));
+        store.dispatch(ActionCreators.getMusicDetails({ ID, favourite }));
+      } else {
+        store.dispatch(ActionCreators.changeTrack(currentTrack - 1));
+      }
 
     return next(action);
   };
