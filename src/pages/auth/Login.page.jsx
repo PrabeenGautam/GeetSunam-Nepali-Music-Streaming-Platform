@@ -9,7 +9,7 @@ import jwtDecode from "jwt-decode";
 import { useTranslation } from "react-i18next";
 
 import entranceGif from "assets/images/landing/MusicEntrance2.gif";
-import i18n from "components/i18n";
+import { toast } from "react-toastify";
 
 function LoginPage() {
   const [passwordShown, setPasswordShow] = useState(false);
@@ -17,6 +17,7 @@ function LoginPage() {
 
   const signInDivRef = useRef();
   const navigate = useNavigate();
+
   const initialFormData = Object.freeze({
     email: "",
     password: "",
@@ -44,8 +45,19 @@ function LoginPage() {
     e.preventDefault();
     const { email, password } = formData;
     const user = { email, password };
-    console.log(user);
-    navigate("/home");
+    toast("Login Successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+
+    // navigate("/home");
   };
 
   const handleGoogleLogin = useGoogleLogin({

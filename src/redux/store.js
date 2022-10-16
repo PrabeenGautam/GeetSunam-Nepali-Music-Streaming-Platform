@@ -1,11 +1,9 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import userReducer from "redux/slices/userSlice";
+import rootReducer from "./reducer/index";
 
 const geetSunamStore = configureStore({
-  reducer: {
-    userState: userReducer,
-  },
+  reducer: rootReducer,
   devTools: true,
 });
 export default geetSunamStore;
