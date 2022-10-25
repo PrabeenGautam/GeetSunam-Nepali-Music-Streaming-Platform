@@ -26,7 +26,12 @@ function EditUserProfile({ setClick }) {
   };
   return (
     <>
-      <div className="model-container">
+      <div className="model">
+        <div
+          className="model-container"
+          onClick={() => {
+            setClick(false);
+          }}></div>
         <div className="container">
           <div className="header">
             <h2 className="h2">Edit Details</h2>
@@ -66,8 +71,7 @@ function EditUserProfile({ setClick }) {
               <button
                 type="submit"
                 className="btn btn-play"
-                style={{ marginTop: 20 }}
-              >
+                style={{ marginTop: 20 }}>
                 Save
               </button>
             </form>
