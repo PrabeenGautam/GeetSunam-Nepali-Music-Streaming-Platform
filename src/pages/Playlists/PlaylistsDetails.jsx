@@ -1,11 +1,8 @@
-import { useParams } from "react-router-dom";
-
 import RecentPlayed from "components/SongsList";
 import Playlist from "./Playlist";
 
 function PlaylistsDetails() {
-  const { id } = useParams();
-  const playlistName = `Playlist ${id}`;
+  const playlistName = `Playlist`;
   const data = false;
 
   return (

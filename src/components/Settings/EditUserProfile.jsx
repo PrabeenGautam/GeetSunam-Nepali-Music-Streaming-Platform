@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { GiTireIronCross } from "react-icons/gi";
+import { MdClose } from "react-icons/md";
 
 import Placeholder from "assets/images/genre/placeholder-image.jpg";
+import { createPortal } from "react-dom";
 
-function EditUserProfile({ setClick }) {
+function EditUserModal({ setClick }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);
 
   const getBase64 = (file, callback) => {
@@ -35,8 +36,8 @@ function EditUserProfile({ setClick }) {
         <div className="container">
           <div className="header">
             <h2 className="h2">Edit Details</h2>
-            <GiTireIronCross
-              style={{ cursor: "pointer" }}
+            <MdClose
+              style={{ cursor: "pointer", width: 32, height: 32 }}
               onClick={() => setClick(false)}
             />
           </div>
@@ -79,6 +80,13 @@ function EditUserProfile({ setClick }) {
         </div>
       </div>
     </>
+  );
+}
+
+function EditUserProfile({ setClick }) {
+  return createPortal(
+    <EditUserModal setClick={setClick} />,
+    document.getElementById("modal")
   );
 }
 

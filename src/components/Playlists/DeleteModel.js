@@ -1,8 +1,8 @@
 import { Btn } from "components/StyledUI";
-import { GiTireIronCross } from "react-icons/gi";
+import { createPortal } from "react-dom";
+import { MdClose } from "react-icons/md";
 
-function DeleteModel({ setClick, data, id, modalMessage = "Delete" }) {
-  console.log(id);
+function DeleteModelOverlay({ setClick, data, modalMessage = "Delete" }) {
   return (
     <>
       <div className="model">
@@ -16,8 +16,8 @@ function DeleteModel({ setClick, data, id, modalMessage = "Delete" }) {
           style={{ minWidth: "24rem", maxWidth: "25rem", zIndex: 9999 }}>
           <div className="header">
             <h2 className="h2">{`${modalMessage} ${data} ?`}</h2>
-            <GiTireIronCross
-              style={{ cursor: "pointer" }}
+            <MdClose
+              style={{ cursor: "pointer", width: 32, height: 32 }}
               onClick={() => setClick(false)}
             />
           </div>
@@ -37,6 +37,18 @@ function DeleteModel({ setClick, data, id, modalMessage = "Delete" }) {
         </div>
       </div>
     </>
+  );
+}
+
+function DeleteModel({ setClick, data, id, modalMessage = "Delete" }) {
+  console.log(id);
+  return createPortal(
+    <DeleteModelOverlay
+      setClick={setClick}
+      data={data}
+      modalMessage={modalMessage}
+    />,
+    document.getElementById("modal")
   );
 }
 

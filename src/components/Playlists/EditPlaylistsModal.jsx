@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { GiTireIronCross } from "react-icons/gi";
+import { MdClose } from "react-icons/md";
+import { createPortal } from "react-dom";
 
 import Placeholder from "assets/images/genre/placeholder-image.jpg";
 import { Btn } from "../StyledUI";
 
-function EditPlaylistsModel({ setClick }) {
+function EditPlaylistsModelOverlay({ setClick }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);
 
   const getBase64 = (file, callback) => {
@@ -37,8 +38,8 @@ function EditPlaylistsModel({ setClick }) {
         <div className="container" style={{ zIndex: 9999 }}>
           <div className="header">
             <h2 className="h2">Edit Details</h2>
-            <GiTireIronCross
-              style={{ cursor: "pointer" }}
+            <MdClose
+              style={{ cursor: "pointer", width: 32, height: 32 }}
               onClick={() => setClick(false)}
             />
           </div>
@@ -83,6 +84,13 @@ function EditPlaylistsModel({ setClick }) {
         </div>
       </div>
     </>
+  );
+}
+
+function EditPlaylistsModel({ setClick }) {
+  return createPortal(
+    <EditPlaylistsModelOverlay setClick={setClick} />,
+    document.getElementById("modal")
   );
 }
 

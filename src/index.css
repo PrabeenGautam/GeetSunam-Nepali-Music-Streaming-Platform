@@ -1051,8 +1051,9 @@ h3 {
   height: 100%;
 }
 
-.model-container .guildlines {
-  font-size: 0.7rem;
+.model-container .guildlines,
+.guildlines {
+  font-size: 0.8rem;
   margin-top: 20px;
 }
 

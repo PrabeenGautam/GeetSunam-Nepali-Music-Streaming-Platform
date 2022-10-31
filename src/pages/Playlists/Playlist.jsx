@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiHeart, FiMic, FiSearch } from "react-icons/fi";
 import { MdDeleteOutline, MdEditNote } from "react-icons/md";
+import { useParams } from "react-router-dom";
 
 import DeleteModel from "components/Playlists/DeleteModel";
 import EditPlaylistsModel from "components/Playlists/EditPlaylistsModal";
@@ -11,12 +12,7 @@ function Playlist({ playlistName = "No Name", data }) {
   const [click, setClick] = useState(false);
   const [deleteClick, setDeleteClick] = useState(false);
   const [showData, setShowData] = useState(false);
-
-  if (click || deleteClick) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.removeProperty("overflow");
-  }
+  const { id } = useParams();
 
   const onSubmitValue = (e) => {
     e.preventDefault();
@@ -29,7 +25,7 @@ function Playlist({ playlistName = "No Name", data }) {
     <div className="playlist-container">
       {click && <EditPlaylistsModel setClick={setClick} />}
       {deleteClick && (
-        <DeleteModel setClick={setDeleteClick} data={playlistName} />
+        <DeleteModel setClick={setDeleteClick} data={playlistName} id={id} />
       )}
       <section className="playlist">
         <div className="playlist-images">
