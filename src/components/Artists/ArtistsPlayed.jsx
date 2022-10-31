@@ -2,7 +2,6 @@ import { FiClock, FiHeart, FiPauseCircle, FiPlayCircle } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
-import AddToPlaylist from "components/Player/AddToPlayList";
 import PauseSong from "components/Player/PauseSong";
 import PlaySong from "components/Player/PlaySong";
 import { possibleMediaState } from "components/Player/possibleMediaState.types";

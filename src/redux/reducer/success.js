@@ -4,7 +4,7 @@ const initialState = {
   msg: {},
 };
 
-export default function (state = initialState, action) {
+export default function success(state = initialState, action) {
   switch (action.type) {
     case GET_SUCCESS:
       return {

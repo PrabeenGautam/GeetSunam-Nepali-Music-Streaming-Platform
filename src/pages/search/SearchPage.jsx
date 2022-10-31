@@ -16,9 +16,9 @@ function SearchPage() {
     value.trackDetails.title.toLowerCase().includes(query)
   );
   const recommendedSongs =
-    searchSongs.length != 0 &&
+    searchSongs.length !== 0 &&
     musicList.filter(
-      (value) => value.artistsDetails == searchSongs[0].artistsDetails
+      (value) => value.artistsDetails === searchSongs[0].artistsDetails
     );
 
   return (

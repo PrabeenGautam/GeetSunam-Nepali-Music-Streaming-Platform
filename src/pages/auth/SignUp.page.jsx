@@ -146,7 +146,7 @@ function SignUpPage() {
         </section>
 
         <section className="art-section">
-          <img src={userflow} />
+          <img src={userflow} alt="entrancegif" />
         </section>
       </div>
     </div>

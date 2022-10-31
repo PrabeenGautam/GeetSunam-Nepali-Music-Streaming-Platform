@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BiHeart, BiLeftArrow, BiRightArrow } from "react-icons/bi";
+import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 
 import SearchBar from "./SearchBar";
 import { Btn } from "components/StyledUI";

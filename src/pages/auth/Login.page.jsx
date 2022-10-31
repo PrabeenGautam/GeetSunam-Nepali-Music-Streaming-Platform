@@ -1,5 +1,5 @@
 import { FaMusic } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
@@ -16,7 +16,7 @@ function LoginPage() {
   const { t, i18n } = useTranslation("translation", { keyPrefix: "login" });
 
   const signInDivRef = useRef();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const initialFormData = Object.freeze({
     email: "",
@@ -45,6 +45,7 @@ function LoginPage() {
     e.preventDefault();
     const { email, password } = formData;
     const user = { email, password };
+    console.log(user);
     toast("Login Successfully", {
       position: "top-right",
       autoClose: 5000,
@@ -157,7 +158,7 @@ function LoginPage() {
         </section>
 
         <section className="art-section">
-          <img src={entranceGif} />
+          <img src={entranceGif} alt="entrancegif" />
         </section>
       </div>
     </div>

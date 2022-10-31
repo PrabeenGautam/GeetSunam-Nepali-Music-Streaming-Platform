@@ -8,7 +8,6 @@ import {
   VolumeUp,
   RemoveCircle,
   VolumeOff,
-  VolumeMute,
   AddCircle,
   VolumeDown,
 } from "@mui/icons-material";
