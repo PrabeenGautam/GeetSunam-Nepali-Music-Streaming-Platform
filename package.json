@@ -1,5 +1,5 @@
 {
-  "homepage": "https://mishankhatri.github.io/geetsunam",
+  "homepage": "https://mishankhatri.github.io/GeetSunam-Nepali-Music-Streaming-Platform",
   "name": "geetsunam",
   "version": "0.1.0",
   "private": false,
@@ -57,5 +57,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
