@@ -33,7 +33,9 @@ root.render(
   <Provider store={playerStore}>
     <Provider store={geetSunamStore} context={geetSunamStoreContext}>
       <QueryClientProvider client={queryClient}>
-        <GoogleOAuthProvider clientId="529881800719-0kd1fqipp0vhpoci34cnpqlpghnn2msk.apps.googleusercontent.com">
+        <GoogleOAuthProvider
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ""}
+        >
           <BrowserRouter>
             <Suspense fallback={"Loading..."}>
               <ScrollToTop>
