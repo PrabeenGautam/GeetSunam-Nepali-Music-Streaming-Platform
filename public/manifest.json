@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "GeetSunam",
+  "name": "Nepali Music Streaming",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,12 +8,27 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "icon-36.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "36x36"
     },
     {
-      "src": "logo512.png",
+      "src": "icon-48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "icon-96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "icon-144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
