@@ -16,9 +16,22 @@ function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
   );
 }
 
-function SidebarLeft() {
+function SidebarLeft({ artistsDashboard }) {
+  const menuLastLink =
+    sidebarMenu[0].menus[sidebarMenu[0].menus.length - 1].link;
+  if (artistsDashboard && menuLastLink !== "upload") {
+    sidebarMenu[0].menus.push({
+      icons: <FaMusic className="icons" />,
+      text: "Upload",
+      link: "upload",
+    });
+  }
+
+  if (!artistsDashboard && menuLastLink === "upload") {
+    sidebarMenu[0].menus.pop();
+  }
   return (
-    <div className="left-sidebar">
+    <div className="left-sidebar child-scroll">
       <div className="logo">
         <Link to={"/"} id="home">
           <FaMusic className="logo__music" />
@@ -39,8 +52,7 @@ function SidebarLeft() {
                       to={d.link}
                       key={index}
                       activeClassName="active"
-                      inactiveClassName=""
-                    >
+                      inactiveClassName="">
                       <li className="submenus">
                         <span className="menu-icon">{d.icons}</span>
                         <span className="menu-text">{d.text}</span>
