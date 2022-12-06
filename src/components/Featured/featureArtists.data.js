@@ -52,8 +52,7 @@ export const featuredArtists = [
     id: 7,
     isFavourite: false,
     name: "Prabisha Adhikari",
-    profile:
-      "https://scontent.fktm14-1.fna.fbcdn.net/v/t1.6435-9/115907866_3827294617287577_5248677023194109564_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a26aad&_nc_ohc=7kDPRJ_3TYIAX-e3ToJ&_nc_ht=scontent.fktm14-1.fna&oh=00_AT9ORfQai8mBWgo5xhBgPWzuWkR62SK9c_W0r7Z4JdSEGg&oe=6360404A",
+    profile: "https://img.youtube.com/vi/_d11XyX1Iwk/maxresdefault.jpg",
   },
   {
     id: 8,

@@ -31,7 +31,7 @@ function RecentlyPlayedSlider({ musicList }) {
       </div>
       <Swiper
         slidesPerView="auto"
-        spaceBetween={10}
+        spaceBetween={20}
         grabCursor={true}
         onSwiper={(swiper) => {
           swiper.isBeginning === true &&
