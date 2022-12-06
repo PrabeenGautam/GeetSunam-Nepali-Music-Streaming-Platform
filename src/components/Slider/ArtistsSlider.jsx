@@ -11,23 +11,22 @@ function ArtistsSlider({ featuredArtists }) {
   const nextBtnRef = useRef();
 
   return (
-    <div className="swiper-class">
+    <div className="swiper-class swiper-artists">
       <div
         onClick={() => swiperRef.current?.slidePrev()}
         className="swiper-btn swipe-artists-btn swipe-prev-artists"
-        ref={prevBtnRef}
-      >
+        ref={prevBtnRef}>
         <BiChevronLeft />
       </div>
       <div
         onClick={() => swiperRef.current?.slideNext()}
         className="swiper-btn swipe-artists-btn swipe-next-artists"
-        ref={nextBtnRef}
-      >
+        ref={nextBtnRef}>
         <BiChevronRight />
       </div>
       <Swiper
-        slidesPerView={6}
+        slidesPerView="auto"
+        spaceBetween={10}
         grabCursor={true}
         onSwiper={(swiper) => {
           swiper.isBeginning === true &&
@@ -47,8 +46,7 @@ function ArtistsSlider({ featuredArtists }) {
         }}
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
-        }}
-      >
+        }}>
         {featuredArtists.map((value, index) => (
           <SwiperSlide key={index}>
             <FeaturedArtists data={value} />

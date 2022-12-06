@@ -25,7 +25,8 @@ function RecommendedSlider({ data }) {
         <BiChevronRight />
       </div>
       <Swiper
-        slidesPerView={5}
+        slidesPerView="auto"
+        spaceBetween={10}
         grabCursor={true}
         onSwiper={(swiper) => {
           swiper.isBeginning === true &&

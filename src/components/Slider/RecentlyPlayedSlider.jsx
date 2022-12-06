@@ -14,32 +14,24 @@ function RecentlyPlayedSlider({ musicList }) {
   const swiperRef = useRef();
   const prevBtnRef = useRef();
   const nextBtnRef = useRef();
-  const slidesPerView = 5;
 
   return (
     <div className="swiper-class">
       <div
         ref={prevBtnRef}
-        onClick={() => {
-          for (let i = 0; i < slidesPerView; i++) {
-            swiperRef.current?.slidePrev();
-          }
-        }}
+        onClick={() => swiperRef.current?.slidePrev()}
         className="swiper-btn swipe-prev">
         <BiChevronLeft />
       </div>
       <div
         ref={nextBtnRef}
-        onClick={() => {
-          for (let i = 0; i < slidesPerView; i++) {
-            swiperRef.current?.slideNext();
-          }
-        }}
+        onClick={() => swiperRef.current?.slideNext()}
         className="swiper-btn swipe-next">
         <BiChevronRight />
       </div>
       <Swiper
-        slidesPerView={slidesPerView}
+        slidesPerView="auto"
+        spaceBetween={10}
         grabCursor={true}
         onSwiper={(swiper) => {
           swiper.isBeginning === true &&

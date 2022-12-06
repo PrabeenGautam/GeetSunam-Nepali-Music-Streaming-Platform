@@ -287,11 +287,15 @@ a {
   font-family: "Inter";
 }
 
-.featured .featured-img {
+.featured .img {
   width: 100%;
   height: 22.5rem;
-  object-fit: cover;
+}
 
+.featured .featured-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 7.63014px;
   user-select: none;
 }
@@ -478,7 +482,7 @@ a {
 
 .music-section {
   display: flex;
-  gap: 1.1rem;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
@@ -490,6 +494,10 @@ a {
   background-color: rgba(0, 0, 0, 0.15);
   padding: 20px 12px;
   border-radius: 10px;
+}
+
+.swiper-slide {
+  width: auto;
 }
 
 .artists-container {
