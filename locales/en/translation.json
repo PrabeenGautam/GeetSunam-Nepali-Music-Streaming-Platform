@@ -1,0 +1,22 @@
+{
+  "login": {
+    "welcome": "Welcome Back",
+    "subtitle": "Please enter your contact details to connect.",
+    "email": "Email",
+    "password": "Password",
+    "login": "Log in",
+    "googleLogin": "Log in with Google",
+    "forgetPassword": "Forget Password?",
+    "account": "Don't have an account?",
+    "signUp": "Sign Up Here"
+  },
+  "signUp": {
+    "account": "Account Signup",
+    "subtitle": "Become a member and enjoy exclusive free music",
+    "fullName": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "googleSignUp": "Sign Up with Google",
+    "signUp": "Sign Up Here"
+  }
+}
