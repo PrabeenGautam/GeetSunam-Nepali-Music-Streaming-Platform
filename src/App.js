@@ -17,7 +17,7 @@ import Artists from "pages/Artists/Artists";
 import GenreContainer from "pages/genre/GenreContainer";
 import SearchPage from "pages/search/SearchPage";
 
-function App({ artistsDashboard = true }) {
+function App({ artistsDashboard = false }) {
   return (
     <>
       <div className="main-container">

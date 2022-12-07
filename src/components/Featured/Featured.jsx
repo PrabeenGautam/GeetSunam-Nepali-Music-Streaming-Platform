@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 
 import SearchBar from "./SearchBar";
@@ -32,12 +32,12 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
     fadeAnimation(document.getElementsByClassName("featured-img"));
   };
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     const isLastIndex = currentIndex === featuredSongs.length - 1;
     const newIndex = isLastIndex ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
     fadeAnimation(document.getElementsByClassName("featured-img"));
-  };
+  }, [currentIndex, featuredSongs.length]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -45,7 +45,7 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
     }, 8000);
 
     return () => clearInterval(timer);
-  }, [currentIndex]);
+  }, [currentIndex, goToNext]);
 
   return (
     <>

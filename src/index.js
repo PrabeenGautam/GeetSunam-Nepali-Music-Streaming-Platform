@@ -34,8 +34,7 @@ root.render(
     <Provider store={geetSunamStore} context={geetSunamStoreContext}>
       <QueryClientProvider client={queryClient}>
         <GoogleOAuthProvider
-          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ""}
-        >
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ""}>
           <BrowserRouter basename={process.env.REACT_APP_BASE_URL || "/"}>
             <Suspense fallback={"Loading..."}>
               <ScrollToTop>
