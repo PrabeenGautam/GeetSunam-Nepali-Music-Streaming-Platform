@@ -1238,8 +1238,8 @@ h3 {
   width: 40px;
 }
 
-.css-1f3lzk4-MuiPaper-root-MuiPopover-paper {
-  overflow: visible !important;
+.visible-demo .MuiPopover-paper {
+  overflow: visible;
 }
 
 /* Login Page */

@@ -62,6 +62,7 @@ export default function VolumeControl() {
       <Popover
         id={id}
         open={open}
+        className="visible-demo"
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
