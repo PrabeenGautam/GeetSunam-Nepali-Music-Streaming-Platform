@@ -1,6 +1,6 @@
 import { FaMusic } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { useRef } from "react";
@@ -9,14 +9,20 @@ import jwtDecode from "jwt-decode";
 import { useTranslation } from "react-i18next";
 
 import entranceGif from "assets/images/landing/MusicEntrance2.gif";
-import { toast } from "react-toastify";
+
+import useGSDispatch from "redux/useGSDispatch";
+import useGSSelector from "redux/useGSSelector";
+import { loginUserThunk } from "redux/middlewares/loginUserThunk";
 
 function LoginPage() {
+  const gsDispatch = useGSDispatch();
+  const loginStatus = useGSSelector((state) => state.userState.loginStatus);
+
   const [passwordShown, setPasswordShow] = useState(false);
   const { t, i18n } = useTranslation("translation", { keyPrefix: "login" });
 
   const signInDivRef = useRef();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const initialFormData = Object.freeze({
     email: "",
@@ -44,21 +50,12 @@ function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = formData;
-    const user = { email, password };
-    console.log(user);
-    toast("Login Successfully", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-
-    // navigate("/home");
+    gsDispatch(
+      loginUserThunk({
+        email,
+        password,
+      })
+    );
   };
 
   const handleGoogleLogin = useGoogleLogin({
@@ -69,6 +66,12 @@ function LoginPage() {
   const handleLanguage = (e) => {
     i18n.changeLanguage(e.target.value);
   };
+
+  useEffect(() => {
+    if (loginStatus) {
+      navigate("/home", { replace: false });
+    }
+  }, [loginStatus, navigate]);
 
   return (
     <div className="log-container">
@@ -84,7 +87,8 @@ function LoginPage() {
         <div className="languages">
           <select
             onChange={handleLanguage}
-            defaultValue={localStorage.getItem("i18nextLng")}>
+            defaultValue={localStorage.getItem("i18nextLng")}
+          >
             <option value="en">English (English)</option>
             <option value="np">नेपाली (Nepali)</option>
           </select>
@@ -124,7 +128,8 @@ function LoginPage() {
                       onClick={(e) => {
                         e.preventDefault();
                         setPasswordShow(!passwordShown);
-                      }}>
+                      }}
+                    >
                       {!passwordShown ? <FiEye /> : <FiEyeOff />}
                     </div>
                   </div>
@@ -144,7 +149,8 @@ function LoginPage() {
                 <button
                   className="login__google"
                   ref={signInDivRef}
-                  onClick={handleGoogleLogin}>
+                  onClick={handleGoogleLogin}
+                >
                   <FcGoogle className="icon" /> <span>{t("googleLogin")}</span>
                 </button>
               </div>
