@@ -19,9 +19,12 @@ function LoginPage() {
   const loginStatus = useGSSelector((state) => state.userState.loginStatus);
 
   const [passwordShown, setPasswordShow] = useState(false);
+
   const { t, i18n } = useTranslation("translation", { keyPrefix: "login" });
 
   const signInDivRef = useRef();
+  const checkboxRef = useRef();
+
   const navigate = useNavigate();
 
   const initialFormData = Object.freeze({
@@ -50,10 +53,12 @@ function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = formData;
+
     gsDispatch(
       loginUserThunk({
         email,
         password,
+        isRememberMe: checkboxRef.current.checked,
       })
     );
   };
@@ -87,8 +92,7 @@ function LoginPage() {
         <div className="languages">
           <select
             onChange={handleLanguage}
-            defaultValue={localStorage.getItem("i18nextLng")}
-          >
+            defaultValue={localStorage.getItem("i18nextLng")}>
             <option value="en">English (English)</option>
             <option value="np">नेपाली (Nepali)</option>
           </select>
@@ -128,13 +132,21 @@ function LoginPage() {
                       onClick={(e) => {
                         e.preventDefault();
                         setPasswordShow(!passwordShown);
-                      }}
-                    >
+                      }}>
                       {!passwordShown ? <FiEye /> : <FiEyeOff />}
                     </div>
                   </div>
                 </div>
-                <div className="section">
+                <div className="section custom-section">
+                  <div className="checkbox">
+                    <input
+                      type="checkbox"
+                      value="lsRememberMe"
+                      id="rememberMe"
+                      ref={checkboxRef}
+                    />
+                    <label htmlFor="rememberMe">Remember me</label>
+                  </div>
                   <Link to="/forgetpassword" className="links">
                     {t("forgetPassword")}
                   </Link>
@@ -149,8 +161,7 @@ function LoginPage() {
                 <button
                   className="login__google"
                   ref={signInDivRef}
-                  onClick={handleGoogleLogin}
-                >
+                  onClick={handleGoogleLogin}>
                   <FcGoogle className="icon" /> <span>{t("googleLogin")}</span>
                 </button>
               </div>

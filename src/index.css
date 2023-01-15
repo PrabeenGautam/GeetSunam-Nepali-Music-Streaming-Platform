@@ -1357,6 +1357,15 @@ h3 {
   font-size: 13px;
 }
 
+.land-log .form .custom-section {
+  justify-content: space-between;
+  padding-left: 10px;
+}
+
+.land-log .form .custom-section .checkbox {
+  user-select: none;
+}
+
 .land-log .login-btn {
   margin: 10px 0;
   display: flex;
