@@ -9,7 +9,7 @@ i18n
   .use(HttpAPI)
   .init({
     backend: {
-      loadPath: "/locales/{{lng}}/translation.json",
+      loadPath: "locales/{{lng}}/translation.json",
     },
     fallbackLng: "en",
     supportedLngs: ["en", "np"],
@@ -27,6 +27,7 @@ i18n
     ns: ["landing", "login", "signup"],
     interpolation: { escapeValue: false },
     react: { useSuspense: true },
+    debug: false,
   });
 
 export default i18n;
