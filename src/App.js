@@ -1,59 +1,69 @@
-import "./App.css";
-import { SidebarLeft, SidebarRight } from "components/Sidebar";
-import Content from "components/Content";
+import React, { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Trends from "pages/trends/trends";
-import Explore from "pages/explore/explore";
+
+import "./App.css";
+
+import { SidebarLeft, SidebarRight } from "components/Sidebar";
 import MainPlayer from "components/Player/Player";
-import NewReleases from "pages/NewReleases";
-import Recommnedations from "pages/Recommendations";
-import LikedSongs from "pages/LikedSongs/LikedSongs";
-import FavouriteArtists from "pages/Artists/FavouriteArtists";
-import PlaylistSection from "pages/Playlists/PlaylistSection";
-import Settings from "pages/Settings/settings";
-import PlaylistsDetails from "pages/Playlists/PlaylistsDetails";
-import ArtistsDetails from "components/Artists/ArtistsDetails";
-import Artists from "pages/Artists/Artists";
-import GenreContainer from "pages/genre/GenreContainer";
-import SearchPage from "pages/search/SearchPage";
 import ProtectedRoute from "utils/protectedRoutes";
-import { useState } from "react";
+import Content from "components/Content";
+
+// const Content = React.lazy(() => import("components/Content"));
+const Trends = React.lazy(() => import("pages/trends/trends"));
+const Explore = React.lazy(() => import("pages/explore/explore"));
+const NewReleases = React.lazy(() => import("pages/NewReleases"));
+const Recommnedations = React.lazy(() => import("pages/Recommendations"));
+const LikedSongs = React.lazy(() => import("pages/LikedSongs/LikedSongs"));
+const FavouriteArtists = React.lazy(() =>
+  import("pages/Artists/FavouriteArtists")
+);
+const PlaylistSection = React.lazy(() =>
+  import("pages/Playlists/PlaylistSection")
+);
+const Settings = React.lazy(() => import("pages/Settings/settings"));
+const PlaylistsDetails = React.lazy(() =>
+  import("pages/Playlists/PlaylistsDetails")
+);
+const ArtistsDetails = React.lazy(() =>
+  import("components/Artists/ArtistsDetails")
+);
+const Artists = React.lazy(() => import("pages/Artists/Artists"));
+const GenreContainer = React.lazy(() => import("pages/genre/GenreContainer"));
+const SearchPage = React.lazy(() => import("pages/search/SearchPage"));
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
   return (
-    <>
+    <ProtectedRoute setDashBoard={setDashBoard}>
       <div className="main-container">
         <div>
           <SidebarLeft artistsDashboard={artistsDashboard} />
           <div className="content">
-            <ProtectedRoute setDashBoard={setDashBoard}>
-              <Routes>
-                <Route path="/home" element={<Content />} />
-                <Route path="/" element={<Navigate replace to="/home" />} />
-                <Route path="/trends" element={<Trends />} />
-                <Route path="/explore" element={<Explore />} />
-                <Route path="/releases" element={<NewReleases />} />
-                <Route path="/recommendation" element={<Recommnedations />} />
-                <Route path="/likedsongs" element={<LikedSongs />} />
-                <Route path="/artists" element={<Artists />} />
-                <Route path="/artists/:id" element={<ArtistsDetails />} />
-                <Route path="/fav-artists" element={<FavouriteArtists />} />
-                <Route path="/fav-artists/:id" element={<ArtistsDetails />} />
-                <Route path="/playlists" element={<PlaylistSection />} />
-                <Route path="/playlists/:id" element={<PlaylistsDetails />} />
+            <Routes>
+              <Route path="/home" element={<Content />} />
+              <Route path="/" element={<Navigate replace to="/home" />} />
+              <Route path="/trends" element={<Trends />} />
+              <Route path="/explore" element={<Explore />} />
+              <Route path="/releases" element={<NewReleases />} />
+              <Route path="/recommendation" element={<Recommnedations />} />
+              <Route path="/likedsongs" element={<LikedSongs />} />
+              <Route path="/artists" element={<Artists />} />
+              <Route path="/artists/:id" element={<ArtistsDetails />} />
+              <Route path="/fav-artists" element={<FavouriteArtists />} />
+              <Route path="/fav-artists/:id" element={<ArtistsDetails />} />
+              <Route path="/playlists" element={<PlaylistSection />} />
+              <Route path="/playlists/:id" element={<PlaylistsDetails />} />
 
-                {/* Redirect Since Genre List is shown in Sidebar*/}
-                <Route path="/*" element={<Navigate replace to="/" />} />
-                <Route path="/genre/:genreName" element={<GenreContainer />} />
-                <Route path="/results" element={<SearchPage />} />
+              {/* Redirect Since Genre List is shown in Sidebar*/}
+              <Route path="/*" element={<Navigate replace to="/" />} />
+              <Route path="/genre/:genreName" element={<GenreContainer />} />
+              <Route path="/results" element={<SearchPage />} />
 
-                <Route path="/settings" element={<Settings />} />
-                {artistsDashboard && (
-                  <Route path="/upload" element={<Content />} />
-                )}
-              </Routes>
-            </ProtectedRoute>
+              <Route path="/settings" element={<Settings />} />
+              {artistsDashboard && (
+                <Route path="/upload" element={<Content />} />
+              )}
+            </Routes>
           </div>
 
           <div className="right-sidebar">
@@ -64,7 +74,7 @@ function App() {
           <MainPlayer />
         </div>
       </div>
-    </>
+    </ProtectedRoute>
   );
 }
 

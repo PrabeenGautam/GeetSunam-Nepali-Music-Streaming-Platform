@@ -16,6 +16,7 @@ import geetSunamStoreContext from "redux/storeContext";
 import playerStore from "react-mui-player/redux/store";
 import LoginPage from "pages/auth/Login.page";
 import SignUpPage from "pages/auth/SignUp.page";
+import Loading from "./components/Loading";
 import "./components/i18n";
 
 const ScrollToTop = ({ children }) => {
@@ -33,7 +34,7 @@ root.render(
       <GoogleOAuthProvider
         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ""}>
         <BrowserRouter basename={process.env.REACT_APP_BASE_URL || "/"}>
-          <Suspense fallback={"Loading..."}>
+          <Suspense fallback={<Loading />}>
             <ScrollToTop>
               <ToastContainer
                 position="top-right"
