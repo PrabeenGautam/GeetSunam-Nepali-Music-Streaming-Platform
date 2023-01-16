@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { loginUserThunk } from "redux/middlewares/loginUserThunk";
+import { signUpUserThunk } from "redux/middlewares/signupUserThunk";
 import { getUserData, isUserLogin, resetLoginData } from "utils/storage.utils";
 
 const initialState = {
@@ -28,6 +29,18 @@ export const userSlice = createSlice({
       state.loginStatus = false;
     },
     [loginUserThunk.pending]: (state) => {
+      state.userData = "";
+      state.loginStatus = false;
+    },
+    [signUpUserThunk.fulfilled]: (state, { payload }) => {
+      state.userData = payload?.data?.user;
+      state.loginStatus = true;
+    },
+    [signUpUserThunk.rejected]: (state, { payload }) => {
+      state.userData = "";
+      state.loginStatus = false;
+    },
+    [signUpUserThunk.pending]: (state) => {
       state.userData = "";
       state.loginStatus = false;
     },

@@ -1,6 +1,6 @@
 import { FaMusic } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { useRef } from "react";
@@ -9,16 +9,19 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 
 import userflow from "assets/images/landing/Userflow.gif";
-import useGSDispatch from "./../../redux/useGSDispatch";
-import { signUpUserThunk } from "./../../redux/middlewares/signupUserThunk";
+import useGSDispatch from "redux/useGSDispatch";
+import { signUpUserThunk } from "redux/middlewares/signupUserThunk";
+import useGSSelector from "redux/useGSSelector";
 
 function SignUpPage() {
   const gsDispatch = useGSDispatch();
+  const loginStatus = useGSSelector((state) => state.userState.loginStatus);
 
   const [passwordShown, setPasswordShow] = useState(false);
   const { t, i18n } = useTranslation("translation", { keyPrefix: "signUp" });
 
   const signInDivRef = useRef();
+  const navigate = useNavigate();
 
   const initialFormData = Object.freeze({
     email: "",
@@ -58,6 +61,12 @@ function SignUpPage() {
   const handleLanguage = (e) => {
     i18n.changeLanguage(e.target.value);
   };
+
+  useEffect(() => {
+    if (loginStatus) {
+      navigate("/home", { replace: false });
+    }
+  }, [loginStatus, navigate]);
 
   return (
     <div className="log-container">
@@ -136,7 +145,7 @@ function SignUpPage() {
                     <input
                       type={passwordShown ? "text" : "password"}
                       name="confirmPassword"
-                      id="conform-password"
+                      id="confirm-password"
                       placeholder="Confirm password"
                       onChange={handleChange}
                     />
