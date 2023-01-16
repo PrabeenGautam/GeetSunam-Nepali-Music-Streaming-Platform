@@ -11,8 +11,10 @@ import entranceGif from "assets/images/landing/MusicEntrance2.gif";
 
 import useGSDispatch from "redux/useGSDispatch";
 import useGSSelector from "redux/useGSSelector";
-import { loginUserThunk } from "redux/middlewares/loginUserThunk";
-import { googleLoginUserThunk } from "redux/middlewares/googleLoginUserThunk";
+import {
+  loginUserThunk,
+  googleLoginUserThunk,
+} from "redux/middlewares/loginUserThunk";
 
 function LoginPage() {
   const gsDispatch = useGSDispatch();
