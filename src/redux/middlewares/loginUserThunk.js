@@ -22,7 +22,7 @@ export const loginUserThunk = createAsyncThunk(
 );
 
 export const googleLoginUserThunk = createAsyncThunk(
-  "users/google-login",
+  "users/login",
   async ({ googleAccessToken }, thunkAPI) => {
     try {
       const response = await googleLoginApi({ googleAccessToken });
