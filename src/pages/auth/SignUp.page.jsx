@@ -5,12 +5,14 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { useRef } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
-import axios from "axios";
 import { useTranslation } from "react-i18next";
 
 import userflow from "assets/images/landing/Userflow.gif";
 import useGSDispatch from "redux/useGSDispatch";
-import { signUpUserThunk } from "redux/middlewares/signupUserThunk";
+import {
+  signUpUserThunk,
+  googleSignUpUserThunk,
+} from "redux/middlewares/signupUserThunk";
 import useGSSelector from "redux/useGSSelector";
 
 function SignUpPage() {
@@ -45,17 +47,14 @@ function SignUpPage() {
   };
 
   const handleGoogleLogin = useGoogleLogin({
-    //Give Access Token
-    onSuccess: async (response) => {
-      const res = await axios.get(
-        "https://www.googleapis.com/oauth2/v3/userinfo",
-        {
-          headers: { Authorization: `Bearer ${response.access_token}` },
-        }
+    onSuccess: (data) => {
+      gsDispatch(
+        googleSignUpUserThunk({
+          googleAccessToken: data.access_token,
+        })
       );
-
-      console.log(res.data);
     },
+    onError: (err) => console.log(err),
   });
 
   const handleLanguage = (e) => {

@@ -22,4 +22,17 @@ const signUpApi = async ({
   return result.data;
 };
 
-export { signUpApi };
+const googleSignUpApi = async ({ googleAccessToken }) => {
+  const result = await getApiResponse({
+    url: UserAuthConfig.GOOGLE_SIGNUP(),
+    method: "post",
+    data: {
+      googleAccessToken,
+    },
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
+
+export { signUpApi, googleSignUpApi };

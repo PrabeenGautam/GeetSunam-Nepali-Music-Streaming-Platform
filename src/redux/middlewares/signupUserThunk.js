@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { signUpApi } from "services/authApi/signup.api";
-import googleLoginApi from "services/authApi/googleLogin.api";
+import { signUpApi, googleSignUpApi } from "services/authApi/signup.api";
 import { setUserLogin } from "utils/storage.utils";
 
 export const signUpUserThunk = createAsyncThunk(
@@ -26,14 +25,13 @@ export const signUpUserThunk = createAsyncThunk(
   }
 );
 
-export const googleLoginUserThunk = createAsyncThunk(
+export const googleSignUpUserThunk = createAsyncThunk(
   "users/signup",
   async ({ googleAccessToken }, thunkAPI) => {
     try {
-      const response = await googleLoginApi({ googleAccessToken });
+      const response = await googleSignUpApi({ googleAccessToken });
       if (response) {
         response.isRememberMe = true;
-
         setUserLogin(response);
         return response;
       } else {
