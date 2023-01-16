@@ -17,6 +17,7 @@
     "email": "इमेल",
     "password": "पासवर्ड",
     "signUp": "साइनअप",
+    "confirmPassword": "पासवर्ड सुनिश्चित गर्नुहोस",
     "googleSignUp": "Google मार्फत साइनअप गर्नुहोस "
   }
 }

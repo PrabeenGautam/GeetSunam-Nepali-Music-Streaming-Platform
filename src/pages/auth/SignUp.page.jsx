@@ -9,17 +9,22 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 
 import userflow from "assets/images/landing/Userflow.gif";
+import useGSDispatch from "./../../redux/useGSDispatch";
+import { signUpUserThunk } from "./../../redux/middlewares/signupUserThunk";
 
 function SignUpPage() {
+  const gsDispatch = useGSDispatch();
+
   const [passwordShown, setPasswordShow] = useState(false);
   const { t, i18n } = useTranslation("translation", { keyPrefix: "signUp" });
 
   const signInDivRef = useRef();
-  const navigate = useNavigate();
+
   const initialFormData = Object.freeze({
     email: "",
     password: "",
     fullname: "",
+    confirmPassword: "",
   });
   const [formData, setFormData] = useState(initialFormData);
 
@@ -32,10 +37,8 @@ function SignUpPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password, fullname } = formData;
-    const user = { email, password, fullname };
-    console.log(user);
-    navigate("/home");
+    const { email, password, fullname, confirmPassword } = formData;
+    gsDispatch(signUpUserThunk({ email, password, fullname, confirmPassword }));
   };
 
   const handleGoogleLogin = useGoogleLogin({
@@ -114,6 +117,27 @@ function SignUpPage() {
                       id="password"
                       placeholder="Enter password"
                       autoComplete="new-password"
+                      onChange={handleChange}
+                    />
+                    <div
+                      className="eye-btn"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setPasswordShow(!passwordShown);
+                      }}>
+                      {!passwordShown ? <FiEye /> : <FiEyeOff />}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="input-field password">
+                  <label>{t("confirmPassword")}</label>
+                  <div className="input-icon-container">
+                    <input
+                      type={passwordShown ? "text" : "password"}
+                      name="confirmPassword"
+                      id="conform-password"
+                      placeholder="Confirm password"
                       onChange={handleChange}
                     />
                     <div

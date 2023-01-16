@@ -1,13 +1,20 @@
 import { UserAuthConfig } from "services/api.routes";
 import getApiResponse from "services/axios";
 
-const signUpApi = async ({ email = "", password = "" }) => {
+const signUpApi = async ({
+  email = "",
+  password = "",
+  fullname = "",
+  confirmPassword = "",
+}) => {
   const result = await getApiResponse({
     url: UserAuthConfig.SIGN_UP(),
     method: "post",
     data: {
       email,
       password,
+      fullname,
+      confirmPassword,
     },
   });
 
@@ -15,4 +22,4 @@ const signUpApi = async ({ email = "", password = "" }) => {
   return result.data;
 };
 
-export default signUpApi;
+export { signUpApi };

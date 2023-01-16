@@ -16,6 +16,7 @@
     "fullName": "Full Name",
     "email": "Email",
     "password": "Password",
+    "confirmPassword": "Confirm Password",
     "googleSignUp": "Sign Up with Google",
     "signUp": "Sign Up Here"
   }
