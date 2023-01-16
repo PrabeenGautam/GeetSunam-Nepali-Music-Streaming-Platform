@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { useRef } from "react";
-import { useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
-import jwtDecode from "jwt-decode";
+import { useGoogleLogin } from "@react-oauth/google";
 import { useTranslation } from "react-i18next";
 
 import entranceGif from "assets/images/landing/MusicEntrance2.gif";
@@ -13,6 +12,7 @@ import entranceGif from "assets/images/landing/MusicEntrance2.gif";
 import useGSDispatch from "redux/useGSDispatch";
 import useGSSelector from "redux/useGSSelector";
 import { loginUserThunk } from "redux/middlewares/loginUserThunk";
+import { googleLoginUserThunk } from "redux/middlewares/googleLoginUserThunk";
 
 function LoginPage() {
   const gsDispatch = useGSDispatch();
@@ -32,16 +32,6 @@ function LoginPage() {
     password: "",
   });
   const [formData, setFormData] = useState(initialFormData);
-
-  useGoogleOneTapLogin({
-    onSuccess: (credentialResponse) => {
-      const decode = jwtDecode(credentialResponse.credential);
-      console.log(decode);
-    },
-    onError: () => {
-      console.log("Login Failed");
-    },
-  });
 
   const handleChange = (e) => {
     setFormData({
@@ -64,8 +54,14 @@ function LoginPage() {
   };
 
   const handleGoogleLogin = useGoogleLogin({
-    //Give Access Token
-    onSuccess: (tokenResponse) => console.log(tokenResponse),
+    onSuccess: (data) => {
+      gsDispatch(
+        googleLoginUserThunk({
+          googleAccessToken: data.access_token,
+        })
+      );
+    },
+    onError: (err) => console.log(err),
   });
 
   const handleLanguage = (e) => {
