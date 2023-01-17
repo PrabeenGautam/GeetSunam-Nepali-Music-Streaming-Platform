@@ -20,8 +20,6 @@ const getApiResponse = async ({
       data,
       headers: myHeader,
       params: {
-        pagination: "false",
-        limit: "",
         ...otherParams,
       },
       accept: "*/*",
@@ -41,8 +39,7 @@ const getApiResponse = async ({
         });
       }
     }
-      return result;
-      
+    return result;
   } catch (error) {
     toast.error(
       error?.response?.data.error ||

@@ -1,12 +1,26 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+
 import useGSSelector from "redux/useGSSelector";
 
 import { SearchBar } from "components/Featured";
-import genreMenu from "./genreMenu.data";
+import { getGenresApi } from "services/musicApi/getGenres.api";
+import { useState } from "react";
+import Loading from "components/Loading";
 
 function SidebarRight() {
   const { userData } = useGSSelector((state) => state.userState);
-  return (
+  const [genres, setGenre] = useState(null);
+
+  useEffect(() => {
+    const fetchGenre = async () => {
+      const result = await getGenresApi();
+      setGenre(result.data.genres);
+    };
+
+    fetchGenre();
+  }, []);
+  return genres ? (
     <div className="sidebar-right">
       <Link
         to="/settings"
@@ -23,23 +37,28 @@ function SidebarRight() {
       <div className="custom-searchbar">
         <SearchBar />
       </div>
-
-      <div className="sidebar-title">Genre</div>
-      <div className="grid grid-column-3 gap-sm">
-        {genreMenu.map((value, index) => {
-          return (
-            <div className="genre" key={index}>
-              <Link to={value.link}>
-                <div className="genre-image">
-                  <img src={value.image} alt={value.alt} />
+      {genres && (
+        <>
+          <div className="sidebar-title">Genre</div>
+          <div className="grid grid-column-3 gap-sm">
+            {genres.map((value) => {
+              return (
+                <div className="genre" key={value._id}>
+                  <Link to={`genre/${value._id}`}>
+                    <div className="genre-image">
+                      <img src={value.image} alt={"genre"} />
+                    </div>
+                    <div className="genre-name">{value.name}</div>
+                  </Link>
                 </div>
-                <div className="genre-name">{value.name}</div>
-              </Link>
-            </div>
-          );
-        })}
-      </div>
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
+  ) : (
+    <Loading />
   );
 }
 

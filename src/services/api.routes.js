@@ -2,9 +2,15 @@
 
 export const GenreConfig = {
   KEY: "USER",
-  GET_GENRES: () => "/api/get-genres",
-  ADD_GENRES: () => "/api/add-genres",
-  DELETE_GENRE: () => "/api/delete-genre",
+  GET_GENRES: () => "/genre",
+  GET_GENRES_BY_ID: (id) => `/genre/${id}`,
+  ADD_GENRES: () => "/genre",
+  DELETE_GENRE: () => "/genre",
+};
+
+export const SongConfig = {
+  KEY: "SONG",
+  GET_SONGS: "/songs",
 };
 
 export const UserAuthConfig = {

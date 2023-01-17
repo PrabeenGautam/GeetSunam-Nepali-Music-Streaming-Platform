@@ -56,7 +56,7 @@ function App() {
 
               {/* Redirect Since Genre List is shown in Sidebar*/}
               <Route path="/*" element={<Navigate replace to="/" />} />
-              <Route path="/genre/:genreName" element={<GenreContainer />} />
+              <Route path="/genre/:id" element={<GenreContainer />} />
               <Route path="/results" element={<SearchPage />} />
 
               <Route path="/settings" element={<Settings />} />

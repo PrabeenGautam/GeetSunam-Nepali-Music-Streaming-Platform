@@ -11,4 +11,14 @@ const getGenresApi = async () => {
   return result.data;
 };
 
-export default getGenresApi;
+const getGenresByID = async (id) => {
+  const result = await getApiResponse({
+    url: GenreConfig.GET_GENRES_BY_ID(id),
+    method: "get",
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
+
+export { getGenresApi, getGenresByID };

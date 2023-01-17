@@ -1,30 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { musicList } from "assets/data/musicList";
-import RecentPlayed from "components/SongsList";
-import { genreMenu } from "components/Sidebar";
+import getSongsByGenre from "services/musicApi/getSongsByGenre.api";
+import Loading from "components/Loading";
+import { getGenresByID } from "services/musicApi/getGenres.api";
 
 function GenreContainer() {
-  const { genreName } = useParams();
-  const indexOfGenre = genreMenu.findIndex(
-    (value) => value.name.toLowerCase() === genreName
-  );
+  const { id: genreID } = useParams();
 
-  const musicData = musicList.filter(
-    (value) => value.genre.toLowerCase() === genreName
-  );
+  const [songs, setGenreSongs] = useState(null);
+  const [genre, setGenre] = useState(null);
 
-  return (
+  useEffect(() => {
+    const fetchGenreSong = async () => {
+      const result = await getSongsByGenre(genreID);
+      const genreResult = await getGenresByID(genreID);
+      setGenreSongs(result.data.songs);
+      setGenre(genreResult.data.genre);
+    };
+
+    fetchGenreSong();
+  }, [genreID]);
+
+  return songs && genre ? (
     <>
       <div className="playlist-container">
         <section className="playlist">
           <div className="artists-images">
-            <img src={genreMenu[indexOfGenre].image} alt="genre" />
+            <img src={genre.image} alt="genre" />
           </div>
           <div className="playlist-details">
             <div>Genre</div>
-            <div>{genreName.toUpperCase()}</div>
+            <div>{genre.name}</div>
             <div className="description">
               {"A collection of music classified by genre "}
               <span
@@ -33,26 +40,26 @@ function GenreContainer() {
                   color: "white",
                   textTransform: "capitalize",
                 }}>
-                {genreName}
+                {genre.name}
               </span>
             </div>
             <div>
               <span>GeetSunam</span>
               <span style={{ fontWeight: "bold" }}>.</span>
               <span>
-                {musicData.length === 0
-                  ? "No Songs"
-                  : `${musicData.length} Songs`}
+                {songs.length === 0 ? "No Songs" : `${songs.length} Songs`}
               </span>
             </div>
           </div>
         </section>
 
         <section className="padding">
-          <RecentPlayed data={musicData} />
+          {/* <RecentPlayed data={musicData} /> */}
         </section>
       </div>
     </>
+  ) : (
+    <Loading />
   );
 }
 
