@@ -1,5 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getPlaylistsAPI } from "services/playlistApi/getPlaylist.api";
+import {
+  getPlaylistByID,
+  getPlaylistsAPI,
+} from "services/playlistApi/getPlaylist.api";
 
 export const getPlaylistThunk = createAsyncThunk(
   "playlist",
@@ -15,10 +18,10 @@ export const getPlaylistThunk = createAsyncThunk(
 );
 
 export const getPlaylistByIDThunk = createAsyncThunk(
-  "playlist",
-  async (_, thunkAPI) => {
+  "playlist/id",
+  async (id, thunkAPI) => {
     try {
-      const response = await getPlaylistsAPI();
+      const response = await getPlaylistByID(id);
       if (response) return response;
       else return thunkAPI.rejectWithValue(response);
     } catch (error) {

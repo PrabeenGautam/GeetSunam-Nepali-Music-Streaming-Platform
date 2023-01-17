@@ -42,10 +42,12 @@ const deletePlaylistAPI = async (id) => {
   return result.data;
 };
 
-const updatePlaylistAPI = async ({ title, description, coverArt }, id) => {
+const updatePlaylistAPI = async (formData, id) => {
   const result = await getApiResponse({
     url: PlaylistConfig.UPDATE_PLAYLIST(id),
     method: "patch",
+    data: formData,
+    type: "multipart/form-data",
   });
 
   if (result.APIFailed) return null;

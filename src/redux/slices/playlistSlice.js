@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getPlaylistThunk } from "redux/middlewares/playlistThunk";
+import {
+  getPlaylistThunk,
+  getPlaylistByIDThunk,
+} from "redux/middlewares/playlistThunk";
 
 const initialState = {
   playlists: [],
+  playlistByID: null,
 };
 
 const playlistSlice = createSlice({
@@ -18,6 +22,15 @@ const playlistSlice = createSlice({
     },
     [getPlaylistThunk.pending]: (state) => {
       state.playlists = "";
+    },
+    [getPlaylistByIDThunk.fulfilled]: (state, { payload }) => {
+      state.playlistByID = payload?.data?.playlist;
+    },
+    [getPlaylistByIDThunk.rejected]: (state, { payload }) => {
+      state.playlistByID = null;
+    },
+    [getPlaylistByIDThunk.pending]: (state) => {
+      state.playlistByID = null;
     },
   },
 });

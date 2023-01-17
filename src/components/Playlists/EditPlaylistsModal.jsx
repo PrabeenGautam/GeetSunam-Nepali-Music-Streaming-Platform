@@ -4,9 +4,18 @@ import { createPortal } from "react-dom";
 
 import Placeholder from "assets/images/genre/placeholder-image.jpg";
 import { Btn } from "../StyledUI";
+import { updatePlaylistAPI } from "services/playlistApi/getPlaylist.api";
+import useGSSelector from "redux/useGSSelector";
+import useGSDispatch from "redux/useGSDispatch";
+import { getPlaylistByIDThunk } from "redux/middlewares/playlistThunk";
 
 function EditPlaylistsModelOverlay({ setClick }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);
+  const [uploadedImage, setUploadedImage] = useState("");
+  const dispatch = useGSDispatch();
+
+  const [formData, setFormData] = useState({});
+  const id = useGSSelector((state) => state.playlistState.playlistByID._id);
 
   const getBase64 = (file, callback) => {
     let reader = new FileReader();
@@ -21,10 +30,33 @@ function EditPlaylistsModelOverlay({ setClick }) {
 
   const imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
+      setUploadedImage(e.target.files[0]);
       getBase64(e.target.files[0], (result) => {
         setSelectedImage(result);
       });
     }
+  };
+
+  const handleFormData = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const postData = new FormData();
+    if (formData.title) postData.append("title", formData.title);
+    if (formData.description)
+      postData.append("description", formData.description);
+    if (uploadedImage) postData.append("coverArt", uploadedImage);
+
+    updatePlaylistAPI(postData, id).then(() => {
+      setClick(false);
+      dispatch(getPlaylistByIDThunk(id));
+    });
   };
 
   return (
@@ -44,7 +76,7 @@ function EditPlaylistsModelOverlay({ setClick }) {
             />
           </div>
           <div className="edit-section">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="input-field ">
                 <div className="playlists-image">
                   <img
@@ -64,13 +96,15 @@ function EditPlaylistsModelOverlay({ setClick }) {
                 <div className="form">
                   <input
                     type="text"
-                    name="playlistName"
+                    name="title"
                     id="playlist-name"
                     placeholder="Enter a name"
+                    onChange={handleFormData}
                   />
                   <textarea
-                    name="playlistDescription"
+                    name="description"
                     id="playlist-description"
+                    onChange={handleFormData}
                     placeholder="Enter Description (Optional)"></textarea>
                 </div>
               </div>
