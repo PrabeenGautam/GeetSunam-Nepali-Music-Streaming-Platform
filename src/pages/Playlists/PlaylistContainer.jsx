@@ -1,25 +1,21 @@
-import PlaylistsPlaceholder from "assets/images/playlists.png";
-
 function PlaylistsContainer({ data, onClickPlaylists }) {
   return (
     <section
       className="fav-artists-container"
-      style={{ padding: "1rem 1.5rem" }}
-    >
-      {data.map((value, index) => {
+      style={{ padding: "1rem 1.5rem" }}>
+      {data.map((value) => {
         return (
           <div
             className="artists"
-            title={value}
-            key={index}
-            onClick={() => onClickPlaylists(index)}
-          >
+            title={value.title}
+            key={value._id}
+            onClick={() => onClickPlaylists(value._id)}>
             <img
-              src={PlaylistsPlaceholder}
+              src={value.coverArt}
               alt="playlists"
               className="thumbnail-new"
             />
-            <div className="song-artists">{`Playlists ${index + 1}`}</div>
+            <div className="song-artists">{value.title}</div>
           </div>
         );
       })}

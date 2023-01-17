@@ -726,6 +726,7 @@ h2:not(.h2) {
   padding: 20px;
   border-radius: 5px;
   max-height: 13rem;
+  max-width: 175px;
   position: relative;
   cursor: pointer;
   border-radius: 5px;
@@ -775,7 +776,7 @@ h2:not(.h2) {
   background-color: #222831;
 }
 
-.playlist .playlist-images {
+.playlist .playlist-images.custom {
   width: 15rem;
   height: 15rem;
   align-self: flex-end;
@@ -804,12 +805,17 @@ h2:not(.h2) {
   height: 5rem;
 }
 
-.playlist .playlist-images *:not(img) {
+.playlist .playlist-images.custom *:not(img) {
   fill: #f6f6f6;
   stroke: #f6f6f6;
 }
 
-.playlist .playlist-images img {
+.playlist .playlist-images:not(.custom) img {
+  width: 16rem;
+  height: 16rem;
+}
+
+.playlist .playlist-images.custom img {
   filter: brightness(0) invert(1);
 }
 

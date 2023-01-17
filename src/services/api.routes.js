@@ -8,6 +8,18 @@ export const GenreConfig = {
   DELETE_GENRE: () => "/genre",
 };
 
+export const PlaylistConfig = {
+  KEY: "PLAYLIST",
+  GET_PLAYLISTS: () => "/playlists",
+  GET_PLAYLISTS_CURRENT_USER: () => "/playlists/current-user",
+  CREATE_PLAYLISTS: () => "/playlists/create",
+  GET_PLAYLIST_BY_ID: (id) => `/playlists/${id}`,
+  DELETE_PLAYLIST: (id) => `/playlists/${id}`,
+  UPDATE_PLAYLIST: (id) => `/playlists/${id}`,
+  ADD_SONGS_TO_PLAYLIST: (id) => `/playlists/add-songs/${id}`,
+  REMOVE_SONG_FROM_PLAYLIST: (id) => `/playlists/remove-songs/${id}`,
+};
+
 export const SongConfig = {
   KEY: "SONG",
   GET_SONGS: "/songs",

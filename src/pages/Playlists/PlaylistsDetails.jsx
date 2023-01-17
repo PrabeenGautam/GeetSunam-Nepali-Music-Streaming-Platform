@@ -1,15 +1,32 @@
-import RecentPlayed from "components/SongsList";
+import { useParams } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
+
 import Playlist from "./Playlist";
+import RecentPlayed from "components/SongsList";
+import { getPlaylistByID } from "services/playlistApi/getPlaylist.api";
+import Loading from "components/Loading";
 
 function PlaylistsDetails() {
   const playlistName = `Playlist`;
   const data = false;
 
-  return (
+  const { id: playlistID } = useParams();
+  const [playlist, setPlaylist] = useState(null);
+
+  const fetchData = useCallback(async () => {
+    const response = await getPlaylistByID(playlistID);
+    if (response) setPlaylist(response.data.playlist);
+  }, [playlistID]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return playlist ? (
     <>
-      <Playlist playlistName={playlistName} data={data} />
+      <Playlist playlistName={playlistName} playlist={playlist} />
       <div>
-        {data && (
+        {playlist.songs.length > 0 && (
           <>
             <section
               className="search-music padding"
@@ -30,6 +47,8 @@ function PlaylistsDetails() {
         )}
       </div>
     </>
+  ) : (
+    <Loading />
   );
 }
 

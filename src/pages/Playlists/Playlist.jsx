@@ -1,18 +1,19 @@
 import { useState } from "react";
-import { FiHeart, FiMic, FiSearch } from "react-icons/fi";
+import { FiMic, FiSearch } from "react-icons/fi";
 import { MdDeleteOutline, MdEditNote } from "react-icons/md";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import DeleteModel from "components/Playlists/DeleteModel";
 import EditPlaylistsModel from "components/Playlists/EditPlaylistsModal";
 import RecentPlayed from "components/SongsList";
+import { deletePlaylistAPI } from "services/playlistApi/getPlaylist.api";
 
-function Playlist({ playlistName = "No Name", data }) {
+function Playlist({ playlistName = "No Name", playlist }) {
   const isLikedSongs = playlistName === "Liked Songs";
+  const navigate = useNavigate();
   const [click, setClick] = useState(false);
   const [deleteClick, setDeleteClick] = useState(false);
   const [showData, setShowData] = useState(false);
-  const { id } = useParams();
 
   const onSubmitValue = (e) => {
     e.preventDefault();
@@ -21,26 +22,39 @@ function Playlist({ playlistName = "No Name", data }) {
     }
   };
 
+  const deletePlaylists = () => {
+    deletePlaylistAPI(playlist._id).then(() => {
+      navigate("/playlists");
+    });
+  };
+
   return (
     <div className="playlist-container">
       {click && <EditPlaylistsModel setClick={setClick} />}
       {deleteClick && (
-        <DeleteModel setClick={setDeleteClick} data={playlistName} id={id} />
+        <DeleteModel
+          setClick={setDeleteClick}
+          data={playlist.title}
+          deleteHandler={deletePlaylists}
+        />
       )}
       <section className="playlist">
         <div className="playlist-images">
-          <FiHeart />
+          <img src={playlist.coverArt} alt="playlist" />
         </div>
+
         <div className="playlist-details">
           <div>Playlist</div>
-          <div>{playlistName}</div>
+          <div>{playlist.title}</div>
           {!isLikedSongs && (
-            <div className="description">{`This is ${playlistName}`}</div>
+            <div className="description">{playlist.description}</div>
           )}
           <div>
-            <span>PrabinGautam</span>
+            <span>{playlist.createdBy.fullname}</span>
             <span style={{ fontWeight: "bold" }}>.</span>
-            <span>12 songs</span>
+            <span>
+              {playlist.songs.length === 0 ? "No" : playlist.songs.length} Songs
+            </span>
           </div>
         </div>
         {!isLikedSongs && (
@@ -75,7 +89,7 @@ function Playlist({ playlistName = "No Name", data }) {
       <section
         className="playlist-songs padding"
         style={{ borderBottom: "1px solid rgba(0,0,0,0.8)" }}>
-        {data ? (
+        {playlist.songs.length > 0 ? (
           <RecentPlayed removeFromPlaylist={true} />
         ) : (
           <div>

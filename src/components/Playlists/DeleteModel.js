@@ -2,7 +2,12 @@ import { Btn } from "components/StyledUI";
 import { createPortal } from "react-dom";
 import { MdClose } from "react-icons/md";
 
-function DeleteModelOverlay({ setClick, data, modalMessage = "Delete" }) {
+function DeleteModelOverlay({
+  setClick,
+  data,
+  modalMessage = "Delete",
+  deleteHandler,
+}) {
   return (
     <>
       <div className="model">
@@ -13,7 +18,14 @@ function DeleteModelOverlay({ setClick, data, modalMessage = "Delete" }) {
           }}></div>
         <div
           className="container"
-          style={{ minWidth: "24rem", maxWidth: "25rem", zIndex: 9999 }}>
+          style={{
+            minWidth: "24rem",
+            minHeight: "12rem",
+            zIndex: 9999,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}>
           <div className="header">
             <h2 className="h2">{`${modalMessage} ${data} ?`}</h2>
             <MdClose
@@ -27,12 +39,16 @@ function DeleteModelOverlay({ setClick, data, modalMessage = "Delete" }) {
             style={{
               marginTop: 30,
               display: "flex",
-              justifyContent: "space-evenly",
+              justifyContent: "flex-end",
             }}>
-            <Btn style={{ color: "#333" }} onClick={() => setClick(false)}>
+            <Btn
+              style={{ color: "#333", marginRight: 10 }}
+              onClick={() => setClick(false)}>
               Cancel
             </Btn>
-            <button className="btn btn-play">Delete</button>
+            <button className="btn btn-play" onClick={deleteHandler}>
+              Delete
+            </button>
           </div>
         </div>
       </div>
@@ -40,13 +56,18 @@ function DeleteModelOverlay({ setClick, data, modalMessage = "Delete" }) {
   );
 }
 
-function DeleteModel({ setClick, data, id, modalMessage = "Delete" }) {
-  console.log(id);
+function DeleteModel({
+  setClick,
+  data,
+  modalMessage = "Delete",
+  deleteHandler,
+}) {
   return createPortal(
     <DeleteModelOverlay
       setClick={setClick}
       data={data}
       modalMessage={modalMessage}
+      deleteHandler={deleteHandler}
     />,
     document.getElementById("modal")
   );
