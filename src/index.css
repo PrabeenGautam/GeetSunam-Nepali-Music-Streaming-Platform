@@ -142,11 +142,16 @@ body {
   position: fixed;
   top: 0;
   width: 14.5rem;
-}
-
-.left-sidebar:hover {
   overflow-y: scroll;
   width: calc(14.5rem + 15px);
+}
+
+.left-sidebar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.left-sidebar:hover::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
 }
 
 .right-sidebar {
