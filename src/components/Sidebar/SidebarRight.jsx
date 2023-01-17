@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import useGSSelector from "redux/useGSSelector";
 
 import { SearchBar } from "components/Featured";
 import genreMenu from "./genreMenu.data";
-import ProfileImage from "assets/images/pas075bct029.jpg";
 
 function SidebarRight() {
+  const { userData } = useGSSelector((state) => state.userState);
   return (
     <div className="sidebar-right">
       <Link
@@ -14,10 +15,9 @@ function SidebarRight() {
           marginTop: 20,
           borderBottom: "1px solid rgba(255,255,255,0.4",
           paddingBottom: 20,
-        }}
-      >
-        <img src={ProfileImage} alt="" />
-        <div className="userName">PrabinGautam</div>
+        }}>
+        <img src={userData.profileImage} alt="" />
+        <div className="userName">{userData.fullname}</div>
       </Link>
 
       <div className="custom-searchbar">
