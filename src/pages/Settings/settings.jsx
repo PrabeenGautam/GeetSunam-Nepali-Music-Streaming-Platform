@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
-
-import CustomBreadcrumbs from "components/Breadcrumbs";
-import EditUserProfile from "components/Settings/EditUserProfile";
-import { Btn } from "components/StyledUI";
 import { useTranslation } from "react-i18next";
+
+import CustomBreadcrumbs from "@/components/Breadcrumbs";
+import EditUserProfile from "@/components/Settings/EditUserProfile";
+import { Btn } from "@/components/StyledUI";
 
 function Settings() {
   const [click, setClick] = useState(false);

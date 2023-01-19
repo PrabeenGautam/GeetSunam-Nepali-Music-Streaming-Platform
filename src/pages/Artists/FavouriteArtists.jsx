@@ -1,8 +1,9 @@
 import React from "react";
-import artists from "assets/images/music-artists.png";
-import { featuredArtists } from "components/Featured/featureArtists.data";
-import ArtistsContainer from "components/Artists/ArtistsContainer";
 import { useNavigate } from "react-router-dom";
+
+import artists from "@/assets/images/music-artists.png";
+import { featuredArtists } from "@/components/Featured/featureArtists.data";
+import ArtistsContainer from "@/components/Artists/ArtistsContainer";
 
 function FavouriteArtists() {
   const navigate = useNavigate();

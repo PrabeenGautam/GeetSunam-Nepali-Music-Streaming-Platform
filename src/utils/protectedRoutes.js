@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { isUserLogin, getUserData } from "utils/storage.utils";
+import { isUserLogin, getUserData } from "@/utils/storage.utils";
 
 const ProtectedRoute = ({ children, setDashBoard }) => {
   const isLoggedIn = isUserLogin();

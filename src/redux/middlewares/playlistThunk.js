@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getPlaylistByID,
   getPlaylistsAPI,
-} from "services/playlistApi/getPlaylist.api";
+} from "@/services/playlistApi/getPlaylist.api";
 
 export const getPlaylistThunk = createAsyncThunk(
   "playlist",

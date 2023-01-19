@@ -1,7 +1,7 @@
-import { Btn } from "components/StyledUI";
 import { createPortal } from "react-dom";
 import { MdClose } from "react-icons/md";
 
+import { Btn } from "@/components/StyledUI";
 function DeleteModelOverlay({
   setClick,
   data,

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import { featuredArtists } from "components/Featured/featureArtists.data";
-import AutoMarquee from "components/Slider/AutoMarquee";
+import { featuredArtists } from "@/components/Featured/featureArtists.data";
+import AutoMarquee from "@/components/Slider/AutoMarquee";
 
 function FeaturedArtists({ data }) {
   const artistsData = featuredArtists.find((value) => value.id === data.id);

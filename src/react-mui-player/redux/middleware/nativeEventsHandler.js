@@ -1,5 +1,5 @@
 import { Track } from "../types";
-import actionCreators from "../actionCreators.js";
+import actionCreators from "../actionCreators";
 import { CustomNativeEventTypes } from "../types";
 
 export default function eventHandler(store) {

@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import useGSSelector from "redux/useGSSelector";
+import useGSSelector from "@/redux/useGSSelector";
 
-import { SearchBar } from "components/Featured";
-import { getGenresApi } from "services/musicApi/getGenres.api";
-import { useState } from "react";
-import Loading from "components/Loading";
+import { SearchBar } from "@/components/Featured";
+import { getGenresApi } from "@/services/musicApi/getGenres.api";
+import Loading from "@/components/Loading";
 
 function SidebarRight() {
   const { userData } = useGSSelector((state) => state.userState);

@@ -1,9 +1,9 @@
 import React from "react";
 // import { Provider } from "react-redux";
 
-import PlayerRoot from "./components/Player.js";
-import { Track } from "./redux/types.js";
-import PlayerInterface from "./interface.js";
+import PlayerRoot from "./components/Player";
+import { Track } from "./redux/types";
+import PlayerInterface from "./interface";
 //import store from "./redux/store.js";
 
 /**

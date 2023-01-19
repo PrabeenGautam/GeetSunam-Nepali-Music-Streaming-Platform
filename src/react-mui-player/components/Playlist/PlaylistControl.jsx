@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import actionCreators from "../../redux/actionCreators.js";
+import actionCreators from "../../redux/actionCreators";
 
 import {
   ShuffleRounded,
@@ -14,7 +14,7 @@ import {
 import { Popover, Collapse, Box, ToggleButton } from "@mui/material/";
 import styled from "@mui/material/styles/styled";
 
-import Playlist from "./Playlist.js";
+import Playlist from "./Playlist.jsx";
 
 import { RepeatMode } from "../../redux/types";
 

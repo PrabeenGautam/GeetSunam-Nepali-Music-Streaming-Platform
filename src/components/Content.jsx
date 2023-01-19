@@ -6,9 +6,11 @@ import Featured from "./Featured/Featured";
 import RecentPlayed from "./SongsList";
 import RecentlyPlayedSlider from "./Slider/RecentlyPlayedSlider";
 import ArtistsSlider from "./Slider/ArtistsSlider";
-import { musicList } from "assets/data/musicList";
+import { musicList } from "@/assets/data/musicList";
 import CustomBreadcrumbs from "./Breadcrumbs";
 import { featuredArtists } from "./Featured/featureArtists.data";
+import PlaySong from "./Player/PlaySong";
+import AutoMarquee from "./Slider/AutoMarquee";
 
 function Content() {
   const featuredSongs = musicList.filter(
@@ -17,6 +19,18 @@ function Content() {
   const releaseSongs = musicList.slice(0, 10);
   const artists = featuredArtists.slice(0, 10);
   const recentSongs = musicList.slice(0, 6);
+
+  /* Temporary  */
+  const trackDetails = {
+    ID: 1,
+    title: "Ko Hola Tyo",
+    coverArt:
+      "http://127.0.0.1:8000/imgs/songs/song-Pop-Songs-1673354919879.png",
+    artists: "Sinil GIri (Test)",
+    source: "http://127.0.0.1:8000/api/songs/stream/63c7e2f71f3cfc4e38047e30",
+    isFavourite: false,
+    isFeatured: true,
+  };
 
   return (
     <div className="content-container">
@@ -35,6 +49,35 @@ function Content() {
 
         <div className="content-section">
           <RecentlyPlayedSlider musicList={releaseSongs} />
+        </div>
+      </div>
+
+      <div className="main-section">
+        <div className="heading">
+          <div className="subheading">
+            <span>testing Songs API (temporary)</span>
+          </div>
+        </div>
+
+        <div className="content-section">
+          <PlaySong trackDetails={trackDetails}>
+            <div className="music-container">
+              <div className="play-icon-container">
+                <img
+                  src={trackDetails.coverArt}
+                  alt="thumbnail"
+                  className="thumbnail-new"
+                />
+
+                <span className="play-icon">
+                  <BiPlay />
+                </span>
+              </div>
+
+              <AutoMarquee className={"song-name"} value={trackDetails.title} />
+              <div className="song-artists">{"Testing"}</div>
+            </div>
+          </PlaySong>
         </div>
       </div>
 

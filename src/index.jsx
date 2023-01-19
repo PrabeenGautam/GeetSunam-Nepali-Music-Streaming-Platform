@@ -5,19 +5,19 @@ import { Provider } from "react-redux";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Flip, ToastContainer } from "react-toastify";
 
-import App from "App";
-import "./index.css";
-import "styles/common.css";
-import "styles/keyframes.css";
+import App from "@/App";
+import "@/index.css";
+import "@/styles/common.css";
+import "@/styles/keyframes.css";
 import "react-toastify/dist/ReactToastify.css";
 
-import geetSunamStore from "redux/store";
-import geetSunamStoreContext from "redux/storeContext";
-import playerStore from "react-mui-player/redux/store";
-import LoginPage from "pages/auth/Login.page";
-import SignUpPage from "pages/auth/SignUp.page";
-import Loading from "./components/Loading";
-import "./components/i18n";
+import geetSunamStore from "@/redux/store";
+import geetSunamStoreContext from "@/redux/storeContext";
+import playerStore from "@/react-mui-player/redux/store";
+import LoginPage from "@/pages/auth/Login.page";
+import SignUpPage from "@/pages/auth/SignUp.page";
+import Loading from "@/components/Loading";
+import "@/components/i18n";
 
 const ScrollToTop = ({ children }) => {
   const location = useLocation();
@@ -32,8 +32,8 @@ root.render(
   <Provider store={playerStore}>
     <Provider store={geetSunamStore} context={geetSunamStoreContext}>
       <GoogleOAuthProvider
-        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ""}>
-        <BrowserRouter basename={process.env.REACT_APP_BASE_URL || "/"}>
+        clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || ""}>
+        <BrowserRouter basename={import.meta.env.VITE_BASE_URL || "/"}>
           <Suspense fallback={<Loading />}>
             <ScrollToTop>
               <ToastContainer

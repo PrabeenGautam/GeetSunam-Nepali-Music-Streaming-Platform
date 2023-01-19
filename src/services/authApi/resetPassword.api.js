@@ -1,5 +1,5 @@
-import { UserAuthConfig } from "services/api.routes";
-import getApiResponse from "services/axios";
+import { UserAuthConfig } from "@/services/api.routes";
+import getApiResponse from "@/services/axios";
 
 const resetPasswordApi = async (token = "") => {
   const result = await getApiResponse({

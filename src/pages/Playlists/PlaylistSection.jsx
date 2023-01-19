@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-import PlaylistsCover from "assets/images/playlists-cover.png";
+import PlaylistsCover from "@/assets/images/playlists-cover.png";
 import PlaylistsContainer from "./PlaylistContainer";
-import { Btn } from "components/StyledUI";
-import { createPlaylistsAPI } from "services/playlistApi/getPlaylist.api";
-import Loading from "components/Loading";
-import useGSSelector from "redux/useGSSelector";
-import useGSDispatch from "redux/useGSDispatch";
-import { getPlaylistThunk } from "redux/middlewares/playlistThunk";
+import { Btn } from "@/components/StyledUI";
+import { createPlaylistsAPI } from "@/services/playlistApi/getPlaylist.api";
+import Loading from "@/components/Loading";
+import useGSSelector from "@/redux/useGSSelector";
+import useGSDispatch from "@/redux/useGSDispatch";
+import { getPlaylistThunk } from "@/redux/middlewares/playlistThunk";
 
 function PlaylistSection() {
   const navigate = useNavigate();

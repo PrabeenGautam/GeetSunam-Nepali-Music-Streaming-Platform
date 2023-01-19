@@ -3,10 +3,10 @@ import { FiMic, FiSearch } from "react-icons/fi";
 import { MdDeleteOutline, MdEditNote } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-import DeleteModel from "components/Playlists/DeleteModel";
-import EditPlaylistsModel from "components/Playlists/EditPlaylistsModal";
-import RecentPlayed from "components/SongsList";
-import { deletePlaylistAPI } from "services/playlistApi/getPlaylist.api";
+import DeleteModel from "@/components/Playlists/DeleteModel";
+import EditPlaylistsModel from "@/components/Playlists/EditPlaylistsModal";
+import RecentPlayed from "@/components/SongsList";
+import { deletePlaylistAPI } from "@/services/playlistApi/getPlaylist.api";
 
 function Playlist({ playlistName = "No Name", playlist }) {
   const isLikedSongs = playlistName === "Liked Songs";

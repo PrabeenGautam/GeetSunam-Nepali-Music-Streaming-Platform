@@ -1,9 +1,10 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import ActionCreators from "../../redux/actionCreators.js";
 import ReactDraggableList from "react-draggable-list";
-import PlaylistItemTemplate from "./PlaylistItemTemplate.js";
+
+import ActionCreators from "../../redux/actionCreators";
+import PlaylistItemTemplate from "./PlaylistItemTemplate";
 
 export default function Playlist(props) {
   const sx = props.sx;

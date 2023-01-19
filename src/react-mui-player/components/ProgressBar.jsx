@@ -1,12 +1,10 @@
 import React from "react";
-
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import actionCreators from "../redux/actionCreators.js";
-
-import { Slider, Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import { Slider, Box } from "@mui/material";
 
-import secondsToString from "../utils/secondsToString.js";
+import actionCreators from "../redux/actionCreators";
+import secondsToString from "../utils/secondsToString";
 
 export default function ProgressBar(props) {
   const sx = props.sx;
@@ -40,8 +38,7 @@ export default function ProgressBar(props) {
           mx: 1,
         },
         ...sx,
-      }}
-    >
+      }}>
       <Typography className="children">
         {secondsToString(currentTime)}
       </Typography>

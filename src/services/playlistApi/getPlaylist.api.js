@@ -1,5 +1,5 @@
-import { PlaylistConfig } from "services/api.routes";
-import getApiResponse from "services/axios";
+import { PlaylistConfig } from "@/services/api.routes";
+import getApiResponse from "@/services/axios";
 
 const getPlaylistsAPI = async () => {
   const result = await getApiResponse({

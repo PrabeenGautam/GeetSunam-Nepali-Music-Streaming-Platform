@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
-import CustomBreadcrumbs from "components/Breadcrumbs";
-import RecentPlayed from "components/SongsList";
-import { musicList } from "assets/data/musicList";
+import CustomBreadcrumbs from "@/components/Breadcrumbs";
+import RecentPlayed from "@/components/SongsList";
+import { musicList } from "@/assets/data/musicList";
 
 function useQuery() {
   const { search } = useLocation();

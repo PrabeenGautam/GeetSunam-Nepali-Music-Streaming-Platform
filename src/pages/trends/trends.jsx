@@ -1,8 +1,8 @@
-import { Btn } from "components/StyledUI";
-import RecentPlayed from "components/SongsList";
-import CustomBreadcrumbs from "components/Breadcrumbs";
-import { musicList } from "assets/data/musicList";
-import PlaySong from "components/Player/PlaySong";
+import { Btn } from "@/components/StyledUI";
+import RecentPlayed from "@/components/SongsList";
+import CustomBreadcrumbs from "@/components/Breadcrumbs";
+import { musicList } from "@/assets/data/musicList";
+import PlaySong from "@/components/Player/PlaySong";
 
 function Trends() {
   const musicData = musicList.slice(4, 12);

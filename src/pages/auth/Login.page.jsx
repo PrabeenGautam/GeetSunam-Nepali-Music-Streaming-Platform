@@ -6,15 +6,16 @@ import { FcGoogle } from "react-icons/fc";
 import { useRef } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
-import entranceGif from "assets/images/landing/MusicEntrance2.gif";
+import entranceGif from "@/assets/images/landing/MusicEntrance2.gif";
 
-import useGSDispatch from "redux/useGSDispatch";
-import useGSSelector from "redux/useGSSelector";
+import useGSDispatch from "@/redux/useGSDispatch";
+import useGSSelector from "@/redux/useGSSelector";
 import {
   loginUserThunk,
   googleLoginUserThunk,
-} from "redux/middlewares/loginUserThunk";
+} from "@/redux/middlewares/loginUserThunk";
 
 function LoginPage() {
   const gsDispatch = useGSDispatch();
@@ -44,6 +45,7 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    toast.info("Login in. Have a patience");
     const { email, password } = formData;
 
     gsDispatch(
@@ -52,16 +54,34 @@ function LoginPage() {
         password,
         isRememberMe: checkboxRef.current.checked,
       })
-    );
+    ).then(() => {
+      toast.dismiss();
+      setTimeout(() => {
+        toast.success("Login Successfully...", {
+          autoClose: 2000,
+          hideProgressBar: true,
+        });
+      }, 1000);
+    });
   };
 
   const handleGoogleLogin = useGoogleLogin({
     onSuccess: (data) => {
+      toast.info("Login in. Have a patience");
+
       gsDispatch(
         googleLoginUserThunk({
           googleAccessToken: data.access_token,
         })
-      );
+      ).then(() => {
+        toast.dismiss();
+        setTimeout(() => {
+          toast.success("Login Successfully...", {
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
+        }, 1000);
+      });
     },
     onError: (err) => console.log(err),
   });

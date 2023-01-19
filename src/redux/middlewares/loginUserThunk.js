@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import userLoginApi from "services/authApi/login.api";
-import googleLoginApi from "services/authApi/googleLogin.api";
-import { setUserLogin } from "utils/storage.utils";
+import userLoginApi from "@/services/authApi/login.api";
+import googleLoginApi from "@/services/authApi/googleLogin.api";
+import { setUserLogin } from "@/utils/storage.utils";
 
 export const loginUserThunk = createAsyncThunk(
   "users/login",

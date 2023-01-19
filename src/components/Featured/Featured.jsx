@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 import SearchBar from "./SearchBar";
-import { Btn } from "components/StyledUI";
-import PlaySong from "components/Player/PlaySong";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { Btn } from "@/components/StyledUI";
+import PlaySong from "@/components/Player/PlaySong";
 
 function Featured({ data: featuredSongs, showSearchBar = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);

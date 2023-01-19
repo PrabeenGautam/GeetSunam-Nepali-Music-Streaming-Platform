@@ -1,8 +1,8 @@
-import CustomBreadcrumbs from "components/Breadcrumbs";
-import RecentPlayed from "components/SongsList";
-import { Btn } from "components/StyledUI";
-import { musicList } from "assets/data/musicList";
-import PlaySong from "components/Player/PlaySong";
+import CustomBreadcrumbs from "@/components/Breadcrumbs";
+import RecentPlayed from "@/components/SongsList";
+import { Btn } from "@/components/StyledUI";
+import { musicList } from "@/assets/data/musicList";
+import PlaySong from "@/components/Player/PlaySong";
 
 function NewReleases() {
   const releaseSongs = musicList.slice(30, 41);

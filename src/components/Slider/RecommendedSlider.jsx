@@ -1,9 +1,9 @@
 import "swiper/css";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import MusicContainer from "components/MusicContainer";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+
+import MusicContainer from "@/components/MusicContainer";
 
 function RecommendedSlider({ data }) {
   const swiperRef = useRef();

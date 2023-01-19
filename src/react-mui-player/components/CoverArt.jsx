@@ -1,9 +1,9 @@
 import React from "react";
-
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import MusicPlayedAnimation from "components/MusicPlayed";
 import { useSelector } from "react-redux";
+
+import MusicPlayedAnimation from "@/components/MusicPlayed";
 
 const StyledImg = styled("img")(() => ({
   height: "100%",

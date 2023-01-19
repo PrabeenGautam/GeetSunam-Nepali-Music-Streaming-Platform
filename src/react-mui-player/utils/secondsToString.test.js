@@ -1,4 +1,4 @@
-import secondsToString from "./secondsToString.js";
+import secondsToString from "./secondsToString";
 
 test("seconds to string", () => {
   let seconds = 600;

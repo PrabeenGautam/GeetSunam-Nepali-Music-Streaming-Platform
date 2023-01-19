@@ -1,5 +1,5 @@
-import { UserAuthConfig } from "services/api.routes";
-import getApiResponse from "services/axios";
+import { UserAuthConfig } from "@/services/api.routes";
+import getApiResponse from "@/services/axios";
 
 const updateUserApi = async ({ fullName, email }) => {
   const result = await getApiResponse({

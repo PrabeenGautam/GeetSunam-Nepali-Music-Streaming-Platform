@@ -1,7 +1,7 @@
-import PopImage from "assets/images/genre/Pop.jpg";
-import Dohori from "assets/images/genre/dohori.jpg";
-import Teej from "assets/images/genre/teej.png";
-import Placeholder from "assets/images/genre/placeholder-image.jpg";
+import PopImage from "@/assets/images/genre/Pop.jpg";
+import Dohori from "@/assets/images/genre/dohori.jpg";
+import Teej from "@/assets/images/genre/teej.png";
+import Placeholder from "@/assets/images/genre/placeholder-image.jpg";
 
 const genreMenu = [
   {

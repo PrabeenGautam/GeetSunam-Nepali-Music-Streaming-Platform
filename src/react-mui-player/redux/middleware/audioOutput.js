@@ -1,4 +1,4 @@
-import actionCreators from "../actionCreators.js";
+import actionCreators from "../actionCreators";
 import { MediaState, RepeatMode } from "../types";
 import { AudioOutput, ActionTypes } from "../types";
 

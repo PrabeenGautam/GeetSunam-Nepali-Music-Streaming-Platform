@@ -1,4 +1,4 @@
-import actionCreators from "../actionCreators.js";
+import actionCreators from "../actionCreators";
 import { ActionTypes } from "../types";
 
 const updatePlaylistHelper = (store) => {

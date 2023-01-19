@@ -1,5 +1,5 @@
-import ActionCreators from "../actionCreators.js";
-import { ActionTypes } from "../types.js";
+import ActionCreators from "../actionCreators";
+import { ActionTypes } from "../types";
 
 const skipHelper = (store) => {
   return (next) => (action) => {

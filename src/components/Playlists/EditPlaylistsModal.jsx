@@ -2,12 +2,12 @@ import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import { createPortal } from "react-dom";
 
-import Placeholder from "assets/images/genre/placeholder-image.jpg";
+import Placeholder from "@/assets/images/genre/placeholder-image.jpg";
 import { Btn } from "../StyledUI";
-import { updatePlaylistAPI } from "services/playlistApi/getPlaylist.api";
-import useGSSelector from "redux/useGSSelector";
-import useGSDispatch from "redux/useGSDispatch";
-import { getPlaylistByIDThunk } from "redux/middlewares/playlistThunk";
+import { updatePlaylistAPI } from "@/services/playlistApi/getPlaylist.api";
+import useGSSelector from "@/redux/useGSSelector";
+import useGSDispatch from "@/redux/useGSDispatch";
+import { getPlaylistByIDThunk } from "@/redux/middlewares/playlistThunk";
 
 function EditPlaylistsModelOverlay({ setClick }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);

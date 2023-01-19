@@ -1,9 +1,10 @@
 import PlaylistAddRoundedIcon from "@mui/icons-material/PlaylistAddRounded";
 import { Box, IconButton } from "@mui/material";
-import PlaylistAddContainer from "components/Playlists/PlaylistAddContainer";
 import React, { useState } from "react";
-import withoutPropagation from "react-mui-player/utils/withoutPropagation";
 import { useSelector } from "react-redux";
+
+import PlaylistAddContainer from "@/components/Playlists/PlaylistAddContainer";
+import withoutPropagation from "@/react-mui-player/utils/withoutPropagation";
 
 export default function AddToPlaylists(props) {
   const sx = props.sx;

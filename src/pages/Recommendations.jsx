@@ -1,9 +1,9 @@
-import CustomBreadcrumbs from "components/Breadcrumbs";
-import RecentPlayed from "components/SongsList";
-import { Btn } from "components/StyledUI";
+import CustomBreadcrumbs from "@/components/Breadcrumbs";
+import RecentPlayed from "@/components/SongsList";
+import { Btn } from "@/components/StyledUI";
 import Recommended from "../assets/images/Recommended.png";
-import { musicList } from "assets/data/musicList";
-import PlaySong from "components/Player/PlaySong";
+import { musicList } from "@/assets/data/musicList";
+import PlaySong from "@/components/Player/PlaySong";
 
 function Recommnedations() {
   const recommendedSongs = musicList.slice(14, 24);

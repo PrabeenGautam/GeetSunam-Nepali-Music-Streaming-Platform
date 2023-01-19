@@ -1,5 +1,5 @@
-import Placeholder from "assets/images/genre/placeholder-image.jpg";
-import * as songsList from "assets/songs_DELETE_LATER";
+import Placeholder from "@/assets/images/genre/placeholder-image.jpg";
+import * as songsList from "@/assets/songs_DELETE_LATER";
 
 export const musicList = [
   {

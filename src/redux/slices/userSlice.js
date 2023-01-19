@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { loginUserThunk } from "redux/middlewares/loginUserThunk";
-import { signUpUserThunk } from "redux/middlewares/signupUserThunk";
-import { getUserData, isUserLogin, resetLoginData } from "utils/storage.utils";
+import { loginUserThunk } from "@/redux/middlewares/loginUserThunk";
+import { signUpUserThunk } from "@/redux/middlewares/signupUserThunk";
+import {
+  getUserData,
+  isUserLogin,
+  resetLoginData,
+} from "@/utils/storage.utils";
 
 const initialState = {
   userData: getUserData() || {},

@@ -1,7 +1,6 @@
 import React from "react";
 import { shallowEqual, useSelector } from "react-redux";
-
-import { PlayerInterface, Track } from "react-mui-player";
+import { PlayerInterface, Track } from "@/react-mui-player";
 
 const AddToPlaylist = ({ trackDetails = {}, children }) => {
   const playlist = useSelector((state) => state.playlist, shallowEqual);

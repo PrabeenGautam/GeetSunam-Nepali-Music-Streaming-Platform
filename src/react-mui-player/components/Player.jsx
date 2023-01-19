@@ -5,14 +5,14 @@ import { useSelector, shallowEqual } from "react-redux";
 import { useTheme, styled } from "@mui/material/styles";
 import { Box, SwipeableDrawer, Paper } from "@mui/material";
 
-import CoverArt from "./CoverArt.js";
-import TrackDetails from "./TrackDetails.js";
-import ProgressBar from "./ProgressBar.js";
-import Controls from "./Controls.js";
-import VolumeControl from "./VolumeControl.js";
-import PlaylistControl from "./Playlist/PlaylistControl.js";
-import Favourite from "./Favourite.js";
-import AddToPlaylists from "./AddToPlaylists.js";
+import CoverArt from "./CoverArt";
+import TrackDetails from "./TrackDetails";
+import ProgressBar from "./ProgressBar";
+import Controls from "./Controls";
+import VolumeControl from "./VolumeControl";
+import PlaylistControl from "./Playlist/PlaylistControl";
+import Favourite from "./Favourite";
+import AddToPlaylists from "./AddToPlaylists";
 
 const PREFIX = "Player";
 

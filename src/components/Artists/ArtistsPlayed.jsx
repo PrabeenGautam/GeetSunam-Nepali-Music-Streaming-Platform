@@ -2,11 +2,11 @@ import { FiClock, FiHeart, FiPauseCircle, FiPlayCircle } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
-import PauseSong from "components/Player/PauseSong";
-import PlaySong from "components/Player/PlaySong";
-import { possibleMediaState } from "components/Player/possibleMediaState.types";
-import useCurrentSong from "hooks/useCurrentSong";
-import PlaylistAddContainer from "components/Playlists/PlaylistAddContainer";
+import PauseSong from "@/components/Player/PauseSong";
+import PlaySong from "@/components/Player/PlaySong";
+import { possibleMediaState } from "@/components/Player/possibleMediaState.types";
+import useCurrentSong from "@/hooks/useCurrentSong";
+import PlaylistAddContainer from "@/components/Playlists/PlaylistAddContainer";
 
 function ArtistsPlayed({ data }) {
   const currentSong = useCurrentSong();

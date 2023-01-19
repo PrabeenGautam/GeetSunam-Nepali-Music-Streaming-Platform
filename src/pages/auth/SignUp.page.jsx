@@ -7,13 +7,13 @@ import { useRef } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useTranslation } from "react-i18next";
 
-import userflow from "assets/images/landing/Userflow.gif";
-import useGSDispatch from "redux/useGSDispatch";
+import userflow from "@/assets/images/landing/Userflow.gif";
+import useGSDispatch from "@/redux/useGSDispatch";
 import {
   signUpUserThunk,
   googleSignUpUserThunk,
-} from "redux/middlewares/signupUserThunk";
-import useGSSelector from "redux/useGSSelector";
+} from "@/redux/middlewares/signupUserThunk";
+import useGSSelector from "@/redux/useGSSelector";
 
 function SignUpPage() {
   const gsDispatch = useGSDispatch();

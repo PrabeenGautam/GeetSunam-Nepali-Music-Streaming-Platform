@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-
-import { PlayerInterface, Track } from "react-mui-player";
 import { useDispatch } from "react-redux";
-import ActionCreators from "react-mui-player/redux/actionCreators";
+
+import { PlayerInterface, Track } from "@/react-mui-player";
+import ActionCreators from "@/react-mui-player/redux/actionCreators";
 
 const PlaySong = ({ trackDetails = {}, children, musicList = [] }) => {
   const currTrackRef = useRef(trackDetails);

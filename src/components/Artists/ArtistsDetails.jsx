@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
 
-import { featuredArtists } from "components/Featured/featureArtists.data";
+import { featuredArtists } from "@/components/Featured/featureArtists.data";
 import ArtistsPlayed from "./ArtistsPlayed";
-import { musicList } from "assets/data/musicList";
+import { musicList } from "@/assets/data/musicList";
 
 function ArtistsDetails() {
   const { id } = useParams();

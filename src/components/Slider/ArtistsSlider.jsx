@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
-import FeaturedArtists from "components/Artists/FeaturedArtists";
+import FeaturedArtists from "@/components/Artists/FeaturedArtists";
 
 function ArtistsSlider({ featuredArtists }) {
   const swiperRef = useRef();

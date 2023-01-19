@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import getSongsByGenre from "services/musicApi/getSongsByGenre.api";
-import Loading from "components/Loading";
-import { getGenresByID } from "services/musicApi/getGenres.api";
+import getSongsByGenre from "@/services/musicApi/getSongsByGenre.api";
+import Loading from "@/components/Loading";
+import { getGenresByID } from "@/services/musicApi/getGenres.api";
 
 function GenreContainer() {
   const { id: genreID } = useParams();

@@ -11,7 +11,7 @@ import {
 import DeleteModel from "./Playlists/DeleteModel";
 import PlaySong from "./Player/PlaySong";
 import PauseSong from "./Player/PauseSong";
-import useCurrentSong from "hooks/useCurrentSong";
+import useCurrentSong from "@/hooks/useCurrentSong";
 import { possibleMediaState } from "./Player/possibleMediaState.types";
 import PlaylistAddContainer from "./Playlists/PlaylistAddContainer";
 

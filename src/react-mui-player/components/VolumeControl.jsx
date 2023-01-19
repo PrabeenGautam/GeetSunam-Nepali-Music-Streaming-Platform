@@ -1,9 +1,7 @@
 import { useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
-import actionCreators from "../redux/actionCreators";
-
 import { Slider, IconButton, Popover } from "@mui/material";
+import { Box } from "@mui/system";
 import {
   VolumeUp,
   RemoveCircle,
@@ -12,8 +10,8 @@ import {
   VolumeDown,
 } from "@mui/icons-material";
 
+import actionCreators from "../redux/actionCreators";
 import withoutPropagation from "../utils/withoutPropagation";
-import { Box } from "@mui/system";
 
 export default function VolumeControl() {
   const [anchorEl, setAnchorEl] = useState(null);

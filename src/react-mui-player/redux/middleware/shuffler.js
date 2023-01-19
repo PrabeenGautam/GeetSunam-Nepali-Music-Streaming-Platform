@@ -1,5 +1,5 @@
 import { ActionTypes } from "../types";
-import actionCreators from "../actionCreators.js";
+import actionCreators from "../actionCreators";
 
 import shuffle from "../../utils/shuffle.js";
 

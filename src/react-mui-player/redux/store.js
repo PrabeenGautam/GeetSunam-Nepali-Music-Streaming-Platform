@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./reducers";
 
-import audioOutput from "./middleware/audioOutput.js";
-import shuffler from "./middleware/shuffler.js";
+import audioOutput from "./middleware/audioOutput";
+import shuffler from "./middleware/shuffler";
 import eventHandler from "./middleware/nativeEventsHandler";
 import changeTrackHelper from "./middleware/changeTrackHelper";
 import updatePlaylistHelper from "./middleware/updatePlaylistHelper";

@@ -8,7 +8,7 @@ import {
 } from "react-icons/bi";
 
 import AutoMarquee from "./AutoMarquee";
-import PlaySong from "components/Player/PlaySong";
+import PlaySong from "@/components/Player/PlaySong";
 
 function RecentlyPlayedSlider({ musicList }) {
   const swiperRef = useRef();

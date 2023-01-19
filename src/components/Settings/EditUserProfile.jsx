@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
-
-import Placeholder from "assets/images/genre/placeholder-image.jpg";
 import { createPortal } from "react-dom";
+
+import Placeholder from "@/assets/images/genre/placeholder-image.jpg";
 
 function EditUserModal({ setClick }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);

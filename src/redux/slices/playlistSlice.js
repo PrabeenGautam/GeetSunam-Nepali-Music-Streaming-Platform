@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getPlaylistThunk,
   getPlaylistByIDThunk,
-} from "redux/middlewares/playlistThunk";
+} from "@/redux/middlewares/playlistThunk";
 
 const initialState = {
   playlists: [],

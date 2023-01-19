@@ -1,6 +1,6 @@
 import React from "react";
 
-import { PlayerInterface } from "react-mui-player";
+import { PlayerInterface } from "@/react-mui-player";
 
 const PauseSong = ({ children }) => {
   const pauseSong = () => {

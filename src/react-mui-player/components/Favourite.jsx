@@ -1,8 +1,9 @@
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { Box, IconButton } from "@mui/material";
 import React from "react";
-import ActionCreators from "react-mui-player/redux/actionCreators";
 import { useDispatch, useSelector } from "react-redux";
+
+import ActionCreators from "@/react-mui-player/redux/actionCreators";
 
 export default function Favourite(props) {
   const sx = props.sx;

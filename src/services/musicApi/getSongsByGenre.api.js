@@ -1,5 +1,5 @@
-import { SongConfig } from "services/api.routes";
-import getApiResponse from "services/axios";
+import { SongConfig } from "@/services/api.routes";
+import getApiResponse from "@/services/axios";
 
 const getSongsByGenre = async (id) => {
   const result = await getApiResponse({

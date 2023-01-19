@@ -3,33 +3,33 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
 
-import { SidebarLeft, SidebarRight } from "components/Sidebar";
-import MainPlayer from "components/Player/Player";
-import ProtectedRoute from "utils/protectedRoutes";
-import Content from "components/Content";
+import { SidebarLeft, SidebarRight } from "@/components/Sidebar";
+import MainPlayer from "@/components/Player/Player";
+import ProtectedRoute from "@/utils/protectedRoutes";
+import Content from "@/components/Content";
 
 // const Content = React.lazy(() => import("components/Content"));
-const Trends = React.lazy(() => import("pages/trends/trends"));
-const Explore = React.lazy(() => import("pages/explore/explore"));
-const NewReleases = React.lazy(() => import("pages/NewReleases"));
-const Recommnedations = React.lazy(() => import("pages/Recommendations"));
-const LikedSongs = React.lazy(() => import("pages/LikedSongs/LikedSongs"));
+const Trends = React.lazy(() => import("@/pages/trends/trends"));
+const Explore = React.lazy(() => import("@/pages/explore/explore"));
+const NewReleases = React.lazy(() => import("@/pages/NewReleases"));
+const Recommnedations = React.lazy(() => import("@/pages/Recommendations"));
+const LikedSongs = React.lazy(() => import("@/pages/LikedSongs/LikedSongs"));
 const FavouriteArtists = React.lazy(() =>
-  import("pages/Artists/FavouriteArtists")
+  import("@/pages/Artists/FavouriteArtists")
 );
 const PlaylistSection = React.lazy(() =>
-  import("pages/Playlists/PlaylistSection")
+  import("@/pages/Playlists/PlaylistSection")
 );
-const Settings = React.lazy(() => import("pages/Settings/settings"));
+const Settings = React.lazy(() => import("@/pages/Settings/settings"));
 const PlaylistsDetails = React.lazy(() =>
-  import("pages/Playlists/PlaylistsDetails")
+  import("@/pages/Playlists/PlaylistsDetails")
 );
 const ArtistsDetails = React.lazy(() =>
-  import("components/Artists/ArtistsDetails")
+  import("@/components/Artists/ArtistsDetails")
 );
-const Artists = React.lazy(() => import("pages/Artists/Artists"));
-const GenreContainer = React.lazy(() => import("pages/genre/GenreContainer"));
-const SearchPage = React.lazy(() => import("pages/search/SearchPage"));
+const Artists = React.lazy(() => import("@/pages/Artists/Artists"));
+const GenreContainer = React.lazy(() => import("@/pages/genre/GenreContainer"));
+const SearchPage = React.lazy(() => import("@/pages/search/SearchPage"));
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
