@@ -24,6 +24,14 @@ export const SongConfig = {
   KEY: "SONG",
   GET_SONGS: "/songs",
   FEATURED_SONGS: "/songs/featured",
+  NEW_RELEASES: "/songs/new-releases",
+  GET_SONG_BY_ARTISTS: (id) => `/songs/artists/${id}`,
+};
+
+export const ArtistsConfig = {
+  KEY: "ARTIST",
+  GET_ARTISTS: "/artists",
+  FEATURED_ARTISTS: "/artists/featured",
 };
 
 export const UserAuthConfig = {

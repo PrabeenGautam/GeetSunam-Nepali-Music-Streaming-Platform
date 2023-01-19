@@ -11,6 +11,7 @@ import AutoMarquee from "@/components/Slider/AutoMarquee";
 import PlaySong from "@/components/Player/PlaySong";
 import Loading from "@/components/Loading";
 import getFeaturedSongs from "@/services/musicApi/getFeaturedSongs.api";
+import { trackDetails } from "@/utils/trackDetails.utils";
 
 function Explore() {
   const recommendedSongs = musicList.slice(4, 14);
@@ -18,7 +19,7 @@ function Explore() {
   useEffect(() => {
     const fetchSongs = async function () {
       const featuredSongs = await getFeaturedSongs();
-      setFeaturedSongs(featuredSongs.data.songs);
+      setFeaturedSongs(trackDetails(featuredSongs.data.songs));
     };
 
     fetchSongs();

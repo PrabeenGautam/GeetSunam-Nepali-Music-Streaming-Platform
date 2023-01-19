@@ -52,8 +52,8 @@ function RecentlyPlayedSlider({ musicList }) {
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
         }}>
-        {musicList.map((value, index) => (
-          <SwiperSlide key={index}>
+        {musicList.map((value) => (
+          <SwiperSlide key={value._id}>
             <PlaySong trackDetails={value.trackDetails}>
               <div className="music-container">
                 <div className="play-icon-container">
@@ -72,7 +72,7 @@ function RecentlyPlayedSlider({ musicList }) {
                   className={"song-name"}
                   value={value.trackDetails.title}
                 />
-                <div className="song-artists">{value.artistsDetails.name}</div>
+                <div className="song-artists">{value.artists.fullname}</div>
               </div>
             </PlaySong>
           </SwiperSlide>

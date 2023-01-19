@@ -8,15 +8,15 @@ import { possibleMediaState } from "@/components/Player/possibleMediaState.types
 import useCurrentSong from "@/hooks/useCurrentSong";
 import PlaylistAddContainer from "@/components/Playlists/PlaylistAddContainer";
 
-function ArtistsPlayed({ data }) {
+function ArtistsPlayed({ data: artistSongs }) {
   const currentSong = useCurrentSong();
   const { mediaState } = useSelector(({ mediaState }) => ({ mediaState }));
   const [playlist, setPlaylistAdd] = useState(false);
   const [playlistData, setPlaylistData] = useState(null);
 
   const musicList =
-    data &&
-    data.map(({ trackDetails }) => ({
+    artistSongs &&
+    artistSongs.map(({ trackDetails }) => ({
       ID: trackDetails.ID,
       coverArt: trackDetails.coverArt,
       title: trackDetails.title,
@@ -52,8 +52,8 @@ function ArtistsPlayed({ data }) {
           </span>
           <span style={{ visibility: "hidden" }}>#</span>
         </div>
-        {data &&
-          data.map((value, index) => {
+        {artistSongs &&
+          artistSongs.map((value, index) => {
             return (
               <div
                 key={index}
@@ -82,15 +82,15 @@ function ArtistsPlayed({ data }) {
                   />
                   <span className="song-name">{value.trackDetails.title}</span>
                 </PlaySong>
-                <span className="artists">{value.artistsDetails.name}</span>
+                <span className="artists">{value.artists.fullname}</span>
                 <span className="recent-genre">
-                  {value.genre.toUpperCase()}
+                  {value.genre.name.toUpperCase()}
                 </span>
                 <FiHeart
                   onClick={() => handleFavourite(value)}
                   className={value.isFavourite ? "heart favourite" : "heart"}
                 />
-                <span className="length">{value.time}</span>
+                <span className="length">{value.duration}</span>
                 {
                   <span
                     className="add-more"

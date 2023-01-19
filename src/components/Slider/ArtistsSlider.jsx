@@ -47,8 +47,8 @@ function ArtistsSlider({ featuredArtists }) {
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
         }}>
-        {featuredArtists.map((value, index) => (
-          <SwiperSlide key={index}>
+        {featuredArtists.map((value) => (
+          <SwiperSlide key={value._id}>
             <FeaturedArtists data={value} />
           </SwiperSlide>
         ))}

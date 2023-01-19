@@ -10,37 +10,32 @@ import ArtistsSlider from "./Slider/ArtistsSlider";
 import { musicList } from "@/assets/data/musicList";
 import CustomBreadcrumbs from "./Breadcrumbs";
 import { featuredArtists } from "./Featured/featureArtists.data";
-import PlaySong from "./Player/PlaySong";
-import AutoMarquee from "./Slider/AutoMarquee";
 import getFeaturedSongs from "@/services/musicApi/getFeaturedSongs.api";
 import Loading from "./Loading";
+import getNewReleaseSongs from "@/services/musicApi/getNewlyReleases.api";
+import { trackDetails } from "@/utils/trackDetails.utils";
+import { getFeaturedArtists } from "@/services/artistsApi/getArtistsDetails.api";
 
 function Content() {
   const [featuredSongs, setFeaturedSongs] = useState(null);
-  const releaseSongs = musicList.slice(0, 10);
-  const artists = featuredArtists.slice(0, 10);
+  const [releaseSongs, setReleaseSongs] = useState(null);
+  const [artists, setFeaturedArtists] = useState(null);
+
   const recentSongs = musicList.slice(0, 6);
 
   useEffect(() => {
     const fetchSongs = async function () {
       const featuredSongs = await getFeaturedSongs();
-      setFeaturedSongs(featuredSongs.data.songs);
+      const releaseSongs = await getNewReleaseSongs();
+      const featuredArtists = await getFeaturedArtists();
+
+      setFeaturedSongs(trackDetails(featuredSongs.data.songs));
+      setReleaseSongs(trackDetails(releaseSongs.data.songs));
+      setFeaturedArtists(featuredArtists.data.artists);
     };
 
     fetchSongs();
   }, []);
-
-  /* Temporary  */
-  const trackDetails = {
-    ID: 1,
-    title: "Ko Hola Tyo",
-    coverArt:
-      "http://127.0.0.1:8000/imgs/songs/song-Pop-Songs-1673354919879.png",
-    artists: "Sinil GIri (Test)",
-    source: "http://127.0.0.1:8000/api/songs/stream/63c7e2f71f3cfc4e38047e30",
-    isFavourite: false,
-    isFeatured: true,
-  };
 
   return featuredSongs ? (
     <div className="content-container">
@@ -59,35 +54,6 @@ function Content() {
 
         <div className="content-section">
           <RecentlyPlayedSlider musicList={releaseSongs} />
-        </div>
-      </div>
-
-      <div className="main-section">
-        <div className="heading">
-          <div className="subheading">
-            <span>testing Songs API (temporary)</span>
-          </div>
-        </div>
-
-        <div className="content-section">
-          <PlaySong trackDetails={trackDetails}>
-            <div className="music-container">
-              <div className="play-icon-container">
-                <img
-                  src={trackDetails.coverArt}
-                  alt="thumbnail"
-                  className="thumbnail-new"
-                />
-
-                <span className="play-icon">
-                  <BiPlay />
-                </span>
-              </div>
-
-              <AutoMarquee className={"song-name"} value={trackDetails.title} />
-              <div className="song-artists">{"Testing"}</div>
-            </div>
-          </PlaySong>
         </div>
       </div>
 

@@ -5,10 +5,8 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import SearchBar from "./SearchBar";
 import { Btn } from "@/components/StyledUI";
 import PlaySong from "@/components/Player/PlaySong";
-import { trackDetails } from "@/utils/trackDetails.utils";
 
-function Featured({ data: featured, showSearchBar = false }) {
-  const featuredSongs = trackDetails(featured);
+function Featured({ data: featuredSongs, showSearchBar = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const songsDetails = featuredSongs[currentIndex];
 

@@ -1,36 +1,54 @@
 import { useParams } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
+import { useEffect, useState } from "react";
 
 import { featuredArtists } from "@/components/Featured/featureArtists.data";
 import ArtistsPlayed from "./ArtistsPlayed";
 import { musicList } from "@/assets/data/musicList";
+import {
+  getArtistsById,
+  getArtistsSongs,
+} from "@/services/artistsApi/getArtistsDetails.api";
+import { trackDetails } from "@/utils/trackDetails.utils";
+import Loading from "../Loading";
 
 function ArtistsDetails() {
-  const { id } = useParams();
-  const artistsDetails = featuredArtists[id];
-  const data = musicList.filter(
-    (value) => value.artistsDetails.id === Number(id)
-  );
+  const { id: userId } = useParams();
 
-  return (
+  const [artist, setArtist] = useState(null);
+  const [artistsSong, setArtistSong] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async function () {
+      const artistDetail = await getArtistsById(userId);
+      const artistSongs = await getArtistsSongs(userId);
+
+      setArtist(artistDetail.data.user);
+      setArtistSong(trackDetails(artistSongs.data.songs));
+    };
+
+    fetchData();
+  }, []);
+
+  return artist ? (
     <>
       <div className="playlist-container gradient">
         <section className="playlist">
           <div className="artists-images">
-            <img src={artistsDetails.profile} alt="thumbnail" />
+            <img src={artist.profileImage} alt="thumbnail" />
           </div>
           <div className="playlist-details">
             <div>Artists</div>
-            <div>{artistsDetails.name}</div>
+            <div>{artist.fullname}</div>
             <div>
               <span>GeetSunam</span>
               <span style={{ fontWeight: "bold" }}>.</span>
-              <span>{data.length} songs</span>
+              <span>{artistsSong.length} songs</span>
             </div>
           </div>
           <div style={{ position: "absolute", right: 20, zIndex: 999 }}>
             <button className="custom-btn" title="Remove from Favourite">
-              {artistsDetails.isFavourite ? (
+              {artist.isFavourite ? (
                 <FiHeart
                   style={{
                     fill: "var(--highlight)",
@@ -55,10 +73,12 @@ function ArtistsDetails() {
         </section>
 
         <div className="padding">
-          <ArtistsPlayed data={data} />
+          <ArtistsPlayed data={artistsSong} />
         </div>
       </div>
     </>
+  ) : (
+    <Loading />
   );
 }
 
