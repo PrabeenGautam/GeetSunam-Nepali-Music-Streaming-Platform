@@ -23,6 +23,7 @@ export const PlaylistConfig = {
 export const SongConfig = {
   KEY: "SONG",
   GET_SONGS: "/songs",
+  FEATURED_SONGS: "/songs/featured",
 };
 
 export const UserAuthConfig = {

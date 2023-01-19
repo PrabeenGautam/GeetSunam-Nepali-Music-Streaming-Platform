@@ -5,8 +5,10 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import SearchBar from "./SearchBar";
 import { Btn } from "@/components/StyledUI";
 import PlaySong from "@/components/Player/PlaySong";
+import { trackDetails } from "@/utils/trackDetails.utils";
 
-function Featured({ data: featuredSongs, showSearchBar = false }) {
+function Featured({ data: featured, showSearchBar = false }) {
+  const featuredSongs = trackDetails(featured);
   const [currentIndex, setCurrentIndex] = useState(0);
   const songsDetails = featuredSongs[currentIndex];
 
@@ -78,7 +80,7 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
         <div className="details">
           <div className="title">Featured Songs</div>
           <div className="song-details">
-            <div className="artists">{songsDetails.artistsDetails.name}</div>
+            <div className="artists">{songsDetails.artists.fullname}</div>
             <div className="song-name">{songsDetails.trackDetails.title}</div>
           </div>
           {featuredSongs.map((value, index) => {

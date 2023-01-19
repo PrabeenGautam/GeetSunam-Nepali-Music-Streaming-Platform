@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { BiPause, BiPlay } from "react-icons/bi";
 import { HiOutlineUser } from "react-icons/hi";
+import { useEffect, useState } from "react";
 
 import Featured from "./Featured/Featured";
 import RecentPlayed from "./SongsList";
@@ -11,14 +12,23 @@ import CustomBreadcrumbs from "./Breadcrumbs";
 import { featuredArtists } from "./Featured/featureArtists.data";
 import PlaySong from "./Player/PlaySong";
 import AutoMarquee from "./Slider/AutoMarquee";
+import getFeaturedSongs from "@/services/musicApi/getFeaturedSongs.api";
+import Loading from "./Loading";
 
 function Content() {
-  const featuredSongs = musicList.filter(
-    (value) => value.trackDetails.isFeatured === true
-  );
+  const [featuredSongs, setFeaturedSongs] = useState(null);
   const releaseSongs = musicList.slice(0, 10);
   const artists = featuredArtists.slice(0, 10);
   const recentSongs = musicList.slice(0, 6);
+
+  useEffect(() => {
+    const fetchSongs = async function () {
+      const featuredSongs = await getFeaturedSongs();
+      setFeaturedSongs(featuredSongs.data.songs);
+    };
+
+    fetchSongs();
+  }, []);
 
   /* Temporary  */
   const trackDetails = {
@@ -32,7 +42,7 @@ function Content() {
     isFeatured: true,
   };
 
-  return (
+  return featuredSongs ? (
     <div className="content-container">
       <CustomBreadcrumbs link={"/home"} textName="Home" />
       <Featured data={featuredSongs} showSearchBar={true} />
@@ -103,6 +113,8 @@ function Content() {
         <RecentPlayed removeFromPlaylist={false} data={recentSongs} />
       </div>
     </div>
+  ) : (
+    <Loading />
   );
 }
 

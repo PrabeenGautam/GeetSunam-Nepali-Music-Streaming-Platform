@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { BiPlayCircle } from "react-icons/bi";
 import { MdRecommend, MdLibraryMusic } from "react-icons/md";
+import { useEffect, useState } from "react";
 
 import CustomBreadcrumbs from "@/components/Breadcrumbs";
 import { Featured } from "@/components/Featured";
@@ -8,13 +9,21 @@ import RecommendedSlider from "@/components/Slider/RecommendedSlider";
 import { musicList } from "@/assets/data/musicList";
 import AutoMarquee from "@/components/Slider/AutoMarquee";
 import PlaySong from "@/components/Player/PlaySong";
+import Loading from "@/components/Loading";
+import getFeaturedSongs from "@/services/musicApi/getFeaturedSongs.api";
 
 function Explore() {
   const recommendedSongs = musicList.slice(4, 14);
-  const featuredSongs = musicList.filter(
-    (value) => value.trackDetails.isFeatured === true
-  );
-  return (
+  const [featuredSongs, setFeaturedSongs] = useState(null);
+  useEffect(() => {
+    const fetchSongs = async function () {
+      const featuredSongs = await getFeaturedSongs();
+      setFeaturedSongs(featuredSongs.data.songs);
+    };
+
+    fetchSongs();
+  }, []);
+  return featuredSongs ? (
     <div className="content-container">
       <CustomBreadcrumbs link={"/explore"} textName="Explore" />
 
@@ -77,6 +86,8 @@ function Explore() {
         </div>
       </div>
     </div>
+  ) : (
+    <Loading />
   );
 }
 
