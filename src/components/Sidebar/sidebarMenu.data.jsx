@@ -74,11 +74,11 @@ const sidebarMenu = [
         text: "Settings",
         link: "settings",
       },
-      {
-        icons: <FIIcons.FiLogOut className="icons" />,
-        text: "Log Out",
-        link: "/logout",
-      },
+      // {
+      //   icons: <FIIcons.FiLogOut className="icons" />,
+      //   text: "Log Out",
+      //   link: "/logout",
+      // },
     ],
   },
 ];

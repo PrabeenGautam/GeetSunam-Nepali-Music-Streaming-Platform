@@ -245,6 +245,7 @@ a {
   align-items: center;
   margin-bottom: 0.75rem;
   cursor: pointer;
+  width: fit-content;
 }
 
 .submenus:hover {

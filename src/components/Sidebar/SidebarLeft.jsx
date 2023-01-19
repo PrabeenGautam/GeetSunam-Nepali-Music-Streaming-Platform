@@ -1,7 +1,10 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaMusic } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 
 import sidebarMenu from "./sidebarMenu.data";
+import { resetLogin } from "@/redux/slices/userSlice";
+import useGSDispatch from "@/redux/useGSDispatch";
 
 function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
   const location = useLocation();
@@ -27,9 +30,17 @@ function SidebarLeft({ artistsDashboard }) {
     });
   }
 
+  const dispatch = useGSDispatch();
+  const navigate = useNavigate();
+
   if (!artistsDashboard && menuLastLink === "upload") {
     sidebarMenu[0].menus.pop();
   }
+
+  const logoutHandler = function () {
+    dispatch(resetLogin());
+    navigate("/login");
+  };
   return (
     <div className="left-sidebar child-scroll">
       <div className="logo">
@@ -60,6 +71,15 @@ function SidebarLeft({ artistsDashboard }) {
                     </NavLink>
                   );
                 })}
+                <li
+                  className="submenus"
+                  style={{ marginBottom: 20 }}
+                  onClick={logoutHandler}>
+                  <span className="menu-icon">
+                    <FiLogOut className="icons" />
+                  </span>
+                  <span className="menu-text">Logout</span>
+                </li>
               </ul>
             </div>
           );
