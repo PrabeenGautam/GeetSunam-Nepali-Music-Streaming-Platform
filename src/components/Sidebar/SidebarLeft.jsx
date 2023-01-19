@@ -71,15 +71,17 @@ function SidebarLeft({ artistsDashboard }) {
                     </NavLink>
                   );
                 })}
-                <li
-                  className="submenus"
-                  style={{ marginBottom: 20 }}
-                  onClick={logoutHandler}>
-                  <span className="menu-icon">
-                    <FiLogOut className="icons" />
-                  </span>
-                  <span className="menu-text">Logout</span>
-                </li>
+                {value.title === "General" && (
+                  <li
+                    className="submenus"
+                    style={{ marginBottom: 20 }}
+                    onClick={logoutHandler}>
+                    <span className="menu-icon">
+                      <FiLogOut className="icons" />
+                    </span>
+                    <span className="menu-text">Logout</span>
+                  </li>
+                )}
               </ul>
             </div>
           );
