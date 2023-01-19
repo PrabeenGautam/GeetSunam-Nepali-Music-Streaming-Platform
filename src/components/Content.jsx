@@ -9,7 +9,6 @@ import RecentlyPlayedSlider from "./Slider/RecentlyPlayedSlider";
 import ArtistsSlider from "./Slider/ArtistsSlider";
 import { musicList } from "@/assets/data/musicList";
 import CustomBreadcrumbs from "./Breadcrumbs";
-import { featuredArtists } from "./Featured/featureArtists.data";
 import getFeaturedSongs from "@/services/musicApi/getFeaturedSongs.api";
 import Loading from "./Loading";
 import getNewReleaseSongs from "@/services/musicApi/getNewlyReleases.api";

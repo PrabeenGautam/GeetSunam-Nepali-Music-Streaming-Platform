@@ -9,7 +9,7 @@ i18n
   .use(HttpAPI)
   .init({
     backend: {
-      loadPath: "locales/{{lng}}/translation.json",
+      loadPath: "/locales/{{lng}}/translation.json",
     },
     fallbackLng: "en",
     supportedLngs: ["en", "np"],
