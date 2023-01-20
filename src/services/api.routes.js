@@ -25,6 +25,11 @@ export const SongConfig = {
   GET_SONGS: "/songs",
   FEATURED_SONGS: "/songs/featured",
   NEW_RELEASES: "/songs/new-releases",
+  UPLOAD_SONG: "/songs/upload",
+
+  GET_SONGS_BY_ID: (id) => `/songs/${id}`,
+  UPDATE_SONGS: (id) => `/songs/${id}`,
+  DELETE_SONGS: (id) => `/songs/${id}`,
   GET_SONG_BY_ARTISTS: (id) => `/songs/artists/${id}`,
 };
 
@@ -32,6 +37,29 @@ export const ArtistsConfig = {
   KEY: "ARTIST",
   GET_ARTISTS: "/artists",
   FEATURED_ARTISTS: "/artists/featured",
+
+  GET_ARTISTS_BY_ID: (id) => `/artists/${id}`,
+  MAKE_ARISTS_FEATURED: (id) => `/artists/${id}`,
+  MAKE_USER_ARTISTS: (id) => `/artists/create/${id}`,
+};
+
+export const SearchConfig = {
+  KEY: "SEARCH",
+  SEARCH_QUERY: "/search",
+};
+
+export const FavouriteSongsConfig = {
+  KEY: "FAVOURITE-SONGS",
+  GET_FAVOURITE_SONGS: "/favourite/songs",
+  ADD_FAVOURITE_SONGS: "/favourite/songs",
+  REMOVE_FAVOURITE_SONGS: "/favourite/songs",
+};
+
+export const FavouriteArtistsConfig = {
+  KEY: "FAVOURITE-ARTISTS",
+  GET_FAVOURITE_ARTISTS: "/favourite/artists",
+  ADD_FAVOURITE_ARTISTS: "/favourite/artists",
+  REMOVE_FAVOURITE_ARTISTS: "/favourite/artists",
 };
 
 export const UserAuthConfig = {
