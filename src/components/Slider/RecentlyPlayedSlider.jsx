@@ -67,15 +67,13 @@ function RecentlyPlayedSlider({ musicList }) {
                   </span>
                 </div>
 
-                <div className="song-name" title={value.trackDetails.title}>
-                  {value.trackDetails.title}
-                </div>
+                <div className="container-artists">
+                  <div className="song-name" title={value.trackDetails.title}>
+                    {value.trackDetails.title}
+                  </div>
 
-                {/* <AutoMarquee
-                  className={"song-name"}
-                  value={value.trackDetails.title}
-                /> */}
-                <div className="song-artists">{value.artists.fullname}</div>
+                  <div className="song-artists">{value.artists.fullname}</div>
+                </div>
               </div>
             </PlaySong>
           </SwiperSlide>

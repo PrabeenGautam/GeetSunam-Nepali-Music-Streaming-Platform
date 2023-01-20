@@ -2,9 +2,7 @@ import { useParams } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
 import { useEffect, useState } from "react";
 
-import { featuredArtists } from "@/components/Featured/featureArtists.data";
 import ArtistsPlayed from "./ArtistsPlayed";
-import { musicList } from "@/assets/data/musicList";
 import {
   getArtistsById,
   getArtistsSongs,

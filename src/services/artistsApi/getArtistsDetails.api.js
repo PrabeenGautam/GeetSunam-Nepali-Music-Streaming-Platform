@@ -2,12 +2,23 @@ import {
   ArtistsConfig,
   UserAuthConfig,
   SongConfig,
+  FavouriteArtistsConfig,
 } from "@/services/api.routes";
 import getApiResponse from "@/services/axios";
 
 const getFeaturedArtists = async () => {
   const result = await getApiResponse({
     url: ArtistsConfig.FEATURED_ARTISTS,
+    method: "get",
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
+
+const getArtistsAPI = async () => {
+  const result = await getApiResponse({
+    url: ArtistsConfig.GET_ARTISTS,
     method: "get",
   });
 
@@ -35,4 +46,20 @@ const getArtistsSongs = async (id) => {
   return result.data;
 };
 
-export { getFeaturedArtists, getArtistsById, getArtistsSongs };
+const getFavouriteArtists = async () => {
+  const result = await getApiResponse({
+    url: FavouriteArtistsConfig.GET_FAVOURITE_ARTISTS,
+    method: "get",
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
+
+export {
+  getFeaturedArtists,
+  getArtistsById,
+  getArtistsSongs,
+  getArtistsAPI,
+  getFavouriteArtists,
+};

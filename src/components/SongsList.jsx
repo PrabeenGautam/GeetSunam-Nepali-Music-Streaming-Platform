@@ -15,7 +15,7 @@ import useCurrentSong from "@/hooks/useCurrentSong";
 import { possibleMediaState } from "./Player/possibleMediaState.types";
 import PlaylistAddContainer from "./Playlists/PlaylistAddContainer";
 
-function RecentPlayed({ removeFromPlaylist = false, data }) {
+function RecentPlayed({ removeFromPlaylist = false, data, hideLike = false }) {
   const [deleteClick, setDeleteClick] = useState(false);
   const [playlist, setPlaylistAdd] = useState(false);
   const [playlistData, setPlaylistData] = useState(null);
@@ -57,6 +57,7 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
             <span className="song-name">name</span>
             <span></span>
             <span className="artist">artists</span>
+            <span className="released-date">Released</span>
             <span className="recent-genre">genre</span>
             <span></span>
             <span className="length">
@@ -105,18 +106,26 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                   <span className="artists">
                     {value?.artists?.fullname || value.artistsDetails.name}
                   </span>
+                  <span className="released-date">
+                    {value?.releasedDate || "No Data"}
+                  </span>
                   <span className="recent-genre">
                     {value.genre?.name?.toUpperCase() ||
                       value.genre.toUpperCase()}
                   </span>
-                  <FiHeart
-                    onClick={() => handleFavourite(value)}
-                    className={
-                      value.trackDetails.isFavourite
-                        ? "heart favourite"
-                        : "heart"
-                    }
-                  />
+                  {!hideLike ? (
+                    <FiHeart
+                      onClick={() => handleFavourite(value)}
+                      className={
+                        value.trackDetails.isFavourite
+                          ? "heart favourite"
+                          : "heart"
+                      }
+                    />
+                  ) : (
+                    <span></span>
+                  )}
+
                   <span className="length">{value.duration || value.time}</span>
                   {removeFromPlaylist ? (
                     <span className="more">

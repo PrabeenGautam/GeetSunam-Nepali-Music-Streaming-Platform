@@ -2,18 +2,20 @@ function ArtistsContainer({ artistsData, onClickArtists }) {
   return (
     <section
       className="fav-artists-container"
-      style={{ padding: "1rem 1.5rem" }}
-    >
-      {artistsData.map((value, index) => {
+      style={{ padding: "1rem 1.5rem" }}>
+      {artistsData.map((value) => {
         return (
           <div
             className="artists"
-            title={value.name}
-            key={index}
-            onClick={() => onClickArtists(value.id)}
-          >
-            <img src={value.profile} alt="artists" className="thumbnail-new" />
-            <div className="song-artists">{value.name}</div>
+            title={value.fullname}
+            key={value._id}
+            onClick={() => onClickArtists(value._id)}>
+            <img
+              src={value.profileImage}
+              alt="artists"
+              className="thumbnail-new"
+            />
+            <div className="song-artists">{value.fullname}</div>
           </div>
         );
       })}

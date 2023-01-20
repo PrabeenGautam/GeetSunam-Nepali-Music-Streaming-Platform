@@ -1,4 +1,4 @@
-import { SongConfig } from "@/services/api.routes";
+import { SongConfig, FavouriteSongsConfig } from "@/services/api.routes";
 import getApiResponse from "@/services/axios";
 
 const getAllSongsAPI = async (id) => {
@@ -21,4 +21,14 @@ const getNewReleaseSongs = async () => {
   return result.data;
 };
 
-export { getAllSongsAPI, getNewReleaseSongs };
+const getFavouriteSongs = async () => {
+  const result = await getApiResponse({
+    url: FavouriteSongsConfig.GET_FAVOURITE_SONGS,
+    method: "get",
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
+
+export { getAllSongsAPI, getNewReleaseSongs, getFavouriteSongs };
