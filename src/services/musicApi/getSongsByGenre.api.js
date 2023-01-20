@@ -3,9 +3,8 @@ import getApiResponse from "@/services/axios";
 
 const getSongsByGenre = async (id) => {
   const result = await getApiResponse({
-    url: SongConfig.GET_SONGS,
+    url: SongConfig.GET_SONG_BY_GENRES(id),
     method: "get",
-    otherParams: { genre: id },
   });
 
   if (result.APIFailed) return null;

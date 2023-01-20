@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import getSongsByGenre from "@/services/musicApi/getSongsByGenre.api";
 import Loading from "@/components/Loading";
 import { getGenresByID } from "@/services/musicApi/getGenres.api";
+import { trackDetails } from "./../../utils/trackDetails.utils";
+import RecentPlayed from "@/components/SongsList";
 
 function GenreContainer() {
   const { id: genreID } = useParams();
@@ -14,8 +16,9 @@ function GenreContainer() {
   useEffect(() => {
     const fetchGenreSong = async () => {
       const result = await getSongsByGenre(genreID);
+
       const genreResult = await getGenresByID(genreID);
-      setGenreSongs(result.data.songs);
+      setGenreSongs(trackDetails(result.data.songs));
       setGenre(genreResult.data.genre);
     };
 
@@ -54,7 +57,7 @@ function GenreContainer() {
         </section>
 
         <section className="padding">
-          {/* <RecentPlayed data={musicData} /> */}
+          <RecentPlayed data={songs} />
         </section>
       </div>
     </>

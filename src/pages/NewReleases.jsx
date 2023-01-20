@@ -1,12 +1,25 @@
+import { useEffect, useState } from "react";
+
 import CustomBreadcrumbs from "@/components/Breadcrumbs";
 import RecentPlayed from "@/components/SongsList";
 import { Btn } from "@/components/StyledUI";
-import { musicList } from "@/assets/data/musicList";
 import PlaySong from "@/components/Player/PlaySong";
+import { trackDetails } from "@/utils/trackDetails.utils";
+import { getNewReleaseSongs } from "@/services/musicApi/getSongs.api";
+import Loading from "@/components/Loading";
 
 function NewReleases() {
-  const releaseSongs = musicList.slice(30, 41);
-  return (
+  const [releaseSongs, setReleaseSongs] = useState(null);
+
+  useEffect(() => {
+    const fetchSongs = async function () {
+      const releaseSongs = await getNewReleaseSongs();
+      setReleaseSongs(trackDetails(releaseSongs.data.songs));
+    };
+
+    fetchSongs();
+  }, []);
+  return releaseSongs ? (
     <div className="content-container">
       <div className="trends">
         <CustomBreadcrumbs link={"/releases"} textName="New Releases" />
@@ -14,7 +27,7 @@ function NewReleases() {
           <img
             src={releaseSongs[0].trackDetails.coverArt}
             className="trend-image"
-            alt="trending"></img>
+            alt="new-release"></img>
           <div className="trend-section">
             <h2>New Releases</h2>
             <span className="details">
@@ -30,6 +43,8 @@ function NewReleases() {
         <RecentPlayed removeFromPlaylist={false} data={releaseSongs} />
       </div>
     </div>
+  ) : (
+    <Loading />
   );
 }
 

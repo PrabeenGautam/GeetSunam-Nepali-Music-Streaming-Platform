@@ -68,7 +68,7 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
             data.map((value, index) => {
               return (
                 <div
-                  key={index}
+                  key={value._id || index}
                   tabIndex="0"
                   className={`recent-container hover-effect ${
                     currentSong?.ID === value.trackDetails.ID ? "playing" : ""
@@ -102,9 +102,12 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                     </PlaySong>
                   </span>
 
-                  <span className="artists">{value.artistsDetails.name}</span>
+                  <span className="artists">
+                    {value?.artists?.fullname || value.artistsDetails.name}
+                  </span>
                   <span className="recent-genre">
-                    {value.genre.toUpperCase()}
+                    {value.genre?.name?.toUpperCase() ||
+                      value.genre.toUpperCase()}
                   </span>
                   <FiHeart
                     onClick={() => handleFavourite(value)}
@@ -114,7 +117,7 @@ function RecentPlayed({ removeFromPlaylist = false, data }) {
                         : "heart"
                     }
                   />
-                  <span className="length">{value.time}</span>
+                  <span className="length">{value.duration || value.time}</span>
                   {removeFromPlaylist ? (
                     <span className="more">
                       <FiTrash

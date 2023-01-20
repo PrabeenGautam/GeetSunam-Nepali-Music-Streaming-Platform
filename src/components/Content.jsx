@@ -11,9 +11,9 @@ import { shortMusicList } from "@/assets/data/musicList";
 import CustomBreadcrumbs from "./Breadcrumbs";
 import getFeaturedSongs from "@/services/musicApi/getFeaturedSongs.api";
 import Loading from "./Loading";
-import getNewReleaseSongs from "@/services/musicApi/getNewlyReleases.api";
 import { trackDetails } from "@/utils/trackDetails.utils";
 import { getFeaturedArtists } from "@/services/artistsApi/getArtistsDetails.api";
+import { getNewReleaseSongs } from "@/services/musicApi/getSongs.api";
 
 function Content() {
   const [featuredSongs, setFeaturedSongs] = useState(null);
@@ -39,7 +39,9 @@ function Content() {
   return featuredSongs ? (
     <div className="content-container">
       <CustomBreadcrumbs link={"/home"} textName="Home" />
-      <Featured data={featuredSongs} showSearchBar={true} />
+      {featuredSongs.length !== 0 && (
+        <Featured data={featuredSongs} showSearchBar={true} />
+      )}
       <div className="main-section">
         <div className="heading">
           <div className="subheading">
@@ -65,7 +67,7 @@ function Content() {
         </div>
 
         <div className="content-section">
-          <ArtistsSlider featuredArtists={artists} />
+          {artists.length !== 0 && <ArtistsSlider featuredArtists={artists} />}
         </div>
       </div>
 

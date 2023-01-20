@@ -492,7 +492,8 @@ a {
 
 .music-section {
   display: flex;
-  justify-content: space-between;
+  gap: 1.35rem;
+  /* justify-content: space-between; */
   flex-wrap: wrap;
 }
 

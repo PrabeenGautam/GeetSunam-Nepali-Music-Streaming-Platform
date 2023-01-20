@@ -31,6 +31,7 @@ export const SongConfig = {
   UPDATE_SONGS: (id) => `/songs/${id}`,
   DELETE_SONGS: (id) => `/songs/${id}`,
   GET_SONG_BY_ARTISTS: (id) => `/songs/artists/${id}`,
+  GET_SONG_BY_GENRES: (id) => `/songs/genres/${id}`,
 };
 
 export const ArtistsConfig = {
