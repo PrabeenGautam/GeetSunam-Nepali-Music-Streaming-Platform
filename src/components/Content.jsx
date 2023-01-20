@@ -7,7 +7,7 @@ import Featured from "./Featured/Featured";
 import RecentPlayed from "./SongsList";
 import RecentlyPlayedSlider from "./Slider/RecentlyPlayedSlider";
 import ArtistsSlider from "./Slider/ArtistsSlider";
-import { musicList } from "@/assets/data/musicList";
+import { shortMusicList } from "@/assets/data/musicList";
 import CustomBreadcrumbs from "./Breadcrumbs";
 import getFeaturedSongs from "@/services/musicApi/getFeaturedSongs.api";
 import Loading from "./Loading";
@@ -20,7 +20,7 @@ function Content() {
   const [releaseSongs, setReleaseSongs] = useState(null);
   const [artists, setFeaturedArtists] = useState(null);
 
-  const recentSongs = musicList.slice(0, 6);
+  const recentSongs = shortMusicList;
 
   useEffect(() => {
     const fetchSongs = async function () {

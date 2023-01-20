@@ -7,7 +7,6 @@ import {
   BiPlayCircle as BiPlay,
 } from "react-icons/bi";
 
-import AutoMarquee from "./AutoMarquee";
 import PlaySong from "@/components/Player/PlaySong";
 
 function RecentlyPlayedSlider({ musicList }) {
@@ -68,10 +67,14 @@ function RecentlyPlayedSlider({ musicList }) {
                   </span>
                 </div>
 
-                <AutoMarquee
+                <div className="song-name" title={value.trackDetails.title}>
+                  {value.trackDetails.title}
+                </div>
+
+                {/* <AutoMarquee
                   className={"song-name"}
                   value={value.trackDetails.title}
-                />
+                /> */}
                 <div className="song-artists">{value.artists.fullname}</div>
               </div>
             </PlaySong>

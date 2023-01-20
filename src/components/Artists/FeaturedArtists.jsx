@@ -1,8 +1,5 @@
 import { useNavigate } from "react-router-dom";
 
-import { featuredArtists } from "@/components/Featured/featureArtists.data";
-import AutoMarquee from "@/components/Slider/AutoMarquee";
-
 function FeaturedArtists({ data: artistsData }) {
   const navigate = useNavigate();
   const onClickContainer = (id) => navigate(`/artists/${id}`);
@@ -21,10 +18,9 @@ function FeaturedArtists({ data: artistsData }) {
             style={{ border: `2px solid white` }}
           />
 
-          <AutoMarquee
-            className={"song-artists"}
-            value={artistsData.fullname}
-          />
+          <div className="song-artists innerText" title={artistsData.fullname}>
+            {artistsData.fullname}
+          </div>
         </div>
       </div>
     </>

@@ -60,7 +60,7 @@ function Explore() {
           {musicList.map((values, index) => {
             return (
               <PlaySong trackDetails={values.trackDetails} key={index}>
-                <div className="music-container" key={index}>
+                <div className="music-container dynamic" key={index}>
                   <div className="play-icon-container">
                     <img
                       src={values.trackDetails.coverArt}
@@ -73,10 +73,12 @@ function Explore() {
                     </span>
                   </div>
 
-                  <AutoMarquee
-                    className={"song-name"}
-                    value={values.trackDetails.title}
-                  />
+                  <div
+                    className="song-name innerText"
+                    title={values.trackDetails.title}>
+                    {values.trackDetails.title}
+                  </div>
+
                   <div className="song-artists">
                     {values.artistsDetails.name}
                   </div>

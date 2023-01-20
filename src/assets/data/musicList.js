@@ -811,3 +811,5 @@ export const musicList = [
     },
   },
 ];
+
+export const shortMusicList = musicList.slice(0, 7);
