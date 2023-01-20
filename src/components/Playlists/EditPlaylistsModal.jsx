@@ -97,6 +97,7 @@ function EditPlaylistsModelOverlay({ setClick }) {
                   <input
                     type="text"
                     name="title"
+                    maxLength={50}
                     id="playlist-name"
                     placeholder="Enter a name"
                     onChange={handleFormData}
@@ -104,6 +105,7 @@ function EditPlaylistsModelOverlay({ setClick }) {
                   <textarea
                     name="description"
                     id="playlist-description"
+                    maxLength={150}
                     onChange={handleFormData}
                     placeholder="Enter Description (Optional)"></textarea>
                 </div>

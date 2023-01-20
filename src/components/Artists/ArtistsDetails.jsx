@@ -21,7 +21,7 @@ function ArtistsDetails() {
       const artistDetail = await getArtistsById(userId);
       const artistSongs = await getArtistsSongs(userId);
 
-      setArtist(artistDetail.data.user);
+      setArtist(artistDetail.data.artists);
       setArtistSong(trackDetails(artistSongs.data.songs));
     };
 
@@ -71,7 +71,11 @@ function ArtistsDetails() {
         </section>
 
         <div className="padding">
-          <ArtistsPlayed data={artistsSong} />
+          {artistsSong.length > 0 ? (
+            <ArtistsPlayed data={artistsSong} />
+          ) : (
+            <h3>Artists have not uploaded any songs.</h3>
+          )}
         </div>
       </div>
     </>

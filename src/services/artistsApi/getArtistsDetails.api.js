@@ -28,7 +28,7 @@ const getArtistsAPI = async () => {
 
 const getArtistsById = async (id) => {
   const result = await getApiResponse({
-    url: UserAuthConfig.GET_A_USER(id),
+    url: ArtistsConfig.GET_ARTISTS_BY_ID(id),
     method: "get",
   });
 

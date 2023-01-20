@@ -6,6 +6,8 @@ import Loading from "@/components/Loading";
 import { getFavouriteSongs } from "@/services/musicApi/getSongs.api";
 import RecentPlayed from "@/components/SongsList";
 import { trackDetails } from "./../../utils/trackDetails.utils";
+import PlaySong from "@/components/Player/PlaySong";
+import { BiPlayCircle } from "react-icons/bi";
 
 function LikedSongs() {
   const auth = useGSSelector((state) => state.userState.userData);
@@ -48,15 +50,37 @@ function LikedSongs() {
         </div>
       </section>
 
-      <section
-        className="playlist-songs padding"
-        style={{ borderBottom: "1px solid rgba(0,0,0,0.8)" }}>
+      <section className="playlist-songs padding">
         {likedSongs.length > 0 ? (
-          <RecentPlayed
-            removeFromPlaylist={true}
-            data={likedSongs}
-            hideLike={true}
-          />
+          <div className="music-section">
+            {likedSongs.map((values) => {
+              return (
+                <PlaySong trackDetails={values.trackDetails} key={values._id}>
+                  <div className="music-container dynamic" key={values._id}>
+                    <div className="play-icon-container">
+                      <img
+                        src={values.coverArt}
+                        alt="thumbnail"
+                        className="thumbnail-new"
+                      />
+
+                      <span className="play-icon">
+                        <BiPlayCircle />
+                      </span>
+                    </div>
+
+                    <div className="song-name innerText" title={values.title}>
+                      {values.title}
+                    </div>
+
+                    <div className="song-artists">
+                      {values.artists.fullname}
+                    </div>
+                  </div>
+                </PlaySong>
+              );
+            })}
+          </div>
         ) : (
           <div>
             <h2>You have not liked any songs.</h2>
