@@ -41,4 +41,23 @@ const getSongsByID = async (id) => {
   return result.data;
 };
 
-export { getAllSongsAPI, getNewReleaseSongs, getFavouriteSongs };
+const getRecentlyPlayedSongs = async (id) => {
+  const result = await getApiResponse({
+    url: SongConfig.GET_SONGS,
+    method: "get",
+    otherParams: {
+      limit: 8,
+    },
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
+
+export {
+  getAllSongsAPI,
+  getNewReleaseSongs,
+  getFavouriteSongs,
+  getRecentlyPlayedSongs,
+  getSongsByID,
+};

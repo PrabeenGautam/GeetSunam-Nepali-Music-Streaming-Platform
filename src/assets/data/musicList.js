@@ -3,6 +3,7 @@ import * as songsList from "@/assets/songs_DELETE_LATER";
 
 export const musicList = [
   {
+    ID: "1",
     artistsDetails: {
       id: 2,
       name: "Sunil Giri",
@@ -22,6 +23,7 @@ export const musicList = [
     },
   },
   {
+    ID: "2",
     artistsDetails: {
       id: 2,
       name: "Sunil Giri",
@@ -41,6 +43,7 @@ export const musicList = [
     },
   },
   {
+    ID: "3",
     artistsDetails: {
       id: 0,
       name: "Indira Joshi",
@@ -61,6 +64,7 @@ export const musicList = [
     },
   },
   {
+    ID: "4",
     artistsDetails: {
       id: 0,
       name: "Indira Joshi",
@@ -80,6 +84,7 @@ export const musicList = [
     },
   },
   {
+    ID: "5",
     artistsDetails: {
       id: 1,
       name: "Sajjan Raj Vaidya",
@@ -99,6 +104,7 @@ export const musicList = [
     },
   },
   {
+    ID: "6",
     artistsDetails: {
       id: 1,
       name: "Sajjan Raj Vaidya",
@@ -118,6 +124,7 @@ export const musicList = [
     },
   },
   {
+    ID: "7",
     artistsDetails: {
       id: 3,
       name: "Sushant KC",
@@ -138,6 +145,7 @@ export const musicList = [
     },
   },
   {
+    ID: "8",
     artistsDetails: {
       id: 4,
       name: "Melina Rai",

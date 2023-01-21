@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   FiClock,
   FiHeart,
@@ -14,14 +14,25 @@ import PauseSong from "./Player/PauseSong";
 import useCurrentSong from "@/hooks/useCurrentSong";
 import { possibleMediaState } from "./Player/possibleMediaState.types";
 import PlaylistAddContainer from "./Playlists/PlaylistAddContainer";
+import ActionCreators from "@/react-mui-player/redux/actionCreators";
+import { toggleSongsFavourite } from "@/services/musicApi/postSongs.api";
 
-function RecentPlayed({ removeFromPlaylist = false, data, hideLike = false }) {
+function RecentPlayed({
+  removeFromPlaylist = false,
+  data: musicData,
+  hideLike = false,
+}) {
   const [deleteClick, setDeleteClick] = useState(false);
   const [playlist, setPlaylistAdd] = useState(false);
   const [playlistData, setPlaylistData] = useState(null);
   const [idToDelete, setIdDelete] = useState(null);
+  const [data, setData] = useState(musicData);
+  const [clicked, setClicked] = useState(false);
+
+  const currentPlayingSong = useSelector((state) => state);
 
   const currentSong = useCurrentSong();
+  const dispatch = useDispatch();
   const { mediaState } = useSelector(({ mediaState }) => ({ mediaState }));
 
   const musicList =
@@ -35,8 +46,36 @@ function RecentPlayed({ removeFromPlaylist = false, data, hideLike = false }) {
       favourite: trackDetails.isFavourite,
     }));
 
-  const handleFavourite = (data) => {
-    console.log(data);
+  const handleFavourite = async (value) => {
+    if (!clicked) {
+      const deepCopy = JSON.parse(JSON.stringify(data));
+      setClicked(true);
+
+      // Change Database
+      const fetchData = await toggleSongsFavourite(value._id);
+
+      // Change Player Like Buttons
+      if (currentPlayingSong.trackID === value._id) {
+        dispatch(
+          ActionCreators.getMusicDetails({
+            ID: currentPlayingSong.trackID,
+            favourite: fetchData.data.isFavourite,
+          })
+        );
+      }
+
+      // Change frontend Data
+      const changedData = deepCopy.map((song) => {
+        if (song._id === value._id) {
+          song.isFavourite = fetchData.data.isFavourite;
+          song.trackDetails.isFavourite = fetchData.data.isFavourite;
+        }
+        return song;
+      });
+
+      setData(() => changedData);
+      setClicked(false);
+    }
   };
 
   const handlePlaylist = (data) => {
@@ -117,9 +156,7 @@ function RecentPlayed({ removeFromPlaylist = false, data, hideLike = false }) {
                     <FiHeart
                       onClick={() => handleFavourite(value)}
                       className={
-                        value.trackDetails.isFavourite
-                          ? "heart favourite"
-                          : "heart"
+                        value.isFavourite ? "heart favourite" : "heart"
                       }
                     />
                   ) : (

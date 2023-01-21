@@ -7,21 +7,23 @@ import Featured from "./Featured/Featured";
 import RecentPlayed from "./SongsList";
 import RecentlyPlayedSlider from "./Slider/RecentlyPlayedSlider";
 import ArtistsSlider from "./Slider/ArtistsSlider";
-import { shortMusicList } from "@/assets/data/musicList";
 import CustomBreadcrumbs from "./Breadcrumbs";
 import getFeaturedSongs from "@/services/musicApi/getFeaturedSongs.api";
 import Loading from "./Loading";
 import { trackDetails } from "@/utils/trackDetails.utils";
 import { getFeaturedArtists } from "@/services/artistsApi/getArtistsDetails.api";
-import { getNewReleaseSongs } from "@/services/musicApi/getSongs.api";
+
+import {
+  getNewReleaseSongs,
+  getRecentlyPlayedSongs,
+} from "@/services/musicApi/getSongs.api";
 
 function Content() {
   const [featuredSongs, setFeaturedSongs] = useState(null);
   const [releaseSongs, setReleaseSongs] = useState(null);
   const [artists, setFeaturedArtists] = useState(null);
+  const [recentSongs, setRecentSongs] = useState(null);
   const [changeFavourite, setChangeFavourite] = useState(false);
-
-  const recentSongs = shortMusicList;
 
   useEffect(() => {
     const fetchSongs = async function () {
@@ -37,10 +39,12 @@ function Content() {
       const featuredSongs = await getFeaturedSongs();
       const releaseSongs = await getNewReleaseSongs();
       const featuredArtists = await getFeaturedArtists();
+      const recentSongs = await getRecentlyPlayedSongs();
 
       setFeaturedSongs(trackDetails(featuredSongs.data.songs));
       setReleaseSongs(trackDetails(releaseSongs.data.songs));
       setFeaturedArtists(featuredArtists.data.artists);
+      setRecentSongs(trackDetails(recentSongs.data.songs));
     };
 
     fetchSongs();
