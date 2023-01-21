@@ -79,9 +79,9 @@ select {
 
 :root {
   /* Initializing color palettes */
-  --primary: #222831;
+  --primary: #0f0f0f;
   /* --secondary: #393e46; */
-  --secondary: #262a2f;
+  --secondary: #181818;
   --tertiary: hsl(183, 100%, 45%);
   --text: #f6f6f6;
   --divider: #eeeeee;
