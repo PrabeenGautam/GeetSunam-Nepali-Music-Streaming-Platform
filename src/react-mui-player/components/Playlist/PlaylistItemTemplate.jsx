@@ -61,7 +61,7 @@ class PlaylistItemTemplate extends React.Component {
           )}
           <CoverArt
             src={item.coverArt}
-            id={Number(item.ID)}
+            id={item.ID}
             sx={{
               height: "48px",
               width: "48px",

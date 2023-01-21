@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 
 import MusicPlayedAnimation from "@/components/MusicPlayed";
+import { possibleMediaState } from "@/components/Player/possibleMediaState.types";
 
 const StyledImg = styled("img")(() => ({
   height: "100%",
@@ -15,7 +16,7 @@ export default function CoverArt(props) {
   const { src, sx, id } = props;
 
   const state = useSelector((state) => state);
-  const isPlaying = state.mediaState === "PLAYING";
+  const isPlaying = state.mediaState === possibleMediaState.PLAYING;
 
   return (
     <Box
@@ -29,7 +30,7 @@ export default function CoverArt(props) {
         alignItems: "center",
         ...sx,
       }}>
-      {isPlaying && Number(state.trackID) === id ? (
+      {isPlaying && state.trackID === id ? (
         <MusicPlayedAnimation />
       ) : (
         <StyledImg src={src} alt={""} style={{ objectFit: "cover" }} />
