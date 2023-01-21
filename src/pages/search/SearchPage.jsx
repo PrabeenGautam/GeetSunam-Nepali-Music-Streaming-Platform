@@ -1,9 +1,13 @@
-import { useMemo } from "react";
-import { useLocation } from "react-router-dom";
+import { useMemo, useEffect, useState } from "react";
+import { createSearchParams, useLocation, useNavigate } from "react-router-dom";
 
 import CustomBreadcrumbs from "@/components/Breadcrumbs";
-import RecentPlayed from "@/components/SongsList";
-import { musicList } from "@/assets/data/musicList";
+import { searchApi } from "@/services/searchApi/search.api";
+import { trackDetails } from "@/utils/trackDetails.utils";
+import ArtistsContainer from "@/components/Artists/ArtistsContainer";
+import PlaylistContainer from "@/pages/Playlists/PlaylistContainer";
+import PlaySong from "@/components/Player/PlaySong";
+import { BiPlayCircle } from "react-icons/bi";
 
 function useQuery() {
   const { search } = useLocation();
@@ -11,55 +15,169 @@ function useQuery() {
 }
 
 function SearchPage() {
-  let query = useQuery().get("query").toLowerCase();
-  const searchSongs = musicList.filter((value) =>
-    value.trackDetails.title.toLowerCase().includes(query)
-  );
-  const recommendedSongs =
-    searchSongs.length !== 0 &&
-    musicList.filter(
-      (value) => value.artistsDetails === searchSongs[0].artistsDetails
-    );
+  let query = useQuery().get("query")?.toLowerCase();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!query) {
+      navigate("/home");
+    }
+  }, []);
+
+  const onClickNavArtists = () => {
+    const options = {
+      pathname: "/results/artists",
+      search: `?${createSearchParams({ query })}`,
+    };
+    navigate(options, { replace: true });
+  };
+
+  const onClickNavSongs = () => {
+    const options = {
+      pathname: "/results/songs",
+      search: `?${createSearchParams({ query })}`,
+    };
+    navigate(options, { replace: true });
+  };
+
+  const onClickNavPlaylists = () => {
+    const options = {
+      pathname: "/results/playlists",
+      search: `?${createSearchParams({ query })}`,
+    };
+    navigate(options, { replace: true });
+  };
+
+  const onClickArtists = (id) => {
+    navigate(`/artists/${id}`);
+  };
+
+  const onClickPlaylists = (id) => {
+    navigate(`/playlists/${id}`);
+  };
+
+  const [searchData, setSearchData] = useState(null);
+
+  useEffect(() => {
+    const searchData = async () => {
+      const searchResult = await searchApi(query);
+      setSearchData(searchResult.data.search);
+    };
+
+    if (query) searchData();
+  }, [query]);
 
   return (
-    <>
-      <div
-        style={{
-          borderBottom: "1px solid rgba(0,0,0,0.8)",
-          padding: "2rem 2.5rem",
-        }}>
-        <CustomBreadcrumbs search={true} />
-        <h2>
-          Search results for:{" "}
-          <span style={{ textDecoration: "underline" }}>{query}</span>
-        </h2>
-        <h3>Top Results</h3>
+    searchData && (
+      <>
+        <div>
+          <div className="header-filterd">
+            <div
+              style={{
+                padding: "2rem 2.5rem 0",
+              }}>
+              <CustomBreadcrumbs search={true} />
+              <h2>
+                <span>Search results for: </span>
+                <span style={{ textDecoration: "underline" }}>{query}</span>
+              </h2>
+              <div className="filter-section">
+                <div className="active">All</div>
+                <div onClick={onClickNavSongs}>Songs</div>
+                <div onClick={onClickNavArtists}>Artists</div>
+                <div onClick={onClickNavPlaylists}>Playlists</div>
+              </div>
+            </div>
 
-        <section className="playlist-songs">
-          {searchSongs.length !== 0 ? (
-            <RecentPlayed removeFromPlaylist={false} data={searchSongs} />
-          ) : (
-            <h4 style={{ color: "rgba(255,255,255,0.8)", marginBottom: 20 }}>
-              No Songs Found For Given Query
-            </h4>
-          )}
-        </section>
-        {recommendedSongs && (
-          <div>
-            <section className="search-music padding">
-              <h3>Songs From Same Artists </h3>
-              <div className="languages">Based on what's you have searched</div>
-            </section>
-            <section className="playlist-songs">
-              <RecentPlayed
-                removeFromPlaylist={false}
-                data={recommendedSongs}
-              />
-            </section>
+            {searchData.songs.length !== 0 && (
+              <div
+                className="main-section "
+                style={{
+                  padding: "0 2.5rem",
+                }}>
+                <div className="heading">
+                  <div className="subheading">
+                    <span>Searched Songs: </span>
+                  </div>
+                </div>
+                <div className="music-section">
+                  {trackDetails(searchData.songs).map((values) => {
+                    return (
+                      <PlaySong
+                        trackDetails={values.trackDetails}
+                        key={values._id}>
+                        <div
+                          className="music-container dynamic"
+                          key={values._id}>
+                          <div className="play-icon-container">
+                            <img
+                              src={values.coverArt}
+                              alt="thumbnail"
+                              className="thumbnail-new"
+                            />
+
+                            <span className="play-icon">
+                              <BiPlayCircle />
+                            </span>
+                          </div>
+
+                          <div
+                            className="song-name innerText"
+                            title={values.title}>
+                            {values.title}
+                          </div>
+
+                          <div className="song-artists">
+                            {values.artists.fullname}
+                          </div>
+                        </div>
+                      </PlaySong>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {searchData.artists.length !== 0 && (
+              <div>
+                <h2
+                  style={{
+                    padding: "0 2.5rem",
+                  }}>
+                  Artists
+                </h2>
+                <ArtistsContainer
+                  artistsData={searchData.artists}
+                  onClickArtists={onClickArtists}
+                />
+              </div>
+            )}
+
+            {searchData.playlists.length !== 0 && (
+              <div>
+                <div className="main-section">
+                  <div
+                    className="heading"
+                    style={{
+                      padding: "0 2.5rem",
+                    }}>
+                    <div className="subheading">
+                      <span>Playlists </span>
+                    </div>
+                  </div>
+                </div>
+
+                <PlaylistContainer
+                  data={searchData.playlists}
+                  onClickPlaylists={onClickPlaylists}
+                />
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </>
+        </div>
+      </>
+    )
   );
 }
 

@@ -47,6 +47,9 @@ export const ArtistsConfig = {
 export const SearchConfig = {
   KEY: "SEARCH",
   SEARCH_QUERY: "/search",
+  SEARCH_SONG: "/search/songs",
+  SEARCH_ARTIST: "/search/artists",
+  SEARCH_PLAYLIST: "/search/playlists",
 };
 
 export const FavouriteSongsConfig = {

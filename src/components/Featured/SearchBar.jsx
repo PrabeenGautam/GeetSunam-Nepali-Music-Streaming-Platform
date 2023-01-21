@@ -30,8 +30,8 @@ function SearchBar() {
           name="query"
         />
         <input type="submit" hidden />
-        <div style={{ borderLeft: "2px solid black", paddingRight: 5 }}></div>
-        <FiMic className="icon-mic" />
+        {/* <div style={{ borderLeft: "2px solid black", paddingRight: 5 }}></div>
+        <FiMic className="icon-mic" /> */}
       </form>
     </div>
   );

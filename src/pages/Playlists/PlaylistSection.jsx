@@ -34,7 +34,7 @@ function PlaylistSection() {
 
   return playlist ? (
     <div className="playlist-container gradient">
-      <section className="playlist">
+      <section className="playlist" style={{ marginBottom: "2rem" }}>
         <div className="playlist-images custom">
           <img src={PlaylistsCover} alt="playlists" />
         </div>

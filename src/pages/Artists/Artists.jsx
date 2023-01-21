@@ -25,7 +25,7 @@ function Artists() {
 
   return artists ? (
     <div className="playlist-container gradient">
-      <section className="playlist">
+      <section className="playlist" style={{ marginBottom: "2rem" }}>
         <div className="playlist-images custom">
           <img src={artistsImage} alt="" className="custom-img" />
         </div>

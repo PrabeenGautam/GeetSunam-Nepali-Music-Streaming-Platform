@@ -30,6 +30,11 @@ const ArtistsDetails = React.lazy(() =>
 const Artists = React.lazy(() => import("@/pages/Artists/Artists"));
 const GenreContainer = React.lazy(() => import("@/pages/genre/GenreContainer"));
 const SearchPage = React.lazy(() => import("@/pages/search/SearchPage"));
+const SearchSong = React.lazy(() => import("@/pages/search/SearchSongs"));
+const SearchArtists = React.lazy(() => import("@/pages/search/SearchArtists"));
+const SearchPlaylists = React.lazy(() =>
+  import("@/pages/search/SearchPlaylists")
+);
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
@@ -50,7 +55,6 @@ function App() {
               <Route path="/artists" element={<Artists />} />
               <Route path="/artists/:id" element={<ArtistsDetails />} />
               <Route path="/fav-artists" element={<FavouriteArtists />} />
-              <Route path="/fav-artists/:id" element={<ArtistsDetails />} />
               <Route path="/playlists" element={<PlaylistSection />} />
               <Route path="/playlists/:id" element={<PlaylistsDetails />} />
 
@@ -58,6 +62,9 @@ function App() {
               <Route path="/*" element={<Navigate replace to="/" />} />
               <Route path="/genre/:id" element={<GenreContainer />} />
               <Route path="/results" element={<SearchPage />} />
+              <Route path="/results/artists" element={<SearchArtists />} />
+              <Route path="/results/songs" element={<SearchSong />} />
+              <Route path="/results/playlists" element={<SearchPlaylists />} />
 
               <Route path="/settings" element={<Settings />} />
               {artistsDashboard && (

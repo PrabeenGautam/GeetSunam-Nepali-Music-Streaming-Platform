@@ -8,8 +8,9 @@ import useGSDispatch from "@/redux/useGSDispatch";
 
 function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
   const location = useLocation();
+
   let isActive =
-    location.pathname === to || location.pathname.includes(`/${to}`);
+    location.pathname === to || location.pathname.startsWith(`/${to}`);
   return (
     <Link
       className={isActive ? ` ${activeClassName}` : ` ${inactiveClassName}`}
