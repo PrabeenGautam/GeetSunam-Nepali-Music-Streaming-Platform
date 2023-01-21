@@ -13,9 +13,9 @@ export default function AddToPlaylists(props) {
   const currentSong = useSelector((state) => state);
 
   const onClickHandler = () => {
-    const song = currentSong.playlist[currentSong.currentTrack];
+    const songId = currentSong.playlist[currentSong.currentTrack].ID;
     setPlaylistAdd(true);
-    setPlaylistData(song);
+    setPlaylistData(songId);
   };
 
   return (

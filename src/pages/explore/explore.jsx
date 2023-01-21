@@ -43,10 +43,12 @@ function Explore() {
       <CustomBreadcrumbs link={"/explore"} textName="Explore" />
 
       <div className="main-section">
-        <Featured
-          data={featuredSongs}
-          setChangeFavourite={setChangeFavourite}
-        />
+        {featuredSongs && (
+          <Featured
+            data={featuredSongs}
+            setChangeFavourite={setChangeFavourite}
+          />
+        )}
       </div>
 
       <div className="main-section">

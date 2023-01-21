@@ -7,6 +7,7 @@ import DeleteModel from "@/components/Playlists/DeleteModel";
 import EditPlaylistsModel from "@/components/Playlists/EditPlaylistsModal";
 import RecentPlayed from "@/components/SongsList";
 import { deletePlaylistAPI } from "@/services/playlistApi/getPlaylist.api";
+import { trackDetails } from "@/utils/trackDetails.utils";
 
 function Playlist({ playlistName = "No Name", playlist }) {
   const isLikedSongs = playlistName === "Liked Songs";
@@ -90,7 +91,10 @@ function Playlist({ playlistName = "No Name", playlist }) {
         className="playlist-songs padding"
         style={{ borderBottom: "1px solid rgba(0,0,0,0.8)" }}>
         {playlist.songs.length > 0 ? (
-          <RecentPlayed removeFromPlaylist={true} />
+          <RecentPlayed
+            removeFromPlaylist={true}
+            data={trackDetails(playlist.songs)}
+          />
         ) : (
           <div>
             <h2>No Songs Added to the Playlist</h2>

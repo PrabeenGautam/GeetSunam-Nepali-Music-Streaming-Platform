@@ -54,10 +54,38 @@ const updatePlaylistAPI = async (formData, id) => {
   return result.data;
 };
 
+const addSongsToPlaylist = async (songId, playlistId) => {
+  const result = await getApiResponse({
+    url: PlaylistConfig.ADD_SONGS_TO_PLAYLIST(playlistId),
+    method: "patch",
+    data: {
+      songs: songId,
+    },
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
+
+const removeSongsFromPlaylists = async (songId, playlistId) => {
+  const result = await getApiResponse({
+    url: PlaylistConfig.REMOVE_SONG_FROM_PLAYLIST(playlistId),
+    method: "patch",
+    data: {
+      songs: songId,
+    },
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
+
 export {
   getPlaylistsAPI,
   getPlaylistByID,
   createPlaylistsAPI,
   deletePlaylistAPI,
   updatePlaylistAPI,
+  removeSongsFromPlaylists,
+  addSongsToPlaylist,
 };

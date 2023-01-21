@@ -1,49 +1,90 @@
-import { useRef } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
 import { BiPlusCircle } from "react-icons/bi";
-import { GiTireIronCross } from "react-icons/gi";
+import { MdClose, MdPublic } from "react-icons/md";
+import { RiGitRepositoryPrivateLine } from "react-icons/ri";
+
+import {
+  addSongsToPlaylist,
+  createPlaylistsAPI,
+  getPlaylistsAPI,
+  removeSongsFromPlaylists,
+} from "@/services/playlistApi/getPlaylist.api";
 
 function PlaylistAddContainer({ setClick, data }) {
-  let checkedMap = {};
-  let checkboxRef = useRef();
+  const [playlists, setPlaylist] = useState(null);
+  const [checkCreated, setCheckCreated] = useState(null);
+  let songHandled = false;
 
-  const playlist = [
-    "Playlist 1",
-    "Playlist 2",
-    "Playlist 3",
-    "Playlist 4",
-    "Playlist 5",
-    "Playlist 6",
-  ];
+  const songId = data._id || data;
 
-  const handleChange = (obtainedId, checked) => {
-    checkedMap[obtainedId] = checked === true ? "true" : "false";
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      const playlists = await getPlaylistsAPI();
+      setPlaylist(playlists.data.playlists);
+    };
 
-    if (checked)
-      alert(
-        ` Data ${
-          data?.trackDetails?.title || data.title
-        } Added to Playlist having ID ${obtainedId}`
-      );
-    else
-      alert(
-        `Data ${
-          data?.trackDetails?.title || data.title
-        } Removed from Playlist having ID ${obtainedId}`
-      );
+    fetchPlaylists();
+  }, [checkCreated]);
+
+  const createPlaylist = async () => {
+    const response = await createPlaylistsAPI();
+    if (response.data) {
+      setCheckCreated((prev) => !prev);
+      toast.success("Playlist Created Succesfully", { autoClose: 3000 });
+    }
   };
+
+  const hasAlreadySongs = (playlist) => {
+    const playlistSongsId = playlist.songs.map((song) => String(song._id));
+    return playlistSongsId.includes(songId);
+  };
+
+  const handleSaveToPlaylists = async (playlist, event) => {
+    const playlistId = playlist._id;
+    const checked = event.target.checked;
+    if (!songHandled) {
+      songHandled = true;
+
+      if (checked) {
+        const response = await addSongsToPlaylist(songId, playlistId);
+        if (response.status === "success") {
+          toast.success(`Added to Playlist ${playlist.title}`, {
+            autoClose: 2000,
+          });
+        }
+      } else {
+        const response = await removeSongsFromPlaylists(songId, playlistId);
+        if (response.status === "success") {
+          toast.success(`Remove from Playlist ${playlist.title}`, {
+            autoClose: 2000,
+          });
+        }
+      }
+
+      songHandled = false;
+    }
+  };
+
   return (
-    <>
+    playlists && (
       <div className="model">
         <div
           className="model-container"
           onClick={() => {
             setClick(false);
           }}></div>
-        <div className="container" style={{ width: "24rem", zIndex: 9999 }}>
-          <div className="header">
-            <h3>Save too...</h3>
-            <GiTireIronCross
-              style={{ cursor: "pointer" }}
+        <div className="container" style={{ width: "17rem", zIndex: 9999 }}>
+          <div
+            className="header"
+            style={{
+              borderBottom: "0.5px solid var(--divider)",
+              paddingBottom: 10,
+            }}>
+            <div>Save too...</div>
+            <MdClose
+              style={{ cursor: "pointer", width: 25, height: 25 }}
               onClick={() => setClick(false)}
             />
           </div>
@@ -53,45 +94,59 @@ function PlaylistAddContainer({ setClick, data }) {
             style={{
               marginBottom: 20,
               overflowY: "auto",
-              maxHeight: "10rem",
+              maxHeight: "15rem",
             }}>
-            {playlist.map((value, id) => (
+            {playlists.map((playlist, index) => (
               <div
-                key={id}
+                key={playlist._id}
                 className="playlist-container"
                 style={{
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
-                  gap: 10,
-                  height: 40,
+                  margin: "15px 0",
                 }}
-                id={String(id)}>
+                id={`playlist-${index}`}>
                 <input
-                  ref={checkboxRef}
                   type="checkbox"
-                  style={{ width: 20, height: 20 }}
-                  onChange={(e) => {
-                    handleChange(String(id), e.target.checked);
-                  }}
+                  style={{ width: 20, height: 20, marginRight: 10 }}
                   name="checkPlaylist"
-                  id={String(id)}
+                  id={playlist._id}
+                  defaultChecked={hasAlreadySongs(playlist)}
+                  onChange={(e) => handleSaveToPlaylists(playlist, e)}
                 />
-                <div
-                  onClick={() => {
-                    checkboxRef.current.checked = true;
-                  }}
+
+                <label
+                  htmlFor={playlist._id}
                   style={{
                     verticalAlign: "middle",
                     width: "100%",
+                    cursor: "pointer",
+                    wordBreak: "break-all",
                   }}>
-                  {value}
+                  {playlist.title}
+                </label>
+
+                <div
+                  style={{
+                    marginLeft: 10,
+                    display: "flex",
+                    alignItems: "center",
+                  }}>
+                  {playlist.public ? (
+                    <MdPublic style={{ fontSize: "1.2rem" }} />
+                  ) : (
+                    <RiGitRepositoryPrivateLine
+                      style={{ fontSize: "1.2rem" }}
+                    />
+                  )}
                 </div>
               </div>
             ))}
           </div>
 
           <div
+            onClick={createPlaylist}
             style={{
               display: "flex",
               alignItems: "center",
@@ -105,7 +160,7 @@ function PlaylistAddContainer({ setClick, data }) {
           </div>
         </div>
       </div>
-    </>
+    )
   );
 }
 

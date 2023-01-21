@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 import Playlist from "./Playlist";
-import RecentPlayed from "@/components/SongsList";
 import Loading from "@/components/Loading";
 import useGSDispatch from "@/redux/useGSDispatch";
 import { getPlaylistByIDThunk } from "@/redux/middlewares/playlistThunk";
@@ -22,7 +21,7 @@ function PlaylistsDetails() {
   return playlist ? (
     <>
       <Playlist playlistName={playlistName} playlist={playlist} />
-      <div>
+      {/* <div>
         {playlist.songs.length > 0 && (
           <>
             <section
@@ -38,11 +37,14 @@ function PlaylistsDetails() {
                 borderBottom: "1px solid rgba(0,0,0,0.8)",
                 padding: "0 2.5rem",
               }}>
-              <RecentPlayed removeFromPlaylist={false} />
+              <RecentPlayed
+                removeFromPlaylist={false}
+                data={trackDetails(playlist.songs)}
+              />
             </section>
           </>
         )}
-      </div>
+      </div> */}
     </>
   ) : (
     <Loading />
