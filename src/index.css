@@ -392,6 +392,11 @@ a {
   background: var(--highlight);
 }
 
+.btn-pause {
+  background: var(--tertiary);
+  color: #000 !important;
+}
+
 .btn-play:hover {
   color: white;
   background-color: #e64a4a;

@@ -4,16 +4,22 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import ActionCreators from "@/react-mui-player/redux/actionCreators";
+import { toggleSongsFavourite } from "@/services/musicApi/postSongs.api";
 
 export default function Favourite(props) {
   const sx = props.sx;
   const favourite = useSelector((state) => state.favourite);
   const trackID = useSelector((state) => state.trackID);
+
   const dispatch = useDispatch();
 
-  const onClickHandler = () => {
+  const onClickHandler = async () => {
+    const fetchData = await toggleSongsFavourite(trackID);
     dispatch(
-      ActionCreators.getMusicDetails({ ID: trackID, favourite: !favourite })
+      ActionCreators.getMusicDetails({
+        ID: trackID,
+        favourite: fetchData.data.isFavourite,
+      })
     );
   };
 

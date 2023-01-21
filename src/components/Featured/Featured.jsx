@@ -50,6 +50,17 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
     return () => clearInterval(timer);
   }, [currentIndex, goToNext]);
 
+  const musicList =
+    featuredSongs &&
+    featuredSongs.map(({ trackDetails }) => ({
+      ID: trackDetails.ID,
+      coverArt: trackDetails.coverArt,
+      title: trackDetails.title,
+      artist: trackDetails.artist,
+      source: trackDetails.source,
+      favourite: trackDetails.isFavourite,
+    }));
+
   return (
     <>
       <div className="featured">
@@ -91,12 +102,15 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
                   index === currentIndex ? "" : "hidden"
                 }`}
                 key={index}>
-                {currentSong.trackID === value._id ? (
+                {currentSong.trackID === value._id &&
+                currentSong.mediaState === "PLAYING" ? (
                   <PauseSong trackDetails={value.trackDetails}>
-                    <Btn className="btn-play">Pause</Btn>
+                    <Btn className="btn-pause">Pause</Btn>
                   </PauseSong>
                 ) : (
-                  <PlaySong trackDetails={value.trackDetails}>
+                  <PlaySong
+                    trackDetails={value.trackDetails}
+                    musicList={musicList}>
                     <Btn className="btn-play">Play</Btn>
                   </PlaySong>
                 )}

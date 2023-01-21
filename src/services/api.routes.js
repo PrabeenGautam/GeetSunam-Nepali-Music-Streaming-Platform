@@ -57,6 +57,7 @@ export const FavouriteSongsConfig = {
   GET_FAVOURITE_SONGS: "/favourite/songs",
   ADD_FAVOURITE_SONGS: "/favourite/songs",
   REMOVE_FAVOURITE_SONGS: "/favourite/songs",
+  TOGGLE_FAVOURITE_SONGS: "/favourite/songs/toggle",
 };
 
 export const FavouriteArtistsConfig = {

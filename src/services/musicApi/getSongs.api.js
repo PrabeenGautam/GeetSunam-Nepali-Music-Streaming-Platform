@@ -31,4 +31,14 @@ const getFavouriteSongs = async () => {
   return result.data;
 };
 
+const getSongsByID = async (id) => {
+  const result = await getApiResponse({
+    url: SongConfig.GET_SONGS_BY_ID(id),
+    method: "get",
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
+
 export { getAllSongsAPI, getNewReleaseSongs, getFavouriteSongs };
