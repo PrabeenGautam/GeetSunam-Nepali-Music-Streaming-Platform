@@ -12,21 +12,27 @@ import Loading from "@/components/Loading";
 
 import { trackDetails } from "@/utils/trackDetails.utils";
 import { getAllSongsAPI } from "@/services/musicApi/getSongs.api";
+import getFeaturedSongs from "@/services/musicApi/getFeaturedSongs.api";
 
 function Explore() {
   const recommendedSongs = musicList.slice(4, 14);
   const [featuredSongs, setFeaturedSongs] = useState(null);
   const [songs, setSongs] = useState(null);
+  const [changeFavourite, setChangeFavourite] = useState(false);
+
+  useEffect(() => {
+    const fetchSongs = async function () {
+      const featuredSongs = await getFeaturedSongs();
+      setFeaturedSongs(trackDetails(featuredSongs.data.songs));
+    };
+
+    fetchSongs();
+  }, [changeFavourite]);
 
   useEffect(() => {
     const fetchSongs = async function () {
       const allSongs = await getAllSongsAPI();
-
       const songs = allSongs.data.songs;
-
-      const featuredSongs = songs.filter((song) => song.isFeatured === true);
-
-      setFeaturedSongs(trackDetails(featuredSongs));
       setSongs(trackDetails(songs));
     };
 
@@ -37,7 +43,10 @@ function Explore() {
       <CustomBreadcrumbs link={"/explore"} textName="Explore" />
 
       <div className="main-section">
-        <Featured data={featuredSongs} />
+        <Featured
+          data={featuredSongs}
+          setChangeFavourite={setChangeFavourite}
+        />
       </div>
 
       <div className="main-section">

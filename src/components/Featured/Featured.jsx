@@ -5,13 +5,21 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import SearchBar from "./SearchBar";
 import { Btn } from "@/components/StyledUI";
 import PlaySong from "@/components/Player/PlaySong";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PauseSong from "../Player/PauseSong";
+import { toggleSongsFavourite } from "@/services/musicApi/postSongs.api";
+import ActionCreators from "@/react-mui-player/redux/actionCreators";
 
-function Featured({ data: featuredSongs, showSearchBar = false }) {
+function Featured({
+  data: featuredSongs,
+  showSearchBar = false,
+  setChangeFavourite,
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const songsDetails = featuredSongs[currentIndex];
   const currentSong = useSelector((state) => state);
+
+  const dispatch = useDispatch();
 
   const buttonContainer = {
     position: "absolute",
@@ -42,13 +50,13 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
     fadeAnimation(document.getElementsByClassName("featured-img"));
   }, [currentIndex, featuredSongs.length]);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      goToNext();
-    }, 8000);
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     goToNext();
+  //   }, 8000);
 
-    return () => clearInterval(timer);
-  }, [currentIndex, goToNext]);
+  //   return () => clearInterval(timer);
+  // }, [currentIndex, goToNext]);
 
   const musicList =
     featuredSongs &&
@@ -60,6 +68,21 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
       source: trackDetails.source,
       favourite: trackDetails.isFavourite,
     }));
+
+  const handleFavourite = async (songId) => {
+    const fetchData = await toggleSongsFavourite(songId);
+
+    if (currentSong.trackID === songId) {
+      dispatch(
+        ActionCreators.getMusicDetails({
+          ID: songId,
+          favourite: fetchData.data.isFavourite,
+        })
+      );
+    }
+
+    setChangeFavourite((prev) => !prev);
+  };
 
   return (
     <>
@@ -114,11 +137,22 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
                     <Btn className="btn-play">Play</Btn>
                   </PlaySong>
                 )}
-                {value.trackDetails.isFavourite ? (
-                  <AiFillHeart className="featured-heart" />
-                ) : (
-                  <AiOutlineHeart className="featured-heart" />
-                )}
+
+                <span onClick={() => handleFavourite(value._id)}>
+                  {currentSong.trackID === value._id &&
+                    (currentSong.favourite ? (
+                      <AiFillHeart className="featured-heart" />
+                    ) : (
+                      <AiOutlineHeart className="featured-heart" />
+                    ))}
+
+                  {currentSong.trackID !== value._id &&
+                    (value.trackDetails.isFavourite ? (
+                      <AiFillHeart className="featured-heart" />
+                    ) : (
+                      <AiOutlineHeart className="featured-heart" />
+                    ))}
+                </span>
               </div>
             );
           })}

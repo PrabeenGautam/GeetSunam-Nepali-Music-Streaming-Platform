@@ -19,8 +19,18 @@ function Content() {
   const [featuredSongs, setFeaturedSongs] = useState(null);
   const [releaseSongs, setReleaseSongs] = useState(null);
   const [artists, setFeaturedArtists] = useState(null);
+  const [changeFavourite, setChangeFavourite] = useState(false);
 
   const recentSongs = shortMusicList;
+
+  useEffect(() => {
+    const fetchSongs = async function () {
+      const featuredSongs = await getFeaturedSongs();
+      setFeaturedSongs(trackDetails(featuredSongs.data.songs));
+    };
+
+    fetchSongs();
+  }, [changeFavourite]);
 
   useEffect(() => {
     const fetchSongs = async function () {
@@ -34,13 +44,17 @@ function Content() {
     };
 
     fetchSongs();
-  }, []);
+  }, [changeFavourite]);
 
-  return featuredSongs ? (
+  return featuredSongs && artists ? (
     <div className="content-container">
       <CustomBreadcrumbs link={"/home"} textName="Home" />
       {featuredSongs.length !== 0 && (
-        <Featured data={featuredSongs} showSearchBar={true} />
+        <Featured
+          data={featuredSongs}
+          showSearchBar={true}
+          setChangeFavourite={setChangeFavourite}
+        />
       )}
       <div className="main-section">
         <div className="heading">
