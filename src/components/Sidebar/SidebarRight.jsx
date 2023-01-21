@@ -5,7 +5,7 @@ import useGSSelector from "@/redux/useGSSelector";
 
 import { SearchBar } from "@/components/Featured";
 import { getGenresApi } from "@/services/musicApi/getGenres.api";
-import Loading from "@/components/Loading";
+import Spinner from "../Loader/Spinner";
 
 function SidebarRight() {
   const { userData } = useGSSelector((state) => state.userState);
@@ -57,7 +57,7 @@ function SidebarRight() {
       )}
     </div>
   ) : (
-    <Loading />
+    <Spinner />
   );
 }
 

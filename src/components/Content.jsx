@@ -9,7 +9,6 @@ import RecentlyPlayedSlider from "./Slider/RecentlyPlayedSlider";
 import ArtistsSlider from "./Slider/ArtistsSlider";
 import CustomBreadcrumbs from "./Breadcrumbs";
 import getFeaturedSongs from "@/services/musicApi/getFeaturedSongs.api";
-import Loading from "./Loading";
 import { trackDetails } from "@/utils/trackDetails.utils";
 import { getFeaturedArtists } from "@/services/artistsApi/getArtistsDetails.api";
 
@@ -17,12 +16,15 @@ import {
   getNewReleaseSongs,
   getRecentlyPlayedSongs,
 } from "@/services/musicApi/getSongs.api";
+import Spinner from "./Loader/Spinner";
+import FeaturedSkeleton from "./Loader/Featured";
+import NewlyReleased from "./Loader/NewlyReleased";
 
 function Content() {
-  const [featuredSongs, setFeaturedSongs] = useState(null);
-  const [releaseSongs, setReleaseSongs] = useState(null);
-  const [artists, setFeaturedArtists] = useState(null);
-  const [recentSongs, setRecentSongs] = useState(null);
+  const [featuredSongs, setFeaturedSongs] = useState([]);
+  const [releaseSongs, setReleaseSongs] = useState([]);
+  const [artists, setFeaturedArtists] = useState([]);
+  const [recentSongs, setRecentSongs] = useState([]);
   const [changeFavourite, setChangeFavourite] = useState(false);
 
   useEffect(() => {
@@ -50,15 +52,17 @@ function Content() {
     fetchSongs();
   }, [changeFavourite]);
 
-  return featuredSongs && artists ? (
+  return (
     <div className="content-container">
       <CustomBreadcrumbs link={"/home"} textName="Home" />
-      {featuredSongs.length !== 0 && (
+      {featuredSongs.length !== 0 ? (
         <Featured
           data={featuredSongs}
           showSearchBar={true}
           setChangeFavourite={setChangeFavourite}
         />
+      ) : (
+        <FeaturedSkeleton />
       )}
       <div className="main-section">
         <div className="heading">
@@ -72,7 +76,11 @@ function Content() {
         </div>
 
         <div className="content-section">
-          <RecentlyPlayedSlider musicList={releaseSongs} />
+          {releaseSongs.length !== 0 ? (
+            <RecentlyPlayedSlider musicList={releaseSongs} />
+          ) : (
+            <NewlyReleased />
+          )}
         </div>
       </div>
 
@@ -85,7 +93,11 @@ function Content() {
         </div>
 
         <div className="content-section">
-          {artists.length !== 0 && <ArtistsSlider featuredArtists={artists} />}
+          {artists.length !== 0 ? (
+            <ArtistsSlider featuredArtists={artists} />
+          ) : (
+            <Spinner />
+          )}
         </div>
       </div>
 
@@ -95,11 +107,13 @@ function Content() {
           <BiPause className="heading_icons" />
         </div>
 
-        <RecentPlayed removeFromPlaylist={false} data={recentSongs} />
+        {recentSongs.length !== 0 ? (
+          <RecentPlayed removeFromPlaylist={false} data={recentSongs} />
+        ) : (
+          <Spinner />
+        )}
       </div>
     </div>
-  ) : (
-    <Loading />
   );
 }
 

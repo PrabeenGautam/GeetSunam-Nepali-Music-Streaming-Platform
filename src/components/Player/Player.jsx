@@ -13,7 +13,7 @@ const theme = createTheme({
       main: green[500],
     },
     background: {
-      paper: "#222831",
+      paper: "#0f0f0f",
     },
     action: {
       active: "#fff",
