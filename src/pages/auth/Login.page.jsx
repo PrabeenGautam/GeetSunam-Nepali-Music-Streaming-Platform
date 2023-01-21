@@ -56,12 +56,6 @@ function LoginPage() {
       })
     ).then(() => {
       toast.dismiss();
-      setTimeout(() => {
-        toast.success("Login Successfully...", {
-          autoClose: 2000,
-          hideProgressBar: true,
-        });
-      }, 1000);
     });
   };
 
@@ -75,12 +69,6 @@ function LoginPage() {
         })
       ).then(() => {
         toast.dismiss();
-        setTimeout(() => {
-          toast.success("Login Successfully...", {
-            autoClose: 2000,
-            hideProgressBar: true,
-          });
-        }, 1000);
       });
     },
     onError: (err) => console.log(err),

@@ -5,10 +5,13 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import SearchBar from "./SearchBar";
 import { Btn } from "@/components/StyledUI";
 import PlaySong from "@/components/Player/PlaySong";
+import { useSelector } from "react-redux";
+import PauseSong from "../Player/PauseSong";
 
 function Featured({ data: featuredSongs, showSearchBar = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const songsDetails = featuredSongs[currentIndex];
+  const currentSong = useSelector((state) => state);
 
   const buttonContainer = {
     position: "absolute",
@@ -88,9 +91,15 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
                   index === currentIndex ? "" : "hidden"
                 }`}
                 key={index}>
-                <PlaySong trackDetails={value.trackDetails}>
-                  <Btn className="btn-play">Play</Btn>
-                </PlaySong>
+                {currentSong.trackID === value._id ? (
+                  <PauseSong trackDetails={value.trackDetails}>
+                    <Btn className="btn-play">Pause</Btn>
+                  </PauseSong>
+                ) : (
+                  <PlaySong trackDetails={value.trackDetails}>
+                    <Btn className="btn-play">Play</Btn>
+                  </PlaySong>
+                )}
                 {value.trackDetails.isFavourite ? (
                   <AiFillHeart className="featured-heart" />
                 ) : (

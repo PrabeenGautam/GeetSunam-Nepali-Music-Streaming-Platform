@@ -70,8 +70,8 @@ export const UserAuthConfig = {
   key: "USER-AUTH",
   SIGN_UP: () => "/users/signup",
   LOGIN: () => "/users/login",
-  GOOGLE_LOGIN: () => "/users/google-login",
-  GOOGLE_SIGNUP: () => "/users/google-signup",
+  GOOGLE_LOGIN: () => "/users/google",
+  GOOGLE_SIGNUP: () => "/users/google",
   FORGET_PASSWORD: () => "/users/forget-password",
   RESET_PASSWORD: (token) => `/users/reset-password/${token}`,
 
