@@ -8,6 +8,8 @@ import { Btn } from "@/components/StyledUI";
 function Settings() {
   const [click, setClick] = useState(false);
   const { i18n } = useTranslation();
+  document.documentElement.lang = i18n.language;
+
   const languageRef = useRef();
 
   const handleLanguage = (e) => {

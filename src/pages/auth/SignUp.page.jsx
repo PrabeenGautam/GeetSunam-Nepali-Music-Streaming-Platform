@@ -21,6 +21,7 @@ function SignUpPage() {
 
   const [passwordShown, setPasswordShow] = useState(false);
   const { t, i18n } = useTranslation("translation", { keyPrefix: "signUp" });
+  document.documentElement.lang = i18n.language;
 
   const signInDivRef = useRef();
   const navigate = useNavigate();

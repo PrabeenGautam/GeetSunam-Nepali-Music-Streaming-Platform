@@ -8,7 +8,8 @@
     "googleLogin": "Google मार्फत लग - इन गर्नुहोस ",
     "forgetPassword": "पासवर्ड बिर्सनुबयो?",
     "account": "खाता छैन?",
-    "signUp": "यहाँ साइन अप गर्नुहोस्"
+    "signUp": "यहाँ साइन अप गर्नुहोस्!!",
+    "rememberMe": "मलाई सम्झनुहोस्!!"
   },
   "signUp": {
     "account": "खाता साइनअप गर्नुहोस्",
@@ -19,5 +20,75 @@
     "signUp": "साइनअप",
     "confirmPassword": "पासवर्ड सुनिश्चित गर्नुहोस",
     "googleSignUp": "Google मार्फत साइनअप गर्नुहोस "
+  },
+  "leftSideBar": {
+    "menu": "मेनु",
+    "home": "होम",
+    "trending": "ट्रेन्डिङ",
+    "discover": "नयाँ खोजि",
+    "explore": "खोज्नु",
+    "newReleases": "नयाँ रिलीजहरू",
+    "madeForYou": "तपाईंको लागि बनाइएको",
+    "artists": "कलाकारहरू",
+    "yourCollection": "तपाईंको संग्रह",
+    "likedSongs": "मन परेको गीतहरू",
+    "favouriteArtists": "मनपर्ने कलाकारहरू",
+    "playlists": "प्लेलिस्टहरू",
+    "general": "अन्य",
+    "settings": "सेटिङहरू",
+    "logout": "लग आउट"
+  },
+  "generalDetails": {
+    "name": "नाम",
+    "artists": "कलाकारहरु",
+    "released": "रिलीज मिति",
+    "genre": "जानरा (विधा)"
+  },
+  "homePage": {
+    "newReleases": "नयाँ रिलीजहरू",
+    "featuredArtists": "विशेष कलाकारहरू",
+    "featuredSongs": "विशेष गीतहरू",
+    "recentlyPlayed": "हालै बजेका"
+  },
+  "trendingPage": {
+    "trendingSongs": "ट्रेन्डिङ गीतहरू",
+    "description": "ट्रेन्डिङ हिटहरू, दैनिक फेरिने",
+    "createdBy": "गीतसुनाम द्वारा सिर्जना गरिएको",
+    "tracks": "ट्र्याकहरू"
+  },
+  "explorePage": {
+    "recommendedForYou": "तपाईंको लागि सिफारिस गरिएको",
+    "seeAll": "सबै हेर्ने"
+  },
+  "newReleasePage": {
+    "newReleases": "नयाँ रिलीजहरू",
+    "description": "नयाँ रिलीजहरू गीतहरु, दैनिक फेरिने",
+    "createdBy": "गीतसुनाम द्वारा सिर्जना गरिएको"
+  },
+  "madeForYouPage": {
+    "recommendation": "सिफारिस",
+    "madeForYou": "तपाईंको लागि बनाइएको",
+    "description": "गीतहरू विशेष रूपमा तपाईंको लागि सिर्जना गरिएको",
+    "createdBy": "गीतसुनाम द्वारा सिर्जना गरिएको"
+  },
+  "playlistsPage": {
+    "createPlaylist": "प्लेलिस्ट सिर्जना गर्नुहोस्",
+    "createdBy": "सिर्जनाकर्ता",
+    "collection": "सङ्कलन"
+  },
+  "settingsPage": {
+    "settings": "सेटिङहरू",
+    "language": "भाषा",
+    "description": "भाषा छान्नुहोस् - वेब रिस्टार्ट गरेपछि परिवर्तनहरू लागू हुनेछन्",
+    "accountOverview": "खाता अवलोकन",
+    "username": "प्रयोगकर्ता नाम",
+    "email": "इमेल",
+    "countryRegion": "देश वा क्षेत्र",
+    "editProfile": "प्रोफाइल सम्पादन गर्नुहोस",
+    "changePassword": "पासवर्ड परिवर्तन गर्नुहोस्",
+    "currentPassword": "हालको पासवर्ड",
+    "newPassword": "नयाँ पासवर्ड",
+    "reNewPassword": "नयाँ पासवर्ड दोहोर्याउनुहोस्",
+    "setNewPassword": "नयाँ पासवर्ड सेट गर्नुहोस्"
   }
 }

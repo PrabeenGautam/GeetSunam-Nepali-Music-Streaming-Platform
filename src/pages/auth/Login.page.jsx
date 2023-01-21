@@ -24,6 +24,7 @@ function LoginPage() {
   const [passwordShown, setPasswordShow] = useState(false);
 
   const { t, i18n } = useTranslation("translation", { keyPrefix: "login" });
+  document.documentElement.lang = i18n.language;
 
   const signInDivRef = useRef();
   const checkboxRef = useRef();

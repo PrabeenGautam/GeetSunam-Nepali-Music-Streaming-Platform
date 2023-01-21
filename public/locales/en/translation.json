@@ -8,7 +8,8 @@
     "googleLogin": "Log in with Google",
     "forgetPassword": "Forget Password?",
     "account": "Don't have an account?",
-    "signUp": "Sign Up Here"
+    "signUp": "Sign Up Here",
+    "rememberMe": "Remember Me"
   },
   "signUp": {
     "account": "Account Signup",
@@ -19,5 +20,75 @@
     "confirmPassword": "Confirm Password",
     "googleSignUp": "Sign Up with Google",
     "signUp": "Sign Up Here"
+  },
+  "leftSideBar": {
+    "menu": "Menu",
+    "home": "Home",
+    "trending": "Trending",
+    "discover": "Discover",
+    "explore": "Explore",
+    "newReleases": "New Releases",
+    "madeForYou": "Made For You",
+    "artists": "Artists",
+    "yourCollection": "Your Collection",
+    "likedSongs": "Liked Songs",
+    "favouriteArtists": "Favourite Artists",
+    "playlists": "Playlists",
+    "general": "General",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "generalDetails": {
+    "name": "Name",
+    "artists": "Artists",
+    "released": "Released",
+    "genre": "Genre"
+  },
+  "homePage": {
+    "newReleases": "New Releases",
+    "featuredArtists": "Featured Artists",
+    "featuredSongs": "Featured Songs",
+    "recentlyPlayed": "Recently Played"
+  },
+  "trendingPage": {
+    "trendingSongs": "Trending Songs",
+    "description": "Top trending hits, refreshed daily",
+    "createdBy": "Created by GeetSunam",
+    "tracks": "Tracks"
+  },
+  "explorePage": {
+    "recommendedForYou": "Recommended for you",
+    "seeAll": "See All"
+  },
+  "newReleasePage": {
+    "newReleases": "New Releases",
+    "description": "New releases songs, refreshed daily",
+    "createdBy": "Created by GeetSunam"
+  },
+  "madeForYouPage": {
+    "recommendation": "Recommendation",
+    "madeForYou": "Made For You",
+    "description": "Songs Specially Created for you",
+    "createdBy": "Created by GeetSunam"
+  },
+  "playlistsPage": {
+    "createPlaylist": "Create Playlist",
+    "createdBy": "Created By",
+    "collection": "Collection"
+  },
+  "settingsPage": {
+    "settings": "Settings",
+    "language": "Language",
+    "description": "Choose language - Changes will be applied after restarting the web",
+    "accountOverview": "Account Overview",
+    "username": "Username",
+    "email": "Email",
+    "countryRegion": "Country or Region",
+    "editProfile": "Edit Profile",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "reNewPassword": "Repeat New Password",
+    "setNewPassword": "Set New Password"
   }
 }
