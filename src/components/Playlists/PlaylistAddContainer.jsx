@@ -50,14 +50,14 @@ function PlaylistAddContainer({ setClick, data }) {
       if (checked) {
         const response = await addSongsToPlaylist(songId, playlistId);
         if (response.status === "success") {
-          toast.success(`Added to Playlist ${playlist.title}`, {
+          toast.success(`Added to ${playlist.title}`, {
             autoClose: 2000,
           });
         }
       } else {
         const response = await removeSongsFromPlaylists(songId, playlistId);
         if (response.status === "success") {
-          toast.success(`Remove from Playlist ${playlist.title}`, {
+          toast.success(`Remove from ${playlist.title}`, {
             autoClose: 2000,
           });
         }

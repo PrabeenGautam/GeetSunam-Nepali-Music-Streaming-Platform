@@ -27,7 +27,7 @@ function DeleteModelOverlay({
             justifyContent: "space-between",
           }}>
           <div className="header">
-            <h2 className="h2">{`${modalMessage} ${data} ?`}</h2>
+            <h2 className="h2">{`${modalMessage} ${data ? data : ""} ?`}</h2>
             <MdClose
               style={{ cursor: "pointer", width: 32, height: 32 }}
               onClick={() => setClick(false)}

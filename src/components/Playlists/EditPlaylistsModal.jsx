@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { createPortal } from "react-dom";
 
@@ -9,10 +9,11 @@ import useGSSelector from "@/redux/useGSSelector";
 import useGSDispatch from "@/redux/useGSDispatch";
 import { getPlaylistByIDThunk } from "@/redux/middlewares/playlistThunk";
 
-function EditPlaylistsModelOverlay({ setClick }) {
+function EditPlaylistsModelOverlay({ setClick, playlist }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);
   const [uploadedImage, setUploadedImage] = useState("");
   const dispatch = useGSDispatch();
+  const checkboxRef = useRef();
 
   const [formData, setFormData] = useState({});
   const id = useGSSelector((state) => state.playlistState.playlistByID._id);
@@ -46,12 +47,15 @@ function EditPlaylistsModelOverlay({ setClick }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const checked = checkboxRef.current.checked;
 
     const postData = new FormData();
     if (formData.title) postData.append("title", formData.title);
     if (formData.description)
       postData.append("description", formData.description);
     if (uploadedImage) postData.append("coverArt", uploadedImage);
+
+    if (playlist.public !== checked) postData.append("public", checked);
 
     updatePlaylistAPI(postData, id).then(() => {
       setClick(false);
@@ -99,16 +103,38 @@ function EditPlaylistsModelOverlay({ setClick }) {
                     name="title"
                     maxLength={50}
                     id="playlist-name"
+                    value={playlist.title}
                     placeholder="Enter a name"
                     onChange={handleFormData}
                   />
                   <textarea
                     name="description"
+                    value={playlist.description}
                     id="playlist-description"
                     maxLength={150}
                     onChange={handleFormData}
                     placeholder="Enter Description (Optional)"></textarea>
                 </div>
+              </div>
+
+              <div
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  margin: "15px 0 0",
+                }}>
+                <label htmlFor="checkbox" style={{ marginRight: 10 }}>
+                  Make Playlists Public:{" "}
+                </label>
+                <input
+                  type="checkbox"
+                  name="public"
+                  id="checkbox"
+                  ref={checkboxRef}
+                  defaultChecked={playlist.public}
+                  style={{ height: 20, width: 20 }}
+                />
               </div>
               <Btn className="btn-play save-playlist">Save</Btn>
             </form>
@@ -123,9 +149,9 @@ function EditPlaylistsModelOverlay({ setClick }) {
   );
 }
 
-function EditPlaylistsModel({ setClick }) {
+function EditPlaylistsModel({ setClick, playlist }) {
   return createPortal(
-    <EditPlaylistsModelOverlay setClick={setClick} />,
+    <EditPlaylistsModelOverlay setClick={setClick} playlist={playlist} />,
     document.getElementById("modal")
   );
 }

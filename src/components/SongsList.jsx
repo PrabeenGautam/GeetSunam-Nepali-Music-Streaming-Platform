@@ -16,16 +16,19 @@ import { possibleMediaState } from "./Player/possibleMediaState.types";
 import PlaylistAddContainer from "./Playlists/PlaylistAddContainer";
 import ActionCreators from "@/react-mui-player/redux/actionCreators";
 import { toggleSongsFavourite } from "@/services/musicApi/postSongs.api";
+import { removeSongsFromPlaylists } from "@/services/playlistApi/getPlaylist.api";
+import { toast } from "react-toastify";
 
 function RecentPlayed({
   removeFromPlaylist = false,
   data: musicData,
   hideLike = false,
+  playlistID,
 }) {
   const [deleteClick, setDeleteClick] = useState(false);
   const [playlist, setPlaylistAdd] = useState(false);
   const [playlistData, setPlaylistData] = useState(null);
-  const [idToDelete, setIdDelete] = useState(null);
+  const [deletePlaylist, setDeleteValue] = useState(null);
   const [data, setData] = useState(musicData);
   const [clicked, setClicked] = useState(false);
 
@@ -83,9 +86,36 @@ function RecentPlayed({
     setPlaylistData(data);
   };
 
+  const removePlaylistHandler = async () => {
+    const response = await removeSongsFromPlaylists(
+      deletePlaylist._id,
+      playlistID
+    );
+
+    if (response.status === "success") {
+      toast.success(`Remove from Playlist ${playlist.title}`, {
+        autoClose: 2000,
+      });
+    }
+
+    const filteredData = data.filter(
+      (music) => music._id !== deletePlaylist._id
+    );
+
+    setData(filteredData);
+
+    setDeleteClick(false);
+  };
+
   return (
     <>
-      {deleteClick && <DeleteModel setClick={setDeleteClick} id={idToDelete} />}
+      {deleteClick && (
+        <DeleteModel
+          modalMessage="Remove from Playlists"
+          setClick={setDeleteClick}
+          deleteHandler={removePlaylistHandler}
+        />
+      )}
       {playlist && playlistData && (
         <PlaylistAddContainer setClick={setPlaylistAdd} data={playlistData} />
       )}
@@ -105,10 +135,10 @@ function RecentPlayed({
             <span style={{ visibility: "hidden" }}>#</span>
           </div>
           {data &&
-            data.map((value, index) => {
+            data.map((value) => {
               return (
                 <div
-                  key={value._id || index}
+                  key={value._id}
                   tabIndex="0"
                   className={`recent-container hover-effect ${
                     currentSong?.ID === value.trackDetails.ID ? "playing" : ""
@@ -142,15 +172,12 @@ function RecentPlayed({
                     </PlaySong>
                   </span>
 
-                  <span className="artists">
-                    {value?.artists?.fullname || value.artistsDetails.name}
-                  </span>
+                  <span className="artists">{value?.artists?.fullname}</span>
                   <span className="released-date">
                     {value?.releasedDate || "No Data"}
                   </span>
                   <span className="recent-genre">
-                    {value.genre?.name?.toUpperCase() ||
-                      value.genre.toUpperCase()}
+                    {value.genre?.name?.toUpperCase()}
                   </span>
                   {!hideLike ? (
                     <FiHeart
@@ -170,7 +197,7 @@ function RecentPlayed({
                         style={{ stroke: "white" }}
                         title="Remove from Playlists"
                         onClick={() => {
-                          setIdDelete(index);
+                          setDeleteValue(value);
                           setDeleteClick(true);
                         }}
                       />

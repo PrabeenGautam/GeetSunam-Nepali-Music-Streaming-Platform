@@ -30,101 +30,122 @@ function Playlist({ playlistName = "No Name", playlist }) {
   };
 
   return (
-    <div className="playlist-container">
-      {click && <EditPlaylistsModel setClick={setClick} />}
-      {deleteClick && (
-        <DeleteModel
-          setClick={setDeleteClick}
-          data={playlist.title}
-          deleteHandler={deletePlaylists}
-        />
-      )}
-      <section className="playlist">
-        <div className="playlist-images">
-          <img src={playlist.coverArt} alt="playlist" />
-        </div>
-
-        <div className="playlist-details">
-          <div>Playlist</div>
-          <div>{playlist.title}</div>
-          {!isLikedSongs && (
-            <div className="description">{playlist.description}</div>
-          )}
-          <div>
-            <span>{playlist.createdBy.fullname}</span>
-            <span style={{ fontWeight: "bold" }}>.</span>
-            <span>
-              {playlist.songs.length === 0 ? "No" : playlist.songs.length} Songs
-            </span>
+    playlist && (
+      <div className="playlist-container">
+        {click && (
+          <EditPlaylistsModel setClick={setClick} playlist={playlist} />
+        )}
+        {deleteClick && (
+          <DeleteModel
+            setClick={setDeleteClick}
+            data={playlist.title}
+            deleteHandler={deletePlaylists}
+          />
+        )}
+        <section className="playlist">
+          <div className="playlist-images">
+            <img src={playlist.coverArt} alt="playlist" />
           </div>
-        </div>
-        {!isLikedSongs && (
+
+          <div className="playlist-details">
+            <div>Playlist</div>
+            <div>{playlist.title}</div>
+            {!isLikedSongs && (
+              <div className="description">{playlist.description}</div>
+            )}
+            <div>
+              <span>{playlist.createdBy.fullname}</span>
+              <span style={{ fontWeight: "bold" }}>.</span>
+              <span>
+                {playlist.songs.length === 0 ? "No" : playlist.songs.length}{" "}
+                Songs
+              </span>
+            </div>
+          </div>
+
           <div
             style={{
               position: "absolute",
               right: 20,
+              top: 10,
+              backgroundColor: "var(--highlight)",
+              padding: "4px 8px",
+              color: "white",
               zIndex: 999,
+              borderRadius: 4,
             }}>
-            <button
-              className="custom-btn"
-              title="Edit Playlists"
-              style={{
-                marginRight: 10,
-              }}
-              onClick={() => setClick(true)}>
-              <MdEditNote />
-            </button>
-            <button
-              className="custom-btn btn-play"
-              title="Delete Playlists"
-              onClick={() => setDeleteClick(true)}>
-              <MdDeleteOutline
-                style={{
-                  fill: "white",
-                }}
-              />
-            </button>
+            {playlist.public ? "Public" : "Private"}
           </div>
-        )}
-      </section>
-      <section
-        className="playlist-songs padding"
-        style={{ borderBottom: "1px solid rgba(0,0,0,0.8)" }}>
-        {playlist.songs.length > 0 ? (
-          <RecentPlayed
-            removeFromPlaylist={true}
-            data={trackDetails(playlist.songs)}
-          />
-        ) : (
-          <div>
-            <h2>No Songs Added to the Playlist</h2>
-            <h3>Search for songs to add them</h3>
-            <div style={{ width: "30rem" }}>
-              <form className="search-bar" onSubmit={onSubmitValue}>
-                <FiSearch className="icon-search" />
-                <input
-                  type="text"
-                  className="text-input"
-                  placeholder="Search songs to add them to playlist"
-                  name="query"
-                  onChange={(e) => {
-                    if (!e.target.value) setShowData(false);
+          {!isLikedSongs && (
+            <div
+              style={{
+                position: "absolute",
+                right: 20,
+                bottom: 20,
+                zIndex: 999,
+              }}>
+              <button
+                className="custom-btn"
+                title="Edit Playlists"
+                style={{
+                  marginRight: 10,
+                }}
+                onClick={() => setClick(true)}>
+                <MdEditNote />
+              </button>
+              <button
+                className="custom-btn btn-play"
+                title="Delete Playlists"
+                onClick={() => setDeleteClick(true)}>
+                <MdDeleteOutline
+                  style={{
+                    fill: "white",
                   }}
                 />
-                <input type="submit" hidden />
-                <div
-                  style={{
-                    borderLeft: "2px solid black",
-                    paddingRight: 5,
-                  }}></div>
-                <FiMic className="icon-mic" />
-              </form>
+              </button>
             </div>
-            {showData ? <RecentPlayed /> : ""}
-          </div>
-        )}
-      </section>
-    </div>
+          )}
+        </section>
+        <section
+          className="playlist-songs padding"
+          style={{ borderBottom: "1px solid rgba(0,0,0,0.8)" }}>
+          {playlist.songs.length > 0 ? (
+            <RecentPlayed
+              removeFromPlaylist={true}
+              data={trackDetails(playlist.songs)}
+              playlistID={playlist._id}
+            />
+          ) : (
+            <div>
+              <h2>No Songs Added to the Playlist</h2>
+              <h3>Search for songs to add them</h3>
+              <div style={{ width: "30rem" }}>
+                <form className="search-bar" onSubmit={onSubmitValue}>
+                  <FiSearch className="icon-search" />
+                  <input
+                    type="text"
+                    className="text-input"
+                    placeholder="Search songs to add them to playlist"
+                    name="query"
+                    onChange={(e) => {
+                      if (!e.target.value) setShowData(false);
+                    }}
+                  />
+                  <input type="submit" hidden />
+                  <div
+                    style={{
+                      borderLeft: "2px solid black",
+                      paddingRight: 5,
+                    }}></div>
+                  <FiMic className="icon-mic" />
+                </form>
+              </div>
+              {showData ? <RecentPlayed /> : ""}
+            </div>
+          )}
+        </section>
+      </div>
+    )
   );
 }
 
