@@ -11,9 +11,13 @@ import { useQuery } from "react-query";
 function Trends() {
   const { data, isLoading, isError } = useQuery(
     "trendingSongs",
-    getTrendingSongs
+    getTrendingSongs,
+    {
+      select: (data) => data.data.songs,
+    }
   );
-  const trending = data && trackDetails(data?.data.songs);
+
+  const trending = data && trackDetails(data);
   const loader = isLoading || isError;
 
   return (

@@ -18,8 +18,13 @@ function MusicContainer({ data }) {
           </span>
         </div>
 
-        <AutoMarquee className={"song-name"} value={data.trackDetails.title} />
-        <div className="song-artists">{data.artistsDetails.name}</div>
+        <div className="container-artists">
+          <div className="song-name" title={data.trackDetails.title}>
+            {data.trackDetails.title}
+          </div>
+
+          <div className="song-artists">{data.artists.fullname}</div>
+        </div>
       </div>
     </PlaySong>
   );

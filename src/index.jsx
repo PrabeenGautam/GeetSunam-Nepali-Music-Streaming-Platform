@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Flip, ToastContainer } from "react-toastify";
 import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 import App from "@/App";
 import "@/index.css";
@@ -64,5 +65,6 @@ root.render(
         </GoogleOAuthProvider>
       </Provider>
     </Provider>
+    <ReactQueryDevtools initialIsOpen={false} position="top-right" />
   </QueryClientProvider>
 );

@@ -26,6 +26,7 @@ export const SongConfig = {
   FEATURED_SONGS: "/songs/featured",
   NEW_RELEASES: "/songs/new-releases",
   UPLOAD_SONG: "/songs/upload",
+  RECOMMENDATION: "/songs",
 
   GET_SONGS_BY_ID: (id) => `/songs/${id}`,
   UPDATE_SONGS: (id) => `/songs/${id}`,
