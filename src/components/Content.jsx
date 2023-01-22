@@ -16,9 +16,12 @@ import {
   getNewReleaseSongs,
   getRecentlyPlayedSongs,
 } from "@/services/musicApi/getSongs.api";
-import Spinner from "./Loader/Spinner";
 import FeaturedSkeleton from "./Loader/Featured";
-import NewlyReleased from "./Loader/NewlyReleased";
+import {
+  SongsSwiperLoader,
+  ArtistsSwiperLoader,
+  SongsTableLoader,
+} from "./Loader/LoaderComponents";
 
 function Content() {
   const [featuredSongs, setFeaturedSongs] = useState([]);
@@ -79,7 +82,7 @@ function Content() {
           {releaseSongs.length !== 0 ? (
             <RecentlyPlayedSlider musicList={releaseSongs} />
           ) : (
-            <NewlyReleased />
+            <SongsSwiperLoader />
           )}
         </div>
       </div>
@@ -96,7 +99,7 @@ function Content() {
           {artists.length !== 0 ? (
             <ArtistsSlider featuredArtists={artists} />
           ) : (
-            <Spinner />
+            <ArtistsSwiperLoader />
           )}
         </div>
       </div>
@@ -110,7 +113,7 @@ function Content() {
         {recentSongs.length !== 0 ? (
           <RecentPlayed removeFromPlaylist={false} data={recentSongs} />
         ) : (
-          <Spinner />
+          <SongsTableLoader />
         )}
       </div>
     </div>

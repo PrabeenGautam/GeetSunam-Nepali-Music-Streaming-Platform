@@ -1522,3 +1522,69 @@ h3:not(.h3) {
     transform: rotate(360deg);
   }
 }
+
+.skeleton-container {
+  background-color: #141414;
+  min-height: 200px;
+  width: 168px;
+  border-radius: 10px;
+  padding: 20px 12px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.skeleton-root {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px/6.7px;
+  position: relative;
+  overflow: hidden;
+  background-color: #212121;
+}
+
+.skeleton-root.sk-circle {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+}
+
+.skeleton-root.sk-image {
+  height: 6.5rem;
+}
+
+.skeleton-root.sk-text {
+  height: 1rem;
+}
+
+.skeleton-root.sk-title {
+  height: 1.5rem;
+}
+
+.skeleton-root::before {
+  content: "\00a0";
+}
+
+.skeleton-root::after {
+  content: "";
+  animation: animation-wiooy9 1.2s linear 0.5s infinite;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 0, 0, 0.04),
+    transparent
+  );
+  position: absolute;
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}

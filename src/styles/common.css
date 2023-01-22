@@ -93,3 +93,7 @@
     background-color: var(--highlight);
   }
 }
+
+.mt-10 {
+  margin-top: 10px;
+}
