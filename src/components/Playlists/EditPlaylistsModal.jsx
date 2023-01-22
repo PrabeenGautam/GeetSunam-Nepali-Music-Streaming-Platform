@@ -103,13 +103,13 @@ function EditPlaylistsModelOverlay({ setClick, playlist }) {
                     name="title"
                     maxLength={50}
                     id="playlist-name"
-                    value={playlist.title}
+                    defaultValue={playlist.title}
                     placeholder="Enter a name"
                     onChange={handleFormData}
                   />
                   <textarea
                     name="description"
-                    value={playlist.description}
+                    defaultValue={playlist.description}
                     id="playlist-description"
                     maxLength={150}
                     onChange={handleFormData}

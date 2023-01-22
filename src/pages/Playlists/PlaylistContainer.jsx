@@ -1,8 +1,8 @@
-function PlaylistsContainer({ data, onClickPlaylists }) {
+function PlaylistsContainer({ data, onClickPlaylists, padding = true }) {
   return (
     <section
       className="fav-artists-container"
-      style={{ padding: "0rem 2.5rem 2rem" }}>
+      style={{ padding: padding === true && "0rem 2.5rem 2rem" }}>
       {data.map((value) => {
         return (
           <div

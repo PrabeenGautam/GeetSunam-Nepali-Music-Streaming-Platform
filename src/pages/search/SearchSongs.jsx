@@ -5,6 +5,7 @@ import CustomBreadcrumbs from "@/components/Breadcrumbs";
 import { searchSongsApi } from "@/services/searchApi/search.api";
 import RecentPlayed from "@/components/SongsList";
 import { trackDetails } from "./../../utils/trackDetails.utils";
+import Spinner from "@/components/Loader/Spinner";
 
 function useQuery() {
   const { search } = useLocation();
@@ -13,6 +14,7 @@ function useQuery() {
 
 function SearchSong() {
   let query = useQuery().get("query")?.toLowerCase();
+  const [searchData, setSearchData] = useState(null);
 
   const navigate = useNavigate();
 
@@ -20,7 +22,8 @@ function SearchSong() {
     if (!query) {
       navigate("/home");
     }
-  }, []);
+    setSearchData(null);
+  }, [query]);
 
   const onClickNavArtists = () => {
     const options = {
@@ -46,48 +49,49 @@ function SearchSong() {
     navigate(options, { replace: true });
   };
 
-  const [searchData, setSearchData] = useState(null);
-
   useEffect(() => {
     const searchData = async () => {
       const searchResult = await searchSongsApi(query);
-      setSearchData(trackDetails(searchResult.data.songs));
+      setSearchData(searchResult.data);
     };
 
     if (query) searchData();
   }, [query]);
 
   return (
-    searchData && (
-      <>
-        <div>
-          <div className="header-filterd">
-            <div
-              style={{
-                padding: "2rem 2.5rem 0",
-              }}>
-              <CustomBreadcrumbs search={true} />
-              <h2>
-                <span>Search results for: </span>
-                <span style={{ textDecoration: "underline" }}>{query}</span>
-              </h2>
-              <div className="filter-section">
-                <div onClick={onClickNavAll}>All</div>
-                <div className="active">Songs</div>
-                <div onClick={onClickNavArtists}>Artists</div>
-                <div onClick={onClickNavPlaylists}>Playlists</div>
-              </div>
-            </div>
-
-            {searchData.length !== 0 ? (
-              <RecentPlayed removeFromPlaylist={false} data={searchData} />
-            ) : (
-              <h3 style={{ padding: "0 2.5rem 2rem" }}>No Songs Found</h3>
-            )}
+    <div>
+      <div className="header-filterd">
+        <div
+          style={{
+            padding: "2rem 2.5rem 0",
+          }}>
+          <CustomBreadcrumbs search={true} />
+          <h2>
+            <span>Search results for: </span>
+            <span style={{ textDecoration: "underline" }}>{query}</span>
+          </h2>
+          <div className="filter-section">
+            <div onClick={onClickNavAll}>All</div>
+            <div className="active">Songs</div>
+            <div onClick={onClickNavArtists}>Artists</div>
+            <div onClick={onClickNavPlaylists}>Playlists</div>
           </div>
         </div>
-      </>
-    )
+
+        {searchData ? (
+          searchData.songs.length !== 0 ? (
+            <RecentPlayed
+              removeFromPlaylist={false}
+              data={trackDetails(searchData.songs)}
+            />
+          ) : (
+            <h3 style={{ padding: "0 2.5rem 2rem" }}>No Songs Found</h3>
+          )
+        ) : (
+          <Spinner />
+        )}
+      </div>
+    </div>
   );
 }
 

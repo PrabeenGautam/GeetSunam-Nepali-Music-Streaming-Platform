@@ -4,6 +4,7 @@ import { createSearchParams, useLocation, useNavigate } from "react-router-dom";
 import CustomBreadcrumbs from "@/components/Breadcrumbs";
 import { searchArtistsApi } from "@/services/searchApi/search.api";
 import ArtistsContainer from "@/components/Artists/ArtistsContainer";
+import Spinner from "@/components/Loader/Spinner";
 
 function useQuery() {
   const { search } = useLocation();
@@ -61,39 +62,39 @@ function SearchSong() {
   };
 
   return (
-    searchData && (
-      <>
-        <div>
-          <div className="header-filterd">
-            <div
-              style={{
-                padding: "2rem 2.5rem 0",
-              }}>
-              <CustomBreadcrumbs search={true} />
-              <h2>
-                <span>Search results for: </span>
-                <span style={{ textDecoration: "underline" }}>{query}</span>
-              </h2>
-              <div className="filter-section">
-                <div onClick={onClickNavAll}>All</div>
-                <div onClick={onClickNavSongs}>Songs</div>
-                <div className="active">Artists</div>
-                <div onClick={onClickNavPlaylists}>Playlists</div>
-              </div>
-            </div>
-
-            {searchData.length !== 0 ? (
-              <ArtistsContainer
-                artistsData={searchData}
-                onClickArtists={onClickArtists}
-              />
-            ) : (
-              <h3 style={{ padding: "0 2.5rem 2rem" }}>No Artists Found</h3>
-            )}
+    <div>
+      <div className="header-filterd">
+        <div
+          style={{
+            padding: "2rem 2.5rem 0",
+          }}>
+          <CustomBreadcrumbs search={true} />
+          <h2>
+            <span>Search results for: </span>
+            <span style={{ textDecoration: "underline" }}>{query}</span>
+          </h2>
+          <div className="filter-section">
+            <div onClick={onClickNavAll}>All</div>
+            <div onClick={onClickNavSongs}>Songs</div>
+            <div className="active">Artists</div>
+            <div onClick={onClickNavPlaylists}>Playlists</div>
           </div>
         </div>
-      </>
-    )
+
+        {searchData ? (
+          searchData.length !== 0 ? (
+            <ArtistsContainer
+              artistsData={searchData}
+              onClickArtists={onClickArtists}
+            />
+          ) : (
+            <h3 style={{ padding: "0 2.5rem 2rem" }}>No Artists Found</h3>
+          )
+        ) : (
+          <Spinner />
+        )}
+      </div>
+    </div>
   );
 }
 
