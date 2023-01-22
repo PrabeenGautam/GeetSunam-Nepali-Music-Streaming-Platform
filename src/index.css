@@ -141,7 +141,7 @@ body {
 .left-sidebar {
   position: fixed;
   top: 0;
-  width: 14.5rem;
+  width: 15rem;
   overflow-y: scroll;
 }
 
@@ -390,6 +390,11 @@ a {
 
 .btn-play {
   background: var(--highlight);
+}
+
+.btn-disabled {
+  background: rgba(175, 173, 173, 0.1);
+  cursor: no-drop;
 }
 
 .btn-pause {

@@ -41,12 +41,10 @@ function Content() {
 
   useEffect(() => {
     const fetchSongs = async function () {
-      const featuredSongs = await getFeaturedSongs();
       const releaseSongs = await getNewReleaseSongs();
       const featuredArtists = await getFeaturedArtists();
       const recentSongs = await getRecentlyPlayedSongs();
 
-      setFeaturedSongs(trackDetails(featuredSongs.data.songs));
       setReleaseSongs(trackDetails(releaseSongs.data.songs));
       setFeaturedArtists(featuredArtists.data.artists);
       setRecentSongs(trackDetails(recentSongs.data.songs));

@@ -4,7 +4,12 @@ import { useDispatch } from "react-redux";
 import { PlayerInterface, Track } from "@/react-mui-player";
 import ActionCreators from "@/react-mui-player/redux/actionCreators";
 
-const PlaySong = ({ trackDetails = {}, children, musicList = [] }) => {
+const PlaySong = ({
+  trackDetails = {},
+  children,
+  musicList = [],
+  disabled = false,
+}) => {
   const currTrackRef = useRef(trackDetails);
   const {
     ID,
@@ -37,7 +42,9 @@ const PlaySong = ({ trackDetails = {}, children, musicList = [] }) => {
 
   return React.Children.map(children, (child) => {
     return React.cloneElement(child, {
-      onClick: () => playSong(),
+      onClick: () => {
+        if (!disabled) playSong();
+      },
       style: { cursor: "pointer" },
     });
   });

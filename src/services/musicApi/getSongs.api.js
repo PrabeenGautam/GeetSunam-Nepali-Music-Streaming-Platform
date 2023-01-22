@@ -1,7 +1,7 @@
 import { SongConfig, FavouriteSongsConfig } from "@/services/api.routes";
 import getApiResponse from "@/services/axios";
 
-const getAllSongsAPI = async (id) => {
+export const getAllSongsAPI = async (id) => {
   const result = await getApiResponse({
     url: SongConfig.GET_SONGS,
     method: "get",
@@ -11,7 +11,7 @@ const getAllSongsAPI = async (id) => {
   return result.data;
 };
 
-const getNewReleaseSongs = async () => {
+export const getNewReleaseSongs = async () => {
   const result = await getApiResponse({
     url: SongConfig.NEW_RELEASES,
     method: "get",
@@ -21,7 +21,7 @@ const getNewReleaseSongs = async () => {
   return result.data;
 };
 
-const getFavouriteSongs = async () => {
+export const getFavouriteSongs = async () => {
   const result = await getApiResponse({
     url: FavouriteSongsConfig.GET_FAVOURITE_SONGS,
     method: "get",
@@ -31,7 +31,7 @@ const getFavouriteSongs = async () => {
   return result.data;
 };
 
-const getSongsByID = async (id) => {
+export const getSongsByID = async (id) => {
   const result = await getApiResponse({
     url: SongConfig.GET_SONGS_BY_ID(id),
     method: "get",
@@ -41,7 +41,7 @@ const getSongsByID = async (id) => {
   return result.data;
 };
 
-const getRecentlyPlayedSongs = async (id) => {
+export const getRecentlyPlayedSongs = async (id) => {
   const result = await getApiResponse({
     url: SongConfig.GET_SONGS,
     method: "get",
@@ -54,10 +54,15 @@ const getRecentlyPlayedSongs = async (id) => {
   return result.data;
 };
 
-export {
-  getAllSongsAPI,
-  getNewReleaseSongs,
-  getFavouriteSongs,
-  getRecentlyPlayedSongs,
-  getSongsByID,
+export const getTrendingSongs = async () => {
+  const result = await getApiResponse({
+    url: SongConfig.GET_SONGS,
+    method: "get",
+    otherParams: {
+      limit: 8,
+    },
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
 };

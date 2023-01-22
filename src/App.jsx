@@ -13,27 +13,18 @@ import SearchSongs from "@/pages/search/SearchSongs";
 import SearchArtists from "@/pages/search/SearchArtists";
 import SearchPlaylists from "@/pages/search/SearchPlaylists";
 
-// const Content = React.lazy(() => import("components/Content"));
-const Trends = React.lazy(() => import("@/pages/trends/trends"));
-const Explore = React.lazy(() => import("@/pages/explore/explore"));
-const NewReleases = React.lazy(() => import("@/pages/NewReleases"));
-const Recommnedations = React.lazy(() => import("@/pages/Recommendations"));
-const LikedSongs = React.lazy(() => import("@/pages/LikedSongs/LikedSongs"));
-const FavouriteArtists = React.lazy(() =>
-  import("@/pages/Artists/FavouriteArtists")
-);
-const PlaylistSection = React.lazy(() =>
-  import("@/pages/Playlists/PlaylistSection")
-);
-const Settings = React.lazy(() => import("@/pages/Settings/settings"));
-const PlaylistsDetails = React.lazy(() =>
-  import("@/pages/Playlists/PlaylistsDetails")
-);
-const ArtistsDetails = React.lazy(() =>
-  import("@/components/Artists/ArtistsDetails")
-);
-const Artists = React.lazy(() => import("@/pages/Artists/Artists"));
-const GenreContainer = React.lazy(() => import("@/pages/genre/GenreContainer"));
+import Trends from "@/pages/trends/trends";
+import Explore from "@/pages/explore/explore";
+import NewReleases from "@/pages/NewReleases";
+import Recommnedations from "@/pages/Recommendations";
+import LikedSongs from "@/pages/LikedSongs/LikedSongs";
+import FavouriteArtists from "@/pages/Artists/FavouriteArtists";
+import PlaylistSection from "@/pages/Playlists/PlaylistSection";
+import Settings from "@/pages/Settings/settings";
+import PlaylistsDetails from "@/pages/Playlists/PlaylistsDetails";
+import ArtistsDetails from "@/components/Artists/ArtistsDetails";
+import Artists from "@/pages/Artists/Artists";
+import GenreContainer from "@/pages/genre/GenreContainer";
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
