@@ -8,6 +8,11 @@ import MainPlayer from "@/components/Player/Player";
 import ProtectedRoute from "@/utils/protectedRoutes";
 import Content from "@/components/Content";
 
+import SearchPages from "@/pages/search/SearchPage";
+import SearchSongs from "@/pages/search/SearchSongs";
+import SearchArtists from "@/pages/search/SearchArtists";
+import SearchPlaylists from "@/pages/search/SearchPlaylists";
+
 // const Content = React.lazy(() => import("components/Content"));
 const Trends = React.lazy(() => import("@/pages/trends/trends"));
 const Explore = React.lazy(() => import("@/pages/explore/explore"));
@@ -29,12 +34,6 @@ const ArtistsDetails = React.lazy(() =>
 );
 const Artists = React.lazy(() => import("@/pages/Artists/Artists"));
 const GenreContainer = React.lazy(() => import("@/pages/genre/GenreContainer"));
-const SearchPage = React.lazy(() => import("@/pages/search/SearchPage"));
-const SearchSong = React.lazy(() => import("@/pages/search/SearchSongs"));
-const SearchArtists = React.lazy(() => import("@/pages/search/SearchArtists"));
-const SearchPlaylists = React.lazy(() =>
-  import("@/pages/search/SearchPlaylists")
-);
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
@@ -61,9 +60,9 @@ function App() {
               {/* Redirect Since Genre List is shown in Sidebar*/}
               <Route path="/*" element={<Navigate replace to="/" />} />
               <Route path="/genre/:id" element={<GenreContainer />} />
-              <Route path="/results" element={<SearchPage />} />
+              <Route path="/results" element={<SearchPages />} />
               <Route path="/results/artists" element={<SearchArtists />} />
-              <Route path="/results/songs" element={<SearchSong />} />
+              <Route path="/results/songs" element={<SearchSongs />} />
               <Route path="/results/playlists" element={<SearchPlaylists />} />
 
               <Route path="/settings" element={<Settings />} />
