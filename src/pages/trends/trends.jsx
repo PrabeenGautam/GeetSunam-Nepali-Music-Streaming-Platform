@@ -2,30 +2,26 @@ import { Btn } from "@/components/StyledUI";
 import RecentPlayed from "@/components/SongsList";
 import CustomBreadcrumbs from "@/components/Breadcrumbs";
 import PlaySong from "@/components/Player/PlaySong";
-import { useState } from "react";
-import { useEffect } from "react";
 import { getTrendingSongs } from "@/services/musicApi/getSongs.api";
 import { trackDetails } from "@/utils/trackDetails.utils";
 import { SongsTableLoader } from "@/components/Loader/LoaderComponents";
 import FeaturedSkeleton from "@/components/Loader/Featured";
+import { useQuery } from "react-query";
 
 function Trends() {
-  const [trending, setTrending] = useState(null);
+  const { data, isLoading, isError } = useQuery(
+    "trendingSongs",
+    getTrendingSongs
+  );
+  const trending = data && trackDetails(data?.data.songs);
+  const loader = isLoading || isError;
 
-  useEffect(() => {
-    const fetchdata = async () => {
-      const song = await getTrendingSongs();
-      setTrending(trackDetails(song.data.songs));
-    };
-
-    fetchdata();
-  }, []);
   return (
     <div className="content-container">
       <div className="trends">
         <CustomBreadcrumbs link={"/trends"} textName="Trending" />
         <section className="top-trends">
-          {trending ? (
+          {!loader ? (
             <img
               src={trending[0].trackDetails.coverArt}
               className="trend-image"
@@ -42,9 +38,9 @@ function Trends() {
             <span className="details">
               <div>Top trending hits, refreshed daily</div>
               <div>Created by GeetSunam</div>
-              <div>{trending && trending.length} Tracks</div>
+              <div>{!loader && trending.length} Tracks</div>
             </span>
-            {trending ? (
+            {!loader ? (
               <PlaySong trackDetails={trending[0].trackDetails}>
                 <Btn className="btn-play">Play</Btn>
               </PlaySong>
@@ -53,10 +49,12 @@ function Trends() {
             )}
           </div>
         </section>
-        {trending ? (
+        {!loader ? (
           <RecentPlayed removeFromPlaylist={false} data={trending} />
         ) : (
-          <SongsTableLoader />
+          <div className="mt-20">
+            <SongsTableLoader />
+          </div>
         )}
       </div>
     </div>

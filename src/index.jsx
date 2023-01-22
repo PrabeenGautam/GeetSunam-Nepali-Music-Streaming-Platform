@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Provider } from "react-redux";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Flip, ToastContainer } from "react-toastify";
+import { QueryClientProvider, QueryClient } from "react-query";
 
 import App from "@/App";
 import "@/index.css";
@@ -28,36 +29,40 @@ const ScrollToTop = ({ children }) => {
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const queryClient = new QueryClient();
+
 root.render(
-  <Provider store={playerStore}>
-    <Provider store={geetSunamStore} context={geetSunamStoreContext}>
-      <GoogleOAuthProvider
-        clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || ""}>
-        <BrowserRouter basename={import.meta.env.VITE_BASE_URL || "/"}>
-          <Suspense fallback={<Loading />}>
-            <ScrollToTop>
-              <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                transition={Flip}
-                pauseOnHover
-                theme="dark"
-              />
-              <Routes>
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<SignUpPage />} />
-                <Route path="/*" element={<App />} />
-              </Routes>
-            </ScrollToTop>
-          </Suspense>
-        </BrowserRouter>
-      </GoogleOAuthProvider>
+  <QueryClientProvider client={queryClient}>
+    <Provider store={playerStore}>
+      <Provider store={geetSunamStore} context={geetSunamStoreContext}>
+        <GoogleOAuthProvider
+          clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || ""}>
+          <BrowserRouter basename={import.meta.env.VITE_BASE_URL || "/"}>
+            <Suspense fallback={<Loading />}>
+              <ScrollToTop>
+                <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  transition={Flip}
+                  pauseOnHover
+                  theme="dark"
+                />
+                <Routes>
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/signup" element={<SignUpPage />} />
+                  <Route path="/*" element={<App />} />
+                </Routes>
+              </ScrollToTop>
+            </Suspense>
+          </BrowserRouter>
+        </GoogleOAuthProvider>
+      </Provider>
     </Provider>
-  </Provider>
+  </QueryClientProvider>
 );

@@ -22,15 +22,15 @@ function ArtistsLoader() {
 function SongsTableLoader() {
   return (
     <div className="skeleton-container" style={{ width: "100%" }}>
-      <span className="skeleton-root sk-text"></span>
-      <span className="skeleton-root sk-text mt-10"></span>
-      <span className="skeleton-root sk-text mt-10"></span>
-      <span className="skeleton-root sk-text mt-10"></span>
-      <span className="skeleton-root sk-text mt-10"></span>
-      <span className="skeleton-root sk-text mt-10"></span>
-      <span className="skeleton-root sk-text mt-10"></span>
-      <span className="skeleton-root sk-text mt-10"></span>
-      <span className="skeleton-root sk-text mt-10"></span>
+      <span className="skeleton-root sk-title"></span>
+      <span className="skeleton-root sk-title mt-10"></span>
+      <span className="skeleton-root sk-title mt-10"></span>
+      <span className="skeleton-root sk-title mt-10"></span>
+      <span className="skeleton-root sk-title mt-10"></span>
+      <span className="skeleton-root sk-title mt-10"></span>
+      <span className="skeleton-root sk-title mt-10"></span>
+      <span className="skeleton-root sk-title mt-10"></span>
+      <span className="skeleton-root sk-title mt-10"></span>
     </div>
   );
 }
