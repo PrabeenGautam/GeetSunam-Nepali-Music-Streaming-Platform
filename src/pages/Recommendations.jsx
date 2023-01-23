@@ -9,7 +9,7 @@ import PlaySong from "@/components/Player/PlaySong";
 import { getRecommendedSongs } from "@/services/musicApi/getSongs.api";
 import { trackDetails } from "@/utils/trackDetails.utils";
 import Spinner from "@/components/Loader/Spinner";
-import ManagePlayback from "@/components/PlayerBack/mangePlayback";
+import ManagePlayback from "@/components/PlayerBack/managePlayback";
 
 function Recommnedations() {
   const { data, isLoading, isError } = useQuery(

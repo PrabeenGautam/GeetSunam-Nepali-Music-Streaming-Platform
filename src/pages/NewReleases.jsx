@@ -12,7 +12,7 @@ import { possibleMediaState } from "@/components/Player/possibleMediaState.types
 import React from "react";
 import PauseSong from "@/components/Player/PauseSong";
 import ActionCreators from "@/react-mui-player/redux/actionCreators";
-import ManagePlayback from "@/components/PlayerBack/mangePlayback";
+import ManagePlayback from "@/components/PlayerBack/managePlayback";
 
 function NewReleases() {
   const { data, isLoading, isError } = useQuery(

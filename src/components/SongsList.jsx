@@ -18,6 +18,7 @@ import ActionCreators from "@/react-mui-player/redux/actionCreators";
 import { toggleSongsFavourite } from "@/services/musicApi/postSongs.api";
 import { removeSongsFromPlaylists } from "@/services/playlistApi/getPlaylist.api";
 import { toast } from "react-toastify";
+import ManageSongsPlayback from "./PlayerBack/manageSongsPlayback";
 
 function RecentPlayed({
   removeFromPlaylist = false,
@@ -143,42 +144,8 @@ function RecentPlayed({
                   className={`recent-container hover-effect ${
                     currentSong?.ID === value.trackDetails.ID ? "playing" : ""
                   }`}>
-                  {currentSong?.ID === value.trackDetails.ID &&
-                  mediaState === possibleMediaState.PLAYING ? (
-                    <PauseSong>
-                      <FiPauseCircle className="recent-play" />
-                    </PauseSong>
-                  ) : (
-                    <PlaySong
-                      trackDetails={value.trackDetails}
-                      musicList={musicList}>
-                      <FiPlayCircle className="recent-play" />
-                    </PlaySong>
-                  )}
-                  <PlaySong
-                    trackDetails={value.trackDetails}
-                    musicList={musicList}>
-                    <img
-                      src={value.trackDetails.coverArt}
-                      alt="thumbnail"
-                      className="thumbnail-recent"
-                    />
-                  </PlaySong>
-                  <span className="song-name">
-                    <PlaySong
-                      trackDetails={value.trackDetails}
-                      musicList={musicList}>
-                      <span>{value.trackDetails.title}</span>
-                    </PlaySong>
-                  </span>
+                  <ManageSongsPlayback song={value} musicList={musicList} />
 
-                  <span className="artists">{value?.artists?.fullname}</span>
-                  <span className="released-date">
-                    {value?.releasedDate || "No Data"}
-                  </span>
-                  <span className="recent-genre">
-                    {value.genre?.name?.toUpperCase()}
-                  </span>
                   {!hideLike ? (
                     <FiHeart
                       onClick={() => handleFavourite(value)}

@@ -14,7 +14,7 @@ function FavouriteArtists() {
     data: artists,
     isLoading,
     isError,
-  } = useQuery("artists", getFavouriteArtists, {
+  } = useQuery("fav-artists", getFavouriteArtists, {
     select: (data) => data.data.artists,
   });
 
