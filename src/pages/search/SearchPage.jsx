@@ -25,6 +25,7 @@ function SearchPage() {
     if (!query) {
       navigate("/home");
     }
+    refetch();
   }, [query]);
 
   const onClickNavArtists = () => {
@@ -63,11 +64,13 @@ function SearchPage() {
     data: searchData,
     isLoading,
     isError,
+    isFetching,
+    refetch,
   } = useReactQuery("searchAny", () => searchApi(query), {
     select: (data) => data.data.search,
   });
 
-  const loader = isLoading || isError;
+  const loader = isFetching || isLoading || isError;
 
   return (
     <div>
