@@ -24,7 +24,7 @@ function RecentPlayed({
   const [deleteClick, setDeleteClick] = useState(false);
   const [playlist, setPlaylistAdd] = useState(false);
   const [playlistData, setPlaylistData] = useState(null);
-  const [deletePlaylist, setDeleteValue] = useState(null);
+  const [songId, setSongID] = useState(null);
   const [clicked, setClicked] = useState(false);
 
   const currentPlayingSong = useSelector((state) => state);
@@ -81,14 +81,13 @@ function RecentPlayed({
   };
 
   const removePlaylistHandler = async () => {
-    const response = await removeSongsFromPlaylists(
-      deletePlaylist._id,
-      playlistID
-    );
+    const response = await removeSongsFromPlaylists(songId, playlistID);
+    queryClient.invalidateQueries("playlists", playlistID);
 
     if (response.status === "success") {
-      toast.success(`Remove from Playlist ${playlist.title}`, {
-        autoClose: 2000,
+      toast.success(`Remove from Playlist`, {
+        hideProgressBar: true,
+        autoClose: 3000,
       });
     }
 
@@ -162,7 +161,7 @@ function RecentPlayed({
                         style={{ stroke: "white" }}
                         title="Remove from Playlists"
                         onClick={() => {
-                          setDeleteValue(value);
+                          setSongID(value._id);
                           setDeleteClick(true);
                         }}
                       />

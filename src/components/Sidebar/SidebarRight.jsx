@@ -6,20 +6,22 @@ import useGSSelector from "@/redux/useGSSelector";
 import { SearchBar } from "@/components/Featured";
 import { getGenresApi } from "@/services/musicApi/getGenres.api";
 import Spinner from "../Loader/Spinner";
+import { useQuery } from "react-query";
 
 function SidebarRight() {
   const { userData } = useGSSelector((state) => state.userState);
-  const [genres, setGenre] = useState(null);
 
-  useEffect(() => {
-    const fetchGenre = async () => {
-      const result = await getGenresApi();
-      setGenre(result.data.genres);
-    };
+  const {
+    data: genres,
+    isLoading,
+    isError,
+  } = useQuery("genres", getGenresApi, {
+    select: (data) => data.data.genres,
+  });
 
-    fetchGenre();
-  }, []);
-  return genres ? (
+  const loader = isLoading || isError;
+
+  return !loader ? (
     <div className="sidebar-right">
       <Link
         to="/settings"
