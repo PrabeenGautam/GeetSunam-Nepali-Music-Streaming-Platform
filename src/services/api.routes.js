@@ -66,6 +66,7 @@ export const FavouriteArtistsConfig = {
   GET_FAVOURITE_ARTISTS: "/favourite/artists",
   ADD_FAVOURITE_ARTISTS: "/favourite/artists",
   REMOVE_FAVOURITE_ARTISTS: "/favourite/artists",
+  TOGGLE_FAVOURITE_ARTISTS: "/favourite/artists/toggle",
 };
 
 export const UserAuthConfig = {

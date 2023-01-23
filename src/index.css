@@ -618,7 +618,7 @@ a {
 }
 
 .artists-details {
-  grid-template-columns: 20px 2.5rem 1.5fr 0.5fr 50px 40px 50px;
+  grid-template-columns: 20px 2.5rem 1fr 0.5fr 100px 20px 40px 50px 50px;
 }
 
 .recent-container.hover-effect:hover {
@@ -800,7 +800,7 @@ h2:not(.h2) {
   position: relative;
   display: flex;
   gap: 32px;
-  background-color: #222831;
+  background-color: #1c1917;
 }
 
 .playlist .playlist-images {

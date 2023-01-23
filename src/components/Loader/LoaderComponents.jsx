@@ -71,10 +71,12 @@ function SongTwoRowLoader() {
   const array = new Array(10).fill(0);
   return array.map((_, index) => <SongsLoader key={"Songs " + index} />);
 }
+
 export {
   SongsSwiperLoader,
   ArtistsSwiperLoader,
   SongsTableLoader,
   SongTwoRowLoader,
+  SongsLoader,
 };
 export default SongsLoader;

@@ -1,12 +1,12 @@
-import { FavouriteSongsConfig } from "../api.routes";
+import { FavouriteArtistsConfig } from "../api.routes";
 import getApiResponse from "../axios";
 
-export const toggleSongsFavourite = async (id) => {
+export const toggleArtistsFavourite = async (id) => {
   const result = await getApiResponse({
-    url: FavouriteSongsConfig.TOGGLE_FAVOURITE_SONGS,
+    url: FavouriteArtistsConfig.TOGGLE_FAVOURITE_ARTISTS,
     method: "patch",
     data: {
-      songs: id,
+      artists: id,
     },
   });
 

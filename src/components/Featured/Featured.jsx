@@ -49,9 +49,7 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
           };
         });
       },
-      onError: (err, newSongs, context) => {
-        queryClient.setQueryData(["featured"], context.previousSongs);
-      },
+
       onSettled: () => {
         queryClient.invalidateQueries({ queryKey: ["featured"] });
       },
@@ -87,13 +85,13 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
     fadeAnimation(document.getElementsByClassName("featured-img"));
   }, [currentIndex, featuredSongs.length]);
 
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     goToNext();
-  //   }, 8000);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      goToNext();
+    }, 8000);
 
-  //   return () => clearInterval(timer);
-  // }, [currentIndex, goToNext]);
+    return () => clearInterval(timer);
+  }, [currentIndex, goToNext]);
 
   const musicList =
     featuredSongs &&

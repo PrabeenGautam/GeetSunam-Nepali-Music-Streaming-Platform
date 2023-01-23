@@ -1,52 +1,74 @@
 import { useParams } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
-import { useEffect, useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 
 import ArtistsPlayed from "./ArtistsPlayed";
-import {
-  getArtistsById,
-  getArtistsSongs,
-} from "@/services/artistsApi/getArtistsDetails.api";
+import { getArtistsSongs } from "@/services/artistsApi/getArtistsDetails.api";
 import { trackDetails } from "@/utils/trackDetails.utils";
-import Loading from "../Loading";
+import Spinner from "../Loader/Spinner";
+import { useArtistsData } from "@/hooks/useArtistsData";
+import { toggleArtistsFavourite } from "@/services/artistsApi/patchArtistsDetails";
 
 function ArtistsDetails() {
-  const { id: userId } = useParams();
+  const { id: artistId } = useParams();
 
-  const [artist, setArtist] = useState(null);
-  const [artistsSong, setArtistSong] = useState(null);
+  const {
+    data: artist,
+    isLoading: isLoadingArtists,
+    isError: isErrorArtists,
+  } = useArtistsData(artistId);
 
-  useEffect(() => {
-    const fetchData = async function () {
-      const artistDetail = await getArtistsById(userId);
-      const artistSongs = await getArtistsSongs(userId);
+  const { data, isLoading, isError } = useQuery(
+    ["songs", artistId],
+    () => getArtistsSongs(artistId),
+    {
+      select: (data) => data.data.songs,
+    }
+  );
 
-      setArtist(artistDetail.data.artists);
-      setArtistSong(trackDetails(artistSongs.data.songs));
-    };
+  const artistsSong = data && trackDetails(data);
+  const loaderArtists = isLoadingArtists || isErrorArtists;
+  const songLoading = isLoading || isError;
 
-    fetchData();
-  }, []);
+  const queryClient = useQueryClient();
 
-  return artist ? (
-    <>
-      <div className="playlist-container gradient">
+  const { mutate, isLoadingFavourite } = useMutation(
+    (id) => toggleArtistsFavourite(id),
+    {
+      onSettled: () => {
+        queryClient.invalidateQueries({ queryKey: ["artists", artistId] });
+      },
+    }
+  );
+
+  const handleArtistFavourite = function (event) {
+    event.preventDefault();
+    if (isLoadingFavourite) return;
+    mutate(artistId);
+  };
+
+  return (
+    <div className="playlist-container gradient">
+      {!loaderArtists ? (
         <section className="playlist">
           <div className="artists-images">
-            <img src={artist.profileImage} alt="thumbnail" />
+            <img src={artist?.profileImage} alt="thumbnail" />
           </div>
           <div className="playlist-details">
             <div>Artists</div>
-            <div>{artist.fullname}</div>
+            <div>{artist?.fullname}</div>
             <div>
               <span>GeetSunam</span>
               <span style={{ fontWeight: "bold" }}>.</span>
-              <span>{artistsSong.length} songs</span>
+              <span>{artistsSong?.length} songs</span>
             </div>
           </div>
           <div style={{ position: "absolute", right: 20, zIndex: 999 }}>
-            <button className="custom-btn" title="Remove from Favourite">
-              {artist.isFavourite ? (
+            <button
+              className="custom-btn"
+              title="Remove from Favourite"
+              onClick={handleArtistFavourite}>
+              {artist?.isFavourite ? (
                 <FiHeart
                   style={{
                     fill: "var(--highlight)",
@@ -69,18 +91,22 @@ function ArtistsDetails() {
             </button>
           </div>
         </section>
+      ) : (
+        <Spinner />
+      )}
 
-        <div className="padding">
-          {artistsSong.length > 0 ? (
+      <div className="padding">
+        {!songLoading ? (
+          artistsSong.length > 0 ? (
             <ArtistsPlayed data={artistsSong} />
           ) : (
             <h3>Artists have not uploaded any songs.</h3>
-          )}
-        </div>
+          )
+        ) : (
+          <Spinner />
+        )}
       </div>
-    </>
-  ) : (
-    <Loading />
+    </div>
   );
 }
 

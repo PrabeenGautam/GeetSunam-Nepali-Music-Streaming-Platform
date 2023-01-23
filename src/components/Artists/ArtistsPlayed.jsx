@@ -40,13 +40,13 @@ function ArtistsPlayed({ data: artistSongs }) {
         <PlaylistAddContainer setClick={setPlaylistAdd} data={playlistData} />
       )}
       <section className="song-list">
-        <div className="recent-container list_heading ">
+        <div className="recent-container artists-details list_heading ">
           <span>#</span>
           <span className="song-name">name</span>
           <span></span>
-          <span className="artist">artists</span>
+          <span className="artist">Released Date</span>
           <span className="recent-genre">genre</span>
-          <span></span>
+          <span></span> <span></span>
           <span className="length">
             <FiClock />
           </span>
@@ -57,7 +57,7 @@ function ArtistsPlayed({ data: artistSongs }) {
             return (
               <div
                 key={index}
-                className={`recent-container hover-effect ${
+                className={`recent-container artists-details hover-effect ${
                   currentSong?.ID === value.trackDetails.ID ? "playing" : ""
                 }`}>
                 {currentSong?.ID === value.trackDetails.ID &&
@@ -82,10 +82,11 @@ function ArtistsPlayed({ data: artistSongs }) {
                   />
                   <span className="song-name">{value.trackDetails.title}</span>
                 </PlaySong>
-                <span className="artists">{value.artists.fullname}</span>
+                <span className="artists">{value.releasedDate}</span>
                 <span className="recent-genre">
                   {value.genre.name.toUpperCase()}
                 </span>
+                <span></span>
                 <FiHeart
                   onClick={() => handleFavourite(value)}
                   className={value.isFavourite ? "heart favourite" : "heart"}
