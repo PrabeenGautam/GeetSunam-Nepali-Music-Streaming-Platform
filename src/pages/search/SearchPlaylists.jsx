@@ -5,6 +5,7 @@ import CustomBreadcrumbs from "@/components/Breadcrumbs";
 import { searchPlaylistsApi } from "@/services/searchApi/search.api";
 import PlaylistsContainer from "../Playlists/PlaylistContainer";
 import Spinner from "@/components/Loader/Spinner";
+import { useQuery as useReactQuery } from "react-query";
 
 function useQuery() {
   const { search } = useLocation();
@@ -46,16 +47,15 @@ function SearchSong() {
     navigate(options, { replace: true });
   };
 
-  const [searchData, setSearchData] = useState(null);
+  const {
+    data: searchData,
+    isLoading,
+    isError,
+  } = useReactQuery("searchPlaylists", () => searchPlaylistsApi(query), {
+    select: (data) => data.data.playlists,
+  });
 
-  useEffect(() => {
-    const searchData = async () => {
-      const searchResult = await searchPlaylistsApi(query);
-      setSearchData(searchResult.data.playlists);
-    };
-
-    if (query) searchData();
-  }, [query]);
+  const loader = isLoading || isError;
 
   const onClickPlaylists = (playlists) => {
     navigate(`/playlists/${playlists}`);
@@ -81,7 +81,7 @@ function SearchSong() {
           </div>
         </div>
 
-        {searchData ? (
+        {!loader ? (
           searchData.length !== 0 ? (
             <PlaylistsContainer
               data={searchData}

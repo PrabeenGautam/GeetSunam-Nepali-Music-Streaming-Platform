@@ -6,6 +6,7 @@ import { searchSongsApi } from "@/services/searchApi/search.api";
 import RecentPlayed from "@/components/SongsList";
 import { trackDetails } from "./../../utils/trackDetails.utils";
 import Spinner from "@/components/Loader/Spinner";
+import { useQuery as useReactQuery } from "react-query";
 
 function useQuery() {
   const { search } = useLocation();
@@ -14,7 +15,6 @@ function useQuery() {
 
 function SearchSong() {
   let query = useQuery().get("query")?.toLowerCase();
-  const [searchData, setSearchData] = useState(null);
 
   const navigate = useNavigate();
 
@@ -22,7 +22,6 @@ function SearchSong() {
     if (!query) {
       navigate("/home");
     }
-    setSearchData(null);
   }, [query]);
 
   const onClickNavArtists = () => {
@@ -49,14 +48,15 @@ function SearchSong() {
     navigate(options, { replace: true });
   };
 
-  useEffect(() => {
-    const searchData = async () => {
-      const searchResult = await searchSongsApi(query);
-      setSearchData(searchResult.data);
-    };
+  const {
+    data: searchData,
+    isLoading,
+    isError,
+  } = useReactQuery("searchSongs", () => searchSongsApi(query), {
+    select: (data) => data.data.songs,
+  });
 
-    if (query) searchData();
-  }, [query]);
+  const loader = isLoading || isError;
 
   return (
     <div>
@@ -78,12 +78,14 @@ function SearchSong() {
           </div>
         </div>
 
-        {searchData ? (
-          searchData.songs.length !== 0 ? (
-            <RecentPlayed
-              removeFromPlaylist={false}
-              data={trackDetails(searchData.songs)}
-            />
+        {!loader ? (
+          searchData.length !== 0 ? (
+            <div style={{ padding: "0 2.5rem 2rem" }}>
+              <RecentPlayed
+                removeFromPlaylist={false}
+                data={trackDetails(searchData)}
+              />
+            </div>
           ) : (
             <h3 style={{ padding: "0 2.5rem 2rem" }}>No Songs Found</h3>
           )

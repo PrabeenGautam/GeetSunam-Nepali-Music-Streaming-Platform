@@ -5,6 +5,7 @@ import CustomBreadcrumbs from "@/components/Breadcrumbs";
 import { searchArtistsApi } from "@/services/searchApi/search.api";
 import ArtistsContainer from "@/components/Artists/ArtistsContainer";
 import Spinner from "@/components/Loader/Spinner";
+import { useQuery as useReactQuery } from "react-query";
 
 function useQuery() {
   const { search } = useLocation();
@@ -46,16 +47,15 @@ function SearchSong() {
     navigate(options, { replace: true });
   };
 
-  const [searchData, setSearchData] = useState(null);
+  const {
+    data: searchData,
+    isLoading,
+    isError,
+  } = useReactQuery("searchArtists", () => searchArtistsApi(query), {
+    select: (data) => data.data.artists,
+  });
 
-  useEffect(() => {
-    const searchData = async () => {
-      const searchResult = await searchArtistsApi(query);
-      setSearchData(searchResult.data.artists);
-    };
-
-    if (query) searchData();
-  }, [query]);
+  const loader = isLoading || isError;
 
   const onClickArtists = (id) => {
     navigate(`/artists/${id}`);
@@ -79,20 +79,21 @@ function SearchSong() {
             <div className="active">Artists</div>
             <div onClick={onClickNavPlaylists}>Playlists</div>
           </div>
-        </div>
 
-        {searchData ? (
-          searchData.length !== 0 ? (
-            <ArtistsContainer
-              artistsData={searchData}
-              onClickArtists={onClickArtists}
-            />
+          {!loader ? (
+            searchData.length !== 0 ? (
+              <ArtistsContainer
+                artistsData={searchData}
+                onClickArtists={onClickArtists}
+                padding={false}
+              />
+            ) : (
+              <h3 style={{ padding: "0 2.5rem 2rem" }}>No Artists Found</h3>
+            )
           ) : (
-            <h3 style={{ padding: "0 2.5rem 2rem" }}>No Artists Found</h3>
-          )
-        ) : (
-          <Spinner />
-        )}
+            <Spinner />
+          )}
+        </div>
       </div>
     </div>
   );

@@ -516,7 +516,7 @@ a {
   max-width: 10.5rem;
   position: relative;
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.4);
   padding: 20px 12px;
   border-radius: 10px;
 }
@@ -760,7 +760,7 @@ h2:not(.h2) {
 }
 
 .fav-artists-container .artists {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.4);
   padding: 20px;
   border-radius: 5px;
   max-height: 13rem;
@@ -772,7 +772,7 @@ h2:not(.h2) {
 }
 
 .fav-artists-container .artists:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .playlist-container .playlist::after {

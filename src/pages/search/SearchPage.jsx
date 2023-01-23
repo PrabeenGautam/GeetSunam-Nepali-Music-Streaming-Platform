@@ -9,6 +9,7 @@ import PlaylistContainer from "@/pages/Playlists/PlaylistContainer";
 import PlaySong from "@/components/Player/PlaySong";
 import { BiPlayCircle } from "react-icons/bi";
 import Spinner from "@/components/Loader/Spinner";
+import { useQuery as useReactQuery } from "react-query";
 
 function useQuery() {
   const { search } = useLocation();
@@ -19,13 +20,11 @@ function SearchPage() {
   let query = useQuery().get("query")?.toLowerCase();
 
   const navigate = useNavigate();
-  const [searchData, setSearchData] = useState(null);
 
   useEffect(() => {
     if (!query) {
       navigate("/home");
     }
-    setSearchData(null);
   }, [query]);
 
   const onClickNavArtists = () => {
@@ -60,14 +59,15 @@ function SearchPage() {
     navigate(`/playlists/${id}`);
   };
 
-  useEffect(() => {
-    const searchData = async () => {
-      const searchResult = await searchApi(query);
-      setSearchData(searchResult.data.search);
-    };
+  const {
+    data: searchData,
+    isLoading,
+    isError,
+  } = useReactQuery("searchAny", () => searchApi(query), {
+    select: (data) => data.data.search,
+  });
 
-    if (query) searchData();
-  }, [query]);
+  const loader = isLoading || isError;
 
   return (
     <div>
@@ -88,14 +88,14 @@ function SearchPage() {
             <div onClick={onClickNavPlaylists}>Playlists</div>
           </div>
 
-          {searchData ? (
-            searchData.songs.length === 0 &&
-            searchData.artists.length === 0 &&
-            searchData.playlists.length === 0 ? (
+          {!loader ? (
+            searchData.songs?.length === 0 &&
+            searchData.artists?.length === 0 &&
+            searchData.playlists?.length === 0 ? (
               <h2>No Search Results</h2>
             ) : (
               <div className="searched-data">
-                {searchData.songs.length !== 0 && (
+                {searchData.songs?.length !== 0 && (
                   <div className="main-section">
                     <div className="heading">
                       <div className="subheading">
@@ -140,17 +140,18 @@ function SearchPage() {
                   </div>
                 )}
 
-                {searchData.artists.length !== 0 && (
+                {searchData.artists?.length !== 0 && (
                   <div>
                     <h2>Artists</h2>
                     <ArtistsContainer
                       artistsData={searchData.artists}
                       onClickArtists={onClickArtists}
+                      padding={false}
                     />
                   </div>
                 )}
 
-                {searchData.playlists.length !== 0 && (
+                {searchData.playlists?.length !== 0 && (
                   <div>
                     <div className="main-section">
                       <div className="heading">
@@ -170,7 +171,9 @@ function SearchPage() {
               </div>
             )
           ) : (
-            <Spinner />
+            <div className="mt-80">
+              <Spinner />
+            </div>
           )}
         </div>
       </div>
