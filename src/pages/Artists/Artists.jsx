@@ -46,7 +46,7 @@ function Artists() {
           onClickArtists={onClickArtists}
         />
       ) : (
-        <div className="mt-20">
+        <div className="mt-80">
           <Spinner />
         </div>
       )}

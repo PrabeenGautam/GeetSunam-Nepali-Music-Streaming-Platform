@@ -1,18 +1,13 @@
-import { Btn } from "@/components/StyledUI";
+import React from "react";
+import { useQuery } from "react-query";
+
+import Spinner from "@/components/Loader/Spinner";
 import RecentPlayed from "@/components/SongsList";
 import CustomBreadcrumbs from "@/components/Breadcrumbs";
-import PlaySong from "@/components/Player/PlaySong";
-import { getNewReleaseSongs } from "@/services/musicApi/getSongs.api";
 import { trackDetails } from "@/utils/trackDetails.utils";
 import FeaturedSkeleton from "@/components/Loader/Featured";
-import { useQuery } from "react-query";
-import Spinner from "@/components/Loader/Spinner";
-import { useDispatch, useSelector } from "react-redux";
-import { possibleMediaState } from "@/components/Player/possibleMediaState.types";
-import React from "react";
-import PauseSong from "@/components/Player/PauseSong";
-import ActionCreators from "@/react-mui-player/redux/actionCreators";
 import ManagePlayback from "@/components/PlayerBack/managePlayback";
+import { getNewReleaseSongs } from "@/services/musicApi/getSongs.api";
 
 function NewReleases() {
   const { data, isLoading, isError } = useQuery(
@@ -25,11 +20,6 @@ function NewReleases() {
 
   const newReleases = data && trackDetails(data);
   const loader = isLoading || isError;
-
-  const dispatch = useDispatch();
-
-  const currentSong = useSelector((state) => state);
-  const onPlay = () => dispatch(ActionCreators.play());
 
   return (
     <div className="content-container">
@@ -63,7 +53,11 @@ function NewReleases() {
           </div>
         </section>
         {!loader ? (
-          <RecentPlayed removeFromPlaylist={false} data={newReleases} />
+          <RecentPlayed
+            removeFromPlaylist={false}
+            data={newReleases}
+            terminateQueries="newReleases"
+          />
         ) : (
           <div className="mt-80">
             <Spinner />

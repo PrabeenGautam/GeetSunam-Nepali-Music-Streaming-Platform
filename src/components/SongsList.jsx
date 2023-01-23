@@ -1,43 +1,37 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  FiClock,
-  FiHeart,
-  FiPauseCircle,
-  FiPlayCircle,
-  FiTrash,
-} from "react-icons/fi";
+import { FiClock, FiHeart, FiTrash } from "react-icons/fi";
+import { useQueryClient } from "react-query";
+import { toast } from "react-toastify";
 
 import DeleteModel from "./Playlists/DeleteModel";
-import PlaySong from "./Player/PlaySong";
-import PauseSong from "./Player/PauseSong";
 import useCurrentSong from "@/hooks/useCurrentSong";
-import { possibleMediaState } from "./Player/possibleMediaState.types";
 import PlaylistAddContainer from "./Playlists/PlaylistAddContainer";
 import ActionCreators from "@/react-mui-player/redux/actionCreators";
 import { toggleSongsFavourite } from "@/services/musicApi/postSongs.api";
 import { removeSongsFromPlaylists } from "@/services/playlistApi/getPlaylist.api";
-import { toast } from "react-toastify";
 import ManageSongsPlayback from "./PlayerBack/manageSongsPlayback";
 
 function RecentPlayed({
   removeFromPlaylist = false,
-  data: musicData,
+  data,
   hideLike = false,
   playlistID,
+  terminateQueries,
+  terminateWithId = false,
+  artistContainer = false,
 }) {
   const [deleteClick, setDeleteClick] = useState(false);
   const [playlist, setPlaylistAdd] = useState(false);
   const [playlistData, setPlaylistData] = useState(null);
   const [deletePlaylist, setDeleteValue] = useState(null);
-  const [data, setData] = useState(musicData);
   const [clicked, setClicked] = useState(false);
 
   const currentPlayingSong = useSelector((state) => state);
+  const queryClient = useQueryClient();
 
   const currentSong = useCurrentSong();
   const dispatch = useDispatch();
-  const { mediaState } = useSelector(({ mediaState }) => ({ mediaState }));
 
   const musicList =
     data &&
@@ -52,32 +46,31 @@ function RecentPlayed({
 
   const handleFavourite = async (value) => {
     if (!clicked) {
-      const deepCopy = JSON.parse(JSON.stringify(data));
       setClicked(true);
 
       // Change Database
       const fetchData = await toggleSongsFavourite(value._id);
+
+      if (terminateQueries && terminateQueries.startsWith("[")) {
+        const query = terminateQueries.split(",");
+        console.log(query);
+      }
+
+      if (terminateWithId) {
+        queryClient.invalidateQueries([terminateQueries], value._id);
+      } else {
+        queryClient.invalidateQueries(terminateQueries);
+      }
 
       // Change Player Like Buttons
       if (currentPlayingSong.trackID === value._id) {
         dispatch(
           ActionCreators.getMusicDetails({
             ID: currentPlayingSong.trackID,
-            favourite: fetchData.data.isFavourite,
+            favourite: fetchData.data.songs.isFavourite,
           })
         );
       }
-
-      // Change frontend Data
-      const changedData = deepCopy.map((song) => {
-        if (song._id === value._id) {
-          song.isFavourite = fetchData.data.isFavourite;
-          song.trackDetails.isFavourite = fetchData.data.isFavourite;
-        }
-        return song;
-      });
-
-      setData(() => changedData);
       setClicked(false);
     }
   };
@@ -99,12 +92,6 @@ function RecentPlayed({
       });
     }
 
-    const filteredData = data.filter(
-      (music) => music._id !== deletePlaylist._id
-    );
-
-    setData(filteredData);
-
     setDeleteClick(false);
   };
 
@@ -122,11 +109,18 @@ function RecentPlayed({
       )}
       {data?.length !== 0 ? (
         <section className="song-list">
-          <div className="recent-container list_heading ">
+          <div
+            className={`recent-container  list_heading ${
+              artistContainer ? "artists" : ""
+            }`}>
             <span>#</span>
             <span className="song-name">name</span>
             <span></span>
-            <span className="artist">artists</span>
+            {!artistContainer ? (
+              <span className="artist">artists</span>
+            ) : (
+              <span className="skip"></span>
+            )}
             <span className="released-date">Released</span>
             <span className="recent-genre">genre</span>
             <span></span>
@@ -143,8 +137,12 @@ function RecentPlayed({
                   tabIndex="0"
                   className={`recent-container hover-effect ${
                     currentSong?.ID === value.trackDetails.ID ? "playing" : ""
-                  }`}>
-                  <ManageSongsPlayback song={value} musicList={musicList} />
+                  } ${artistContainer ? "artists" : ""}`}>
+                  <ManageSongsPlayback
+                    song={value}
+                    musicList={musicList}
+                    artists={artistContainer}
+                  />
 
                   {!hideLike ? (
                     <FiHeart

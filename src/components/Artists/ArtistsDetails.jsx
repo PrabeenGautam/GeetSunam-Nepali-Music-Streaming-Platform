@@ -9,6 +9,7 @@ import Spinner from "../Loader/Spinner";
 import { useArtistsData } from "@/hooks/useArtistsData";
 import { toggleArtistsFavourite } from "@/services/artistsApi/patchArtistsDetails";
 import { PlaylistLoader } from "../Loader/LoaderComponents";
+import RecentPlayed from "../SongsList";
 
 function ArtistsDetails() {
   const { id: artistId } = useParams();
@@ -99,12 +100,19 @@ function ArtistsDetails() {
       <div className="padding">
         {!songLoading ? (
           artistsSong.length > 0 ? (
-            <ArtistsPlayed data={artistsSong} />
+            <RecentPlayed
+              data={artistsSong}
+              terminateQueries="songs"
+              terminateWithId={true}
+              artistContainer={true}
+            />
           ) : (
             <h3>Artists have not uploaded any songs.</h3>
           )
         ) : (
-          <Spinner />
+          <div className="mt-80">
+            <Spinner />
+          </div>
         )}
       </div>
     </div>

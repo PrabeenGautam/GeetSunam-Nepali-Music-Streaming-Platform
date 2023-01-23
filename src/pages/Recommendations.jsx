@@ -2,10 +2,7 @@ import { useQuery } from "react-query";
 
 import CustomBreadcrumbs from "@/components/Breadcrumbs";
 import RecentPlayed from "@/components/SongsList";
-import { Btn } from "@/components/StyledUI";
 import Recommended from "../assets/images/Recommended.png";
-import { musicList } from "@/assets/data/musicList";
-import PlaySong from "@/components/Player/PlaySong";
 import { getRecommendedSongs } from "@/services/musicApi/getSongs.api";
 import { trackDetails } from "@/utils/trackDetails.utils";
 import Spinner from "@/components/Loader/Spinner";
@@ -47,7 +44,11 @@ function Recommnedations() {
           </div>
         </section>
         {!loader ? (
-          <RecentPlayed removeFromPlaylist={false} data={recommendedSongs} />
+          <RecentPlayed
+            removeFromPlaylist={false}
+            data={recommendedSongs}
+            terminateQueries="recommendedSongs"
+          />
         ) : (
           <div className="mt-80">
             <Spinner />

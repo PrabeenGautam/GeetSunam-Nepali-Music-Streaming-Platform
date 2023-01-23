@@ -49,7 +49,7 @@ function FavouriteArtists() {
           onClickArtists={onClickArtists}
         />
       ) : (
-        <div>
+        <div className="mt-80">
           <Spinner />
         </div>
       )}

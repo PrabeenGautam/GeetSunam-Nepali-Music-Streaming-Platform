@@ -7,9 +7,7 @@ import PauseSong from "../Player/PauseSong";
 import PlaySong from "../Player/PlaySong";
 import ResumeSong from "../Player/ResumeSong";
 
-function ManageSongsPlayback({ song, musicList }) {
-  const dispatch = useDispatch();
-
+function ManageSongsPlayback({ song, musicList, artists }) {
   const currentSong = useSelector((state) => state);
 
   return (
@@ -27,7 +25,11 @@ function ManageSongsPlayback({ song, musicList }) {
               <span className="song-name">
                 <span>{song.trackDetails.title}</span>
               </span>
-              <span className="artists">{song?.artists?.fullname}</span>
+              {!artists ? (
+                <span className="artists">{song?.artists?.fullname}</span>
+              ) : (
+                <span className="skip"></span>
+              )}
               <span className="released-date">
                 {song?.releasedDate || "No Data"}
               </span>
@@ -48,7 +50,11 @@ function ManageSongsPlayback({ song, musicList }) {
               <span className="song-name">
                 <span>{song.trackDetails.title}</span>
               </span>
-              <span className="artists">{song?.artists?.fullname}</span>
+              {!artists ? (
+                <span className="artists">{song?.artists?.fullname}</span>
+              ) : (
+                <span className="skip"></span>
+              )}
               <span className="released-date">
                 {song?.releasedDate || "No Data"}
               </span>
@@ -69,7 +75,11 @@ function ManageSongsPlayback({ song, musicList }) {
           <span className="song-name">
             <span>{song.trackDetails.title}</span>
           </span>
-          <span className="artists">{song?.artists?.fullname}</span>
+          {!artists ? (
+            <span className="artists">{song?.artists?.fullname}</span>
+          ) : (
+            <span className="skip"></span>
+          )}
           <span className="released-date">
             {song?.releasedDate || "No Data"}
           </span>

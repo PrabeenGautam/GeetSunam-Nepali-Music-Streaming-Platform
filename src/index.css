@@ -622,6 +622,14 @@ a {
   grid-template-columns: 20px 2.5rem 1fr 0.5fr 100px 20px 40px 50px 50px;
 }
 
+.skip {
+  height: 100%;
+}
+
+.recent-container.artists {
+  grid-template-columns: 20px 2.5rem 1fr 20px 100px 100px 40px 50px 50px;
+}
+
 .recent-container.hover-effect:hover {
   background-color: rgba(0, 0, 0, 0.35);
   border-radius: 5px;
@@ -674,10 +682,13 @@ a {
   cursor: pointer;
   font-size: 1.1rem;
   transition: transform 0.35s ease-in-out;
+  visibility: hidden;
+  transform: scale(0.85);
 }
 
-.recent-container .heart:hover {
-  transform: scale(1.2);
+.recent-container:hover .heart {
+  visibility: visible;
+  transform: scale(1);
   stroke: white;
 }
 

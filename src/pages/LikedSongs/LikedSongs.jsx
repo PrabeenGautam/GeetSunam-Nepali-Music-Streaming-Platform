@@ -136,7 +136,9 @@ function LikedSongs() {
             </div>
           )
         ) : (
-          <Spinner />
+          <div className="mt-80">
+            <Spinner />
+          </div>
         )}
       </section>
     </div>

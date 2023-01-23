@@ -1,32 +1,30 @@
-import { Link } from "react-router-dom";
-import { BiPause, BiPlay } from "react-icons/bi";
-import { HiOutlineUser } from "react-icons/hi";
-import { useState } from "react";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
+import { HiOutlineUser } from "react-icons/hi";
+import { BiPause, BiPlay } from "react-icons/bi";
 
-import Featured from "./Featured/Featured";
 import RecentPlayed from "./SongsList";
-import RecentlyPlayedSlider from "./Slider/RecentlyPlayedSlider";
-import ArtistsSlider from "./Slider/ArtistsSlider";
+import Spinner from "./Loader/Spinner";
+import Featured from "./Featured/Featured";
 import CustomBreadcrumbs from "./Breadcrumbs";
-import getFeaturedSongs from "@/services/musicApi/getFeaturedSongs.api";
+import FeaturedSkeleton from "./Loader/Featured";
+import ArtistsSlider from "./Slider/ArtistsSlider";
 import { trackDetails } from "@/utils/trackDetails.utils";
+import RecentlyPlayedSlider from "./Slider/RecentlyPlayedSlider";
+import getFeaturedSongs from "@/services/musicApi/getFeaturedSongs.api";
 import { getFeaturedArtists } from "@/services/artistsApi/getArtistsDetails.api";
 
 import {
   getNewReleaseLimitedSongs,
   getRecentlyPlayedSongs,
 } from "@/services/musicApi/getSongs.api";
-import FeaturedSkeleton from "./Loader/Featured";
+
 import {
   SongsSwiperLoader,
   ArtistsSwiperLoader,
 } from "./Loader/LoaderComponents";
-import Spinner from "./Loader/Spinner";
 
 function Content() {
-  const [changeFavourite, setChangeFavourite] = useState(false);
-
   const {
     data: songsReleases,
     isLoading: isLoadingReleases,
@@ -72,11 +70,7 @@ function Content() {
     <div className="content-container">
       <CustomBreadcrumbs link={"/home"} textName="Home" />
       {!loaderFeatured ? (
-        <Featured
-          data={featuredSongs}
-          showSearchBar={true}
-          setChangeFavourite={setChangeFavourite}
-        />
+        <Featured data={featuredSongs} showSearchBar={true} />
       ) : (
         <FeaturedSkeleton />
       )}
@@ -124,9 +118,15 @@ function Content() {
         </div>
 
         {!loaderRecents ? (
-          <RecentPlayed removeFromPlaylist={false} data={recentSongs} />
+          <RecentPlayed
+            removeFromPlaylist={false}
+            data={recentSongs}
+            terminateQueries="recentlyPlayed"
+          />
         ) : (
-          <Spinner />
+          <div className="mt-80" style={{ marginBottom: 80 }}>
+            <Spinner />
+          </div>
         )}
       </div>
     </div>

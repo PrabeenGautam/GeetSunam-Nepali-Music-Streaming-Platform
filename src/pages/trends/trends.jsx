@@ -1,18 +1,13 @@
+import React from "react";
 import { useQuery } from "react-query";
+import { useDispatch } from "react-redux";
 
-import { Btn } from "@/components/StyledUI";
+import Spinner from "@/components/Loader/Spinner";
 import RecentPlayed from "@/components/SongsList";
 import CustomBreadcrumbs from "@/components/Breadcrumbs";
-import PlaySong from "@/components/Player/PlaySong";
-import { getTrendingSongs } from "@/services/musicApi/getSongs.api";
 import { trackDetails } from "@/utils/trackDetails.utils";
 import FeaturedSkeleton from "@/components/Loader/Featured";
-import Spinner from "@/components/Loader/Spinner";
-import { useDispatch, useSelector } from "react-redux";
-import { possibleMediaState } from "@/components/Player/possibleMediaState.types";
-import PauseSong from "@/components/Player/PauseSong";
-import React from "react";
-import ActionCreators from "@/react-mui-player/redux/actionCreators";
+import { getTrendingSongs } from "@/services/musicApi/getSongs.api";
 import ManagePlayback from "@/components/PlayerBack/managePlayback";
 
 function Trends() {
@@ -28,9 +23,6 @@ function Trends() {
   const loader = isLoading || isError;
 
   const dispatch = useDispatch();
-
-  const currentSong = useSelector((state) => state);
-  const onPlay = () => dispatch(ActionCreators.play());
 
   return (
     <div className="content-container">
@@ -64,7 +56,11 @@ function Trends() {
           </div>
         </section>
         {!loader ? (
-          <RecentPlayed removeFromPlaylist={false} data={trending} />
+          <RecentPlayed
+            removeFromPlaylist={false}
+            data={trending}
+            terminateQueries="trendingSongs"
+          />
         ) : (
           <div className="mt-80">
             <Spinner />
