@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 import ActionCreators from "@/react-mui-player/redux/actionCreators";
 import { toggleSongsFavourite } from "@/services/musicApi/postSongs.api";
+import { useQueryClient } from "react-query";
 
 export default function Favourite(props) {
   const sx = props.sx;
   const favourite = useSelector((state) => state.favourite);
   const trackID = useSelector((state) => state.trackID);
+  const queryClient = useQueryClient();
 
   const dispatch = useDispatch();
 
@@ -18,9 +20,10 @@ export default function Favourite(props) {
     dispatch(
       ActionCreators.getMusicDetails({
         ID: trackID,
-        favourite: fetchData.data.isFavourite,
+        favourite: fetchData.data.songs.isFavourite,
       })
     );
+    queryClient.invalidateQueries("likedSongs");
   };
 
   return (

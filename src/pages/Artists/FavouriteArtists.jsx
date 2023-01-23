@@ -1,31 +1,30 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
 
 import artistsImage from "@/assets/images/music-artists.png";
 import ArtistsContainer from "@/components/Artists/ArtistsContainer";
-import Loading from "@/components/Loading";
 import { getFavouriteArtists } from "@/services/artistsApi/getArtistsDetails.api";
+import Spinner from "@/components/Loader/Spinner";
 
 function FavouriteArtists() {
   const navigate = useNavigate();
 
-  const [artists, setArtists] = useState(null);
+  const {
+    data: artists,
+    isLoading,
+    isError,
+  } = useQuery("artists", getFavouriteArtists, {
+    select: (data) => data.data.artists,
+  });
 
-  useEffect(() => {
-    const fetchArtists = async function () {
-      const artists = await getFavouriteArtists();
-      setArtists(artists.data.artists);
-    };
-
-    fetchArtists();
-  }, []);
+  const loader = isLoading || isError;
 
   const onClickArtists = (id) => {
     navigate(`/artists/${id}`);
   };
 
-  return artists ? (
+  return (
     <div className="playlist-container gradient">
       <section className="playlist" style={{ marginBottom: "2rem" }}>
         <div className="playlist-images custom">
@@ -37,15 +36,24 @@ function FavouriteArtists() {
           <div>
             <span>PrabinGautam</span>
             <span style={{ fontWeight: "bold" }}>.</span>
-            <span>{artists.length !== 0 ? artists.length : "No"} artists</span>
+            <span>
+              {!loader && artists.length !== 0 ? artists.length : "No"} artists
+            </span>
           </div>
         </div>
       </section>
 
-      <ArtistsContainer artistsData={artists} onClickArtists={onClickArtists} />
+      {!loader ? (
+        <ArtistsContainer
+          artistsData={artists}
+          onClickArtists={onClickArtists}
+        />
+      ) : (
+        <div>
+          <Spinner />
+        </div>
+      )}
     </div>
-  ) : (
-    <Loading />
   );
 }
 

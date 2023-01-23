@@ -89,6 +89,7 @@ select {
   --highlight: #f96666;
   --text-base: hsla(0, 0%, 100%, 0.7);
   --playerHeight: 3.6875rem;
+  --toastify-color-success: var(--highlight) !important;
 }
 
 /* Custom ScrollBar */
@@ -412,14 +413,14 @@ a {
 }
 
 .custom-btn {
-  padding: 7px 10px;
-  border-radius: 5px;
+  padding: 6px 8px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.custom-btn * {
-  width: 24px;
-  height: 24px;
+.custom-btn svg {
+  font-size: 1.5rem;
+  vertical-align: middle;
 }
 
 .play-featured {
@@ -1544,6 +1545,10 @@ h3:not(.h3) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.skeleton-container.playlist {
+  width: 100%;
 }
 
 .skeleton-root {

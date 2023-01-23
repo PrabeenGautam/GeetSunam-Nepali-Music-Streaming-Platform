@@ -1,25 +1,33 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useQuery } from "react-query";
 
 import PlaylistsCover from "@/assets/images/playlists-cover.png";
 import PlaylistsContainer from "./PlaylistContainer";
 import { Btn } from "@/components/StyledUI";
-import { createPlaylistsAPI } from "@/services/playlistApi/getPlaylist.api";
-import Loading from "@/components/Loading";
+
+import {
+  createPlaylistsAPI,
+  getPlaylistsAPI,
+} from "@/services/playlistApi/getPlaylist.api";
+
 import useGSSelector from "@/redux/useGSSelector";
-import useGSDispatch from "@/redux/useGSDispatch";
-import { getPlaylistThunk } from "@/redux/middlewares/playlistThunk";
+import Spinner from "@/components/Loader/Spinner";
 
 function PlaylistSection() {
   const navigate = useNavigate();
-  const dispatch = useGSDispatch();
 
   const userData = useGSSelector((state) => state.userState.userData);
-  const playlist = useGSSelector((state) => state.playlistState.playlists);
 
-  useEffect(() => {
-    dispatch(getPlaylistThunk());
-  }, [dispatch]);
+  const {
+    data: playlist,
+    isLoading,
+    isError,
+    refetch: refetchPlaylist,
+  } = useQuery("playlists", getPlaylistsAPI, {
+    select: (data) => data.data.playlists,
+  });
+
+  const loader = isLoading || isError;
 
   const onClickPlaylists = (playlists) => {
     navigate(`/playlists/${playlists}`);
@@ -28,11 +36,11 @@ function PlaylistSection() {
   const playlistHandler = async () => {
     const response = await createPlaylistsAPI();
     if (response.data) {
-      dispatch(getPlaylistThunk());
+      refetchPlaylist();
     }
   };
 
-  return playlist ? (
+  return (
     <div className="playlist-container gradient">
       <section className="playlist" style={{ marginBottom: "2rem" }}>
         <div className="playlist-images custom">
@@ -45,7 +53,8 @@ function PlaylistSection() {
             <span>Created By: {userData.fullname}</span>
             <span style={{ fontWeight: "bold" }}>.</span>
             <span>
-              {playlist.length === 0 ? "No" : playlist.length} playlist
+              {!loader && playlist.length !== 0 ? playlist.length : "No"}{" "}
+              playlist
             </span>
           </div>
         </div>
@@ -56,10 +65,17 @@ function PlaylistSection() {
         </Btn>
       </section>
 
-      <PlaylistsContainer data={playlist} onClickPlaylists={onClickPlaylists} />
+      {!loader ? (
+        <PlaylistsContainer
+          data={playlist}
+          onClickPlaylists={onClickPlaylists}
+        />
+      ) : (
+        <div className="mt-20">
+          <Spinner />
+        </div>
+      )}
     </div>
-  ) : (
-    <Loading />
   );
 }
 

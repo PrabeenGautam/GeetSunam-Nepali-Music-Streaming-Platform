@@ -1,3 +1,4 @@
+import { Skeleton } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 function SongsLoader() {
@@ -72,11 +73,24 @@ function SongTwoRowLoader() {
   return array.map((_, index) => <SongsLoader key={"Songs " + index} />);
 }
 
+function PlaylistLoader() {
+  return (
+    <Skeleton
+      sx={{ bgcolor: "#212121" }}
+      variant="rectangular"
+      width={"100%"}
+      height={"20rem"}
+      animation="wave"
+    />
+  );
+}
+
 export {
   SongsSwiperLoader,
   ArtistsSwiperLoader,
   SongsTableLoader,
   SongTwoRowLoader,
   SongsLoader,
+  PlaylistLoader,
 };
 export default SongsLoader;

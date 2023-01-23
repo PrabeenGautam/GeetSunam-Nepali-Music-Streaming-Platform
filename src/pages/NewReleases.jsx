@@ -7,6 +7,12 @@ import { trackDetails } from "@/utils/trackDetails.utils";
 import FeaturedSkeleton from "@/components/Loader/Featured";
 import { useQuery } from "react-query";
 import Spinner from "@/components/Loader/Spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { possibleMediaState } from "@/components/Player/possibleMediaState.types";
+import React from "react";
+import PauseSong from "@/components/Player/PauseSong";
+import ActionCreators from "@/react-mui-player/redux/actionCreators";
+import ManagePlayback from "@/components/PlayerBack/mangePlayback";
 
 function NewReleases() {
   const { data, isLoading, isError } = useQuery(
@@ -19,6 +25,11 @@ function NewReleases() {
 
   const newReleases = data && trackDetails(data);
   const loader = isLoading || isError;
+
+  const dispatch = useDispatch();
+
+  const currentSong = useSelector((state) => state);
+  const onPlay = () => dispatch(ActionCreators.play());
 
   return (
     <div className="content-container">
@@ -45,9 +56,7 @@ function NewReleases() {
               <div>Tracks from 2 weeks</div>
             </span>
             {!loader ? (
-              <PlaySong trackDetails={newReleases[0].trackDetails}>
-                <Btn className="btn-play">Play</Btn>
-              </PlaySong>
+              <ManagePlayback song={newReleases[0]} />
             ) : (
               <button className="btn btn-disabled">Play</button>
             )}
@@ -56,7 +65,7 @@ function NewReleases() {
         {!loader ? (
           <RecentPlayed removeFromPlaylist={false} data={newReleases} />
         ) : (
-          <div className="mt-20">
+          <div className="mt-80">
             <Spinner />
           </div>
         )}

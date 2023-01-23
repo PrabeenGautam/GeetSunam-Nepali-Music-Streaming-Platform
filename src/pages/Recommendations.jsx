@@ -9,6 +9,7 @@ import PlaySong from "@/components/Player/PlaySong";
 import { getRecommendedSongs } from "@/services/musicApi/getSongs.api";
 import { trackDetails } from "@/utils/trackDetails.utils";
 import Spinner from "@/components/Loader/Spinner";
+import ManagePlayback from "@/components/PlayerBack/mangePlayback";
 
 function Recommnedations() {
   const { data, isLoading, isError } = useQuery(
@@ -39,18 +40,16 @@ function Recommnedations() {
               <div>Listen to best songs</div>
             </span>
             {!loader ? (
-              <PlaySong trackDetails={recommendedSongs[0].trackDetails}>
-                <Btn className="btn-play">Play</Btn>
-              </PlaySong>
+              <ManagePlayback song={recommendedSongs[0]} />
             ) : (
-              <Spinner />
+              <button className="btn btn-disabled">Play</button>
             )}
           </div>
         </section>
         {!loader ? (
           <RecentPlayed removeFromPlaylist={false} data={recommendedSongs} />
         ) : (
-          <div className="mt-20">
+          <div className="mt-80">
             <Spinner />
           </div>
         )}

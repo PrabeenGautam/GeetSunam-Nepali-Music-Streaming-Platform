@@ -8,6 +8,7 @@ import { trackDetails } from "@/utils/trackDetails.utils";
 import Spinner from "../Loader/Spinner";
 import { useArtistsData } from "@/hooks/useArtistsData";
 import { toggleArtistsFavourite } from "@/services/artistsApi/patchArtistsDetails";
+import { PlaylistLoader } from "../Loader/LoaderComponents";
 
 function ArtistsDetails() {
   const { id: artistId } = useParams();
@@ -92,7 +93,7 @@ function ArtistsDetails() {
           </div>
         </section>
       ) : (
-        <Spinner />
+        <PlaylistLoader />
       )}
 
       <div className="padding">
