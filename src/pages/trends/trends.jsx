@@ -1,12 +1,13 @@
+import { useQuery } from "react-query";
+
 import { Btn } from "@/components/StyledUI";
 import RecentPlayed from "@/components/SongsList";
 import CustomBreadcrumbs from "@/components/Breadcrumbs";
 import PlaySong from "@/components/Player/PlaySong";
 import { getTrendingSongs } from "@/services/musicApi/getSongs.api";
 import { trackDetails } from "@/utils/trackDetails.utils";
-import { SongsTableLoader } from "@/components/Loader/LoaderComponents";
 import FeaturedSkeleton from "@/components/Loader/Featured";
-import { useQuery } from "react-query";
+import Spinner from "@/components/Loader/Spinner";
 
 function Trends() {
   const { data, isLoading, isError } = useQuery(
@@ -32,7 +33,7 @@ function Trends() {
               alt="trending"></img>
           ) : (
             <FeaturedSkeleton
-              width="360px"
+              width="450px"
               height="300px"
               borderRadius="12px"
             />
@@ -57,7 +58,7 @@ function Trends() {
           <RecentPlayed removeFromPlaylist={false} data={trending} />
         ) : (
           <div className="mt-20">
-            <SongsTableLoader />
+            <Spinner />
           </div>
         )}
       </div>

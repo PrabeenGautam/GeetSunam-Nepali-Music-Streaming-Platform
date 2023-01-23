@@ -1,25 +1,62 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { useMutation, useQueryClient } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
 
 import SearchBar from "./SearchBar";
 import { Btn } from "@/components/StyledUI";
 import PlaySong from "@/components/Player/PlaySong";
-import { useDispatch, useSelector } from "react-redux";
 import PauseSong from "../Player/PauseSong";
 import { toggleSongsFavourite } from "@/services/musicApi/postSongs.api";
 import ActionCreators from "@/react-mui-player/redux/actionCreators";
 
-function Featured({
-  data: featuredSongs,
-  showSearchBar = false,
-  setChangeFavourite,
-}) {
+function Featured({ data: featuredSongs, showSearchBar = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const songsDetails = featuredSongs[currentIndex];
   const currentSong = useSelector((state) => state);
 
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+
+  const { mutate, isLoading } = useMutation(
+    (song) => toggleSongsFavourite(song),
+    {
+      onSuccess: (updatedSongs) => {
+        const songDB = updatedSongs.data.songs;
+
+        if (currentSong.trackID === songDB._id) {
+          dispatch(
+            ActionCreators.getMusicDetails({
+              ID: songDB._id,
+              favourite: songDB.isFavourite,
+            })
+          );
+        }
+
+        queryClient.cancelQueries({ queryKey: ["featured"] });
+        queryClient.setQueryData(["featured"], (old) => {
+          const updatedSongsList = old.data.songs.map((song) => {
+            if (song._id === songDB._id) return updatedSongs.data.songs;
+            return song;
+          });
+
+          return {
+            ...old,
+            data: {
+              songs: updatedSongsList,
+            },
+          };
+        });
+      },
+      onError: (err, newSongs, context) => {
+        queryClient.setQueryData(["featured"], context.previousSongs);
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries({ queryKey: ["featured"] });
+      },
+    }
+  );
 
   const buttonContainer = {
     position: "absolute",
@@ -50,13 +87,13 @@ function Featured({
     fadeAnimation(document.getElementsByClassName("featured-img"));
   }, [currentIndex, featuredSongs.length]);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      goToNext();
-    }, 8000);
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     goToNext();
+  //   }, 8000);
 
-    return () => clearInterval(timer);
-  }, [currentIndex, goToNext]);
+  //   return () => clearInterval(timer);
+  // }, [currentIndex, goToNext]);
 
   const musicList =
     featuredSongs &&
@@ -69,19 +106,10 @@ function Featured({
       favourite: trackDetails.isFavourite,
     }));
 
-  const handleFavourite = async (songId) => {
-    const fetchData = await toggleSongsFavourite(songId);
-
-    if (currentSong.trackID === songId) {
-      dispatch(
-        ActionCreators.getMusicDetails({
-          ID: songId,
-          favourite: fetchData.data.isFavourite,
-        })
-      );
-    }
-
-    setChangeFavourite((prev) => !prev);
+  const handleFavourite = async (event, song) => {
+    event.preventDefault();
+    if (isLoading) return;
+    mutate(song._id);
   };
 
   return (
@@ -138,7 +166,7 @@ function Featured({
                   </PlaySong>
                 )}
 
-                <span onClick={() => handleFavourite(value._id)}>
+                <span onClick={(e) => handleFavourite(e, value)}>
                   {currentSong.trackID === value._id &&
                     (currentSong.favourite ? (
                       <AiFillHeart className="featured-heart" />

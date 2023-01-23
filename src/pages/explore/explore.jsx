@@ -2,12 +2,11 @@ import { Link } from "react-router-dom";
 import { BiPlayCircle } from "react-icons/bi";
 import { MdRecommend, MdLibraryMusic } from "react-icons/md";
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 
 import CustomBreadcrumbs from "@/components/Breadcrumbs";
 import { Featured } from "@/components/Featured";
 import RecommendedSlider from "@/components/Slider/RecommendedSlider";
-import { musicList } from "@/assets/data/musicList";
 import PlaySong from "@/components/Player/PlaySong";
 
 import { trackDetails } from "@/utils/trackDetails.utils";
@@ -23,7 +22,6 @@ import {
 } from "@/components/Loader/LoaderComponents";
 
 function Explore() {
-  const [featuredSongs, setFeaturedSongs] = useState(null);
   const [changeFavourite, setChangeFavourite] = useState(false);
 
   const {
@@ -31,6 +29,14 @@ function Explore() {
     isLoading: isLoadingLibrary,
     isError: isErrorLibrary,
   } = useQuery("library", getAllSongsAPI, {
+    select: (data) => data.data.songs,
+  });
+
+  const {
+    data: featuredData,
+    isLoading: isLoadingFeatured,
+    isError: isErrorFeatured,
+  } = useQuery(["featured"], getFeaturedSongs, {
     select: (data) => data.data.songs,
   });
 
@@ -44,25 +50,18 @@ function Explore() {
 
   const songs = songsLibrary && trackDetails(songsLibrary);
   const recommendedSongs = songsRecommended && trackDetails(songsRecommended);
+  const featuredSongs = featuredData && trackDetails(featuredData);
 
   const loaderLibrary = isLoadingLibrary || isErrorLibrary;
   const loaderRecommendation = isLoadingRecommended || isErrorRecommended;
-
-  useEffect(() => {
-    const fetchSongs = async function () {
-      const featuredSongs = await getFeaturedSongs();
-      setFeaturedSongs(trackDetails(featuredSongs.data.songs));
-    };
-
-    fetchSongs();
-  }, [changeFavourite]);
+  const loaderFeatured = isLoadingFeatured || isErrorFeatured;
 
   return (
     <div className="content-container">
       <CustomBreadcrumbs link={"/explore"} textName="Explore" />
 
       <div className="main-section">
-        {featuredSongs && featuredSongs.length !== 0 ? (
+        {!loaderFeatured ? (
           <Featured
             data={featuredSongs}
             setChangeFavourite={setChangeFavourite}

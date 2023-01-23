@@ -1,29 +1,29 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 
 import ArtistsContainer from "@/components/Artists/ArtistsContainer";
 import { getArtistsAPI } from "@/services/artistsApi/getArtistsDetails.api";
 import artistsImage from "@/assets/images/music-artists.png";
-import Loading from "@/components/Loading";
+import Spinner from "@/components/Loader/Spinner";
 
 function Artists() {
   const navigate = useNavigate();
-  const [artists, setArtists] = useState(null);
 
-  useEffect(() => {
-    const fetchArtists = async function () {
-      const artists = await getArtistsAPI();
-      setArtists(artists.data.artists);
-    };
+  const {
+    data: artists,
+    isLoading,
+    isError,
+  } = useQuery("artists", getArtistsAPI, {
+    select: (data) => data.data.artists,
+  });
 
-    fetchArtists();
-  }, []);
+  const loader = isLoading || isError;
 
   const onClickArtists = (id) => {
     navigate(`/artists/${id}`);
   };
 
-  return artists ? (
+  return (
     <div className="playlist-container gradient">
       <section className="playlist" style={{ marginBottom: "2rem" }}>
         <div className="playlist-images custom">
@@ -35,15 +35,22 @@ function Artists() {
           <div>
             <span>GeetSunam</span>
             <span style={{ fontWeight: "bold" }}>.</span>
-            <span>{artists.length} artists</span>
+            <span>{artists?.length} artists</span>
           </div>
         </div>
       </section>
 
-      <ArtistsContainer artistsData={artists} onClickArtists={onClickArtists} />
+      {!loader ? (
+        <ArtistsContainer
+          artistsData={artists}
+          onClickArtists={onClickArtists}
+        />
+      ) : (
+        <div className="mt-20">
+          <Spinner />
+        </div>
+      )}
     </div>
-  ) : (
-    <Loading />
   );
 }
 

@@ -397,6 +397,10 @@ a {
   cursor: no-drop;
 }
 
+.disabled {
+  cursor: no-drop;
+}
+
 .btn-pause {
   background: var(--tertiary);
   color: #000 !important;
@@ -702,7 +706,7 @@ a {
 }
 
 .trends .trend-image {
-  width: 360px;
+  width: 450px;
   height: 300px;
   object-fit: cover;
   border-radius: 12px;

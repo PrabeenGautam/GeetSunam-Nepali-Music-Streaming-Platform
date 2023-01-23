@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { BiPause, BiPlay } from "react-icons/bi";
 import { HiOutlineUser } from "react-icons/hi";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useQuery } from "react-query";
 
 import Featured from "./Featured/Featured";
 import RecentPlayed from "./SongsList";
@@ -13,50 +14,64 @@ import { trackDetails } from "@/utils/trackDetails.utils";
 import { getFeaturedArtists } from "@/services/artistsApi/getArtistsDetails.api";
 
 import {
-  getNewReleaseSongs,
+  getNewReleaseLimitedSongs,
   getRecentlyPlayedSongs,
 } from "@/services/musicApi/getSongs.api";
 import FeaturedSkeleton from "./Loader/Featured";
 import {
   SongsSwiperLoader,
   ArtistsSwiperLoader,
-  SongsTableLoader,
 } from "./Loader/LoaderComponents";
+import Spinner from "./Loader/Spinner";
 
 function Content() {
-  const [featuredSongs, setFeaturedSongs] = useState([]);
-  const [releaseSongs, setReleaseSongs] = useState([]);
-  const [artists, setFeaturedArtists] = useState([]);
-  const [recentSongs, setRecentSongs] = useState([]);
   const [changeFavourite, setChangeFavourite] = useState(false);
 
-  useEffect(() => {
-    const fetchSongs = async function () {
-      const featuredSongs = await getFeaturedSongs();
-      setFeaturedSongs(trackDetails(featuredSongs.data.songs));
-    };
+  const {
+    data: songsReleases,
+    isLoading: isLoadingReleases,
+    isError: isErrorReleases,
+  } = useQuery("newReleasesLimited", getNewReleaseLimitedSongs, {
+    select: (data) => data.data.songs,
+  });
 
-    fetchSongs();
-  }, [changeFavourite]);
+  const {
+    data: artists,
+    isLoading: isLoadingArtists,
+    isError: isErrorArtists,
+  } = useQuery("featuredArtists", getFeaturedArtists, {
+    select: (data) => data.data.artists,
+  });
 
-  useEffect(() => {
-    const fetchSongs = async function () {
-      const releaseSongs = await getNewReleaseSongs();
-      const featuredArtists = await getFeaturedArtists();
-      const recentSongs = await getRecentlyPlayedSongs();
+  const {
+    data: featuredData,
+    isLoading: isLoadingFeatured,
+    isError: isErrorFeatured,
+  } = useQuery(["featured"], getFeaturedSongs, {
+    select: (data) => data.data.songs,
+  });
 
-      setReleaseSongs(trackDetails(releaseSongs.data.songs));
-      setFeaturedArtists(featuredArtists.data.artists);
-      setRecentSongs(trackDetails(recentSongs.data.songs));
-    };
+  const {
+    data: recentPlayed,
+    isLoading: isLoadingRecent,
+    isError: isErrorRecenet,
+  } = useQuery(["recentlyPlayed"], getRecentlyPlayedSongs, {
+    select: (data) => data.data.songs,
+  });
 
-    fetchSongs();
-  }, [changeFavourite]);
+  const featuredSongs = featuredData && trackDetails(featuredData);
+  const releaseSongs = songsReleases && trackDetails(songsReleases);
+  const recentSongs = recentPlayed && trackDetails(recentPlayed);
+
+  const loaderFeatured = isLoadingFeatured || isErrorFeatured;
+  const loaderReleases = isLoadingReleases || isErrorReleases;
+  const loaderArtists = isLoadingArtists || isErrorArtists;
+  const loaderRecents = isLoadingRecent || isErrorRecenet;
 
   return (
     <div className="content-container">
       <CustomBreadcrumbs link={"/home"} textName="Home" />
-      {featuredSongs.length !== 0 ? (
+      {!loaderFeatured ? (
         <Featured
           data={featuredSongs}
           showSearchBar={true}
@@ -77,7 +92,7 @@ function Content() {
         </div>
 
         <div className="content-section">
-          {releaseSongs.length !== 0 ? (
+          {!loaderReleases ? (
             <RecentlyPlayedSlider musicList={releaseSongs} />
           ) : (
             <SongsSwiperLoader />
@@ -94,7 +109,7 @@ function Content() {
         </div>
 
         <div className="content-section">
-          {artists.length !== 0 ? (
+          {!loaderArtists ? (
             <ArtistsSlider featuredArtists={artists} />
           ) : (
             <ArtistsSwiperLoader />
@@ -108,10 +123,10 @@ function Content() {
           <BiPause className="heading_icons" />
         </div>
 
-        {recentSongs.length !== 0 ? (
+        {!loaderRecents ? (
           <RecentPlayed removeFromPlaylist={false} data={recentSongs} />
         ) : (
-          <SongsTableLoader />
+          <Spinner />
         )}
       </div>
     </div>

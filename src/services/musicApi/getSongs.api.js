@@ -29,6 +29,21 @@ export const getNewReleaseSongs = async () => {
   const result = await getApiResponse({
     url: SongConfig.NEW_RELEASES,
     method: "get",
+    otherParams: { sort: "-uploadedDate" },
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
+
+export const getNewReleaseLimitedSongs = async () => {
+  const result = await getApiResponse({
+    url: SongConfig.NEW_RELEASES,
+    method: "get",
+    otherParams: {
+      sort: "-uploadedDate",
+      limit: 10,
+    },
   });
 
   if (result.APIFailed) return null;
