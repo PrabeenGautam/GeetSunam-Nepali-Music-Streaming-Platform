@@ -27,6 +27,7 @@ import Artists from "@/pages/Artists/Artists";
 import GenreContainer from "@/pages/genre/GenreContainer";
 import { useRef } from "react";
 import Navbar from "./components/Navbar/Navbar";
+import { useEffect } from "react";
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
@@ -37,13 +38,39 @@ function App() {
     setSideBar((prev) => !prev);
   };
 
+  useEffect(() => {
+    const handleSize = () => {
+      const width = elementRef.current.offsetWidth;
+      console.log(width);
+      if (width > 1010) {
+        document.documentElement.style.setProperty("--column-count", 6);
+      } else if (width > 850 && width <= 1010) {
+        document.documentElement.style.setProperty("--column-count", 5);
+      } else if (width > 650 && width <= 850) {
+        document.documentElement.style.setProperty("--column-count", 4);
+      } else if (width > 550 && width <= 650) {
+        document.documentElement.style.setProperty("--column-count", 3);
+      } else if (width > 400 && width <= 550) {
+        document.documentElement.style.setProperty("--column-count", 2);
+      } else {
+        document.documentElement.style.setProperty("--column-count", 1);
+      }
+    };
+    // Run initially
+    handleSize();
+
+    // Run on Size
+    window.addEventListener("resize", handleSize);
+    return () => window.removeEventListener("resize", handleSize);
+  }, []);
+
   return (
     <ProtectedRoute setDashBoard={setDashBoard}>
       <div className={`main-container ${sidebar ? "toggle" : ""}`}>
         <div>
           <SidebarLeft artistsDashboard={artistsDashboard} />
           <div className="content" ref={elementRef}>
-            <Navbar handleSideBar={handleSideBar} />
+            {/* <Navbar handleSideBar={handleSideBar} /> */}
             <Routes>
               <Route path="/home" element={<Content />} />
               <Route path="/" element={<Navigate replace to="/home" />} />

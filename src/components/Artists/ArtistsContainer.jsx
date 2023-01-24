@@ -1,7 +1,7 @@
 function ArtistsContainer({ artistsData, onClickArtists, padding = true }) {
   return (
     <section
-      className="fav-artists-container"
+      className="fav-artists-container dynamic"
       style={{ padding: padding ? "0 2.5rem 2rem" : "0rem" }}>
       {artistsData.map((value) => {
         return (

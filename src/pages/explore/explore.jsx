@@ -29,7 +29,7 @@ function Explore() {
     isLoading: isLoadingLibrary,
     isError: isErrorLibrary,
   } = useQuery("library", getAllSongsAPI, {
-    select: (data) => data.data.songs,
+    select: (data) => data?.data.songs,
   });
 
   const {
