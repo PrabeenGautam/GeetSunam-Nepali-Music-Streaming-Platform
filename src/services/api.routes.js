@@ -80,7 +80,7 @@ export const UserAuthConfig = {
 
   GET_USERS: () => "/users",
   GET_A_USER: (id) => `/users/${id}`,
-  CHANGE_PASSWORD: () => "/change-password",
-  UPDATE_CURRENT_USER: () => `/update-current-user`,
-  DELETE_CURRENT_USER: () => `/delete-current-user`,
+  CHANGE_PASSWORD: () => "/users/change-password",
+  UPDATE_CURRENT_USER: () => `/users/update-current-user`,
+  DELETE_CURRENT_USER: () => `/users/delete-current-user`,
 };

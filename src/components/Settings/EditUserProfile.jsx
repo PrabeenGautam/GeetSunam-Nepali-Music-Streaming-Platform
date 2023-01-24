@@ -3,9 +3,18 @@ import { MdClose } from "react-icons/md";
 import { createPortal } from "react-dom";
 
 import Placeholder from "@/assets/images/genre/placeholder-image.jpg";
+import updateUserApi from "@/services/usersApi/updateUser.api";
+import { useNavigate } from "react-router-dom";
+import useGSDispatch from "@/redux/useGSDispatch";
+import { resetLogin } from "@/redux/slices/userSlice";
 
-function EditUserModal({ setClick }) {
+function EditUserModal({ setClick, profile }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);
+  const [uploadedImage, setUploadedImage] = useState("");
+  const [formData, setFormData] = useState({});
+
+  const navigate = useNavigate();
+  const dispatch = useGSDispatch();
 
   const getBase64 = (file, callback) => {
     let reader = new FileReader();
@@ -20,11 +29,39 @@ function EditUserModal({ setClick }) {
 
   const imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
+      setUploadedImage(e.target.files[0]);
+
       getBase64(e.target.files[0], (result) => {
         setSelectedImage(result);
       });
     }
   };
+
+  const handleFormData = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(formData);
+
+    const postData = new FormData();
+    if (formData.fullname) postData.append("fullname", formData.fullname);
+    if (formData.email) postData.append("email", formData.email);
+    if (uploadedImage) postData.append("profileImage", uploadedImage);
+
+    updateUserApi(postData).then(() => {
+      setClick(false);
+
+      dispatch(resetLogin());
+      navigate("/login");
+    });
+  };
+
   return (
     <>
       <div className="model">
@@ -43,7 +80,7 @@ function EditUserModal({ setClick }) {
           </div>
 
           <div className="edit-section">
-            <form action="">
+            <form onSubmit={handleSubmit}>
               <div className="input-field">
                 <div className="playlists-image">
                   <img
@@ -61,11 +98,21 @@ function EditUserModal({ setClick }) {
                 </div>
 
                 <span className="custom-input">
-                  <label htmlFor="username">Username</label>
-                  <input type="text" name="username" />
+                  <label htmlFor="username">Fullname</label>
+                  <input
+                    type="text"
+                    name="fullname"
+                    defaultValue={profile.fullname}
+                    onChange={handleFormData}
+                  />
 
                   <label htmlFor="email">Email</label>
-                  <input type="email" name="email" />
+                  <input
+                    type="email"
+                    name="email"
+                    defaultValue={profile.email}
+                    onChange={handleFormData}
+                  />
                 </span>
               </div>
 
@@ -83,9 +130,9 @@ function EditUserModal({ setClick }) {
   );
 }
 
-function EditUserProfile({ setClick }) {
+function EditUserProfile({ setClick, profile }) {
   return createPortal(
-    <EditUserModal setClick={setClick} />,
+    <EditUserModal setClick={setClick} profile={profile} />,
     document.getElementById("modal")
   );
 }

@@ -42,8 +42,8 @@ const getApiResponse = async ({
     return result;
   } catch (error) {
     toast.error(
-      error?.response?.data.error ||
-        error?.response?.data?.message ||
+      error?.response?.data?.message ||
+        error?.response?.data.error ||
         "Something went wrong, please try again later.",
       {
         position: "top-right",

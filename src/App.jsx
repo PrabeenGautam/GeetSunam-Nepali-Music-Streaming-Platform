@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     const handleSize = () => {
       const width = elementRef.current.offsetWidth;
-      console.log(width);
+
       if (width > 1010) {
         document.documentElement.style.setProperty("--column-count", 6);
       } else if (width > 850 && width <= 1010) {
