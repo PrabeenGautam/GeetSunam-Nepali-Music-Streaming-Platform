@@ -103,7 +103,7 @@ function ArtistsDetails() {
       )}
 
       <div className="padding">
-        {!songLoading ? (
+        {!songLoading && !isLoadingArtists ? (
           artistsSong.length > 0 ? (
             <RecentPlayed
               data={artistsSong}
