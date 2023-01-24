@@ -70,7 +70,7 @@ function App() {
         <div>
           <SidebarLeft artistsDashboard={artistsDashboard} />
           <div className="content" ref={elementRef}>
-            {/* <Navbar handleSideBar={handleSideBar} /> */}
+            <Navbar handleSideBar={handleSideBar} />
             <Routes>
               <Route path="/home" element={<Content />} />
               <Route path="/" element={<Navigate replace to="/home" />} />
