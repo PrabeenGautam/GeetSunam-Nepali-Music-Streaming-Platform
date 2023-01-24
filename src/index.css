@@ -825,7 +825,8 @@ h2:not(.h2) {
   white-space: nowrap;
 }
 
-.fav-artists-container .artists .thumbnail-new {
+.fav-artists-container .artists .thumbnail-new,
+.artists-container .artists .thumbnail-new {
   object-fit: cover;
   border-radius: 50%;
 }
@@ -834,10 +835,6 @@ h2:not(.h2) {
 .fav-artists-container:not(.dynamic) .artists .thumbnail-new {
   width: 8rem;
   height: 8rem;
-}
-
-.artists-container .artists .thumbnail-new {
-  border-radius: 50%;
 }
 
 .fav-artists-container.dynamic .artists .thumbnail-new {

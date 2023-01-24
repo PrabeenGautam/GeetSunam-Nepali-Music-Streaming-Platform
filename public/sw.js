@@ -15,17 +15,17 @@ self.addEventListener("install", (event) => {
 // Listen for requests
 self.addEventListener("fetch", (event) => {
   // Fix for api call: while api call if server is down, offline.html is respond instead of error message
-  if (event.request.url.includes("html") && event.request.mode === "navigate") {
-    event.respondWith(
-      caches.match(event.request).then(async () => {
-        try {
-          return await fetch(event.request);
-        } catch {
-          return await caches.match("offline.html");
-        }
-      })
-    );
-  }
+  // if (event.request.url.includes("html")) {
+  event.respondWith(
+    caches.match(event.request).then(async () => {
+      try {
+        return await fetch(event.request);
+      } catch {
+        return await caches.match("offline.html");
+      }
+    })
+  );
+  // }
 });
 
 // Activate the SW
