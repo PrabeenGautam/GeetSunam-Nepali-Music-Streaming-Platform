@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 import useGSSelector from "@/redux/useGSSelector";
 
@@ -35,9 +34,6 @@ function SidebarRight() {
         <div className="userName">{userData.fullname}</div>
       </Link>
 
-      <div className="custom-searchbar">
-        <SearchBar />
-      </div>
       {genres && (
         <>
           <div className="sidebar-title">Genre</div>

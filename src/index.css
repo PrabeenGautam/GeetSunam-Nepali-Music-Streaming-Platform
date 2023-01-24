@@ -90,6 +90,9 @@ select {
   --text-base: hsla(0, 0%, 100%, 0.7);
   --playerHeight: 3.6875rem;
   --toastify-color-success: var(--highlight) !important;
+
+  --column-count: 5;
+  --column-gap: 1.3rem;
 }
 
 /* Custom ScrollBar */
@@ -128,6 +131,7 @@ body {
 .content {
   margin: 0 18.5rem 0 14.5rem;
   padding-bottom: 4rem;
+  transition: margin-left 0.5s ease-in-out;
 }
 
 /* Sidebar Starts */
@@ -135,7 +139,7 @@ body {
 .right-sidebar {
   background-color: var(--primary);
   color: var(--text);
-  z-index: 29;
+  z-index: 999;
   height: calc(100% - var(--playerHeight));
 }
 
@@ -144,6 +148,8 @@ body {
   top: 0;
   width: 15rem;
   overflow-y: scroll;
+  left: 0;
+  transition: 0.5s ease-in-out;
 }
 
 .left-sidebar::-webkit-scrollbar-thumb {
@@ -301,6 +307,7 @@ a {
 .featured .img {
   width: 100%;
   height: 50vh;
+  transition: height 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .featured .featured-img {
@@ -459,6 +466,7 @@ a {
   margin: 0 10px;
   width: 100%;
   font-size: 12px;
+  background-color: inherit;
 }
 
 .main-section {
@@ -506,10 +514,12 @@ a {
 }
 
 .music-section {
-  display: flex;
-  gap: 1.35rem;
-  /* justify-content: space-between; */
-  flex-wrap: wrap;
+  display: grid;
+  grid-gap: var(--column-gap);
+  grid-template-columns: repeat(var(--column-count), minmax(0, 1fr));
+
+  grid-auto-rows: 0;
+  grid-template-rows: auto;
 }
 
 .music-container {
@@ -1605,4 +1615,57 @@ h3:not(.h3) {
   left: 0;
   right: 0;
   top: 0;
+}
+
+.navmenu {
+  height: 3.75rem;
+  background-color: #0f0f0f;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+
+  position: sticky;
+  top: 0;
+  z-index: 998;
+  border-bottom: 1px solid rgb(70, 70, 70);
+}
+
+.navmenu-hamburger {
+  color: #fff;
+  cursor: pointer;
+}
+
+.navmenu .search-bar svg {
+  stroke: white;
+}
+
+.navmenu input {
+  color: white;
+}
+
+.navmenu .search-bar {
+  background-color: var(--secondary);
+  border: 1px solid rgb(70, 70, 70);
+}
+
+.navmenu .searchbar {
+  flex: 0 1 30rem;
+}
+
+.navmenu-hamburger svg {
+  font-size: 1.5rem;
+}
+
+.main-container.toggle .left-sidebar {
+  left: -15rem;
+}
+
+.main-container.toggle .content {
+  margin-left: 0;
+}
+
+.main-container.toggle .featured .img {
+  height: 60vh;
 }

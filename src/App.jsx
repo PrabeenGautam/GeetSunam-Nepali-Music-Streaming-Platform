@@ -25,15 +25,25 @@ import PlaylistsDetails from "@/pages/Playlists/PlaylistsDetails";
 import ArtistsDetails from "@/components/Artists/ArtistsDetails";
 import Artists from "@/pages/Artists/Artists";
 import GenreContainer from "@/pages/genre/GenreContainer";
+import { useRef } from "react";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
+  const [sidebar, setSideBar] = useState(false);
+  const elementRef = useRef();
+
+  const handleSideBar = function () {
+    setSideBar((prev) => !prev);
+  };
+
   return (
     <ProtectedRoute setDashBoard={setDashBoard}>
-      <div className="main-container">
+      <div className={`main-container ${sidebar ? "toggle" : ""}`}>
         <div>
           <SidebarLeft artistsDashboard={artistsDashboard} />
-          <div className="content">
+          <div className="content" ref={elementRef}>
+            <Navbar handleSideBar={handleSideBar} />
             <Routes>
               <Route path="/home" element={<Content />} />
               <Route path="/" element={<Navigate replace to="/home" />} />

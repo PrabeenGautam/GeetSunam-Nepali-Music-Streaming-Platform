@@ -20,20 +20,18 @@ function SearchBar() {
   };
 
   return (
-    <div>
-      <form className="search-bar" onSubmit={onSubmitValue}>
-        <FiSearch className="icon-search" />
-        <input
-          type="text"
-          className="text-input"
-          placeholder="Search artists, songs,..."
-          name="query"
-        />
-        <input type="submit" hidden />
-        {/* <div style={{ borderLeft: "2px solid black", paddingRight: 5 }}></div>
+    <form className="search-bar" onSubmit={onSubmitValue}>
+      <FiSearch className="icon-search" />
+      <input
+        type="text"
+        className="text-input"
+        placeholder="Search artists, songs,..."
+        name="query"
+      />
+      <input type="submit" hidden />
+      {/* <div style={{ borderLeft: "2px solid black", paddingRight: 5 }}></div>
         <FiMic className="icon-mic" /> */}
-      </form>
-    </div>
+    </form>
   );
 }
 
