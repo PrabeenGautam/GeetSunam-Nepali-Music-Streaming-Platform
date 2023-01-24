@@ -170,7 +170,7 @@ body {
 .player {
   border-top: 1px solid var(--divider);
   background-color: var(--primary);
-  z-index: 900;
+  z-index: 1000;
   position: fixed;
   height: var(--playerHeight);
 }
