@@ -8,8 +8,12 @@ import { trackDetails } from "@/utils/trackDetails.utils";
 import FeaturedSkeleton from "@/components/Loader/Featured";
 import ManagePlayback from "@/components/PlayerBack/managePlayback";
 import { getNewReleaseSongs } from "@/services/musicApi/getSongs.api";
+import { useTranslation } from "react-i18next";
 
 function NewReleases() {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "newReleasePage",
+  });
   const { data, isLoading, isError } = useQuery(
     "newReleases",
     getNewReleaseSongs,
@@ -39,11 +43,11 @@ function NewReleases() {
             />
           )}
           <div className="trend-section">
-            <h2>New Releases</h2>
+            <h2>{t("newReleases")}</h2>
             <span className="details">
-              <div>New releases songs, refreshed daily</div>
-              <div>Created by GeetSunam</div>
-              <div>Tracks from 2 weeks</div>
+              <div>{t("description")}</div>
+              <div>{t("createdBy")}</div>
+              <div>{t("tracksDate")}</div>
             </span>
             {!loader ? (
               <ManagePlayback song={newReleases[0]} />

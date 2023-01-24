@@ -23,8 +23,11 @@ import {
   SongsSwiperLoader,
   ArtistsSwiperLoader,
 } from "./Loader/LoaderComponents";
+import { useTranslation } from "react-i18next";
 
 function Content() {
+  const { t, i18n } = useTranslation("translation", { keyPrefix: "homePage" });
+
   const {
     data: songsReleases,
     isLoading: isLoadingReleases,
@@ -77,7 +80,7 @@ function Content() {
       <div className="main-section">
         <div className="heading">
           <div className="subheading">
-            <span>New Releases</span>
+            <span>{t("newReleases")}</span>
             <BiPlay className="heading_icons" />
           </div>
           <Link to={"/releases"} className="see-more">
@@ -97,7 +100,7 @@ function Content() {
       <div className="main-section">
         <div className="heading">
           <div className="subheading">
-            <span>Featured Artists</span>
+            <span>{t("featuredArtists")}</span>
             <HiOutlineUser className="heading_icons" />
           </div>
         </div>
@@ -113,7 +116,7 @@ function Content() {
 
       <div className="main-section">
         <div className="subheading" style={{ marginBottom: 20 }}>
-          <span>Recently Played</span>
+          <span>{t("recentlyPlayed")}</span>
           <BiPause className="heading_icons" />
         </div>
 

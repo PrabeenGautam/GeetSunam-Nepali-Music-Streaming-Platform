@@ -7,6 +7,7 @@ import { getRecommendedSongs } from "@/services/musicApi/getSongs.api";
 import { trackDetails } from "@/utils/trackDetails.utils";
 import Spinner from "@/components/Loader/Spinner";
 import ManagePlayback from "@/components/PlayerBack/managePlayback";
+import { useTranslation } from "react-i18next";
 
 function Recommnedations() {
   const { data, isLoading, isError } = useQuery(
@@ -16,6 +17,10 @@ function Recommnedations() {
       select: (data) => data.data.songs,
     }
   );
+
+  const { t } = useTranslation("translation", {
+    keyPrefix: "madeForYouPage",
+  });
 
   const recommendedSongs = data && trackDetails(data);
   const loader = isLoading || isError;
@@ -30,16 +35,16 @@ function Recommnedations() {
             style={{ width: 300 }}
             alt="recommendation"></img>
           <div className="trend-section">
-            <h2>Made For You</h2>
+            <h2>{t("madeForYou")}</h2>
             <span className="details">
-              <div>Songs Specially Created for you</div>
-              <div>Created by GeetSunam</div>
-              <div>Listen to best songs</div>
+              <div>{t("description")}</div>
+              <div>{t("createdBy")}</div>
+              <div>{t("listen")}</div>
             </span>
             {!loader ? (
               <ManagePlayback song={recommendedSongs[0]} />
             ) : (
-              <button className="btn btn-disabled">Play</button>
+              <button className="btn btn-disabled">{t("play")}</button>
             )}
           </div>
         </section>

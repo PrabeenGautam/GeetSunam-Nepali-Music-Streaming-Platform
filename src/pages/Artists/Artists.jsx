@@ -5,9 +5,13 @@ import ArtistsContainer from "@/components/Artists/ArtistsContainer";
 import { getArtistsAPI } from "@/services/artistsApi/getArtistsDetails.api";
 import artistsImage from "@/assets/images/music-artists.png";
 import Spinner from "@/components/Loader/Spinner";
+import { useTranslation } from "react-i18next";
 
 function Artists() {
   const navigate = useNavigate();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "artists",
+  });
 
   const {
     data: artists,
@@ -30,12 +34,14 @@ function Artists() {
           <img src={artistsImage} alt="" className="custom-img" />
         </div>
         <div className="playlist-details">
-          <div>Collection</div>
-          <div>Artists</div>
+          <div>{t("title")}</div>
+          <div>{t("artist")}</div>
           <div>
-            <span>GeetSunam</span>
+            <span>{t("geetsunam")}</span>
             <span style={{ fontWeight: "bold" }}>.</span>
-            <span>{artists?.length} artists</span>
+            <span>
+              {artists?.length} {t("artist")}
+            </span>
           </div>
         </div>
       </section>

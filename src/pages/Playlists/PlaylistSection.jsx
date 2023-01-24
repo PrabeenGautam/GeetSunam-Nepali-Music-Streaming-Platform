@@ -12,9 +12,13 @@ import {
 
 import useGSSelector from "@/redux/useGSSelector";
 import Spinner from "@/components/Loader/Spinner";
+import { useTranslation } from "react-i18next";
 
 function PlaylistSection() {
   const navigate = useNavigate();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "playlistsPage",
+  });
 
   const userData = useGSSelector((state) => state.userState.userData);
 
@@ -47,21 +51,23 @@ function PlaylistSection() {
           <img src={PlaylistsCover} alt="playlists" />
         </div>
         <div className="playlist-details">
-          <div>Collection</div>
-          <div>Playlists</div>
+          <div>{t("collection")}</div>
+          <div>{t("playlist")}</div>
           <div>
-            <span>Created By: {userData.fullname}</span>
+            <span>
+              {t("createdBy")}: {userData.fullname}
+            </span>
             <span style={{ fontWeight: "bold" }}>.</span>
             <span>
               {!loader && playlist.length !== 0 ? playlist.length : "No"}{" "}
-              playlist
+              {t("playlist")}
             </span>
           </div>
         </div>
         <Btn
           style={{ color: "#333", position: "absolute", right: 20 }}
           onClick={playlistHandler}>
-          Create Playlists
+          {t("createPlaylist")}
         </Btn>
       </section>
 

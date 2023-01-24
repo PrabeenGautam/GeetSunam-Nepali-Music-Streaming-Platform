@@ -6,9 +6,16 @@ import artistsImage from "@/assets/images/music-artists.png";
 import ArtistsContainer from "@/components/Artists/ArtistsContainer";
 import { getFavouriteArtists } from "@/services/artistsApi/getArtistsDetails.api";
 import Spinner from "@/components/Loader/Spinner";
+import { useTranslation } from "react-i18next";
+import useGSSelector from "@/redux/useGSSelector";
 
 function FavouriteArtists() {
   const navigate = useNavigate();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "artists",
+  });
+
+  const auth = useGSSelector((state) => state.userState.userData);
 
   const {
     data: artists,
@@ -31,13 +38,14 @@ function FavouriteArtists() {
           <img src={artistsImage} alt="" />
         </div>
         <div className="playlist-details">
-          <div>Collection</div>
-          <div>Favourite Artists</div>
+          <div>{t("title")}</div>
+          <div>{t("favourite")}</div>
           <div>
-            <span>PrabinGautam</span>
+            <span>{auth.fullname}</span>
             <span style={{ fontWeight: "bold" }}>.</span>
             <span>
-              {!loader && artists.length !== 0 ? artists.length : "No"} artists
+              {!loader && artists.length !== 0 ? artists.length : "No"}{" "}
+              {t("song")}
             </span>
           </div>
         </div>

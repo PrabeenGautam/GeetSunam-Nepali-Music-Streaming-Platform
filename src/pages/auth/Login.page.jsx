@@ -190,3 +190,5 @@ function LoginPage() {
 }
 
 export default LoginPage;
+
+// const { t } = useTranslation("translation", { keyPrefix: "homePage" });

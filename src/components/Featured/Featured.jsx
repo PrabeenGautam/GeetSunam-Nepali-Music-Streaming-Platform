@@ -10,6 +10,7 @@ import PlaySong from "@/components/Player/PlaySong";
 import PauseSong from "../Player/PauseSong";
 import { toggleSongsFavourite } from "@/services/musicApi/postSongs.api";
 import ActionCreators from "@/react-mui-player/redux/actionCreators";
+import { useTranslation } from "react-i18next";
 
 function Featured({ data: featuredSongs, showSearchBar = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -18,6 +19,8 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
 
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
+
+  const { t } = useTranslation("translation", { keyPrefix: "homePage" });
 
   const { mutate, isLoading } = useMutation(
     (song) => toggleSongsFavourite(song),
@@ -139,7 +142,7 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
         </div>
 
         <div className="details">
-          <div className="title">Featured Songs</div>
+          <div className="title">{t("featuredSongs")}</div>
           <div className="song-details">
             <div className="artists">{songsDetails.artists.fullname}</div>
             <div className="song-name">{songsDetails.trackDetails.title}</div>
@@ -154,13 +157,13 @@ function Featured({ data: featuredSongs, showSearchBar = false }) {
                 {currentSong.trackID === value._id &&
                 currentSong.mediaState === "PLAYING" ? (
                   <PauseSong trackDetails={value.trackDetails}>
-                    <Btn className="btn-pause">Pause</Btn>
+                    <Btn className="btn-pause">{t("pause")}</Btn>
                   </PauseSong>
                 ) : (
                   <PlaySong
                     trackDetails={value.trackDetails}
                     musicList={musicList}>
-                    <Btn className="btn-play">Play</Btn>
+                    <Btn className="btn-play">{t("play")}</Btn>
                   </PlaySong>
                 )}
 

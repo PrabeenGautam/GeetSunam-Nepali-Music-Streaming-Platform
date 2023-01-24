@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { BiPlayCircle } from "react-icons/bi";
 import { MdRecommend, MdLibraryMusic } from "react-icons/md";
-import { useEffect, useState } from "react";
-import { useQuery, useMutation } from "react-query";
+import { useState } from "react";
+import { useQuery } from "react-query";
 
 import CustomBreadcrumbs from "@/components/Breadcrumbs";
 import { Featured } from "@/components/Featured";
@@ -20,9 +20,10 @@ import {
   SongsSwiperLoader,
   SongTwoRowLoader,
 } from "@/components/Loader/LoaderComponents";
+import { useTranslation } from "react-i18next";
 
 function Explore() {
-  const [changeFavourite, setChangeFavourite] = useState(false);
+  const { t } = useTranslation("translation", { keyPrefix: "explorePage" });
 
   const {
     data: songsLibrary,
@@ -62,10 +63,7 @@ function Explore() {
 
       <div className="main-section">
         {!loaderFeatured ? (
-          <Featured
-            data={featuredSongs}
-            setChangeFavourite={setChangeFavourite}
-          />
+          <Featured data={featuredSongs} />
         ) : (
           <FeaturedSkeleton />
         )}
@@ -74,11 +72,11 @@ function Explore() {
       <div className="main-section">
         <div className="heading">
           <div className="subheading">
-            <span>Recommended for you</span>
+            <span>{t("recommendedForYou")}</span>
             <MdRecommend className="heading_icons" />
           </div>
           <Link to={"/recommendation"} className="see-more">
-            See All
+            {t("seeAll")}
           </Link>
         </div>
 
@@ -94,7 +92,7 @@ function Explore() {
       <div className="main-section">
         <div className="heading">
           <div className="subheading">
-            <span>Library</span>
+            <span>{t("library")}</span>
             <MdLibraryMusic className="heading_icons" />
           </div>
         </div>

@@ -48,22 +48,32 @@
     "newReleases": "New Releases",
     "featuredArtists": "Featured Artists",
     "featuredSongs": "Featured Songs",
-    "recentlyPlayed": "Recently Played"
+    "recentlyPlayed": "Recently Played",
+    "seeAll": "See All",
+    "play": "Play",
+    "pause": "Pause"
   },
   "trendingPage": {
     "trendingSongs": "Trending Songs",
     "description": "Top trending hits, refreshed daily",
     "createdBy": "Created by GeetSunam",
-    "tracks": "Tracks"
+    "tracks": "Tracks",
+    "play": "Play",
+    "pause": "Pause",
+    "resume": "Resume"
   },
   "explorePage": {
     "recommendedForYou": "Recommended for you",
-    "seeAll": "See All"
+    "seeAll": "See All",
+    "library": "Library"
   },
   "newReleasePage": {
     "newReleases": "New Releases",
     "description": "New releases songs, refreshed daily",
-    "createdBy": "Created by GeetSunam"
+    "createdBy": "Created by GeetSunam",
+    "tracksDate": "Tracks from 2 weeks",
+    "listen": "Listen to best songs",
+    "play": "Play"
   },
   "madeForYouPage": {
     "recommendation": "Recommendation",
@@ -74,7 +84,8 @@
   "playlistsPage": {
     "createPlaylist": "Create Playlist",
     "createdBy": "Created By",
-    "collection": "Collection"
+    "collection": "Collection",
+    "playlist": "Playlists"
   },
   "settingsPage": {
     "settings": "Settings",
@@ -90,5 +101,30 @@
     "newPassword": "New Password",
     "reNewPassword": "Repeat New Password",
     "setNewPassword": "Set New Password"
+  },
+  "common": {
+    "play": "Play",
+    "pause": "Pause",
+    "resume": "Resume"
+  },
+  "artists": {
+    "title": "Collection",
+    "artist": "Artists",
+    "geetsunam": "GeetSunam",
+    "favourite": "Favourite Artists",
+    "song": "Songs"
+  },
+  "artistsDetails": {
+    "artist": "Artists",
+    "geetsunam": "GeetSunam",
+    "song": "Songs",
+    "noSong": "Artists have not uploaded any songs."
+  },
+  "likedSongs": {
+    "playlist": "Playlist",
+    "liked": "Liked Songs",
+    "song": "Songs",
+    "noSong": "You have not liked any songs.",
+    "message": "Search for songs to add them to the list"
   }
 }

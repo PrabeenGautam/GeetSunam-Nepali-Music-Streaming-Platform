@@ -1,18 +1,20 @@
 import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import CustomBreadcrumbs from "@/components/Breadcrumbs";
 import EditUserProfile from "@/components/Settings/EditUserProfile";
 import { Btn } from "@/components/StyledUI";
 import useGSSelector from "@/redux/useGSSelector";
-import { useNavigate } from "react-router-dom";
 import useGSDispatch from "@/redux/useGSDispatch";
 import { updateUserPasswordAPI } from "@/services/usersApi/updateUser.api";
 import { resetLogin } from "@/redux/slices/userSlice";
 
 function Settings() {
   const [click, setClick] = useState(false);
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation("translation", {
+    keyPrefix: "settingsPage",
+  });
   document.documentElement.lang = i18n.language;
 
   const auth = useGSSelector((state) => state.userState.userData);
@@ -54,11 +56,11 @@ function Settings() {
     <div className="content-container">
       {click && <EditUserProfile setClick={setClick} profile={auth} />}
       <CustomBreadcrumbs link={"/settings"} textName="Settings" />
-      <h2 style={{ color: "#f6f6f6", marginBottom: 40 }}>Settings</h2>
+      <h2 style={{ color: "#f6f6f6", marginBottom: 40 }}>{t("settings")}</h2>
       <div className="settings-section">
-        <h3>Language</h3>
+        <h3>{t("language")}</h3>
         <div className="grid gap-sm languages languages-grid">
-          Choose language - Changes will be applied after restarting the web
+          {t("description")}
           <select
             onChange={handleLanguage}
             defaultValue={localStorage.getItem("i18nextLng")}
@@ -70,36 +72,38 @@ function Settings() {
       </div>
 
       <div className="settings-section">
-        <h3>Account Overview</h3>
+        <h3>{t("accountOverview")}</h3>
         <table className="table">
           <tbody>
             <tr className="table-row">
-              <td>Username</td>
+              <td>{t("username")}</td>
               <td>{auth.fullname}</td>
             </tr>
             <tr className="table-row">
-              <td>Email</td>
+              <td>{t("email")}</td>
               <td>{auth.email}</td>
             </tr>
           </tbody>
         </table>
-        <Btn
+        <button
           onClick={() => setClick(true)}
           style={{
             backgroundColor: "hsla(0, 0%, 100%, 0.7)",
-            width: "150px",
+            width: "fit-content",
             color: "#333",
+            padding: "9px 20px",
+            borderRadius: "5px",
           }}>
-          Edit Profile
-        </Btn>
+          {t("editProfile")}
+        </button>
       </div>
 
       <div className="settings-section">
-        <h3>Change Password</h3>
+        <h3>{t("changePassword")}</h3>
         <form onSubmit={passwordChangeHandler}>
           <div className="form">
             <div>
-              <label htmlFor="current-password">Current Password</label>
+              <label htmlFor="current-password">{t("currentPassword")}</label>
               <input
                 type="text"
                 name="currentPassword"
@@ -107,7 +111,7 @@ function Settings() {
               />
             </div>
             <div>
-              <label htmlFor="current-password">New password</label>
+              <label htmlFor="current-password">{t("newPassword")}</label>
               <input
                 type="password"
                 name="newPassword"
@@ -116,7 +120,7 @@ function Settings() {
               />
             </div>
             <div>
-              <label htmlFor="current-password">Repeat new password</label>
+              <label htmlFor="current-password">{t("reNewPassword")}</label>
               <input
                 type="password"
                 name="confirmNewPassword"
@@ -125,14 +129,16 @@ function Settings() {
               />
             </div>
           </div>
-          <Btn
+          <button
             style={{
               backgroundColor: "hsla(0, 0%, 100%, 0.7)",
-              width: "200px",
+              width: "fit-content",
               color: "#333",
+              padding: "9px 20px",
+              borderRadius: "5px",
             }}>
-            Set New Password
-          </Btn>
+            {t("setNewPassword")}
+          </button>
         </form>
       </div>
     </div>

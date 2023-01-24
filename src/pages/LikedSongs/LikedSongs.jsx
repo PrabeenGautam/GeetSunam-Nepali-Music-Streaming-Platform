@@ -11,11 +11,15 @@ import { trackDetails } from "./../../utils/trackDetails.utils";
 import PlaySong from "@/components/Player/PlaySong";
 import Spinner from "@/components/Loader/Spinner";
 import { searchSongsApi } from "@/services/searchApi/search.api";
+import { useTranslation } from "react-i18next";
 
 function LikedSongs() {
   const location = useLocation();
   const auth = useGSSelector((state) => state.userState.userData);
   const [showData, setShowData] = useState(false);
+  const { t } = useTranslation("translation", {
+    keyPrefix: "likedSongs",
+  });
 
   const { data, isLoading, isError } = useQuery(
     "likedSongs",
@@ -63,15 +67,15 @@ function LikedSongs() {
         </div>
 
         <div className="playlist-details">
-          <div>Playlist</div>
-          <div>Liked Songs</div>
+          <div>{t("playlist")}</div>
+          <div>{t("liked")}</div>
 
           <div>
             <span>{auth.fullname}</span>
             <span style={{ fontWeight: "bold" }}>.</span>
             <span>
               {!loader && likedSongs?.length !== 0 ? likedSongs.length : "No"}{" "}
-              Songs
+              {t("song")}
             </span>
           </div>
         </div>
@@ -111,8 +115,8 @@ function LikedSongs() {
             </div>
           ) : (
             <div>
-              <h2>You have not liked any songs.</h2>
-              <h3>Search for songs to add them to the list</h3>
+              <h2>{t("noSong")}</h2>
+              <h3>{t("message")}</h3>
               <div style={{ width: "30rem" }}>
                 <form className="search-bar" onSubmit={onSubmitValue}>
                   <FiSearch className="icon-search" />

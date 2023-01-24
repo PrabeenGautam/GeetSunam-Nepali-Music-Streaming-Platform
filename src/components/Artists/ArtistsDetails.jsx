@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 
-import ArtistsPlayed from "./ArtistsPlayed";
 import { getArtistsSongs } from "@/services/artistsApi/getArtistsDetails.api";
 import { trackDetails } from "@/utils/trackDetails.utils";
 import Spinner from "../Loader/Spinner";
@@ -10,9 +9,13 @@ import { useArtistsData } from "@/hooks/useArtistsData";
 import { toggleArtistsFavourite } from "@/services/artistsApi/patchArtistsDetails";
 import { PlaylistLoader } from "../Loader/LoaderComponents";
 import RecentPlayed from "../SongsList";
+import { useTranslation } from "react-i18next";
 
 function ArtistsDetails() {
   const { id: artistId } = useParams();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "artistsDetails",
+  });
 
   const {
     data: artist,
@@ -57,12 +60,14 @@ function ArtistsDetails() {
             <img src={artist?.profileImage} alt="thumbnail" />
           </div>
           <div className="playlist-details">
-            <div>Artists</div>
+            <div>{t("artist")}</div>
             <div>{artist?.fullname}</div>
             <div>
-              <span>GeetSunam</span>
+              <span>{t("geetsunam")}</span>
               <span style={{ fontWeight: "bold" }}>.</span>
-              <span>{artistsSong?.length} songs</span>
+              <span>
+                {artistsSong?.length} {t("song")}
+              </span>
             </div>
           </div>
           <div style={{ position: "absolute", right: 20, zIndex: 999 }}>
@@ -107,7 +112,7 @@ function ArtistsDetails() {
               artistContainer={true}
             />
           ) : (
-            <h3>Artists have not uploaded any songs.</h3>
+            <h3>{t("noSong")}</h3>
           )
         ) : (
           <div className="mt-80">

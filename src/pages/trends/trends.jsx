@@ -9,6 +9,7 @@ import { trackDetails } from "@/utils/trackDetails.utils";
 import FeaturedSkeleton from "@/components/Loader/Featured";
 import { getTrendingSongs } from "@/services/musicApi/getSongs.api";
 import ManagePlayback from "@/components/PlayerBack/managePlayback";
+import { useTranslation } from "react-i18next";
 
 function Trends() {
   const { data, isLoading, isError } = useQuery(
@@ -18,6 +19,8 @@ function Trends() {
       select: (data) => data.data.songs,
     }
   );
+
+  const { t } = useTranslation("translation", { keyPrefix: "trendingPage" });
 
   const trending = data && trackDetails(data);
   const loader = isLoading || isError;
@@ -42,16 +45,18 @@ function Trends() {
             />
           )}
           <div className="trend-section">
-            <h2>Trending Songs</h2>
+            <h2>{t("trendingSongs")}</h2>
             <span className="details">
-              <div>Top trending hits, refreshed daily</div>
-              <div>Created by GeetSunam</div>
-              <div>{!loader && trending.length} Tracks</div>
+              <div>{t("description")}</div>
+              <div>{t("createdBy")}</div>
+              <div>
+                {!loader && trending.length} {t("tracks")}
+              </div>
             </span>
             {!loader ? (
               <ManagePlayback song={trending[0]} />
             ) : (
-              <button className="btn btn-disabled">Play</button>
+              <button className="btn btn-disabled">{t("play")}</button>
             )}
           </div>
         </section>
