@@ -1,68 +1,78 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 
 import getSongsByGenre from "@/services/musicApi/getSongsByGenre.api";
-import Loading from "@/components/Loading";
-import { getGenresByID } from "@/services/musicApi/getGenres.api";
 import { trackDetails } from "./../../utils/trackDetails.utils";
 import RecentPlayed from "@/components/SongsList";
+import { useQuery } from "react-query";
+import { PlaylistLoader } from "@/components/Loader/LoaderComponents";
+import Spinner from "@/components/Loader/Spinner";
+import { useGenreData } from "@/hooks/useGenresData";
 
 function GenreContainer() {
   const { id: genreID } = useParams();
 
-  const [songs, setGenreSongs] = useState(null);
-  const [genre, setGenre] = useState(null);
+  const {
+    data: genre,
+    isLoading: isLoadingGenre,
+    isError: isErrorGenre,
+  } = useGenreData(genreID);
 
-  useEffect(() => {
-    const fetchGenreSong = async () => {
-      const result = await getSongsByGenre(genreID);
+  const {
+    data,
+    isLoading: isLoadingSongs,
+    isError: isErrorSongs,
+  } = useQuery(["genre-song", genreID], () => getSongsByGenre(genreID), {
+    select: (result) => result.data.songs,
+  });
 
-      const genreResult = await getGenresByID(genreID);
-      setGenreSongs(trackDetails(result.data.songs));
-      setGenre(genreResult.data.genre);
-    };
+  const songs = data && trackDetails(data);
+  const loaderGenre = isLoadingGenre || isErrorGenre;
+  const loaderSong = isLoadingSongs || isErrorSongs;
 
-    fetchGenreSong();
-  }, [genreID]);
-
-  return songs && genre ? (
-    <>
-      <div className="playlist-container">
-        <section className="playlist">
-          <div className="artists-images">
-            <img src={genre.image} alt="genre" />
-          </div>
-          <div className="playlist-details">
-            <div>Genre</div>
-            <div>{genre.name}</div>
-            <div className="description">
-              {"A collection of music classified by genre "}
-              <span
-                style={{
-                  fontWeight: 700,
-                  color: "white",
-                  textTransform: "capitalize",
-                }}>
-                {genre.name}
-              </span>
+  return (
+    <div className="playlist-container">
+      <section className="playlist">
+        {!loaderGenre ? (
+          <React.Fragment>
+            <div className="artists-images">
+              <img src={genre.image} alt="genre" />
             </div>
-            <div>
-              <span>GeetSunam</span>
-              <span style={{ fontWeight: "bold" }}>.</span>
-              <span>
-                {songs.length === 0 ? "No Songs" : `${songs.length} Songs`}
-              </span>
-            </div>
-          </div>
-        </section>
 
+            <div className="playlist-details">
+              <div>Genre</div>
+              <div>{genre.name}</div>
+              <div className="description">
+                {"A collection of music classified by genre "}
+                <span
+                  style={{
+                    fontWeight: 700,
+                    color: "white",
+                    textTransform: "capitalize",
+                  }}>
+                  {genre.name}
+                </span>
+              </div>
+              <div>
+                <span>GeetSunam</span>
+                <span style={{ fontWeight: "bold" }}>.</span>
+                <span>{!loaderSong && `${songs.length} Songs`}</span>
+              </div>
+            </div>
+          </React.Fragment>
+        ) : (
+          <PlaylistLoader />
+        )}
+      </section>
+
+      {!loaderSong ? (
         <section className="padding">
           <RecentPlayed data={songs} />
         </section>
-      </div>
-    </>
-  ) : (
-    <Loading />
+      ) : (
+        <Spinner />
+      )}
+    </div>
   );
 }
 
