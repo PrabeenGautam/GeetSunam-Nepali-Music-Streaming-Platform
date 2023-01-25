@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { BiPlusCircle } from "react-icons/bi";
 import { MdClose, MdPublic } from "react-icons/md";
 import { RiGitRepositoryPrivateLine } from "react-icons/ri";
+import { useLocation } from "react-router-dom";
 
 import {
   addSongsToPlaylist,
@@ -11,13 +12,18 @@ import {
   getPlaylistsAPI,
   removeSongsFromPlaylists,
 } from "@/services/playlistApi/getPlaylist.api";
+import { useQueryClient } from "react-query";
 
 function PlaylistAddContainer({ setClick, data }) {
   const [playlists, setPlaylist] = useState(null);
   const [checkCreated, setCheckCreated] = useState(null);
+  const location = useLocation().pathname;
   let songHandled = false;
+  const playlistsRegex = /\/playlists\//;
 
   const songId = data._id || data;
+
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     const fetchPlaylists = async () => {
@@ -63,6 +69,10 @@ function PlaylistAddContainer({ setClick, data }) {
         }
       }
 
+      if (location.match(playlistsRegex)) {
+        setClick(false);
+        queryClient.invalidateQueries(["playlists", playlistId]);
+      }
       songHandled = false;
     }
   };

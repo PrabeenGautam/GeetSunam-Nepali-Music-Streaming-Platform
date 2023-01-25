@@ -14,9 +14,12 @@ import PlaySong from "@/components/Player/PlaySong";
 import { trackDetails } from "@/utils/trackDetails.utils";
 import { toggleSongsFavourite } from "@/services/musicApi/postSongs.api";
 import { useQueryClient } from "react-query";
+import PlaylistAddContainer from "@/components/Playlists/PlaylistAddContainer";
 
 function SongDetails() {
   const [clicked, setClicked] = useState(false);
+  const [playlist, setPlaylistAdd] = useState(false);
+
   const queryClient = useQueryClient();
 
   const { id: songId } = useParams();
@@ -34,7 +37,8 @@ function SongDetails() {
       setClicked(true);
       const fetchData = await toggleSongsFavourite(songId);
       queryClient.invalidateQueries(["songs", songId]);
-      if (currentSong.trackID === songId) {
+
+      if (currentSong.trackID === songId || currentSong._id === songId) {
         dispatch(
           ActionCreators.getMusicDetails({
             ID: currentSong?.trackID || track._id,
@@ -47,94 +51,106 @@ function SongDetails() {
   };
 
   return (
-    <div className="content-container">
-      <div
-        className="trends"
-        style={{
-          borderBottom: "2px solid grey",
-          paddingBottom: "20px",
-          marginBottom: 20,
-        }}>
-        <section className="top-trends">
-          <img
-            src={currentSong?.coverArt}
-            className="trend-image"
-            alt="newReleases"></img>
+    <>
+      {playlist && (
+        <PlaylistAddContainer setClick={setPlaylistAdd} data={songId} />
+      )}
+      <div className="content-container">
+        <div
+          className="trends"
+          style={{
+            borderBottom: "2px solid grey",
+            paddingBottom: "20px",
+            marginBottom: 20,
+          }}>
+          <section className="top-trends">
+            <img
+              src={currentSong?.coverArt}
+              className="trend-image"
+              alt="newReleases"></img>
 
-          <div className="trend-section">
-            <h2>{currentSong?.title}</h2>
-            <span className="details">
-              <div style={{ fontSize: 20 }}>
-                {currentSong?.artist || currentSong?.artists?.fullname}
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                <div style={{ fontSize: "1rem" }}>{currentSong?.duration}</div>
-                <div
-                  style={{
-                    width: 5,
-                    height: 5,
-                    borderRadius: "50%",
-                    backgroundColor: "white",
-                  }}></div>
-                <div style={{ fontSize: "1rem" }}>
-                  {currentSong?.releasedDate}
+            <div className="trend-section">
+              <h2>{currentSong?.title}</h2>
+              <span className="details">
+                <div style={{ fontSize: 20 }}>
+                  {currentSong?.artist || currentSong?.artists?.fullname}
                 </div>
-              </div>
-            </span>
-
-            <div className="button-section">
-              <div className="btn-play-songs">
-                {stats.trackID === songId ? (
-                  <React.Fragment>
-                    {stats.mediaState === possibleMediaState.PLAYING && (
-                      <PauseSong>
-                        <FaPause />
-                      </PauseSong>
-                    )}
-
-                    {stats.mediaState === possibleMediaState.PAUSED && (
-                      <span
-                        className="flex-center"
-                        onClick={onPlay}
-                        style={{ width: "100%", height: "100%" }}>
-                        <FaPlay />
-                      </span>
-                    )}
-                  </React.Fragment>
-                ) : !isFetching ? (
-                  <PlaySong trackDetails={track.trackDetails}>
-                    <FaPlay />
-                  </PlaySong>
-                ) : (
-                  <FaPlay />
+                {currentSong?.duration && (
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                    <div style={{ fontSize: "1rem" }}>
+                      {currentSong?.duration}
+                    </div>
+                    <div
+                      style={{
+                        width: 5,
+                        height: 5,
+                        borderRadius: "50%",
+                        backgroundColor: "white",
+                      }}></div>
+                    <div style={{ fontSize: "1rem" }}>
+                      {currentSong?.releasedDate}
+                    </div>
+                  </div>
                 )}
-              </div>
+              </span>
 
-              <div className="btn-heart-songs" onClick={handleFavourite}>
-                {!isFetching ? (
-                  track.isFavourite ? (
-                    <AiTwotoneHeart />
+              <div className="button-section">
+                <div className="btn-play-songs">
+                  {stats.trackID === songId ? (
+                    <React.Fragment>
+                      {stats.mediaState === possibleMediaState.PLAYING && (
+                        <PauseSong>
+                          <FaPause />
+                        </PauseSong>
+                      )}
+
+                      {stats.mediaState === possibleMediaState.PAUSED && (
+                        <span
+                          className="flex-center"
+                          onClick={onPlay}
+                          style={{ width: "100%", height: "100%" }}>
+                          <FaPlay />
+                        </span>
+                      )}
+                    </React.Fragment>
+                  ) : !isFetching ? (
+                    <PlaySong trackDetails={track.trackDetails}>
+                      <FaPlay />
+                    </PlaySong>
+                  ) : (
+                    <FaPlay />
+                  )}
+                </div>
+
+                <div className="btn-heart-songs" onClick={handleFavourite}>
+                  {!isFetching ? (
+                    track.isFavourite ? (
+                      <AiTwotoneHeart />
+                    ) : (
+                      <AiOutlineHeart />
+                    )
                   ) : (
                     <AiOutlineHeart />
-                  )
-                ) : (
-                  <AiOutlineHeart />
-                )}
-              </div>
+                  )}
+                </div>
 
-              <div className="btn-heart-songs">
-                <MdPlaylistAdd />
+                <div
+                  className="btn-heart-songs"
+                  onClick={() => setPlaylistAdd(true)}>
+                  <MdPlaylistAdd />
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      </div>
+          </section>
+        </div>
 
-      <div>
-        <h2>Recommended Songs Based on Current Songs</h2>
-        <RecentPlayed data={[]} />
+        <div>
+          <h2>Recommended Songs Based on Current Songs</h2>
+          <RecentPlayed data={[]} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -24,7 +24,12 @@ function PlaylistsDetails() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { data: playlist, isLoading, isError } = usePlaylistData(playlistID);
+  const {
+    data: playlist,
+    isLoading,
+    isError,
+    refetch,
+  } = usePlaylistData(playlistID);
   const loader = isLoading || isError;
 
   const {
@@ -35,10 +40,13 @@ function PlaylistsDetails() {
     reset: resetSearch,
   } = useMutation(
     (data) => {
-      const searchQuery = data.split(" ").join("+");
-      return searchSongsApi(searchQuery);
+      return searchSongsApi(data);
     },
-    { onSuccess: () => setShowData(true) }
+    {
+      onSuccess: () => {
+        setShowData(true);
+      },
+    }
   );
 
   const searchedSongs = searchedData && trackDetails(searchedData.data.songs);
