@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
@@ -25,10 +25,8 @@ import PlaylistsDetails from "@/pages/Playlists/PlaylistsDetails";
 import ArtistsDetails from "@/components/Artists/ArtistsDetails";
 import Artists from "@/pages/Artists/Artists";
 import GenreContainer from "@/pages/genre/GenreContainer";
-import { useRef } from "react";
 import Navbar from "./components/Navbar/Navbar";
-import { useEffect } from "react";
-import SongDetails from "./pages/SongDetails";
+import SongDetails from "@/pages/SongDetails";
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
@@ -85,11 +83,11 @@ function App() {
               <Route path="/fav-artists" element={<FavouriteArtists />} />
               <Route path="/playlists" element={<PlaylistSection />} />
               <Route path="/playlists/:id" element={<PlaylistsDetails />} />
+              <Route path="/songs/:id" element={<SongDetails />} />
 
               {/* Redirect Since Genre List is shown in Sidebar*/}
               <Route path="/*" element={<Navigate replace to="/" />} />
               <Route path="/genre/:id" element={<GenreContainer />} />
-              <Route path="/songs/:id" element={<SongDetails />} />
               <Route path="/results" element={<SearchPages />} />
               <Route path="/results/artists" element={<SearchArtists />} />
               <Route path="/results/songs" element={<SearchSongs />} />

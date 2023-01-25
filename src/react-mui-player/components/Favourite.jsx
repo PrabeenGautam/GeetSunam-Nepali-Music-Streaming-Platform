@@ -24,6 +24,7 @@ export default function Favourite(props) {
       })
     );
     queryClient.invalidateQueries("likedSongs");
+    queryClient.invalidateQueries(["songs", trackID]);
   };
 
   return (

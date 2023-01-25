@@ -8,12 +8,12 @@ export const useSongsData = (songsId) => {
   );
 
   return useQuery(["songs", songsId], () => getSongsByID(songsId), {
-    select: (data) => data.data.song,
+    select: (data) => data.data.songs,
     initialData: () => {
       if (currentSong.ID) {
         return {
           data: {
-            song: currentSong,
+            songs: currentSong,
           },
         };
       } else {

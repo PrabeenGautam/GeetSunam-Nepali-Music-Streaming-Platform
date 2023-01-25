@@ -105,3 +105,8 @@
 .mt-80 {
   margin-top: 80px;
 }
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

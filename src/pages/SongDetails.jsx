@@ -1,18 +1,50 @@
 import { useParams } from "react-router-dom";
-import React from "react";
-import { useSongsData } from "@/hooks/useSongsData";
+import React, { useState } from "react";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import { FaPlay, FaPause } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { possibleMediaState } from "@/components/Player/possibleMediaState.types";
+import { useDispatch, useSelector } from "react-redux";
 import { MdPlaylistAdd } from "react-icons/md";
+
+import { possibleMediaState } from "@/components/Player/possibleMediaState.types";
+import { useSongsData } from "@/hooks/useSongsData";
 import RecentPlayed from "@/components/SongsList";
+import PauseSong from "@/components/Player/PauseSong";
+import ActionCreators from "@/react-mui-player/redux/actionCreators";
+import PlaySong from "@/components/Player/PlaySong";
+import { trackDetails } from "@/utils/trackDetails.utils";
+import { toggleSongsFavourite } from "@/services/musicApi/postSongs.api";
+import { useQueryClient } from "react-query";
 
 function SongDetails() {
+  const [clicked, setClicked] = useState(false);
+  const queryClient = useQueryClient();
+
   const { id: songId } = useParams();
+  const dispatch = useDispatch();
 
   const stats = useSelector((state) => state);
-  const { data: currentSong } = useSongsData(songId);
+  const { data: currentSong, isFetching } = useSongsData(songId);
+
+  const onPlay = () => dispatch(ActionCreators.play());
+
+  const track = !isFetching && trackDetails(currentSong);
+
+  const handleFavourite = async () => {
+    if (!clicked) {
+      setClicked(true);
+      const fetchData = await toggleSongsFavourite(songId);
+      queryClient.invalidateQueries(["songs", songId]);
+      if (currentSong.trackID === songId) {
+        dispatch(
+          ActionCreators.getMusicDetails({
+            ID: currentSong?.trackID || track._id,
+            favourite: fetchData.data.songs.isFavourite,
+          })
+        );
+      }
+      setClicked(false);
+    }
+  };
 
   return (
     <div className="content-container">
@@ -52,17 +84,39 @@ function SongDetails() {
 
             <div className="button-section">
               <div className="btn-play-songs">
-                {stats.trackID === songId &&
-                stats.mediaState === possibleMediaState.PLAYING ? (
-                  <FaPause />
+                {stats.trackID === songId ? (
+                  <React.Fragment>
+                    {stats.mediaState === possibleMediaState.PLAYING && (
+                      <PauseSong>
+                        <FaPause />
+                      </PauseSong>
+                    )}
+
+                    {stats.mediaState === possibleMediaState.PAUSED && (
+                      <span
+                        className="flex-center"
+                        onClick={onPlay}
+                        style={{ width: "100%", height: "100%" }}>
+                        <FaPlay />
+                      </span>
+                    )}
+                  </React.Fragment>
+                ) : !isFetching ? (
+                  <PlaySong trackDetails={track.trackDetails}>
+                    <FaPlay />
+                  </PlaySong>
                 ) : (
                   <FaPlay />
                 )}
               </div>
 
-              <div className="btn-heart-songs">
-                {currentSong?.isFavourite ? (
-                  <AiTwotoneHeart />
+              <div className="btn-heart-songs" onClick={handleFavourite}>
+                {!isFetching ? (
+                  track.isFavourite ? (
+                    <AiTwotoneHeart />
+                  ) : (
+                    <AiOutlineHeart />
+                  )
                 ) : (
                   <AiOutlineHeart />
                 )}

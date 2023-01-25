@@ -39,7 +39,7 @@ root.render(
         <GoogleOAuthProvider
           clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || ""}>
           <BrowserRouter basename={import.meta.env.VITE_BASE_URL || "/"}>
-            <Suspense>
+            <Suspense fallback={<Loading />}>
               <ScrollToTop>
                 <ToastContainer
                   position="top-right"
