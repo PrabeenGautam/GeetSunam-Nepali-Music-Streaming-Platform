@@ -25,6 +25,7 @@ function SearchPage() {
     if (!query) {
       navigate("/home");
     }
+
     refetch();
   }, [query]);
 
@@ -66,7 +67,7 @@ function SearchPage() {
     isError,
     isFetching,
     refetch,
-  } = useReactQuery("searchAny", () => searchApi(query), {
+  } = useReactQuery(["searchAny", query], () => searchApi(query), {
     select: (data) => data.data.search,
   });
 

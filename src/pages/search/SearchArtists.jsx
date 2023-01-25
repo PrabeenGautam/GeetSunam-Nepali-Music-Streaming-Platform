@@ -51,7 +51,7 @@ function SearchSong() {
     data: searchData,
     isLoading,
     isError,
-  } = useReactQuery("searchArtists", () => searchArtistsApi(query), {
+} = useReactQuery(["searchArtists", query], () => searchArtistsApi(query), {
     select: (data) => data.data.artists,
   });
 

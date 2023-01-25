@@ -51,9 +51,13 @@ function SearchSong() {
     data: searchData,
     isLoading,
     isError,
-  } = useReactQuery("searchPlaylists", () => searchPlaylistsApi(query), {
-    select: (data) => data.data.playlists,
-  });
+  } = useReactQuery(
+    ["searchPlaylists", query],
+    () => searchPlaylistsApi(query),
+    {
+      select: (data) => data.data.playlists,
+    }
+  );
 
   const loader = isLoading || isError;
 

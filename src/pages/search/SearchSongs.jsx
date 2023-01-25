@@ -53,7 +53,7 @@ function SearchSong() {
     isLoading,
     isError,
     isFetching,
-  } = useReactQuery("searchSongs", () => searchSongsApi(query), {
+  } = useReactQuery(["searchSongs", query], () => searchSongsApi(query), {
     select: (data) => data.data.songs,
   });
 
