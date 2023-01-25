@@ -27,6 +27,7 @@ import Artists from "@/pages/Artists/Artists";
 import GenreContainer from "@/pages/genre/GenreContainer";
 import Navbar from "./components/Navbar/Navbar";
 import SongDetails from "@/pages/SongDetails";
+import UploadSongs from "./pages/Upload";
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
@@ -94,9 +95,7 @@ function App() {
               <Route path="/results/playlists" element={<SearchPlaylists />} />
 
               <Route path="/settings" element={<Settings />} />
-              {artistsDashboard && (
-                <Route path="/upload" element={<Content />} />
-              )}
+              <Route path="/upload" element={<UploadSongs />} />
             </Routes>
           </div>
 

@@ -1668,7 +1668,8 @@ h3:not(.h3) {
   stroke: white;
 }
 
-.navmenu input {
+.navmenu input,
+.upload-form {
   color: white;
 }
 
@@ -1756,4 +1757,82 @@ h3:not(.h3) {
 
 .btn-heart-songs svg {
   font-size: 2rem;
+}
+
+.upload-form .form-flex {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.input-section {
+  border-radius: 5px;
+  width: 100%;
+  user-select: none;
+  z-index: 150;
+}
+
+.input-section label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.input-section .input-text,
+.input-section select {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 12px;
+  background-color: inherit;
+  color: white;
+
+  background-color: var(--secondary);
+  border: 1px solid rgb(70, 70, 70);
+  padding: 9px;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.image-upload {
+  grid-column: span 2;
+}
+
+.upload .uploader {
+  height: 167px;
+  cursor: pointer;
+  margin: 20px 0;
+
+  flex-direction: column;
+  border-radius: 5px;
+  border: 2px dashed rgb(70, 70, 70);
+}
+
+.upload .uploader svg {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.file-preview img {
+  width: 100%;
+  aspect-ratio: 16 /9;
+}
+
+.file-preview div {
+  background-color: var(--highlight);
+  width: fit-content;
+  height: fit-content;
+  padding: 4px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.music div {
+  margin-left: auto;
+}
+
+.audio {
+  height: 40px;
 }

@@ -1,6 +1,5 @@
 import { useQuery, useQueryClient } from "react-query";
-
-import { getGenresByID } from "@/services/musicApi/getGenres.api";
+import { getGenresApi } from "@/services/musicApi/getGenres.api";
 
 export const useGenreData = (genreId) => {
   const queryClient = useQueryClient();
@@ -15,6 +14,26 @@ export const useGenreData = (genreId) => {
         return {
           data: {
             genre,
+          },
+        };
+      } else {
+        return undefined;
+      }
+    },
+  });
+};
+
+export const getGenreData = () => {
+  const queryClient = useQueryClient();
+  return useQuery(["genres"], () => getGenresApi(), {
+    select: (data) => data.data.genres,
+    initialData: () => {
+      const genres = queryClient.getQueryData("genres");
+
+      if (genres) {
+        return {
+          data: {
+            genres,
           },
         };
       } else {

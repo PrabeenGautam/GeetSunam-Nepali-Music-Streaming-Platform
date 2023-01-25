@@ -1,4 +1,4 @@
-import { FavouriteSongsConfig } from "../api.routes";
+import { FavouriteSongsConfig, SongConfig } from "../api.routes";
 import getApiResponse from "../axios";
 
 export const toggleSongsFavourite = async (id) => {
@@ -8,6 +8,18 @@ export const toggleSongsFavourite = async (id) => {
     data: {
       songs: id,
     },
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
+
+export const uploadSongs = async (formData) => {
+  const result = await getApiResponse({
+    url: SongConfig.UPLOAD_SONG,
+    method: "post",
+    data: formData,
+    type: "multipart/form-data",
   });
 
   if (result.APIFailed) return null;
