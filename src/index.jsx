@@ -6,6 +6,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Flip, ToastContainer } from "react-toastify";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import ReactGa from "react-ga4";
 
 import App from "@/App";
 import "@/index.css";
@@ -20,6 +21,8 @@ import LoginPage from "@/pages/auth/Login.page";
 import SignUpPage from "@/pages/auth/SignUp.page";
 import Loading from "@/components/Loading";
 import "@/components/i18n";
+
+ReactGa.initialize("GTM-K3BZTR2");
 
 const ScrollToTop = ({ children }) => {
   const location = useLocation();

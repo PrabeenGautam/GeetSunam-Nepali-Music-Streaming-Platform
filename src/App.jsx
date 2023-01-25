@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import "./App.css";
 
@@ -29,7 +30,6 @@ import Navbar from "./components/Navbar/Navbar";
 import SongDetails from "@/pages/SongDetails";
 import UploadSongs from "./pages/Upload";
 import { getPlayerState } from "./services/playerState/playerState";
-import { useDispatch } from "react-redux";
 import ActionCreators from "./react-mui-player/redux/actionCreators";
 
 function App() {
@@ -43,16 +43,16 @@ function App() {
     setSideBar((prev) => !prev);
   };
 
-  // useEffect(() => {
-  //   const fetchState = async () => {
-  //     const response = await getPlayerState();
-  //     if (response.data) {
-  //       dispatch(ActionCreators.setPlayerState(response.data.state));
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchState = async () => {
+      const response = await getPlayerState();
+      if (response.data) {
+        dispatch(ActionCreators.setPlayerState(response.data.state));
+      }
+    };
 
-  //   fetchState();
-  // }, []);
+    fetchState();
+  }, []);
 
   useEffect(() => {
     const handleSize = () => {
