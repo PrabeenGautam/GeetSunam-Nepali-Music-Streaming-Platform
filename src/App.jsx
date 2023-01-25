@@ -28,15 +28,31 @@ import GenreContainer from "@/pages/genre/GenreContainer";
 import Navbar from "./components/Navbar/Navbar";
 import SongDetails from "@/pages/SongDetails";
 import UploadSongs from "./pages/Upload";
+import { getPlayerState } from "./services/playerState/playerState";
+import { useDispatch } from "react-redux";
+import ActionCreators from "./react-mui-player/redux/actionCreators";
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
   const [sidebar, setSideBar] = useState(false);
   const elementRef = useRef();
 
+  const dispatch = useDispatch();
+
   const handleSideBar = function () {
     setSideBar((prev) => !prev);
   };
+
+  useEffect(() => {
+    const fetchState = async () => {
+      const response = await getPlayerState();
+      if (response.data) {
+        dispatch(ActionCreators.setPlayerState(response.data.state));
+      }
+    };
+
+    fetchState();
+  }, []);
 
   useEffect(() => {
     const handleSize = () => {

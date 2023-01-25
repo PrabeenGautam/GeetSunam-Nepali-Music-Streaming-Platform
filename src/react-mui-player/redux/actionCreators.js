@@ -58,6 +58,11 @@ const ActionCreators = {
     payload: { favourite: data.favourite, trackId: data.ID },
   }),
 
+  setPlayerState: (data) => ({
+    type: ActionTypes.SET_PLAYER_STATE,
+    payload: data,
+  }),
+
   seek: (time) => ({
     type: ActionTypes.SEEK,
     payload: {

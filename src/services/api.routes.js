@@ -35,6 +35,12 @@ export const SongConfig = {
   GET_SONG_BY_GENRES: (id) => `/songs/genres/${id}`,
 };
 
+export const PlayerConfig = {
+  KEY: "PLAYER",
+  GET_STATE: "/player/get-state",
+  UPDATE_STATE: "/player/save-state",
+};
+
 export const ArtistsConfig = {
   KEY: "ARTIST",
   GET_ARTISTS: "/artists",

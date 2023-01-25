@@ -19,6 +19,8 @@ function mediaState(state = MediaState.STOPPED, action) {
 function playlist(state = [new Track("", "", "", "", "")], action) {
   if (action.type === ActionTypes.UPDATE_PLAYLIST)
     return action.payload.playlist;
+  if (action.type === ActionTypes.SET_PLAYER_STATE)
+    return action.payload.playlist;
   else return state;
 }
 
@@ -41,12 +43,16 @@ function currentTime(state = 0, action) {
 function favourite(state = null, action) {
   if (action.type === ActionTypes.GET_TRACK_DETAILS)
     return action.payload.favourite;
+  if (action.type === ActionTypes.SET_PLAYER_STATE)
+    return action.payload.favourite;
   else return state;
 }
 
 function trackID(state = null, action) {
   if (action.type === ActionTypes.GET_TRACK_DETAILS)
     return action.payload.trackId;
+  if (action.type === ActionTypes.SET_PLAYER_STATE)
+    return action.payload.trackID;
   else return state;
 }
 
