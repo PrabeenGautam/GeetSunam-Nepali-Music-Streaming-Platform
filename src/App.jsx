@@ -28,6 +28,7 @@ import GenreContainer from "@/pages/genre/GenreContainer";
 import { useRef } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import { useEffect } from "react";
+import SongDetails from "./pages/SongDetails";
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
@@ -88,6 +89,7 @@ function App() {
               {/* Redirect Since Genre List is shown in Sidebar*/}
               <Route path="/*" element={<Navigate replace to="/" />} />
               <Route path="/genre/:id" element={<GenreContainer />} />
+              <Route path="/songs/:id" element={<SongDetails />} />
               <Route path="/results" element={<SearchPages />} />
               <Route path="/results/artists" element={<SearchArtists />} />
               <Route path="/results/songs" element={<SearchSongs />} />

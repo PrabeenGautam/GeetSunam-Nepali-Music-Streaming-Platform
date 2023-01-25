@@ -1696,3 +1696,64 @@ h3:not(.h3) {
 .main-container.toggle .featured .img {
   height: 60vh;
 }
+
+.song-section {
+  min-height: 20rem;
+  padding: 2rem 2.5rem;
+  position: relative;
+  display: flex;
+  gap: 32px;
+  background-color: #1c1917;
+}
+
+.song-section::after {
+  content: "";
+  background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.35) 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.song-images {
+  width: 25rem;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 31%);
+}
+
+.song-images img {
+  width: 100%;
+  height: 100%;
+}
+
+.button-section {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.button-section .btn-play-songs,
+.button-section .btn-heart-songs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.button-section .btn-play-songs {
+  width: 3.4rem;
+  height: 3.4rem;
+  background-color: var(--highlight);
+  border-radius: 50%;
+}
+
+.btn-play-songs svg,
+.btn-heart-songs svg {
+  font-size: 1.4rem;
+  fill: white;
+  stroke: white;
+}
+
+.btn-heart-songs svg {
+  font-size: 2rem;
+}

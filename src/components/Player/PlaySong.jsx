@@ -26,6 +26,7 @@ const PlaySong = ({
       new Track(ID, coverArt, title, artist, source, favourite),
     ]);
     if (musicList.length !== 0) {
+      console.log(musicList);
       PlayerInterface.setPlaylist(musicList);
     }
     dispatch(ActionCreators.getMusicDetails({ ID, favourite }));

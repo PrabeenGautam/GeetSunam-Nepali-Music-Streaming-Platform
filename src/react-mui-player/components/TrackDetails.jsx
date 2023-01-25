@@ -1,8 +1,12 @@
 import React from "react";
 import { shallowEqual, useSelector } from "react-redux";
 import Box from "@mui/material/Box";
+import { useNavigate } from "react-router-dom";
 
 export default function TrackDetails(props) {
+  const navigate = useNavigate();
+  const trackID = useSelector((state) => state.trackID);
+
   const { title, artist } = useSelector(
     /**@type {import("../redux/types").useSelectCb} */
     (state) => {
@@ -17,12 +21,17 @@ export default function TrackDetails(props) {
 
   const sx = props.sx;
 
+  const handleClick = () => {
+    navigate(`/songs/${trackID}`);
+  };
+
   return (
-    <Box sx={sx}>
+    <Box sx={sx} onClick={handleClick}>
       {title ? (
         <div
           width="120px"
           className="bounce"
+          style={{ cursor: "pointer" }}
           onMouseEnter={(e) => {
             e.target.classList.remove("innerText");
           }}
@@ -30,7 +39,6 @@ export default function TrackDetails(props) {
             e.target.classList.add("innerText");
           }}>
           <Box
-            className="innerText"
             sx={{
               typography: "subtitl3",
               whiteSpace: "nowrap",

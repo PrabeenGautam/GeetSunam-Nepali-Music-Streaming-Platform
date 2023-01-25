@@ -8,6 +8,7 @@ export function trackDetails(songsList) {
           title: song.title,
           coverArt: song.coverArt,
           artists: song.artists.fullname,
+          artist: song.artists.fullname,
           source: song.stream,
           isFavourite: song.isFavourite,
           isFeatured: song.isFeatured,
@@ -18,13 +19,14 @@ export function trackDetails(songsList) {
     return {
       ...songsList,
       trackDetails: {
-        ID: songsList.ID || songsList._id,
-        title: songsList.title,
-        coverArt: songsList.coverArt,
-        artists: songsList.artists.fullname,
-        source: songsList.stream,
-        isFavourite: songsList.isFavourite,
-        isFeatured: songsList.isFeatured,
+        ID: songsList?.ID || songsList?._id,
+        title: songsList?.title,
+        coverArt: songsList?.coverArt,
+        artists: songsList?.artists.fullname,
+        artist: songsList?.artists.fullname,
+        source: songsList?.stream,
+        isFavourite: songsList?.isFavourite,
+        isFeatured: songsList?.isFeatured,
       },
     };
 }
