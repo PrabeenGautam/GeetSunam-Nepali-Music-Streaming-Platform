@@ -43,16 +43,16 @@ function App() {
     setSideBar((prev) => !prev);
   };
 
-  useEffect(() => {
-    const fetchState = async () => {
-      const response = await getPlayerState();
-      if (response.data) {
-        dispatch(ActionCreators.setPlayerState(response.data.state));
-      }
-    };
+  // useEffect(() => {
+  //   const fetchState = async () => {
+  //     const response = await getPlayerState();
+  //     if (response.data) {
+  //       dispatch(ActionCreators.setPlayerState(response.data.state));
+  //     }
+  //   };
 
-    fetchState();
-  }, []);
+  //   fetchState();
+  // }, []);
 
   useEffect(() => {
     const handleSize = () => {
