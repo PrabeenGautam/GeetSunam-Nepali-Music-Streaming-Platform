@@ -41,8 +41,8 @@ function shuffled(state = false, action) {
 function currentTime(state = 0, action) {
   if (action.type === ActionTypes.SET_CURRENT_TIME)
     return action.payload.currentTime;
-  if (action.type === ActionTypes.SET_PLAYER_STATE)
-    return action.payload.currentTime;
+  // if (action.type === ActionTypes.SET_PLAYER_STATE)
+  //   return action.payload.currentTime;
   else return state;
 }
 
@@ -64,8 +64,8 @@ function trackID(state = null, action) {
 
 function timeLeft(state = 0, action) {
   if (action.type === ActionTypes.SET_TIME_LEFT) return action.payload.timeLeft;
-  if (action.type === ActionTypes.SET_PLAYER_STATE)
-    return action.payload.timeLeft;
+  // if (action.type === ActionTypes.SET_PLAYER_STATE)
+  //   return action.payload.timeLeft;
   else return state;
 }
 

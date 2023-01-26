@@ -22,5 +22,6 @@ export function storePlayerState(state) {
 
 export async function getPlayerLocalState() {
   const state = JSON.parse(localStorage.getItem("playerState"));
+
   state ? store.dispatch(ActionCreators.setPlayerState(state)) : fetchState();
 }

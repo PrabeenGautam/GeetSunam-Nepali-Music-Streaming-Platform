@@ -27,12 +27,18 @@ import GenreContainer from "@/pages/genre/GenreContainer";
 import Navbar from "./components/Navbar/Navbar";
 import SongDetails from "@/pages/SongDetails";
 import UploadSongs from "./pages/Upload";
-import { getPlayerLocalState } from "./utils/playerState.utils";
+import {
+  getPlayerLocalState,
+  storePlayerState,
+} from "./utils/playerState.utils";
+import { useSelector } from "react-redux";
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
   const [sidebar, setSideBar] = useState(false);
   const elementRef = useRef();
+
+  const playerState = useSelector((state) => state);
 
   const handleSideBar = function () {
     setSideBar((prev) => !prev);
@@ -41,6 +47,10 @@ function App() {
   useEffect(() => {
     getPlayerLocalState();
   }, []);
+
+  useEffect(() => {
+    storePlayerState(playerState);
+  }, [playerState]);
 
   useEffect(() => {
     const handleSize = () => {

@@ -77,7 +77,7 @@ function Content() {
     <div className="content-container">
       <CustomBreadcrumbs link={"/home"} textName="Home" />
       {!loaderFeatured ? (
-        <Featured data={featuredSongs} showSearchBar={true} />
+        <Featured data={featuredSongs} showSearchBar={false} />
       ) : (
         <FeaturedSkeleton />
       )}
