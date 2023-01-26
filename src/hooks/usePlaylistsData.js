@@ -8,6 +8,7 @@ export const usePlaylistData = (playlistID) => {
     () => getPlaylistByID(playlistID),
     {
       select: (data) => data.data.playlist,
+      refetchOnWindowFocus: false,
       initialData: () => {
         const playlist = queryClient
           .getQueryData("playlists")

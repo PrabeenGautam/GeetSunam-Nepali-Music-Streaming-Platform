@@ -16,6 +16,7 @@ function SidebarRight() {
     isError,
   } = useQuery("genres", getGenresApi, {
     select: (data) => data.data.genres,
+    refetchOnWindowFocus: false,
   });
 
   const loader = isLoading || isError;

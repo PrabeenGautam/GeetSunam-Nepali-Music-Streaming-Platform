@@ -5,6 +5,7 @@ export const useGenreData = (genreId) => {
   const queryClient = useQueryClient();
   return useQuery(["genres", genreId], () => getGenresByID(genreId), {
     select: (data) => data.data.genre,
+    refetchOnWindowFocus: false,
     initialData: () => {
       const genre = queryClient
         .getQueryData("genres")
@@ -27,6 +28,7 @@ export const getGenreData = () => {
   const queryClient = useQueryClient();
   return useQuery(["genres"], () => getGenresApi(), {
     select: (data) => data.data.genres,
+    refetchOnWindowFocus: false,
     initialData: () => {
       const genres = queryClient.getQueryData("genres");
 

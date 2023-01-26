@@ -69,6 +69,7 @@ function SearchPage() {
     refetch,
   } = useReactQuery(["searchAny", query], () => searchApi(query), {
     select: (data) => data.data.search,
+    refetchOnWindowFocus: false,
   });
 
   const loader = isFetching || isLoading || isError;

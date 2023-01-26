@@ -6,6 +6,7 @@ export const useArtistsData = (artistsId) => {
   const queryClient = useQueryClient();
   return useQuery(["artists", artistsId], () => getArtistsById(artistsId), {
     select: (data) => data.data.artists,
+    refetchOnWindowFocus: false,
     initialData: () => {
       const artist = queryClient
         .getQueryData("artists")

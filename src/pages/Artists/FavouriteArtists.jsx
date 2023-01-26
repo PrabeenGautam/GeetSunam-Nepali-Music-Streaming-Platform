@@ -23,6 +23,7 @@ function FavouriteArtists() {
     isError,
   } = useQuery("fav-artists", getFavouriteArtists, {
     select: (data) => data.data.artists,
+    refetchOnWindowFocus: false,
   });
 
   const loader = isLoading || isError;

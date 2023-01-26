@@ -24,6 +24,7 @@ function GenreContainer() {
     isError: isErrorSongs,
   } = useQuery(["genre-song", genreID], () => getSongsByGenre(genreID), {
     select: (result) => result.data.songs,
+    refetchOnWindowFocus: false,
   });
 
   const songs = data && trackDetails(data);

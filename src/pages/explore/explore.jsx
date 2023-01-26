@@ -31,6 +31,7 @@ function Explore() {
     isError: isErrorLibrary,
   } = useQuery("library", getAllSongsAPI, {
     select: (data) => data?.data.songs,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -39,6 +40,7 @@ function Explore() {
     isError: isErrorFeatured,
   } = useQuery(["featured"], getFeaturedSongs, {
     select: (data) => data.data.songs,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -47,6 +49,7 @@ function Explore() {
     isError: isErrorRecommended,
   } = useQuery("recommendation", getRecommendedSongs, {
     select: (data) => data.data.songs,
+    refetchOnWindowFocus: false,
   });
 
   const songs = songsLibrary && trackDetails(songsLibrary);

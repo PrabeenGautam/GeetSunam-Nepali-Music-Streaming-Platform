@@ -56,6 +56,7 @@ function SearchSong() {
     () => searchPlaylistsApi(query),
     {
       select: (data) => data.data.playlists,
+      refetchOnWindowFocus: false,
     }
   );
 

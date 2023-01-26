@@ -26,6 +26,7 @@ function LikedSongs() {
     getFavouriteSongs,
     {
       select: (data) => data.data.songs,
+      refetchOnWindowFocus: false,
     }
   );
   const {

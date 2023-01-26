@@ -15,6 +15,7 @@ function Recommnedations() {
     getRecommendedSongs,
     {
       select: (data) => data.data.songs,
+      refetchOnWindowFocus: false,
     }
   );
 

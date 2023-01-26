@@ -17,6 +17,7 @@ function Trends() {
     getTrendingSongs,
     {
       select: (data) => data.data.songs,
+      refetchOnWindowFocus: false,
     }
   );
 

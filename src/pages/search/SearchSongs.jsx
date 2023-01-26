@@ -55,6 +55,7 @@ function SearchSong() {
     isFetching,
   } = useReactQuery(["searchSongs", query], () => searchSongsApi(query), {
     select: (data) => data.data.songs,
+    refetchOnWindowFocus: false,
   });
 
   const loader = isFetching || isLoading || isError;

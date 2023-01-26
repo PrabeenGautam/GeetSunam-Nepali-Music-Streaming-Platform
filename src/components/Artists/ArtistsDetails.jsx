@@ -28,6 +28,7 @@ function ArtistsDetails() {
     () => getArtistsSongs(artistId),
     {
       select: (data) => data.data.songs,
+      refetchOnWindowFocus: false,
     }
   );
 

@@ -19,6 +19,7 @@ function NewReleases() {
     getNewReleaseSongs,
     {
       select: (data) => data.data.songs,
+      refetchOnWindowFocus: false,
     }
   );
 

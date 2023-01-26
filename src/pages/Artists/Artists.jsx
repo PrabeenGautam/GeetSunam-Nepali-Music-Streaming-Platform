@@ -19,6 +19,7 @@ function Artists() {
     isError,
   } = useQuery("artists", getArtistsAPI, {
     select: (data) => data.data.artists,
+    refetchOnWindowFocus: false,
   });
 
   const loader = isLoading || isError;

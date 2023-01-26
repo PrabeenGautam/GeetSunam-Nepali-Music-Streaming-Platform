@@ -29,6 +29,7 @@ function PlaylistSection() {
     refetch: refetchPlaylist,
   } = useQuery("playlists", getPlaylistsAPI, {
     select: (data) => data.data.playlists,
+    refetchOnWindowFocus: false,
   });
 
   const loader = isLoading || isError;

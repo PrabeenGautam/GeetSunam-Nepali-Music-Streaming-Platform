@@ -34,6 +34,7 @@ function Content() {
     isError: isErrorReleases,
   } = useQuery("newReleasesLimited", getNewReleaseLimitedSongs, {
     select: (data) => data.data.songs,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -42,6 +43,7 @@ function Content() {
     isError: isErrorArtists,
   } = useQuery("featuredArtists", getFeaturedArtists, {
     select: (data) => data.data.artists,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -50,6 +52,7 @@ function Content() {
     isError: isErrorFeatured,
   } = useQuery(["featured"], getFeaturedSongs, {
     select: (data) => data.data.songs,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -58,6 +61,7 @@ function Content() {
     isError: isErrorRecenet,
   } = useQuery(["recentlyPlayed"], getRecentlyPlayedSongs, {
     select: (data) => data.data.songs,
+    refetchOnWindowFocus: false,
   });
 
   const featuredSongs = featuredData && trackDetails(featuredData);
