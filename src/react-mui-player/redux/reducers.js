@@ -26,16 +26,22 @@ function playlist(state = [new Track("", "", "", "", "")], action) {
 
 function currentTrack(state = 0, action) {
   if (action.type === ActionTypes.CHANGE_TRACK) return action.payload.index;
-  else return state;
+  if (action.type === ActionTypes.SET_PLAYER_STATE) {
+    return action.payload.currentTrack;
+  } else return state;
 }
 
 function shuffled(state = false, action) {
   if (action.type === ActionTypes.SHUFFLE) return action.payload.shuffle;
+  if (action.type === ActionTypes.SET_PLAYER_STATE)
+    return action.payload.shuffled;
   else return state;
 }
 
 function currentTime(state = 0, action) {
   if (action.type === ActionTypes.SET_CURRENT_TIME)
+    return action.payload.currentTime;
+  if (action.type === ActionTypes.SET_PLAYER_STATE)
     return action.payload.currentTime;
   else return state;
 }
@@ -58,15 +64,21 @@ function trackID(state = null, action) {
 
 function timeLeft(state = 0, action) {
   if (action.type === ActionTypes.SET_TIME_LEFT) return action.payload.timeLeft;
+  if (action.type === ActionTypes.SET_PLAYER_STATE)
+    return action.payload.timeLeft;
   else return state;
 }
 
 function volume(state = 0, action) {
   if (action.type === ActionTypes.CHANGE_VOLUME) return action.payload.volume;
+  if (action.type === ActionTypes.SET_PLAYER_STATE)
+    return action.payload.volume;
   else return state;
 }
 
 function repeatMode(state = RepeatMode.NORMAL, action) {
+  if (action.type === ActionTypes.SET_PLAYER_STATE)
+    return action.payload.repeatMode;
   if (action.type !== ActionTypes.SET_REPEAT_MODE) return state;
   switch (state) {
     case RepeatMode.NORMAL:

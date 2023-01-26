@@ -22,8 +22,6 @@ import SignUpPage from "@/pages/auth/SignUp.page";
 import Loading from "@/components/Loading";
 import "@/components/i18n";
 
-ReactGa.initialize("GTM-K3BZTR2");
-
 const ScrollToTop = ({ children }) => {
   const location = useLocation();
   useLayoutEffect(() => {

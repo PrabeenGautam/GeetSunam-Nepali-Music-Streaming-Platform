@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
 import "./App.css";
 
 import { SidebarLeft, SidebarRight } from "@/components/Sidebar";
@@ -29,51 +27,42 @@ import GenreContainer from "@/pages/genre/GenreContainer";
 import Navbar from "./components/Navbar/Navbar";
 import SongDetails from "@/pages/SongDetails";
 import UploadSongs from "./pages/Upload";
-import { getPlayerState } from "./services/playerState/playerState";
-import ActionCreators from "./react-mui-player/redux/actionCreators";
+import { getPlayerLocalState } from "./utils/playerState.utils";
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
   const [sidebar, setSideBar] = useState(false);
   const elementRef = useRef();
 
-  const dispatch = useDispatch();
-
   const handleSideBar = function () {
     setSideBar((prev) => !prev);
   };
 
   useEffect(() => {
-    const fetchState = async () => {
-      const response = await getPlayerState();
-      if (response.data) {
-        dispatch(ActionCreators.setPlayerState(response.data.state));
-      }
-    };
-
-    fetchState();
+    getPlayerLocalState();
   }, []);
 
   useEffect(() => {
     const handleSize = () => {
-      const width = elementRef.current.offsetWidth;
+      if (elementRef) {
+        const width = elementRef.current.offsetWidth;
 
-      if (width > 1010) {
-        document.documentElement.style.setProperty("--column-count", 6);
-      } else if (width > 850 && width <= 1010) {
-        document.documentElement.style.setProperty("--column-count", 5);
-      } else if (width > 650 && width <= 850) {
-        document.documentElement.style.setProperty("--column-count", 4);
-      } else if (width > 550 && width <= 650) {
-        document.documentElement.style.setProperty("--column-count", 3);
-      } else if (width > 400 && width <= 550) {
-        document.documentElement.style.setProperty("--column-count", 2);
-      } else {
-        document.documentElement.style.setProperty("--column-count", 1);
+        if (width > 1010) {
+          document.documentElement.style.setProperty("--column-count", 6);
+        } else if (width > 850 && width <= 1010) {
+          document.documentElement.style.setProperty("--column-count", 5);
+        } else if (width > 650 && width <= 850) {
+          document.documentElement.style.setProperty("--column-count", 4);
+        } else if (width > 550 && width <= 650) {
+          document.documentElement.style.setProperty("--column-count", 3);
+        } else if (width > 400 && width <= 550) {
+          document.documentElement.style.setProperty("--column-count", 2);
+        } else {
+          document.documentElement.style.setProperty("--column-count", 1);
+        }
       }
     };
     // Run initially
-    handleSize();
 
     // Run on Size
     window.addEventListener("resize", handleSize);
