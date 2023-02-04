@@ -32,6 +32,7 @@ import {
   storePlayerState,
 } from "./utils/playerState.utils";
 import { useSelector } from "react-redux";
+import UploadModel from "./components/Upload/uploadModel";
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
@@ -55,7 +56,7 @@ function App() {
   useEffect(() => {
     const handleSize = () => {
       if (elementRef) {
-        const width = elementRef.current.offsetWidth;
+        const width = elementRef?.current?.offsetWidth;
 
         if (width > 1010) {
           document.documentElement.style.setProperty("--column-count", 6);
@@ -73,6 +74,7 @@ function App() {
       }
     };
     // Run initially
+    handleSize();
 
     // Run on Size
     window.addEventListener("resize", handleSize);
@@ -110,7 +112,7 @@ function App() {
               <Route path="/results/playlists" element={<SearchPlaylists />} />
 
               <Route path="/settings" element={<Settings />} />
-              <Route path="/upload" element={<UploadSongs />} />
+              <Route path="/upload" element={<UploadModel />} />
             </Routes>
           </div>
 

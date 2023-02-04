@@ -86,13 +86,8 @@ function PlaylistAddContainer({ setClick, data }) {
             setClick(false);
           }}></div>
         <div className="container" style={{ width: "17rem", zIndex: 9999 }}>
-          <div
-            className="header"
-            style={{
-              borderBottom: "0.5px solid var(--divider)",
-              paddingBottom: 10,
-            }}>
-            <div>Save too...</div>
+          <div className="header">
+            <h2 className="h2">Save too...</h2>
             <MdClose
               style={{ cursor: "pointer", width: 25, height: 25 }}
               onClick={() => setClick(false)}
@@ -102,57 +97,59 @@ function PlaylistAddContainer({ setClick, data }) {
           <div
             className="playlist-section child-scroll"
             style={{
-              marginBottom: 20,
               overflowY: "auto",
               maxHeight: "15rem",
             }}>
-            {playlists.map((playlist, index) => (
-              <div
-                key={playlist._id}
-                className="playlist-container"
-                style={{
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  margin: "15px 0",
-                }}
-                id={`playlist-${index}`}>
-                <input
-                  type="checkbox"
-                  style={{ width: 20, height: 20, marginRight: 10 }}
-                  name="checkPlaylist"
-                  id={playlist._id}
-                  defaultChecked={hasAlreadySongs(playlist)}
-                  onChange={(e) => handleSaveToPlaylists(playlist, e)}
-                />
-
-                <label
-                  htmlFor={playlist._id}
-                  style={{
-                    verticalAlign: "middle",
-                    width: "100%",
-                    cursor: "pointer",
-                    wordBreak: "break-all",
-                  }}>
-                  {playlist.title}
-                </label>
-
+            {playlists.length > 0 ? (
+              playlists.map((playlist, index) => (
                 <div
+                  key={playlist._id}
+                  className="playlist-items"
                   style={{
-                    marginLeft: 10,
+                    cursor: "pointer",
                     display: "flex",
                     alignItems: "center",
-                  }}>
-                  {playlist.public ? (
-                    <MdPublic style={{ fontSize: "1.2rem" }} />
-                  ) : (
-                    <RiGitRepositoryPrivateLine
-                      style={{ fontSize: "1.2rem" }}
-                    />
-                  )}
+                  }}
+                  id={`playlist-${index}`}>
+                  <input
+                    type="checkbox"
+                    style={{ width: 20, height: 20, marginRight: 10 }}
+                    name="checkPlaylist"
+                    id={playlist._id}
+                    defaultChecked={hasAlreadySongs(playlist)}
+                    onChange={(e) => handleSaveToPlaylists(playlist, e)}
+                  />
+
+                  <label
+                    htmlFor={playlist._id}
+                    style={{
+                      verticalAlign: "middle",
+                      width: "100%",
+                      cursor: "pointer",
+                      wordBreak: "break-all",
+                    }}>
+                    {playlist.title}
+                  </label>
+
+                  <div
+                    style={{
+                      marginLeft: 10,
+                      display: "flex",
+                      alignItems: "center",
+                    }}>
+                    {playlist.public ? (
+                      <MdPublic style={{ fontSize: "1.2rem" }} />
+                    ) : (
+                      <RiGitRepositoryPrivateLine
+                        style={{ fontSize: "1.2rem" }}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <div>No Exisiting Playlists Found.</div>
+            )}
           </div>
 
           <div

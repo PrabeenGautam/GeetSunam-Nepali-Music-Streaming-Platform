@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 import CustomBreadcrumbs from "@/components/Breadcrumbs";
 import EditUserProfile from "@/components/Settings/EditUserProfile";
-import { Btn } from "@/components/StyledUI";
 import useGSSelector from "@/redux/useGSSelector";
 import useGSDispatch from "@/redux/useGSDispatch";
 import { updateUserPasswordAPI } from "@/services/usersApi/updateUser.api";
@@ -85,22 +84,14 @@ function Settings() {
             </tr>
           </tbody>
         </table>
-        <button
-          onClick={() => setClick(true)}
-          style={{
-            backgroundColor: "hsla(0, 0%, 100%, 0.7)",
-            width: "fit-content",
-            color: "#333",
-            padding: "9px 20px",
-            borderRadius: "5px",
-          }}>
+        <button className="btn" onClick={() => setClick(true)}>
           {t("editProfile")}
         </button>
       </div>
 
       <div className="settings-section">
         <h3>{t("changePassword")}</h3>
-        <form onSubmit={passwordChangeHandler}>
+        <form onSubmit={passwordChangeHandler} className="password-form">
           <div className="form">
             <div>
               <label htmlFor="current-password">{t("currentPassword")}</label>
@@ -108,6 +99,7 @@ function Settings() {
                 type="text"
                 name="currentPassword"
                 onChange={handleFormData}
+                placeholder="Enter Current Password"
               />
             </div>
             <div>
@@ -117,6 +109,7 @@ function Settings() {
                 name="newPassword"
                 autoComplete="new-password"
                 onChange={handleFormData}
+                placeholder="Enter New Password"
               />
             </div>
             <div>
@@ -126,19 +119,11 @@ function Settings() {
                 name="confirmNewPassword"
                 autoComplete="new-password"
                 onChange={handleFormData}
+                placeholder="Re confirm New Password"
               />
             </div>
           </div>
-          <button
-            style={{
-              backgroundColor: "hsla(0, 0%, 100%, 0.7)",
-              width: "fit-content",
-              color: "#333",
-              padding: "9px 20px",
-              borderRadius: "5px",
-            }}>
-            {t("setNewPassword")}
-          </button>
+          <button className="btn">{t("setNewPassword")}</button>
         </form>
       </div>
     </div>

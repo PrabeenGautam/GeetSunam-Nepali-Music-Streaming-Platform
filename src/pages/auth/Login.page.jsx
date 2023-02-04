@@ -56,7 +56,7 @@ function LoginPage() {
         isRememberMe: checkboxRef.current.checked,
       })
     ).then(() => {
-      toast.dismiss();
+      // toast.dismiss();
     });
   };
 

@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "react-query";
-import { getGenresApi } from "@/services/musicApi/getGenres.api";
+import { getGenresApi, getGenresByID } from "@/services/musicApi/getGenres.api";
 
 export const useGenreData = (genreId) => {
   const queryClient = useQueryClient();
