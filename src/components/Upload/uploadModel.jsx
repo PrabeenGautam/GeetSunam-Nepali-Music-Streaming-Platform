@@ -11,9 +11,10 @@ function UploadModel() {
 }
 
 function UploadModelOverlay() {
-  const [songUploaded, setSongUploaded] = useState(true);
+  const [songUploaded, setSongUploaded] = useState(false);
   const [showProgress, setShowProgress] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState("");
+  const [genre, setGenre] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(
     "Getting Genre of Songs"
   );
@@ -50,6 +51,7 @@ function UploadModelOverlay() {
   useEffect(() => {
     if (songUploaded) {
       const timer = setInterval(() => {
+        setGenre(true);
         setUploadProgress("Saved as Private");
         setShowProgress(false);
       }, 4000);
@@ -85,7 +87,9 @@ function UploadModelOverlay() {
           />
         )}
 
-        {songUploaded && <UploadEditDetails audioFile={uploadedFiles} />}
+        {songUploaded && (
+          <UploadEditDetails audioFile={uploadedFiles} genre={genre} />
+        )}
       </div>
     </div>
   );

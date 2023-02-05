@@ -113,8 +113,8 @@ function RecentPlayed({
               artistContainer ? "artists" : ""
             }`}>
             <span>#</span>
-            <span className="song-name">name</span>
             <span></span>
+            <span className="song-name">name</span>
             {!artistContainer ? (
               <span className="artist">artists</span>
             ) : (

@@ -66,6 +66,7 @@ function Content() {
 
   const featuredSongs = featuredData && trackDetails(featuredData);
   const releaseSongs = songsReleases && trackDetails(songsReleases);
+
   const recentSongs = recentPlayed && trackDetails(recentPlayed);
 
   const loaderFeatured = isLoadingFeatured || isErrorFeatured;

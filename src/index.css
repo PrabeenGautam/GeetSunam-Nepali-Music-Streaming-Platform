@@ -1231,6 +1231,8 @@ h3:not(.h3) {
   color: #aaa;
   text-align: center;
   line-height: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 10px 0;
 }
 
 .save-playlist {
@@ -1866,17 +1868,21 @@ h3:not(.h3) {
 }
 
 .image-upload {
-  grid-column: span 2;
+  width: 100%;
+  height: min-content;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 .upload .uploader {
-  height: 167px;
   cursor: pointer;
   margin: 20px 0;
 
   flex-direction: column;
   border-radius: 5px;
   border: 2px dashed rgb(70, 70, 70);
+  height: 167px;
 }
 
 .upload .uploader svg {
@@ -1886,7 +1892,8 @@ h3:not(.h3) {
 
 .file-preview img {
   width: 100%;
-  aspect-ratio: 16 /9;
+  height: 167px;
+  object-fit: cover;
 }
 
 .file-preview div {
@@ -1968,7 +1975,7 @@ h3:not(.h3) {
   line-height: 1.5rem;
 }
 
-.model .upload-section .upload-error {
+.model .upload-error {
   line-height: 1.5rem;
   font-size: 13px;
   margin-top: 10px;
@@ -2019,11 +2026,14 @@ h3:not(.h3) {
 }
 
 .model .upload-container .edit-upload {
+  overflow-y: auto;
+}
+
+.model .upload-container .edit-upload form {
   height: 100%;
   grid-template-columns: 1fr 18.5rem;
   grid-template-rows: auto;
   grid-template-areas: "details preview";
-  overflow-y: auto;
 }
 
 .model .upload-container .song-details {
