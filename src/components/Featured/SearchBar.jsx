@@ -6,7 +6,7 @@ function SearchBar() {
 
   const onSubmitValue = (e) => {
     e.preventDefault();
-    const query = e.target[0].value;
+    const query = e.target.value;
 
     const options = {
       pathname: "/results",
@@ -15,18 +15,19 @@ function SearchBar() {
 
     if (query) {
       navigate(options, { replace: true });
-      e.target.reset();
     }
   };
 
   return (
-    <form className="search-bar" onSubmit={onSubmitValue}>
+    // <form className="search-bar" onSubmit={onSubmitValue}>
+    <form className="search-bar">
       <FiSearch className="icon-search" />
       <input
         type="text"
         className="text-input"
         placeholder="Search artists, songs,..."
         name="query"
+        onChange={onSubmitValue}
       />
       <input type="submit" hidden />
       {/* <div style={{ borderLeft: "2px solid black", paddingRight: 5 }}></div>

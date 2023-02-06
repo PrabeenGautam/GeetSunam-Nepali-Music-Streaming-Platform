@@ -26,7 +26,6 @@ import Artists from "@/pages/Artists/Artists";
 import GenreContainer from "@/pages/genre/GenreContainer";
 import Navbar from "./components/Navbar/Navbar";
 import SongDetails from "@/pages/SongDetails";
-import UploadSongs from "./pages/Upload";
 import {
   getPlayerLocalState,
   storePlayerState,
@@ -37,6 +36,7 @@ import UploadModel from "./components/Upload/uploadModel";
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
   const [sidebar, setSideBar] = useState(false);
+  const [clickUpload, setClickUpload] = useState(false);
   const elementRef = useRef();
 
   const playerState = useSelector((state) => state);
@@ -87,7 +87,10 @@ function App() {
         <div>
           <SidebarLeft artistsDashboard={artistsDashboard} />
           <div className="content" ref={elementRef}>
-            <Navbar handleSideBar={handleSideBar} />
+            <Navbar
+              handleSideBar={handleSideBar}
+              setClickUpload={setClickUpload}
+            />
             <Routes>
               <Route path="/home" element={<Content />} />
               <Route path="/" element={<Navigate replace to="/home" />} />
@@ -112,8 +115,8 @@ function App() {
               <Route path="/results/playlists" element={<SearchPlaylists />} />
 
               <Route path="/settings" element={<Settings />} />
-              <Route path="/upload" element={<UploadModel />} />
             </Routes>
+            {clickUpload && <UploadModel setClickUpload={setClickUpload} />}
           </div>
 
           <div className="right-sidebar">

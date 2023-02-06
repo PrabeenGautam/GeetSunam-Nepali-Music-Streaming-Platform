@@ -21,22 +21,8 @@ function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
 }
 
 function SidebarLeft({ artistsDashboard }) {
-  const menuLastLink =
-    sidebarMenu[0].menus[sidebarMenu[0].menus.length - 1].link;
-  if (artistsDashboard && menuLastLink !== "upload") {
-    sidebarMenu[0].menus.push({
-      icons: <FaMusic className="icons" />,
-      text: "Upload",
-      link: "upload",
-    });
-  }
-
   const dispatch = useGSDispatch();
   const navigate = useNavigate();
-
-  if (!artistsDashboard && menuLastLink === "upload") {
-    sidebarMenu[0].menus.pop();
-  }
 
   const logoutHandler = function () {
     dispatch(resetLogin());

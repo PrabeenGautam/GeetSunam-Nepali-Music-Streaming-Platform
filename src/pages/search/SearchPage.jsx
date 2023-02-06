@@ -65,14 +65,14 @@ function SearchPage() {
     data: searchData,
     isLoading,
     isError,
-    isFetching,
+
     refetch,
   } = useReactQuery(["searchAny", query], () => searchApi(query), {
     select: (data) => data.data.search,
     refetchOnWindowFocus: false,
   });
 
-  const loader = isFetching || isLoading || isError;
+  const loader = isLoading || isError;
 
   return (
     <div>

@@ -1746,6 +1746,16 @@ h3:not(.h3) {
   font-size: 1.5rem;
 }
 
+.navmenu .icons {
+  background-color: var(--secondary);
+  border: 2px solid var(--tertiary);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  color: #aaa;
+  cursor: pointer;
+}
+
 .main-container.toggle .left-sidebar {
   left: -15rem;
 }

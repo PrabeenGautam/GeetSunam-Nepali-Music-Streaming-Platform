@@ -6,11 +6,14 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import UploadEditDetails from "@/pages/upload/UploadEditDetails";
 
-function UploadModel() {
-  return createPortal(<UploadModelOverlay />, document.getElementById("modal"));
+function UploadModel({ setClickUpload }) {
+  return createPortal(
+    <UploadModelOverlay setClickUpload={setClickUpload} />,
+    document.getElementById("modal")
+  );
 }
 
-function UploadModelOverlay() {
+function UploadModelOverlay({ setClickUpload }) {
   const [songUploaded, setSongUploaded] = useState(false);
   const [showProgress, setShowProgress] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState("");
@@ -61,14 +64,19 @@ function UploadModelOverlay() {
 
   return (
     <div className="model">
-      <div className="model-container"></div>
+      <div
+        className="model-container"
+        onClick={() => setClickUpload(false)}></div>
       <div className="upload-container">
         <div className="header">
           <div className="header-details">
             <h2 className="h2">Upload Songs</h2>
             <div className="flex-center gap-sm">
               {songUploaded && <span className="saved">{uploadProgress}</span>}
-              <MdClose style={{ cursor: "pointer", width: 32, height: 32 }} />
+              <MdClose
+                style={{ cursor: "pointer", width: 32, height: 32 }}
+                onClick={() => setClickUpload(false)}
+              />
             </div>
           </div>
 

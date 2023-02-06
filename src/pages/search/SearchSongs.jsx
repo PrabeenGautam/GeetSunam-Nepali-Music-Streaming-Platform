@@ -52,13 +52,12 @@ function SearchSong() {
     data: searchData,
     isLoading,
     isError,
-    isFetching,
   } = useReactQuery(["searchSongs", query], () => searchSongsApi(query), {
     select: (data) => data.data.songs,
     refetchOnWindowFocus: false,
   });
 
-  const loader = isFetching || isLoading || isError;
+  const loader = isLoading || isError;
 
   return (
     <div>

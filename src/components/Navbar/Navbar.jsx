@@ -1,8 +1,8 @@
 import { FiMenu } from "react-icons/fi";
-import { useLocation } from "react-router-dom";
+import { RiChatUploadFill } from "react-icons/ri";
 import { SearchBar } from "../Featured";
 
-function Navbar({ handleSideBar }) {
+function Navbar({ handleSideBar, setClickUpload }) {
   // const location = useLocation().pathname;
 
   return (
@@ -12,7 +12,9 @@ function Navbar({ handleSideBar }) {
       </div>
 
       <div className="searchbar">{<SearchBar />}</div>
-      <div></div>
+      <div className="icons flex-center" onClick={() => setClickUpload(true)}>
+        <RiChatUploadFill />
+      </div>
     </div>
   );
 }
