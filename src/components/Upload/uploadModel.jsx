@@ -1,10 +1,11 @@
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { MdClose } from "react-icons/md";
+
 import UploadDragDrop from "@/pages/upload/UploadDragDrop";
-import { useState } from "react";
-import { useRef } from "react";
-import { useEffect } from "react";
 import UploadEditDetails from "@/pages/upload/UploadEditDetails";
+
+import { uploadSongs } from "@/services/musicApi/postSongs.api";
 
 function UploadModel({ setClickUpload }) {
   return createPortal(
@@ -18,14 +19,15 @@ function UploadModelOverlay({ setClickUpload }) {
   const [showProgress, setShowProgress] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState("");
   const [genre, setGenre] = useState(null);
-  const [uploadProgress, setUploadProgress] = useState(
-    "Getting Genre of Songs"
-  );
+  const [uploadProgress, setUploadProgress] = useState("");
+  const [uploadedSong, setUploadedSong] = useState("");
 
   const [error, setError] = useState("");
   const logoUploadRef = useRef();
 
-  const handleErrorAndUpload = (files) => {
+  const handleErrorAndUpload = async (files) => {
+    if (uploadedFiles) return;
+
     if (files.length > 1) {
       setError("Only single file is allowed to be uploaded at once.");
       setSongUploaded(false);
@@ -38,27 +40,29 @@ function UploadModelOverlay({ setClickUpload }) {
       return;
     }
 
-    logoUploadRef.current.classList.add("animate");
     setError("");
     setUploadedFiles(files[0]);
+    setShowProgress(true);
+    setUploadProgress("Uploading Files...");
 
-    // Show Initial Animatio and then show Song Details
-    setTimeout(() => {
+    const postData = new FormData();
+    postData.append("title", files[0].name.replace(".mp3", ""));
+    postData.append("source", files[0]);
+
+    const response = await uploadSongs(postData);
+
+    if (response) {
+      setShowProgress(false);
       setSongUploaded(true);
-      setShowProgress(true);
-    }, 1500);
-
-    console.log(files);
+      setUploadedSong(response?.data?.song);
+    }
   };
 
   useEffect(() => {
     if (songUploaded) {
-      const timer = setInterval(() => {
-        setGenre(true);
-        setUploadProgress("Saved as Private");
-        setShowProgress(false);
-      }, 4000);
-      return () => clearTimeout(timer);
+      setGenre(true);
+      setUploadProgress("Saved as Private");
+      setShowProgress(false);
     }
   }, [songUploaded]);
 
@@ -72,7 +76,9 @@ function UploadModelOverlay({ setClickUpload }) {
           <div className="header-details">
             <h2 className="h2">Upload Songs</h2>
             <div className="flex-center gap-sm">
-              {songUploaded && <span className="saved">{uploadProgress}</span>}
+              {uploadProgress && (
+                <span className="saved">{uploadProgress}</span>
+              )}
               <MdClose
                 style={{ cursor: "pointer", width: 32, height: 32 }}
                 onClick={() => setClickUpload(false)}
@@ -96,7 +102,11 @@ function UploadModelOverlay({ setClickUpload }) {
         )}
 
         {songUploaded && (
-          <UploadEditDetails audioFile={uploadedFiles} genre={genre} />
+          <UploadEditDetails
+            audioFile={uploadedFiles}
+            genre={genre}
+            uploadedSong={uploadedSong}
+          />
         )}
       </div>
     </div>

@@ -1,16 +1,47 @@
+import { useMutation } from "react-query";
 import React, { useState } from "react";
 import Select from "react-select";
-
-import placeholder from "@/assets/images/songs/default-temp.png";
-import { getGenreData } from "@/hooks/useGenresData";
 import { AiOutlineCloudDownload } from "react-icons/ai";
 
-function UploadEditDetails({ audioFile, genre }) {
+import { getGenreData } from "@/hooks/useGenresData";
+import { classifySongGenreApi } from "@/services/musicApi/classifySongGenre.api";
+import { updateSongApi } from "@/services/musicApi/postSongs.api";
+
+function UploadEditDetails({ audioFile, genre, uploadedSong }) {
+  console.log(uploadedSong._id);
   const [error, setError] = useState("");
   const { data: genres, isFetching } = getGenreData();
   const [coverArt, setCoverArt] = useState("");
 
   const [formData, setFormData] = useState({});
+
+  const {
+    mutateAsync: classifyGenre,
+    data: classifiedGenre,
+    isLoading: isClassifyGenreLoading,
+  } = useMutation({
+    mutationFn: () => classifySongGenreApi({ songId: uploadedSong._id }),
+    onSuccess: (data) => {
+      console.log({ data }, "genre classified data");
+    },
+    onError: (error) => {
+      console.log({ error }, "error on classifing");
+    },
+  });
+
+  const {
+    mutateAsync: updateSong,
+    data: updateSongData,
+    isLoading: isUpdatedSongLoading,
+  } = useMutation({
+    mutationFn: (postData) => updateSongApi(postData),
+    onSuccess: (data) => {
+      console.log({ data }, "Successfully updated genre");
+    },
+    onError: (error) => {
+      console.log({ error }, "Error on  updated genre");
+    },
+  });
 
   const getURL = (file) => {
     if (file) {
@@ -53,19 +84,34 @@ function UploadEditDetails({ audioFile, genre }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const postData = new FormData();
     if (formData.title) postData.append("title", formData.title);
+
     if (formData.releasedDate)
       postData.append("releaseDate", formData.releasedDate);
-    if (formData.genre) postData.append("genre", formData.genre);
+
     if (coverArt) postData.append("coverArt", coverArt);
 
-    for (let i of postData) {
-      console.log(i);
+    if (formData.genre) {
+      postData.append("genre", formData.genre);
     }
+    /* -------------------------------------------------------------------------- */
+    const classifiedResponse = await classifyGenre();
+    console.log(classifiedResponse, classifiedGenre);
+    postData.append("genre", classifiedResponse?.genre?._id);
+
+    const updatedData = await updateSong({
+      formData: postData,
+      songId: uploadedSong._id,
+    });
+
+    console.log(
+      "🚀 ~ file: UploadEditDetails.jsx:100 ~ handleSubmit ~ updatedData:",
+      updatedData
+    );
   };
 
   return (
@@ -84,6 +130,7 @@ function UploadEditDetails({ audioFile, genre }) {
                 name="title"
                 maxLength={100}
                 onChange={inputChange}
+                defaultValue={uploadedSong.title}
               />
             </div>
 
@@ -180,16 +227,18 @@ function UploadEditDetails({ audioFile, genre }) {
             <h2>Preview Song</h2>
             <div className="song-preview-details">
               <div className="coverArt">
-                {coverArt && <img src={placeholder} alt="image-preview" />}
+                {uploadedSong.coverArt && (
+                  <img src={uploadedSong.coverArt} alt="image-preview" />
+                )}
               </div>
               <div>
                 <audio controls>
-                  <source src="http://127.0.0.1:8000/api/songs/stream/63ca757360f30078fcaa4874" />
+                  <source src={getURL(audioFile)} />
                 </audio>
               </div>
               <div style={{ margin: 10 }}>
                 <div className="song-label">Filename</div>
-                <div className="song-name">Konichiwas.mp3</div>
+                <div className="song-name">{`${audioFile.name}`}</div>
               </div>
             </div>
 

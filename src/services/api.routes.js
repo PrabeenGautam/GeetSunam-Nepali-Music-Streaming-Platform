@@ -33,6 +33,8 @@ export const SongConfig = {
   DELETE_SONGS: (id) => `/songs/${id}`,
   GET_SONG_BY_ARTISTS: (id) => `/songs/artists/${id}`,
   GET_SONG_BY_GENRES: (id) => `/songs/genres/${id}`,
+
+  CLASSIFY_SONG_GENRE: (songId) => `/song/predict-class/${songId}`
 };
 
 export const PlayerConfig = {

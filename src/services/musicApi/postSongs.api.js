@@ -25,3 +25,15 @@ export const uploadSongs = async (formData) => {
   if (result.APIFailed) return null;
   return result.data;
 };
+
+export const updateSongApi = async ({formData,songId}) => {
+  const result = await getApiResponse({
+    url: SongConfig.UPDATE_SONGS(songId),
+    method: "patch",
+    data: formData,
+    type: "multipart/form-data",
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
