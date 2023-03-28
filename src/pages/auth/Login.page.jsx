@@ -46,7 +46,6 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    toast.info("Login in. Have a patience");
     const { email, password } = formData;
 
     gsDispatch(
@@ -55,9 +54,7 @@ function LoginPage() {
         password,
         isRememberMe: checkboxRef.current.checked,
       })
-    ).then(() => {
-      // toast.dismiss();
-    });
+    );
   };
 
   const handleGoogleLogin = useGoogleLogin({
@@ -80,6 +77,7 @@ function LoginPage() {
   };
 
   useEffect(() => {
+    console.log(loginStatus);
     if (loginStatus) {
       navigate("/home", { replace: false });
     }
@@ -152,7 +150,7 @@ function LoginPage() {
                       id="rememberMe"
                       ref={checkboxRef}
                     />
-                    <label htmlFor="rememberMe">Remember me</label>
+                    <label htmlFor="rememberMe">{t("rememberMe")}</label>
                   </div>
                   <Link to="/forgetpassword" className="links">
                     {t("forgetPassword")}

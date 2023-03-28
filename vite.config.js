@@ -5,7 +5,7 @@ import svgrPlugin from "vite-plugin-svgr";
 
 export default defineConfig({
   plugins: [react(), svgrPlugin({ svgrOptions: { icon: true } })],
-  base: "/GeetSunam-Nepali-Music-Streaming-Platform/",
+  // base: "/GeetSunam-Nepali-Music-Streaming-Platform/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
