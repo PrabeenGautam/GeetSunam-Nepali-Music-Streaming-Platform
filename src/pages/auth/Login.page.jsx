@@ -77,7 +77,6 @@ function LoginPage() {
   };
 
   useEffect(() => {
-    console.log(loginStatus);
     if (loginStatus) {
       navigate("/home", { replace: false });
     }

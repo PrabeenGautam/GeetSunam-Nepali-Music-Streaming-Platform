@@ -9,6 +9,7 @@ const ProtectedRoute = ({ children, setDashBoard }) => {
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/login", { replace: true });
+      return;
     }
 
     const authUser = getUserData();

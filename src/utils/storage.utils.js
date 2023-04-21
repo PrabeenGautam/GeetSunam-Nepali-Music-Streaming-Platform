@@ -40,8 +40,9 @@ export function isUserLogin() {
   const sessionStorageToken = sessionStorage.getItem(TOKEN_KEY);
   const userData = getUserData();
 
-  if ((localStorageToken || sessionStorageToken) && userData) return true;
-  return false;
+  const token = localStorageToken || sessionStorageToken;
+  if (!token || !userData) return false;
+  return true;
 }
 
 export function resetLoginData() {

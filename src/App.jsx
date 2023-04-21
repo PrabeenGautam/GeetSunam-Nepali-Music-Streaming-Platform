@@ -39,14 +39,14 @@ function App() {
   const [clickUpload, setClickUpload] = useState(false);
   const elementRef = useRef();
 
-  const columnCountLookup = {
-    1010: 6,
-    850: 5,
-    650: 4,
-    550: 3,
-    400: 2,
-    0: 1,
-  };
+  const columnCountLookup = [
+    [1010, 6],
+    [850, 5],
+    [650, 4],
+    [550, 3],
+    [400, 2],
+    [0, 1],
+  ];
 
   const playerState = useSelector((state) => state);
 
@@ -66,9 +66,10 @@ function App() {
     const handleSize = () => {
       if (elementRef) {
         const width = elementRef?.current?.offsetWidth;
-        const columnCount = Object.entries(columnCountLookup).find(
-          ([minWidth]) => width > parseInt(minWidth, 10)
+        const columnCount = columnCountLookup.find(
+          ([minWidth]) => width > minWidth
         )?.[1];
+
         document.documentElement.style.setProperty(
           "--column-count",
           columnCount
