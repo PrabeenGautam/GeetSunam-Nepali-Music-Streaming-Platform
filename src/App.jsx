@@ -32,12 +32,14 @@ import {
 } from "./utils/playerState.utils";
 import { useSelector } from "react-redux";
 import UploadModel from "./components/Upload/uploadModel";
+import useGSSelector from "@/redux/useGSSelector";
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
   const [sidebar, setSideBar] = useState(false);
   const [clickUpload, setClickUpload] = useState(false);
   const elementRef = useRef();
+  const userRole = useGSSelector((state) => state?.userState?.userData?.role);
 
   const columnCountLookup = [
     [1010, 6],
@@ -88,7 +90,7 @@ function App() {
     <ProtectedRoute setDashBoard={setDashBoard}>
       <div className={`main-container ${sidebar ? "toggle" : ""}`}>
         <div>
-          <SidebarLeft artistsDashboard={artistsDashboard} />
+          <SidebarLeft setClickUpload={setClickUpload} role={userRole} />
           <div className="content" ref={elementRef}>
             <Navbar
               handleSideBar={handleSideBar}

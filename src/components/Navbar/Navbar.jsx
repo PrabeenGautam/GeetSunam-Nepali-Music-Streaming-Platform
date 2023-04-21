@@ -6,15 +6,16 @@ function Navbar({ handleSideBar, setClickUpload }) {
   // const location = useLocation().pathname;
 
   return (
-    <div className="navmenu">
+    <div className="navmenu " style={{ justifyContent: "space-between" }}>
       <div className="navmenu-hamburger" onClick={handleSideBar}>
         <FiMenu />
       </div>
 
       <div className="searchbar">{<SearchBar />}</div>
-      <div className="icons flex-center" onClick={() => setClickUpload(true)}>
+      <div></div>
+      {/* <div className="icons flex-center" onClick={() => setClickUpload(true)}>
         <RiChatUploadFill />
-      </div>
+      </div> */}
     </div>
   );
 }
