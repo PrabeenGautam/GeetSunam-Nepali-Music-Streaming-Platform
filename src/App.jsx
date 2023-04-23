@@ -33,6 +33,8 @@ import {
 import { useSelector } from "react-redux";
 import UploadModel from "./components/Upload/uploadModel";
 import useGSSelector from "@/redux/useGSSelector";
+import Dashboard from "./pages/Artists/Dashboard";
+import EditSongDetails from "./pages/Artists/EditSongsDetails";
 
 function App() {
   const [artistsDashboard, setDashBoard] = useState(false);
@@ -97,6 +99,7 @@ function App() {
               setClickUpload={setClickUpload}
             />
             <Routes>
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/home" element={<Content />} />
               <Route path="/" element={<Navigate replace to="/home" />} />
               <Route path="/trends" element={<Trends />} />
@@ -110,6 +113,7 @@ function App() {
               <Route path="/playlists" element={<PlaylistSection />} />
               <Route path="/playlists/:id" element={<PlaylistsDetails />} />
               <Route path="/songs/:id" element={<SongDetails />} />
+              <Route path="/users/song/:id" element={<EditSongDetails />} />
 
               {/* Redirect Since Genre List is shown in Sidebar*/}
               <Route path="/*" element={<Navigate replace to="/" />} />

@@ -27,14 +27,14 @@ export const SongConfig = {
   NEW_RELEASES: "/songs/new-releases",
   UPLOAD_SONG: "/songs/upload",
   RECOMMENDATION: "/songs",
+  GET_SONGS_BY_CURRENT_USER: `/songs/current-user`,
 
   GET_SONGS_BY_ID: (id) => `/songs/${id}`,
   UPDATE_SONGS: (id) => `/songs/${id}`,
   DELETE_SONGS: (id) => `/songs/${id}`,
   GET_SONG_BY_ARTISTS: (id) => `/songs/artists/${id}`,
   GET_SONG_BY_GENRES: (id) => `/songs/genres/${id}`,
-
-  CLASSIFY_SONG_GENRE: (songId) => `/song/predict-class/${songId}`
+  CLASSIFY_SONG_GENRE: (songId) => `/song/predict-class/${songId}`,
 };
 
 export const PlayerConfig = {

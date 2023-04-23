@@ -108,3 +108,26 @@ export const getTrendingSongs = async () => {
   if (result.APIFailed) return null;
   return result.data;
 };
+
+export const getCurrentUserSongs = async () => {
+  const result = await getApiResponse({
+    url: SongConfig.GET_SONGS_BY_CURRENT_USER,
+    method: "get",
+    otherParams: {
+      limit: 50,
+    },
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
+
+export const deleteCurrentUserSong = async (id) => {
+  const result = await getApiResponse({
+    url: SongConfig.DELETE_SONGS(id),
+    method: "delete",
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
