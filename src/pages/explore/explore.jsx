@@ -62,7 +62,7 @@ function Explore() {
 
   return (
     <div className="content-container">
-      <CustomBreadcrumbs link={"/explore"} textName="Explore" />
+      <CustomBreadcrumbs link={"/explore"} textName={t("explore")} />
 
       <div className="main-section">
         {!loaderFeatured ? (

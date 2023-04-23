@@ -28,7 +28,10 @@ function Recommnedations() {
   return (
     <div className="content-container">
       <div className="trends">
-        <CustomBreadcrumbs link={"/recommendation"} textName="Recommendation" />
+        <CustomBreadcrumbs
+          link={"/recommendation"}
+          textName={t("recommendation")}
+        />
         <section className="top-trends">
           <img
             src={Recommended}

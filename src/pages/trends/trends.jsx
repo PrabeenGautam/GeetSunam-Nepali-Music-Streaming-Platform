@@ -31,7 +31,7 @@ function Trends() {
   return (
     <div className="content-container">
       <div className="trends">
-        <CustomBreadcrumbs link={"/trends"} textName="Trending" />
+        <CustomBreadcrumbs link={"/trends"} textName={t("trending")} />
         <section className="top-trends">
           {!loader ? (
             <img

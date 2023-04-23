@@ -52,7 +52,6 @@ function Dashboard() {
         />
       )}
       <div className="content-container">
-        <CustomBreadcrumbs link={"/dashboard"} textName="Dashboard" />
         <h2 style={{ color: "#f6f6f6", marginBottom: 20 }}>Manage Songs</h2>
 
         <div className="settings-section">

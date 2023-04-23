@@ -36,7 +36,10 @@
     "playlists": "Playlists",
     "general": "General",
     "settings": "Settings",
-    "logout": "Logout"
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "manageSongs": "Manage Songs",
+    "uploadSongs": "Upload Songs"
   },
   "generalDetails": {
     "name": "Name",
@@ -51,7 +54,9 @@
     "recentlyPlayed": "Recently Played",
     "seeAll": "See All",
     "play": "Play",
-    "pause": "Pause"
+    "pause": "Pause",
+    "geetsunam": "GeetSunam",
+    "home": "Home"
   },
   "trendingPage": {
     "trendingSongs": "Trending Songs",
@@ -60,12 +65,16 @@
     "tracks": "Tracks",
     "play": "Play",
     "pause": "Pause",
-    "resume": "Resume"
+    "resume": "Resume",
+    "geetsunam": "GeetSunam",
+    "trending": "Trending"
   },
   "explorePage": {
     "recommendedForYou": "Recommended for you",
     "seeAll": "See All",
-    "library": "Library"
+    "library": "Library",
+    "geetsunam": "GeetSunam",
+    "explore": "Explore"
   },
   "newReleasePage": {
     "newReleases": "New Releases",
@@ -73,19 +82,22 @@
     "createdBy": "Created by GeetSunam",
     "tracksDate": "Tracks from 2 weeks",
     "listen": "Listen to best songs",
-    "play": "Play"
+    "play": "Play",
+    "geetsunam": "GeetSunam"
   },
   "madeForYouPage": {
     "recommendation": "Recommendation",
     "madeForYou": "Made For You",
     "description": "Songs Specially Created for you",
-    "createdBy": "Created by GeetSunam"
+    "createdBy": "Created by GeetSunam",
+    "geetsunam": "GeetSunam"
   },
   "playlistsPage": {
     "createPlaylist": "Create Playlist",
     "createdBy": "Created By",
     "collection": "Collection",
-    "playlist": "Playlists"
+    "playlist": "Playlists",
+    "geetsunam": "GeetSunam"
   },
   "settingsPage": {
     "settings": "Settings",
@@ -100,12 +112,14 @@
     "currentPassword": "Current Password",
     "newPassword": "New Password",
     "reNewPassword": "Repeat New Password",
-    "setNewPassword": "Set New Password"
+    "setNewPassword": "Set New Password",
+    "geetsunam": "GeetSunam"
   },
   "common": {
     "play": "Play",
     "pause": "Pause",
-    "resume": "Resume"
+    "resume": "Resume",
+    "geetsunam": "GeetSunam"
   },
   "artists": {
     "title": "Collection",

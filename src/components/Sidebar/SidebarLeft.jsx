@@ -11,6 +11,7 @@ import {
   RiPlayListFill,
 } from "react-icons/ri";
 import { MdDashboard, MdRecommend } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 
 function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
   const location = useLocation();
@@ -30,6 +31,10 @@ function SidebarLeft({ role, setClickUpload }) {
   const dispatch = useGSDispatch();
   const navigate = useNavigate();
 
+  const { t } = useTranslation("translation", {
+    keyPrefix: "leftSideBar",
+  });
+
   const logoutHandler = function () {
     dispatch(resetLogin());
     navigate("/login");
@@ -47,14 +52,14 @@ function SidebarLeft({ role, setClickUpload }) {
       {/* ____________________________________Menu____________________________________  */}
       <div className="menu-list">
         <div className="menu-data">
-          <div className="menu-head">Menu</div>
+          <div className="menu-head">{t("menu")}</div>
           <ul>
             <NavLink to="home" activeClassName="active">
               <li className="submenus">
                 <span className="menu-icon">
                   <AiFillHome className="icons" />
                 </span>
-                <span className="menu-text">Home</span>
+                <span className="menu-text">{t("home")}</span>
               </li>
             </NavLink>
 
@@ -63,7 +68,7 @@ function SidebarLeft({ role, setClickUpload }) {
                 <span className="menu-icon">
                   <FiTrendingUp className="icons" />
                 </span>
-                <span className="menu-text">Trending</span>
+                <span className="menu-text">{t("trending")}</span>
               </li>
             </NavLink>
           </ul>
@@ -72,14 +77,14 @@ function SidebarLeft({ role, setClickUpload }) {
       {/* ____________________________________Discover____________________________________  */}
       <div className="menu-list">
         <div className="menu-data">
-          <div className="menu-head">Discover</div>
+          <div className="menu-head">{t("discover")}</div>
           <ul>
             <NavLink to="explore" activeClassName="active">
               <li className="submenus">
                 <span className="menu-icon">
                   <RiCompassDiscoverFill className="icons" />
                 </span>
-                <span className="menu-text">Explore</span>
+                <span className="menu-text">{t("explore")}</span>
               </li>
             </NavLink>
 
@@ -88,7 +93,7 @@ function SidebarLeft({ role, setClickUpload }) {
                 <span className="menu-icon">
                   <FiMusic className="icons" />
                 </span>
-                <span className="menu-text">New Releases</span>
+                <span className="menu-text">{t("newReleases")}</span>
               </li>
             </NavLink>
 
@@ -97,7 +102,7 @@ function SidebarLeft({ role, setClickUpload }) {
                 <span className="menu-icon">
                   <MdRecommend className="icons" />
                 </span>
-                <span className="menu-text">Made for You</span>
+                <span className="menu-text">{t("madeForYou")}</span>
               </li>
             </NavLink>
 
@@ -106,7 +111,7 @@ function SidebarLeft({ role, setClickUpload }) {
                 <span className="menu-icon">
                   <FaUserShield className="icons" />
                 </span>
-                <span className="menu-text">Artists</span>
+                <span className="menu-text">{t("artists")}</span>
               </li>
             </NavLink>
           </ul>
@@ -116,21 +121,21 @@ function SidebarLeft({ role, setClickUpload }) {
       {role === "artists" && (
         <div className="menu-list">
           <div className="menu-data">
-            <div className="menu-head">Dashboard</div>
+            <div className="menu-head">{t("dashboard")}</div>
             <ul>
               <NavLink to="dashboard" activeClassName="active">
                 <li className="submenus">
                   <span className="menu-icon">
                     <MdDashboard className="icons" />
                   </span>
-                  <span className="menu-text">Manage Songs</span>
+                  <span className="menu-text">{t("manageSongs")}</span>
                 </li>
               </NavLink>
               <li className="submenus" onClick={() => setClickUpload(true)}>
                 <span className="menu-icon">
                   <RiChatUploadFill className="icons" />
                 </span>
-                <span className="menu-text">Upload Songs</span>
+                <span className="menu-text">{t("uploadSongs")}</span>
               </li>
             </ul>
           </div>
@@ -139,14 +144,14 @@ function SidebarLeft({ role, setClickUpload }) {
       {/* ____________________________________Your Collection____________________________________  */}
       <div className="menu-list">
         <div className="menu-data">
-          <div className="menu-head">Your Collection</div>
+          <div className="menu-head">{t("yourCollection")}</div>
           <ul>
             <NavLink to="likedsongs" activeClassName="active">
               <li className="submenus">
                 <span className="menu-icon">
                   <FiHeart className="icons" />
                 </span>
-                <span className="menu-text">Liked Songs</span>
+                <span className="menu-text">{t("likedSongs")}</span>
               </li>
             </NavLink>
 
@@ -155,7 +160,7 @@ function SidebarLeft({ role, setClickUpload }) {
                 <span className="menu-icon">
                   <FaUserShield className="icons" />
                 </span>
-                <span className="menu-text">Favourite Artists</span>
+                <span className="menu-text">{t("favouriteArtists")}</span>
               </li>
             </NavLink>
 
@@ -164,7 +169,7 @@ function SidebarLeft({ role, setClickUpload }) {
                 <span className="menu-icon">
                   <RiPlayListFill className="icons" />
                 </span>
-                <span className="menu-text">Playlists</span>
+                <span className="menu-text">{t("playlists")}</span>
               </li>
             </NavLink>
           </ul>
@@ -173,14 +178,14 @@ function SidebarLeft({ role, setClickUpload }) {
       {/* ____________________________________General____________________________________  */}
       <div className="menu-list">
         <div className="menu-data">
-          <div className="menu-head">General</div>
+          <div className="menu-head">{t("general")}</div>
           <ul>
             <NavLink to="settings" activeClassName="active">
               <li className="submenus">
                 <span className="menu-icon">
                   <AiTwotoneSetting className="icons" />
                 </span>
-                <span className="menu-text">Settings</span>
+                <span className="menu-text">{t("settings")}</span>
               </li>
             </NavLink>
 
@@ -191,7 +196,7 @@ function SidebarLeft({ role, setClickUpload }) {
               <span className="menu-icon">
                 <FiLogOut className="icons" />
               </span>
-              <span className="menu-text">Logout</span>
+              <span className="menu-text">{t("logout")}</span>
             </li>
           </ul>
         </div>

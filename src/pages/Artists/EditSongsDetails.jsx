@@ -1,11 +1,12 @@
-import Spinner from "@/components/Loader/Spinner";
-import { getGenreData } from "@/hooks/useGenresData";
-import { getSongsByID } from "@/services/musicApi/getSongs.api";
-import { updateSongApi } from "@/services/musicApi/postSongs.api";
 import React, { useEffect, useState } from "react";
 import { AiOutlineCloudDownload } from "react-icons/ai";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Select from "react-select";
+
+import Spinner from "@/components/Loader/Spinner";
+import { getGenreData } from "@/hooks/useGenresData";
+import { getSongsByID } from "@/services/musicApi/getSongs.api";
+import { updateSongApi } from "@/services/musicApi/postSongs.api";
 
 function EditSongDetails() {
   const { id: songId } = useParams();

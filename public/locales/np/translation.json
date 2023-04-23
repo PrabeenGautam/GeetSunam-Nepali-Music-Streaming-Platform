@@ -36,7 +36,10 @@
     "playlists": "प्लेलिस्टहरू",
     "general": "अन्य",
     "settings": "सेटिङहरू",
-    "logout": "लग आउट"
+    "logout": "लग आउट",
+    "dashboard": "Dashboard",
+    "manageSongs": "Manage Songs",
+    "uploadSongs": "Upload Songs"
   },
   "generalDetails": {
     "name": "नाम",
@@ -52,24 +55,31 @@
     "seeAll": "सबै हेर्नुहोस्",
     "play": "बजाउनुहोस्",
     "pause": "रोक्नुहोस्",
-    "resume": "पुन: सुरु"
+    "resume": "पुन: सुरु",
+    "geetsunam": "गीतसुनम",
+    "home": "होम"
   },
   "trendingPage": {
     "trendingSongs": "ट्रेन्डिङ गीतहरू",
     "description": "ट्रेन्डिङ हिटहरू, दैनिक फेरिने",
     "createdBy": "गीतसुनाम द्वारा सिर्जना गरिएको",
-    "tracks": "ट्र्याकहरू"
+    "tracks": "ट्र्याकहरू",
+    "geetsunam": "गीतसुनम",
+    "trending": "ट्रेन्डिङ"
   },
   "explorePage": {
     "recommendedForYou": "तपाईंको लागि सिफारिस गरिएको",
-    "seeAll": "सबै हेर्ने",
-    "library": "गीत को संग्रह"
+    "seeAll": "सबै हेर्नुहोस्",
+    "library": "गीत को संग्रह",
+    "geetsunam": "गीतसुनम",
+    "explore": "खोज्नु"
   },
   "newReleasePage": {
     "newReleases": "नयाँ रिलीजहरू",
     "description": "नयाँ रिलीजहरू गीतहरु, दैनिक फेरिने",
     "createdBy": "गीतसुनाम द्वारा सिर्जना गरिएको",
-    "tracksDate": "२ हप्ता देखिका गीतहरु"
+    "tracksDate": "२ हप्ता देखिका गीतहरु",
+    "geetsunam": "गीतसुनम"
   },
   "madeForYouPage": {
     "recommendation": "सिफारिस",
@@ -77,13 +87,15 @@
     "description": "गीतहरू विशेष रूपमा तपाईंको लागि सिर्जना गरिएको",
     "createdBy": "गीतसुनाम द्वारा सिर्जना गरिएको",
     "listen": "उत्कृष्ट गीतहरू सुन्नुहोस्",
-    "play": "बजाउनुहोस्"
+    "play": "बजाउनुहोस्",
+    "geetsunam": "गीतसुनम"
   },
   "playlistsPage": {
     "createPlaylist": "प्लेलिस्ट सिर्जना गर्नुहोस्",
     "createdBy": "सिर्जनाकर्ता",
     "collection": "सङ्कलन",
-    "playlist": "संग्रह"
+    "playlist": "संग्रह",
+    "geetsunam": "गीतसुनम"
   },
   "settingsPage": {
     "settings": "सेटिङहरू",
@@ -98,12 +110,14 @@
     "currentPassword": "हालको पासवर्ड",
     "newPassword": "नयाँ पासवर्ड",
     "reNewPassword": "नयाँ पासवर्ड दोहोर्याउनुहोस्",
-    "setNewPassword": "नयाँ पासवर्ड सेट गर्नुहोस्"
+    "setNewPassword": "नयाँ पासवर्ड सेट गर्नुहोस्",
+    "geetsunam": "गीतसुनम"
   },
   "common": {
     "play": "बजाउनुहोस्",
     "pause": "रोक्नुहोस्",
-    "resume": "पुन: सुरु"
+    "resume": "पुन: सुरु",
+    "geetsunam": "गीतसुनम"
   },
   "artists": {
     "title": "सङ्कलन",
