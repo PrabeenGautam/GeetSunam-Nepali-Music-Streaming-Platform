@@ -140,5 +140,43 @@
     "song": "Songs",
     "noSong": "You have not liked any songs.",
     "message": "Search for songs to add them to the list"
+  },
+  "placeholder": {
+    "searchSongArtists": "Search artists, songs...",
+    "searchSongs": "Search songs to add them to playlist"
+  },
+  "dashboard": {
+    "manageSongs": "Manage Songs"
+  },
+  "upload": {
+    "uploadSong": "Upload Songs",
+    "dragDrop": "Drag and Drop mp3 audio files to upload",
+    "private": "Your songs will be private until you publish them.",
+    "selectFile": "Select File",
+    "guildlines": "Please ensure that you have uploaded the correct songs and that you have the legal right to upload them. Uploading copyrighted songs without permission is against the law and may result in legal consequences and which could get you banned from the platform.",
+    "singleFile": "Only single file is allowed to be uploaded at once.",
+    "mp3File": "Only mp3 files are allowed to be uploaded.",
+    "uploading": "Uploading Files..."
+  },
+  "editSong": {
+    "details": "Details",
+    "songTitle": "Song Title: (required)",
+    "songPlaceholder": "Enter Songs title",
+    "releasedDate": "Released Date: (Optional)",
+    "genre": "Genres",
+    "genreDescription": " Add Genres for Your Songs. Its default value is classified by system machine learning models, and you can then change genre later at any time.",
+    "coverArt": "CoverArt",
+    "coverArtDesc": "Select or upload a picture that depict the songs. A good thumbnail stands out and draws viewers' attention.",
+    "browse": "Browse File to Upload",
+    "preview": "Preview Song",
+    "filename": "Filename",
+    "save": "Save",
+    "savedAsPrivate": "Save as Private",
+    "singleFile": "Only single file is allowed to be uploaded at once.",
+    "mp3File": "Only mp3 files are allowed to be uploaded.",
+    "uploading": "Uploading Files..."
+  },
+  "sidebarRight": {
+    "genre": "Genres"
   }
 }

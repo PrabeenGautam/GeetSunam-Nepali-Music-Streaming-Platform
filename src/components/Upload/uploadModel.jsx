@@ -6,6 +6,7 @@ import UploadDragDrop from "@/pages/upload/UploadDragDrop";
 import UploadEditDetails from "@/pages/upload/UploadEditDetails";
 
 import { uploadSongs } from "@/services/musicApi/postSongs.api";
+import { useTranslation } from "react-i18next";
 
 function UploadModel({ setClickUpload }) {
   return createPortal(
@@ -24,18 +25,19 @@ function UploadModelOverlay({ setClickUpload }) {
 
   const [error, setError] = useState("");
   const logoUploadRef = useRef();
+  const { t } = useTranslation("translation", { keyPrefix: "upload" });
 
   const handleErrorAndUpload = async (files) => {
     if (uploadedFiles) return;
 
     if (files.length > 1) {
-      setError("Only single file is allowed to be uploaded at once.");
+      setError(t("singleFile"));
       setSongUploaded(false);
       return;
     }
 
     if (files[0].type !== "audio/mpeg") {
-      setError("Only mp3 files are allowed to be uploaded.");
+      setError(t("mp3File"));
       setSongUploaded(false);
       return;
     }
@@ -43,7 +45,7 @@ function UploadModelOverlay({ setClickUpload }) {
     setError("");
     setUploadedFiles(files[0]);
     setShowProgress(true);
-    setUploadProgress("Uploading Files...");
+    setUploadProgress(t("uploading"));
 
     const postData = new FormData();
     postData.append("title", files[0].name.replace(".mp3", ""));
@@ -74,7 +76,7 @@ function UploadModelOverlay({ setClickUpload }) {
       <div className="upload-container">
         <div className="header">
           <div className="header-details">
-            <h2 className="h2">Upload Songs</h2>
+            <h2 className="h2">{t("uploadSong")}</h2>
             <div className="flex-center gap-sm">
               {uploadProgress && (
                 <span className="saved">{uploadProgress}</span>

@@ -14,6 +14,8 @@ function UploadEditDetails({ audioFile, genre, uploadedSong }) {
   const [coverArt, setCoverArt] = useState("");
   const [formData, setFormData] = useState({});
 
+  const { t } = useTranslation("translation", { keyPrefix: "editSong" });
+
   const {
     mutateAsync: classifyGenre,
     data: classifiedGenre,
@@ -58,13 +60,13 @@ function UploadEditDetails({ audioFile, genre, uploadedSong }) {
   const fileUploadChange = (e) => {
     const files = e.target.files;
     if (files.length > 1) {
-      setError("Only single file is allowed to be uploaded at once.");
+      setError(t("singleFile"));
       setCoverArt("");
       return;
     }
 
     if (!files[0].type.includes("image")) {
-      setError("Only images are allowed to be uploaded.");
+      setError(t("mp3File"));
       setCoverArt("");
       return;
     }
@@ -118,13 +120,13 @@ function UploadEditDetails({ audioFile, genre, uploadedSong }) {
       <div className="edit-upload">
         <form className="grid gap-m" onSubmit={handleSubmit}>
           <div className="song-details">
-            <h2>Details</h2>
+            <h2>{t("details")}</h2>
 
             <div className="input-section">
-              <label>Song Title: (required)</label>
+              <label>{t("songTitle")}</label>
               <input
                 type="text"
-                placeholder="Enter Songs title"
+                placeholder={t("songPlaceholder")}
                 className="input-text"
                 name="title"
                 maxLength={100}
@@ -134,7 +136,7 @@ function UploadEditDetails({ audioFile, genre, uploadedSong }) {
             </div>
 
             <div className="input-section">
-              <label>Released Date: (Optional)</label>
+              <label>{t("releasedDate")}</label>
               <input
                 type="date"
                 className="input-text"
@@ -143,13 +145,8 @@ function UploadEditDetails({ audioFile, genre, uploadedSong }) {
               />
             </div>
 
-            <div className="mt-20 mb-10">Genres</div>
-
-            <div className="song-info">
-              Add Genres for Your Songs. Its default value is classified by
-              system machine learning models, and you can then change genre
-              later at any time.
-            </div>
+            <div className="mt-20 mb-10">{t("genre")}</div>
+            <div className="song-info">{t("genreDescription")}</div>
 
             <div className="input-section" style={{ width: "20rem" }}>
               <Select
@@ -192,12 +189,8 @@ function UploadEditDetails({ audioFile, genre, uploadedSong }) {
               />
             </div>
 
-            <div className="mt-20 mb-10">CoverArt</div>
-
-            <div className="song-info">
-              Select or upload a picture that depict the songs. A good thumbnail
-              stands out and draws viewers' attention.
-            </div>
+            <div className="mt-20 mb-10">{t("coverArt")}</div>
+            <div className="song-info">{t("coverArtDesc")}</div>
 
             {error && <div className="upload-error">{error}</div>}
 
@@ -213,7 +206,7 @@ function UploadEditDetails({ audioFile, genre, uploadedSong }) {
                   onChange={fileUploadChange}
                 />
                 <AiOutlineCloudDownload />
-                <p>Browse File to Upload</p>
+                <p>{t("browse")}</p>
               </label>
 
               <div className="file-preview mt-20">
@@ -223,7 +216,7 @@ function UploadEditDetails({ audioFile, genre, uploadedSong }) {
           </div>
 
           <div className="song-preview">
-            <h2>Preview Song</h2>
+            <h2>{t("preview")}</h2>
             <div className="song-preview-details">
               <div className="coverArt">
                 {uploadedSong.coverArt && (
@@ -236,12 +229,12 @@ function UploadEditDetails({ audioFile, genre, uploadedSong }) {
                 </audio>
               </div>
               <div style={{ margin: 10 }}>
-                <div className="song-label">Filename</div>
+                <div className="song-label">{t("filename")}</div>
                 <div className="song-name">{`${audioFile.name}`}</div>
               </div>
             </div>
 
-            <button className="btn mt-20">Save</button>
+            <button className="btn mt-20">{t("save")}</button>
           </div>
         </form>
       </div>

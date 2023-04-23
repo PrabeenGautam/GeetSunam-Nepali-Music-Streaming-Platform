@@ -21,6 +21,10 @@ function LikedSongs() {
     keyPrefix: "likedSongs",
   });
 
+  const { t: tPlaceholder } = useTranslation("translation", {
+    keyPrefix: "placeholder",
+  });
+
   const { data, isLoading, isError } = useQuery(
     "likedSongs",
     getFavouriteSongs,
@@ -124,7 +128,7 @@ function LikedSongs() {
                   <input
                     type="text"
                     className="text-input"
-                    placeholder="Search songs to add them to playlist"
+                    placeholder={tPlaceholder("searchSongs")}
                     name="query"
                     onChange={(e) => {
                       if (!e.target.value) setShowData(false);
