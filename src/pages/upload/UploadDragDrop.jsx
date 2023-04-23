@@ -1,9 +1,11 @@
 import React from "react";
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { MdUpload } from "react-icons/md";
 
 function UploadDragDrop({ handleErrorAndUpload, logoUploadRef, error }) {
   const inputRef = useRef();
+  const { t } = useTranslation("translation", { keyPrefix: "upload" });
 
   const [isDragging, setIsDragging] = useState(false);
 
@@ -31,11 +33,9 @@ function UploadDragDrop({ handleErrorAndUpload, logoUploadRef, error }) {
         <div className="upload-logo" ref={logoUploadRef}>
           <MdUpload />
         </div>
-        <div className="upload-info">
-          Drag and Drop mp3 audio files to upload
-        </div>
+        <div className="upload-info">{t("dragDrop")}</div>
         <div className={`private-info ${isDragging ? "active" : ""}`}>
-          Your songs will be private until you publish them.
+          {t("private")}
         </div>
         {error && <div className="upload-error">{error}</div>}
         <input
@@ -49,15 +49,10 @@ function UploadDragDrop({ handleErrorAndUpload, logoUploadRef, error }) {
           onClick={() => inputRef.current.click()}
           style={{ marginTop: 20 }}
           className={`btn ${isDragging ? "active" : ""}`}>
-          Select File
+          {t("selectFile")}
         </button>
       </div>
-      <div className="guildlines">
-        Please ensure that you have uploaded the correct songs and that you have
-        the legal right to upload them. Uploading copyrighted songs without
-        permission is against the law and may result in legal consequences and
-        which could get you banned from the platform.
-      </div>
+      <div className="guildlines">{t("guildlines")}</div>
     </React.Fragment>
   );
 }

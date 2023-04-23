@@ -26,7 +26,7 @@ import {
 import { useTranslation } from "react-i18next";
 
 function Content() {
-  const { t, i18n } = useTranslation("translation", { keyPrefix: "homePage" });
+  const { t } = useTranslation("translation", { keyPrefix: "homePage" });
 
   const {
     data: songsReleases,
@@ -76,7 +76,7 @@ function Content() {
 
   return (
     <div className="content-container">
-      <CustomBreadcrumbs link={"/home"} textName="Home" />
+      <CustomBreadcrumbs link={"/home"} textName={t("home")} />
       {!loaderFeatured ? (
         <Featured data={featuredSongs} showSearchBar={false} />
       ) : (
@@ -89,7 +89,7 @@ function Content() {
             <BiPlay className="heading_icons" />
           </div>
           <Link to={"/releases"} className="see-more">
-            See All
+            {t("seeAll")}
           </Link>
         </div>
 

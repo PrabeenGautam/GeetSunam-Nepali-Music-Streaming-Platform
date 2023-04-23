@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 
 import useGSSelector from "@/redux/useGSSelector";
 
-import { SearchBar } from "@/components/Featured";
 import { getGenresApi } from "@/services/musicApi/getGenres.api";
 import Spinner from "../Loader/Spinner";
 import { useQuery } from "react-query";
+import { useTranslation } from "react-i18next";
 
 function SidebarRight() {
   const { userData } = useGSSelector((state) => state.userState);
+  const { t } = useTranslation("translation", { keyPrefix: "sidebarRight" });
 
   const {
     data: genres,
@@ -37,14 +38,14 @@ function SidebarRight() {
 
       {genres && (
         <>
-          <div className="sidebar-title">Genre</div>
+          <div className="sidebar-title">{t("genre")}</div>
           <div className="grid grid-column-3 gap-sm">
             {genres.map((value) => {
               return (
                 <div className="genre" key={value._id}>
                   <Link to={`genre/${value._id}`}>
                     <div className="genre-image">
-                      <img src={value.image} alt={"genre"} />
+                      <img src={value.image} alt={t("genre")} />
                     </div>
                     <div className="genre-name">{value.name}</div>
                   </Link>

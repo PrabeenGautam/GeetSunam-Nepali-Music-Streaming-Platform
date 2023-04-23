@@ -1,8 +1,10 @@
+import { useTranslation } from "react-i18next";
 import { FiMic, FiSearch } from "react-icons/fi";
 import { useNavigate, createSearchParams } from "react-router-dom";
 
 function SearchBar() {
   const navigate = useNavigate();
+  const { t } = useTranslation("translation", { keyPrefix: "placeholder" });
 
   const onSubmitValue = (e) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ function SearchBar() {
       <input
         type="text"
         className="text-input"
-        placeholder="Search artists, songs,..."
+        placeholder={t("searchSongArtists")}
         name="query"
         onChange={onSubmitValue}
       />
