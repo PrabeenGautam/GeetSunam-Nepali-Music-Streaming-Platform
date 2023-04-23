@@ -7,11 +7,15 @@ import updateUserApi from "@/services/usersApi/updateUser.api";
 import { useNavigate } from "react-router-dom";
 import useGSDispatch from "@/redux/useGSDispatch";
 import { resetLogin } from "@/redux/slices/userSlice";
+import { useTranslation } from "react-i18next";
 
 function EditUserModal({ setClick, profile }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);
   const [uploadedImage, setUploadedImage] = useState("");
   const [formData, setFormData] = useState({});
+  const { t } = useTranslation("translation", {
+    keyPrefix: "profileEdit",
+  });
 
   const navigate = useNavigate();
   const dispatch = useGSDispatch();
@@ -72,7 +76,7 @@ function EditUserModal({ setClick, profile }) {
           }}></div>
         <div className="container">
           <div className="header">
-            <h2 className="h2">Edit Details</h2>
+            <h2 className="h2">{t("editDetails")}</h2>
             <MdClose
               style={{ cursor: "pointer", width: 32, height: 32 }}
               onClick={() => setClick(false)}
@@ -98,7 +102,7 @@ function EditUserModal({ setClick, profile }) {
                 </div>
 
                 <span className="custom-input">
-                  <label htmlFor="username">Fullname</label>
+                  <label htmlFor="username">{t("fullname")}</label>
                   <input
                     type="text"
                     name="fullname"
@@ -106,7 +110,7 @@ function EditUserModal({ setClick, profile }) {
                     onChange={handleFormData}
                   />
 
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email">{t("email")}</label>
                   <input
                     type="email"
                     name="email"
@@ -120,7 +124,7 @@ function EditUserModal({ setClick, profile }) {
                 type="submit"
                 className="btn btn-play"
                 style={{ marginTop: 20 }}>
-                Save
+                {t("save")}
               </button>
             </form>
           </div>

@@ -6,10 +6,14 @@ import { useQueryClient } from "react-query";
 import Placeholder from "@/assets/images/genre/placeholder-image.jpg";
 import { Btn } from "../StyledUI";
 import { updatePlaylistAPI } from "@/services/playlistApi/getPlaylist.api";
+import { useTranslation } from "react-i18next";
 
 function EditPlaylistsModelOverlay({ setClick, playlist }) {
   const [selectedImage, setSelectedImage] = useState(Placeholder);
   const [uploadedImage, setUploadedImage] = useState("");
+  const { t } = useTranslation("translation", {
+    keyPrefix: "playlistEdit",
+  });
 
   const checkboxRef = useRef();
 
@@ -72,7 +76,7 @@ function EditPlaylistsModelOverlay({ setClick, playlist }) {
         }}></div>
       <div className="container" style={{ zIndex: 9999 }}>
         <div className="header">
-          <h2 className="h2">Edit Details</h2>
+          <h2 className="h2">{t("editDetails")}</h2>
           <MdClose
             style={{ cursor: "pointer", width: 32, height: 32 }}
             onClick={() => setClick(false)}
@@ -103,7 +107,7 @@ function EditPlaylistsModelOverlay({ setClick, playlist }) {
                   maxLength={50}
                   id="playlist-name"
                   defaultValue={playlist.title}
-                  placeholder="Enter a name"
+                  placeholder={t("name")}
                   onChange={handleFormData}
                 />
                 <textarea
@@ -112,7 +116,7 @@ function EditPlaylistsModelOverlay({ setClick, playlist }) {
                   id="playlist-description"
                   maxLength={150}
                   onChange={handleFormData}
-                  placeholder="Enter Description (Optional)"></textarea>
+                  placeholder={t("description")}></textarea>
               </div>
             </div>
 
@@ -124,7 +128,7 @@ function EditPlaylistsModelOverlay({ setClick, playlist }) {
                 margin: "15px 0 0",
               }}>
               <label htmlFor="checkbox" style={{ marginRight: 10 }}>
-                Make Playlists Public:{" "}
+                {t("makePublic")}:{" "}
               </label>
               <input
                 type="checkbox"
@@ -135,13 +139,10 @@ function EditPlaylistsModelOverlay({ setClick, playlist }) {
                 style={{ height: 20, width: 20 }}
               />
             </div>
-            <Btn className="btn-play save-playlist">Save</Btn>
+            <Btn className="btn-play save-playlist">{t("save")}</Btn>
           </form>
         </div>
-        <div className="guildlines">
-          Please ensure that you have uploaded the correct images and make sure
-          you have the right to upload the image.
-        </div>
+        <div className="guildlines">{t("guildlines")}</div>
       </div>
     </div>
   );
