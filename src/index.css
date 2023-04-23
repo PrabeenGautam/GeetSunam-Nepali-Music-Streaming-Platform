@@ -649,6 +649,10 @@ a {
   grid-template-columns: 20px 2.5rem 1fr 0.5fr 100px 20px 40px 50px 50px;
 }
 
+.current-song {
+  grid-template-columns: 20px 2.5rem 1fr 0.5fr 100px 60px 60px 50px;
+}
+
 .skip {
   height: 100%;
 }
@@ -1127,6 +1131,10 @@ h3:not(.h3) {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.content-container.edit-song {
+  color: white;
 }
 
 .model .container > div,
@@ -1984,7 +1992,7 @@ h3:not(.h3) {
   line-height: 1.5rem;
 }
 
-.model .upload-error {
+.upload-error {
   line-height: 1.5rem;
   font-size: 13px;
   margin-top: 10px;
@@ -2038,7 +2046,13 @@ h3:not(.h3) {
   overflow-y: auto;
 }
 
-.model .upload-container .edit-upload form {
+.content-container.edit-song .song-details {
+  max-height: 32.5rem;
+  overflow: scroll;
+}
+
+.model .upload-container .edit-upload form,
+.content-container.edit-song form {
   height: 100%;
   grid-template-columns: 1fr 18.5rem;
   grid-template-rows: auto;
@@ -2054,7 +2068,8 @@ h3:not(.h3) {
   grid-area: preview;
 }
 
-.model .song-preview-details {
+.model .song-preview-details,
+.content-container.edit-song .song-preview-details {
   background: black;
   height: fit-content;
   padding-bottom: 20px;
@@ -2072,14 +2087,16 @@ h3:not(.h3) {
   object-position: center center;
 }
 
-.model .song-preview audio {
+.model .song-preview audio,
+.edit-song .song-preview audio {
   height: 3rem;
   outline: none;
   width: 100%;
 }
 
-.model .song-preview audio::-webkit-media-controls-enclosure {
-  border-radius: 0;
+.model .song-preview audio::-webkit-media-controls-enclosure,
+.edit-song .song-preview audio::-webkit-media-controls-enclosure {
+  border-radius: 0 !important;
 }
 
 .song-label,

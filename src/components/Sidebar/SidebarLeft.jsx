@@ -118,12 +118,12 @@ function SidebarLeft({ role, setClickUpload }) {
           <div className="menu-data">
             <div className="menu-head">Dashboard</div>
             <ul>
-              <NavLink to="trends" activeClassName="active">
+              <NavLink to="dashboard" activeClassName="active">
                 <li className="submenus">
                   <span className="menu-icon">
                     <MdDashboard className="icons" />
                   </span>
-                  <span className="menu-text">Dashboard</span>
+                  <span className="menu-text">Manage Songs</span>
                 </li>
               </NavLink>
               <li className="submenus" onClick={() => setClickUpload(true)}>

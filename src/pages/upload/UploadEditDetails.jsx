@@ -12,7 +12,6 @@ function UploadEditDetails({ audioFile, genre, uploadedSong }) {
   const [error, setError] = useState("");
   const { data: genres, isFetching } = getGenreData();
   const [coverArt, setCoverArt] = useState("");
-
   const [formData, setFormData] = useState({});
 
   const {
