@@ -99,7 +99,7 @@ function Settings() {
                 type="text"
                 name="currentPassword"
                 onChange={handleFormData}
-                placeholder="Enter Current Password"
+                placeholder={t("currentPasswordDesc")}
               />
             </div>
             <div>
@@ -109,7 +109,7 @@ function Settings() {
                 name="newPassword"
                 autoComplete="new-password"
                 onChange={handleFormData}
-                placeholder="Enter New Password"
+                placeholder={t("newPasswordDesc")}
               />
             </div>
             <div>
@@ -119,7 +119,7 @@ function Settings() {
                 name="confirmNewPassword"
                 autoComplete="new-password"
                 onChange={handleFormData}
-                placeholder="Re confirm New Password"
+                placeholder={t("reNewPasswordDesc")}
               />
             </div>
           </div>

@@ -111,7 +111,10 @@
     "newPassword": "नयाँ पासवर्ड",
     "reNewPassword": "नयाँ पासवर्ड दोहोर्याउनुहोस्",
     "setNewPassword": "नयाँ पासवर्ड सेट गर्नुहोस्",
-    "geetsunam": "गीतसुनम"
+    "geetsunam": "गीतसुनम",
+    "currentPasswordDesc": "अहिलेको पस्स्वोर्ड लेख्नुहोस ",
+    "newPasswordDesc": "नया पस्स्वोर्ड लेख्नुहोस",
+    "reNewPasswordDesc": "नया पस्स्वोर्ड पुन लेख्नुहोस"
   },
   "common": {
     "play": "बजाउनुहोस्",

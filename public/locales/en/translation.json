@@ -113,7 +113,10 @@
     "newPassword": "New Password",
     "reNewPassword": "Repeat New Password",
     "setNewPassword": "Set New Password",
-    "geetsunam": "GeetSunam"
+    "geetsunam": "GeetSunam",
+    "currentPasswordDesc": "Enter Current Password",
+    "newPasswordDesc": "Enter New Password",
+    "reNewPasswordDesc": "Re confirm New Password"
   },
   "common": {
     "play": "Play",
