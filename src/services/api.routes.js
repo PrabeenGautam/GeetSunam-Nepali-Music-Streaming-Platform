@@ -35,6 +35,8 @@ export const SongConfig = {
   GET_SONG_BY_ARTISTS: (id) => `/songs/artists/${id}`,
   GET_SONG_BY_GENRES: (id) => `/songs/genres/${id}`,
   CLASSIFY_SONG_GENRE: (songId) => `/song/predict-class/${songId}`,
+  RECOMMEND_SONG_BASED_ON_CURRENT: (songId) =>
+    `/song/recommend-top-five/${songId}`,
 };
 
 export const PlayerConfig = {

@@ -8,7 +8,6 @@ import { classifySongGenreApi } from "@/services/musicApi/classifySongGenre.api"
 import { updateSongApi } from "@/services/musicApi/postSongs.api";
 
 function UploadEditDetails({ audioFile, genre, uploadedSong }) {
-  console.log(uploadedSong._id);
   const [error, setError] = useState("");
   const { data: genres, isFetching } = getGenreData();
   const [coverArt, setCoverArt] = useState("");

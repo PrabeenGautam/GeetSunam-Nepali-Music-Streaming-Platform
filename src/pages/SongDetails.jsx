@@ -4,6 +4,7 @@ import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { MdPlaylistAdd } from "react-icons/md";
+import { useQuery, useQueryClient } from "react-query";
 
 import { possibleMediaState } from "@/components/Player/possibleMediaState.types";
 import { useSongsData } from "@/hooks/useSongsData";
@@ -13,8 +14,9 @@ import ActionCreators from "@/react-mui-player/redux/actionCreators";
 import PlaySong from "@/components/Player/PlaySong";
 import { trackDetails } from "@/utils/trackDetails.utils";
 import { toggleSongsFavourite } from "@/services/musicApi/postSongs.api";
-import { useQueryClient } from "react-query";
 import PlaylistAddContainer from "@/components/Playlists/PlaylistAddContainer";
+import { recommendSongBasedOnCurrent } from "@/services/musicApi/recommendSongBased.api";
+import Spinner from "@/components/Loader/Spinner";
 
 function SongDetails() {
   const [clicked, setClicked] = useState(false);
@@ -28,9 +30,26 @@ function SongDetails() {
   const stats = useSelector((state) => state);
   const { data: currentSong, isFetching } = useSongsData(songId);
 
+  const {
+    data: recommendedSong,
+    isLoading: isLoadingRecommendation,
+    isError: isErrorRecommendation,
+  } = useQuery(
+    ["recommend-songs-based-on-current", songId],
+    () => recommendSongBasedOnCurrent(songId),
+    {
+      select: (data) => data.similar_songs,
+      refetchOnWindowFocus: false,
+    }
+  );
+
   const onPlay = () => dispatch(ActionCreators.play());
 
   const track = !isFetching && trackDetails(currentSong);
+  const recommendedSongDetails =
+    recommendedSong && trackDetails(recommendedSong);
+
+  const loader = isLoadingRecommendation || isErrorRecommendation;
 
   const handleFavourite = async () => {
     if (!clicked) {
@@ -147,7 +166,11 @@ function SongDetails() {
 
         <div>
           <h2>Recommended Songs Based on Current Songs</h2>
-          <RecentPlayed data={[]} />
+          {!loader ? (
+            <RecentPlayed data={recommendedSongDetails} />
+          ) : (
+            <Spinner />
+          )}
         </div>
       </div>
     </>

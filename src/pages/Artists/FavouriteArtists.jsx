@@ -46,7 +46,7 @@ function FavouriteArtists() {
             <span style={{ fontWeight: "bold" }}>.</span>
             <span>
               {!loader && artists.length !== 0 ? artists.length : "No"}{" "}
-              {t("song")}
+              {t("artist")}
             </span>
           </div>
         </div>
