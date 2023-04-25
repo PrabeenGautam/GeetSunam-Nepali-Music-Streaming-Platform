@@ -650,7 +650,7 @@ a {
 }
 
 .current-song {
-  grid-template-columns: 20px 2.5rem 1fr 0.5fr 100px 60px 60px 50px;
+  grid-template-columns: 20px 2.5rem 1fr 100px 80px 60px 50px 60px 50px;
 }
 
 .skip {

@@ -52,10 +52,7 @@ export function isUserLogin() {
         },
       }
     );
-
-    console.log(response);
   } catch (error) {
-    console.log(error);
     resetLoginData();
     return false;
   }

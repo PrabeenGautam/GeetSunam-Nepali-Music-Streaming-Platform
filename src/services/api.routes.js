@@ -43,6 +43,11 @@ export const PlayerConfig = {
   UPDATE_STATE: "/player/save-state",
 };
 
+export const TrackUserConfig = {
+  KEY: "PLAYER_HISTORY",
+  UPDATE_STATE: "/track/users",
+};
+
 export const ArtistsConfig = {
   KEY: "ARTIST",
   GET_ARTISTS: "/artists",

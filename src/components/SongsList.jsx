@@ -53,7 +53,6 @@ function RecentPlayed({
 
       if (terminateQueries && terminateQueries.startsWith("[")) {
         const query = terminateQueries.split(",");
-        console.log(query);
       }
 
       if (terminateWithId) {

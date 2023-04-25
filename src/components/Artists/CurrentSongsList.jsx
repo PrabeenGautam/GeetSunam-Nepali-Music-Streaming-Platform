@@ -1,6 +1,7 @@
 import { FiClock, FiTrash } from "react-icons/fi";
 import useCurrentSong from "@/hooks/useCurrentSong";
 import ManageCurrentPlayback from "../PlayerBack/manageCurrentPlayback";
+import { BiLock } from "react-icons/bi";
 
 function CurrentSongsList({ data, setDeleteSong, editHandler }) {
   const currentSong = useCurrentSong();
@@ -29,6 +30,7 @@ function CurrentSongsList({ data, setDeleteSong, editHandler }) {
             <span className="length">
               <FiClock />
             </span>
+            <span>Status</span>
             <span style={{ visibility: "hidden" }}>#</span>
           </div>
           {data &&
@@ -47,6 +49,13 @@ function CurrentSongsList({ data, setDeleteSong, editHandler }) {
                   />
 
                   <span className="length">{value.duration || value.time}</span>
+                  <span className="flex-center">
+                    {value.public ? (
+                      ""
+                    ) : (
+                      <BiLock style={{ fontSize: "1.1rem" }} />
+                    )}
+                  </span>
                   <span className="add-more" onClick={() => editHandler(value)}>
                     Edit
                   </span>

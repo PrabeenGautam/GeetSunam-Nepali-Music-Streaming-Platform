@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { isUserLogin, getUserData } from "@/utils/storage.utils";
+import { isUserLogin } from "@/utils/storage.utils";
 
-const ProtectedRoute = ({ children, setDashBoard }) => {
+const ProtectedRoute = ({ children }) => {
   const isLoggedIn = isUserLogin();
   const navigate = useNavigate();
 
@@ -11,12 +11,7 @@ const ProtectedRoute = ({ children, setDashBoard }) => {
       navigate("/login", { replace: true });
       return;
     }
-
-    const authUser = getUserData();
-    if (authUser?.role === "artists") {
-      setDashBoard(true);
-    }
-  }, [isLoggedIn, navigate, setDashBoard]);
+  }, [isLoggedIn, navigate]);
 
   return isLoggedIn ? children : null;
 };
