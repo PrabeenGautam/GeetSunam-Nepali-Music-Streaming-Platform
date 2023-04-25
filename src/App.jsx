@@ -81,12 +81,15 @@ function App() {
       currentTime: prevCurrentTime,
       trackID: prevTrackID,
     } = previousState.current;
+    
+    // stop updating totalSecondPlayed of same song, if totalSecondPlayed > 10 
+    if(totalSecondPlayed > 10 && prevTrackID === trackID){
+      return;
+    }
 
-    // Check if track is changed
+    // Check if track is changed - reset totalSecondPlayed
     if (prevTrackID !== trackID) {
       previousState.current.totalSecondPlayed = 0;
-    } else if (totalSecondPlayed > 10) {
-      return;
     }
 
     //If song is not seeked, there will be a second difference in currentTime
@@ -97,7 +100,6 @@ function App() {
       totalSecondPlayed === 10 &&
       import.meta.env.VITE_ENVIRONMENT === "production"
     ) {
-      console.log("Sending POST REQUEST to backend...");
       postUserPlayHistory(prevTrackID);
     }
 
