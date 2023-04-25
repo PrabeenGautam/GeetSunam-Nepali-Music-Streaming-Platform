@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import "./App.css";
 
 import { SidebarLeft, SidebarRight } from "@/components/Sidebar";
@@ -30,17 +32,22 @@ import {
   getPlayerLocalState,
   storePlayerState,
 } from "./utils/playerState.utils";
-import { useSelector } from "react-redux";
 import UploadModel from "./components/Upload/uploadModel";
 import useGSSelector from "@/redux/useGSSelector";
 import Dashboard from "./pages/Artists/Dashboard";
 import EditSongDetails from "./pages/Artists/EditSongsDetails";
+import { possibleMediaState } from "./components/Player/possibleMediaState.types";
+import { postUserPlayHistory } from "./services/playerState/playerState";
 
 function App() {
-  const [artistsDashboard, setDashBoard] = useState(false);
   const [sidebar, setSideBar] = useState(false);
   const [clickUpload, setClickUpload] = useState(false);
+
   const elementRef = useRef();
+  const previousState = useRef({ totalSecondPlayed: 0 });
+
+  const playerState = useSelector((state) => state);
+  const currentTime = useSelector((state) => state.currentTime);
   const userRole = useGSSelector((state) => state?.userState?.userData?.role);
 
   const columnCountLookup = [
@@ -52,19 +59,60 @@ function App() {
     [0, 1],
   ];
 
-  const playerState = useSelector((state) => state);
-
   const handleSideBar = function () {
     setSideBar((prev) => !prev);
   };
 
+  // Run once to get initial player state
   useEffect(() => {
     getPlayerLocalState();
   }, []);
 
+  // Store the player state locally
   useEffect(() => {
     storePlayerState(playerState);
   }, [playerState]);
+
+  // Storing Play History of the user
+  useEffect(() => {
+    const { trackID, currentTime, mediaState } = playerState;
+    const {
+      totalSecondPlayed,
+      currentTime: prevCurrentTime,
+      trackID: prevTrackID,
+    } = previousState.current;
+    
+    // stop updating totalSecondPlayed of same song, if totalSecondPlayed > 10 
+    if(totalSecondPlayed > 10 && prevTrackID === trackID){
+      return;
+    }
+
+    // Check if track is changed - reset totalSecondPlayed
+    if (prevTrackID !== trackID) {
+      previousState.current.totalSecondPlayed = 0;
+    }
+
+    //If song is not seeked, there will be a second difference in currentTime
+    const secondDelay = currentTime - prevCurrentTime;
+
+    // Check 10 seconds delay
+    if (
+      totalSecondPlayed === 10 &&
+      import.meta.env.VITE_ENVIRONMENT === "production"
+    ) {
+      postUserPlayHistory(prevTrackID);
+    }
+
+    // Count each seconds, a song is listened
+    if (secondDelay === 1) {
+      previousState.current.totalSecondPlayed = totalSecondPlayed + 1;
+    }
+
+    previousState.current = {
+      ...previousState.current,
+      ...playerState,
+    };
+  }, [currentTime]);
 
   useEffect(() => {
     const handleSize = () => {
@@ -85,11 +133,12 @@ function App() {
 
     // Run on Size
     window.addEventListener("resize", handleSize);
+
     return () => window.removeEventListener("resize", handleSize);
   }, []);
 
   return (
-    <ProtectedRoute setDashBoard={setDashBoard}>
+    <ProtectedRoute>
       <div className={`main-container ${sidebar ? "toggle" : ""}`}>
         <div>
           <SidebarLeft setClickUpload={setClickUpload} role={userRole} />

@@ -7,6 +7,7 @@ import UploadEditDetails from "@/pages/upload/UploadEditDetails";
 
 import { uploadSongs } from "@/services/musicApi/postSongs.api";
 import { useTranslation } from "react-i18next";
+import { useQueryClient } from "react-query";
 
 function UploadModel({ setClickUpload }) {
   return createPortal(
@@ -26,6 +27,7 @@ function UploadModelOverlay({ setClickUpload }) {
   const [error, setError] = useState("");
   const logoUploadRef = useRef();
   const { t } = useTranslation("translation", { keyPrefix: "upload" });
+  const queryClient = useQueryClient();
 
   const handleErrorAndUpload = async (files) => {
     if (uploadedFiles) return;
@@ -57,6 +59,7 @@ function UploadModelOverlay({ setClickUpload }) {
       setShowProgress(false);
       setSongUploaded(true);
       setUploadedSong(response?.data?.song);
+      queryClient.invalidateQueries("currentUserSongs");
     }
   };
 
@@ -72,7 +75,7 @@ function UploadModelOverlay({ setClickUpload }) {
     <div className="model">
       <div
         className="model-container"
-        onClick={() => setClickUpload(false)}></div>
+        onClick={() => !songUploaded && setClickUpload(false)}></div>
       <div className="upload-container">
         <div className="header">
           <div className="header-details">
@@ -81,10 +84,12 @@ function UploadModelOverlay({ setClickUpload }) {
               {uploadProgress && (
                 <span className="saved">{uploadProgress}</span>
               )}
-              <MdClose
-                style={{ cursor: "pointer", width: 32, height: 32 }}
-                onClick={() => setClickUpload(false)}
-              />
+              {!songUploaded && (
+                <MdClose
+                  style={{ cursor: "pointer", width: 32, height: 32 }}
+                  onClick={() => setClickUpload(false)}
+                />
+              )}
             </div>
           </div>
 

@@ -149,7 +149,6 @@ function EditPlaylistsModelOverlay({ setClick, playlist }) {
 }
 
 function EditPlaylistsModel({ setClick, playlist }) {
-  console.log(playlist);
   return createPortal(
     <EditPlaylistsModelOverlay setClick={setClick} playlist={playlist} />,
     document.getElementById("modal")

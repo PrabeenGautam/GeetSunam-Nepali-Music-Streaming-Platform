@@ -51,8 +51,6 @@ function EditUserModal({ setClick, profile }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formData);
-
     const postData = new FormData();
     if (formData.fullname) postData.append("fullname", formData.fullname);
     if (formData.email) postData.append("email", formData.email);
