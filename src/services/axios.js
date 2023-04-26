@@ -25,6 +25,10 @@ const getApiResponse = async ({
       accept: "*/*",
     });
 
+    if (result.request.responseURL.includes("offline.html")) {
+      throw new Error("Server is down");
+    }
+
     if (method !== "get") {
       if (result.data.message && displaySuccessMessage) {
         toast.success("success", {
