@@ -83,13 +83,10 @@ export const getSongsByID = async (id) => {
   return result.data;
 };
 
-export const getRecentlyPlayedSongs = async (id) => {
+export const getRecentlyPlayedSongs = async () => {
   const result = await getApiResponse({
-    url: SongConfig.GET_SONGS,
+    url: SongConfig.GET_RECENTLY_PLAYED_SONG,
     method: "get",
-    otherParams: {
-      limit: 8,
-    },
   });
 
   if (result.APIFailed) return null;
@@ -98,11 +95,8 @@ export const getRecentlyPlayedSongs = async (id) => {
 
 export const getTrendingSongs = async () => {
   const result = await getApiResponse({
-    url: SongConfig.GET_SONGS,
+    url: SongConfig.GET_TRENDING_SONG,
     method: "get",
-    otherParams: {
-      limit: 8,
-    },
   });
 
   if (result.APIFailed) return null;
