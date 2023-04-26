@@ -16,11 +16,10 @@ import {
   loginUserThunk,
   googleLoginUserThunk,
 } from "@/redux/middlewares/loginUserThunk";
-import { isUserLogin } from "@/utils/storage.utils";
 
 function LoginPage() {
   const gsDispatch = useGSDispatch();
-  const isLoggedIn = isUserLogin();
+  const loginStatus = useGSSelector((state) => state.userState.loginStatus);
 
   const [passwordShown, setPasswordShow] = useState(false);
 
@@ -78,10 +77,10 @@ function LoginPage() {
   };
 
   useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/home", { replace: true });
+    if (loginStatus) {
+      navigate("/home", { replace: false });
     }
-  }, [isLoggedIn, navigate]);
+  }, [loginStatus, navigate]);
 
   return (
     <div className="log-container">

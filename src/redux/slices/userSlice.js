@@ -25,8 +25,10 @@ export const userSlice = createSlice({
   },
   extraReducers: {
     [loginUserThunk.fulfilled]: (state, { payload }) => {
-      state.userData = payload?.data?.user;
-      state.loginStatus = true;
+      if (isUserLogin()) {
+        state.userData = payload?.data?.user;
+        state.loginStatus = true;
+      }
     },
     [loginUserThunk.rejected]: (state, { payload }) => {
       state.userData = "";
@@ -37,8 +39,10 @@ export const userSlice = createSlice({
       state.loginStatus = false;
     },
     [signUpUserThunk.fulfilled]: (state, { payload }) => {
-      state.userData = payload?.data?.user;
-      state.loginStatus = true;
+      if (isUserLogin()) {
+        state.userData = payload?.data?.user;
+        state.loginStatus = true;
+      }
     },
     [signUpUserThunk.rejected]: (state, { payload }) => {
       state.userData = "";
