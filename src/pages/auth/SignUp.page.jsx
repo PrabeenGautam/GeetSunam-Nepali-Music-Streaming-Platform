@@ -13,11 +13,11 @@ import {
   signUpUserThunk,
   googleSignUpUserThunk,
 } from "@/redux/middlewares/signupUserThunk";
-import useGSSelector from "@/redux/useGSSelector";
+import { isUserLogin } from "@/utils/storage.utils";
 
 function SignUpPage() {
   const gsDispatch = useGSDispatch();
-  const loginStatus = useGSSelector((state) => state.userState.loginStatus);
+  const isLoggedIn = isUserLogin();
 
   const [passwordShown, setPasswordShow] = useState(false);
   const { t, i18n } = useTranslation("translation", { keyPrefix: "signUp" });
@@ -63,10 +63,10 @@ function SignUpPage() {
   };
 
   useEffect(() => {
-    if (loginStatus) {
-      navigate("/home", { replace: false });
+    if (isLoggedIn) {
+      navigate("/home", { replace: true });
     }
-  }, [loginStatus, navigate]);
+  }, [isLoggedIn, navigate]);
 
   return (
     <div className="log-container">
