@@ -17,7 +17,7 @@ import SearchPlaylists from "@/pages/search/SearchPlaylists";
 import Trends from "@/pages/trends/trends";
 import Explore from "@/pages/explore/explore";
 import NewReleases from "@/pages/NewReleases";
-import Recommnedations from "@/pages/Recommendations";
+import Recommendations from "@/pages/Recommendations";
 import LikedSongs from "@/pages/LikedSongs/LikedSongs";
 import FavouriteArtists from "@/pages/Artists/FavouriteArtists";
 import PlaylistSection from "@/pages/Playlists/PlaylistSection";
@@ -154,7 +154,7 @@ function App() {
               <Route path="/trends" element={<Trends />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/releases" element={<NewReleases />} />
-              <Route path="/recommendation" element={<Recommnedations />} />
+              <Route path="/recommendation" element={<Recommendations />} />
               <Route path="/likedsongs" element={<LikedSongs />} />
               <Route path="/artists" element={<Artists />} />
               <Route path="/artists/:id" element={<ArtistsDetails />} />
