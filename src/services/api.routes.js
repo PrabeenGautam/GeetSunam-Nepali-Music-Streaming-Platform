@@ -28,6 +28,8 @@ export const SongConfig = {
   UPLOAD_SONG: "/songs/upload",
   RECOMMENDATION: "/songs",
   GET_SONGS_BY_CURRENT_USER: `/songs/current-user`,
+  GET_RECENTLY_PLAYED_SONG: "/users/songs/recent-play",
+  GET_TRENDING_SONG: "/songs/trending",
 
   GET_SONGS_BY_ID: (id) => `/songs/${id}`,
   UPDATE_SONGS: (id) => `/songs/${id}`,
@@ -36,7 +38,7 @@ export const SongConfig = {
   GET_SONG_BY_GENRES: (id) => `/songs/genres/${id}`,
   CLASSIFY_SONG_GENRE: (songId) => `/song/predict-class/${songId}`,
   RECOMMEND_SONG_BASED_ON_CURRENT: (songId) =>
-    `/song/recommend-top-five/${songId}`,
+    `/song/recommend-top-n-songs/${songId}`,
 };
 
 export const PlayerConfig = {
@@ -47,7 +49,7 @@ export const PlayerConfig = {
 
 export const TrackUserConfig = {
   KEY: "PLAYER_HISTORY",
-  UPDATE_STATE: "/track/users",
+  UPDATE_STATE: "/users/songs/track",
 };
 
 export const ArtistsConfig = {

@@ -75,15 +75,15 @@ function App() {
 
   // Storing Play History of the user
   useEffect(() => {
-    const { trackID, currentTime, mediaState } = playerState;
+    const { trackID, currentTime } = playerState;
     const {
       totalSecondPlayed,
       currentTime: prevCurrentTime,
       trackID: prevTrackID,
     } = previousState.current;
-    
-    // stop updating totalSecondPlayed of same song, if totalSecondPlayed > 10 
-    if(totalSecondPlayed > 10 && prevTrackID === trackID){
+
+    // stop updating totalSecondPlayed of same song, if totalSecondPlayed > 10
+    if (totalSecondPlayed > 10 && prevTrackID === trackID) {
       return;
     }
 
