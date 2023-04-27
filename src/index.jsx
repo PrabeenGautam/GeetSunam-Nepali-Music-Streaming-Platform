@@ -8,7 +8,7 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import App from "@/App";
-import "@/index.css";
+import "./index.css";
 import "@/styles/common.css";
 import "@/styles/keyframes.css";
 import "react-toastify/dist/ReactToastify.css";

@@ -1,7 +1,12 @@
 import "@/styles/landing.css";
+import Header from "./header/Header";
 
 function LandingPage() {
-  return <></>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
 
 export default LandingPage;
