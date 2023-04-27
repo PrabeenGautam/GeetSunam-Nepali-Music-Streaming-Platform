@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import "./App.css";
-
 import { SidebarLeft, SidebarRight } from "@/components/Sidebar";
 import MainPlayer from "@/components/Player/Player";
 import ProtectedRoute from "@/utils/protectedRoutes";
