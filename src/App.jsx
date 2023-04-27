@@ -36,7 +36,6 @@ import UploadModel from "./components/Upload/uploadModel";
 import useGSSelector from "@/redux/useGSSelector";
 import Dashboard from "./pages/Artists/Dashboard";
 import EditSongDetails from "./pages/Artists/EditSongsDetails";
-import { possibleMediaState } from "./components/Player/possibleMediaState.types";
 import { postUserPlayHistory } from "./services/playerState/playerState";
 
 function App() {

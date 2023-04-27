@@ -58,7 +58,7 @@ function Content() {
   const {
     data: recentPlayed,
     isLoading: isLoadingRecent,
-    isError: isErrorRecenet,
+    isError: isErrorRecent,
   } = useQuery(["recentlyPlayed"], getRecentlyPlayedSongs, {
     select: (data) => data.data.songs,
     refetchOnWindowFocus: false,
@@ -72,7 +72,7 @@ function Content() {
   const loaderFeatured = isLoadingFeatured || isErrorFeatured;
   const loaderReleases = isLoadingReleases || isErrorReleases;
   const loaderArtists = isLoadingArtists || isErrorArtists;
-  const loaderRecents = isLoadingRecent || isErrorRecenet;
+  const loaderRecents = isLoadingRecent || isErrorRecent;
 
   return (
     <div className="content-container">
@@ -119,24 +119,20 @@ function Content() {
         </div>
       </div>
 
-      <div className="main-section">
-        <div className="subheading" style={{ marginBottom: 20 }}>
-          <span>{t("recentlyPlayed")}</span>
-          <BiPause className="heading_icons" />
-        </div>
+      {!loaderRecents && recentPlayed.length > 0 && (
+        <div className="main-section">
+          <div className="subheading" style={{ marginBottom: 20 }}>
+            <span>{t("recentlyPlayed")}</span>
+            <BiPause className="heading_icons" />
+          </div>
 
-        {!loaderRecents ? (
           <RecentPlayed
             removeFromPlaylist={false}
             data={recentSongs}
             terminateQueries="recentlyPlayed"
           />
-        ) : (
-          <div className="mt-80" style={{ marginBottom: 80 }}>
-            <Spinner />
-          </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
