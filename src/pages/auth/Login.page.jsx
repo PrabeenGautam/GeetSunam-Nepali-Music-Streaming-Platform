@@ -78,7 +78,7 @@ function LoginPage() {
 
   useEffect(() => {
     if (loginStatus) {
-      navigate("/home", { replace: false });
+      navigate("/login/verify", { replace: false });
     }
   }, [loginStatus, navigate]);
 

@@ -57,6 +57,7 @@ root.render(
                 <Routes>
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/signup" element={<SignUpPage />} />
+                  <Route path="/login/verify" element={<Redirect />} />
                   <Route path="/*" element={<App />} />
                 </Routes>
               </ScrollToTop>
