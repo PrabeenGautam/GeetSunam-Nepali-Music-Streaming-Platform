@@ -1,6 +1,7 @@
 import { PlayerConfig, TrackUserConfig } from "@/services/api.routes";
 import getApiResponse from "@/services/axios";
 import axios from "axios";
+import { useQueryClient } from "react-query";
 
 export const getPlayerState = async () => {
   const result = await getApiResponse({
@@ -30,7 +31,7 @@ export const updatePlayerState = async (trackState, token) => {
   }
 };
 
-export const postUserPlayHistory = async (songID) => {
+export const postUserPlayHistory = async (songID, queryClient) => {
   const result = await getApiResponse({
     url: TrackUserConfig.UPDATE_STATE,
     method: "patch",
@@ -38,6 +39,8 @@ export const postUserPlayHistory = async (songID) => {
       id: songID,
     },
   });
+
+  queryClient.invalidateQueries("recentlyPlayed");
 
   if (result.APIFailed) return null;
   return result.data;

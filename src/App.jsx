@@ -39,6 +39,7 @@ import Dashboard from "./pages/Artists/Dashboard";
 import EditSongDetails from "./pages/Artists/EditSongsDetails";
 import { postUserPlayHistory } from "./services/playerState/playerState";
 import { getToken } from "./utils/storage.utils";
+import { useQueryClient } from "react-query";
 
 function App() {
   const [sidebar, setSideBar] = useState(false);
@@ -47,6 +48,7 @@ function App() {
 
   const elementRef = useRef();
   const previousState = useRef({ totalSecondPlayed: 0 });
+  const queryClient = useQueryClient();
 
   const playerState = useSelector((state) => state);
   const currentTime = useSelector((state) => state.currentTime);
@@ -112,7 +114,7 @@ function App() {
       totalSecondPlayed === 10 &&
       import.meta.env.VITE_ENVIRONMENT === "production"
     ) {
-      postUserPlayHistory(prevTrackID);
+      postUserPlayHistory(prevTrackID, queryClient);
     }
 
     // Count each seconds, a song is listened
