@@ -48,6 +48,7 @@ export function isUserLogin() {
 export function resetLoginData() {
   localStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem(USER_DATA_KEY);
+  localStorage.removeItem("playerState");
   sessionStorage.clear();
 }
 

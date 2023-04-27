@@ -11,9 +11,13 @@ import {
 import { MdDashboard, MdRecommend } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
+import { useDispatch } from "react-redux";
 
 import { resetLogin } from "@/redux/slices/userSlice";
 import useGSDispatch from "@/redux/useGSDispatch";
+import ActionCreators from "@/react-mui-player/redux/actionCreators";
+import { updatePlayState } from "@/utils/playerState.utils";
+import { getToken } from "@/utils/storage.utils";
 
 function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
   const location = useLocation();
@@ -30,17 +34,21 @@ function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
 }
 
 function SidebarLeft({ role, setClickUpload }) {
-  const dispatch = useGSDispatch();
+  const dispatchGS = useGSDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const token = getToken();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "leftSideBar",
   });
 
   const logoutHandler = function () {
-    dispatch(resetLogin());
+    dispatch(ActionCreators.stop());
+    updatePlayState(token);
     queryClient.removeQueries();
+    dispatchGS(resetLogin());
     navigate("/login");
   };
   return (

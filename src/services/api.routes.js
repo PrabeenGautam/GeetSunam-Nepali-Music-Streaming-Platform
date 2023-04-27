@@ -43,8 +43,8 @@ export const SongConfig = {
 
 export const PlayerConfig = {
   KEY: "PLAYER",
-  GET_STATE: "/player/get-state",
-  UPDATE_STATE: "/player/save-state",
+  GET_STATE: "/player/state/get",
+  UPDATE_STATE: "/player/state/save",
 };
 
 export const TrackUserConfig = {

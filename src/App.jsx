@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import "./App.css";
@@ -37,16 +31,19 @@ import SongDetails from "@/pages/SongDetails";
 import {
   getPlayerLocalState,
   storePlayerState,
+  updatePlayState,
 } from "./utils/playerState.utils";
 import UploadModel from "./components/Upload/uploadModel";
 import useGSSelector from "@/redux/useGSSelector";
 import Dashboard from "./pages/Artists/Dashboard";
 import EditSongDetails from "./pages/Artists/EditSongsDetails";
 import { postUserPlayHistory } from "./services/playerState/playerState";
+import { getToken } from "./utils/storage.utils";
 
 function App() {
   const [sidebar, setSideBar] = useState(false);
   const [clickUpload, setClickUpload] = useState(false);
+  const token = getToken();
 
   const elementRef = useRef();
   const previousState = useRef({ totalSecondPlayed: 0 });
@@ -71,6 +68,16 @@ function App() {
   // Run once to get initial player state
   useEffect(() => {
     getPlayerLocalState();
+
+    // Send Api call to store playerstate
+    window.addEventListener("beforeunload", function () {
+      updatePlayState(token);
+    });
+    return () => {
+      window.removeEventListener("beforeunload", function () {
+        updatePlayState(token);
+      });
+    };
   }, []);
 
   // Store the player state locally
