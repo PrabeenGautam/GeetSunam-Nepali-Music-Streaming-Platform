@@ -4,7 +4,6 @@ import { HiOutlineUser } from "react-icons/hi";
 import { BiPause, BiPlay } from "react-icons/bi";
 
 import RecentPlayed from "./SongsList";
-import Spinner from "./Loader/Spinner";
 import Featured from "./Featured/Featured";
 import CustomBreadcrumbs from "./Breadcrumbs";
 import FeaturedSkeleton from "./Loader/Featured";

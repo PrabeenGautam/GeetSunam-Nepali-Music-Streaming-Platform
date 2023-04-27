@@ -1,19 +1,51 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { isUserLogin } from "@/utils/storage.utils";
+import { toast } from "react-toastify";
 
-const ProtectedRoute = ({ children }) => {
-  const isLoggedIn = isUserLogin();
+import { isUserLogin } from "@/utils/storage.utils";
+import { setUserData } from "@/utils/storage.utils";
+import VerifyUserToken from "@/services/usersApi/verifyToken.api";
+import useGSDispatch from "@/redux/useGSDispatch";
+import { resetLogin } from "@/redux/slices/userSlice";
+import { useQueryClient } from "react-query";
+
+function ProtectedRoute({ children }) {
   const navigate = useNavigate();
+  const dispatch = useGSDispatch();
+  const { pathname } = useLocation();
+  const queryClient = useQueryClient();
+
+  const isLoggedIn = isUserLogin();
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/login", { replace: true });
-      return;
-    }
-  }, [isLoggedIn, navigate]);
+    const verifyToken = async function () {
+      if (isLoggedIn) {
+        try {
+          const response = await VerifyUserToken();
 
-  return isLoggedIn ? children : null;
-};
+          if (response.status === 200) {
+            setUserData(response.user);
+          } else {
+            throw new Error("Failed verifying user.");
+          }
+        } catch (error) {
+          toast.error("Failed verifying user. Try login again.");
+          dispatch(resetLogin());
+          queryClient.removeQueries();
+          navigate("/login", { replace: true });
+        }
+      }
+    };
+
+    verifyToken();
+  }, [isLoggedIn, pathname]);
+
+  if (isLoggedIn) {
+    return children;
+  } else {
+    navigate("/login", { replace: true });
+    queryClient.removeQueries();
+  }
+}
 
 export default ProtectedRoute;

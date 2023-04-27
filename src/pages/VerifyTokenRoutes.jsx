@@ -1,13 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { isUserLogin, resetLoginData } from "@/utils/storage.utils";
+import { isUserLogin } from "@/utils/storage.utils";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { setUserData } from "@/utils/storage.utils";
 import VerifyUserToken from "@/services/usersApi/verifyToken.api";
+import { resetLogin } from "@/redux/slices/userSlice";
+import useGSDispatch from "@/redux/useGSDispatch";
 
-function Redirect() {
+function VerifyTokenRoutes() {
   const isLoggedIn = isUserLogin();
   const navigate = useNavigate();
+  const dispatch = useGSDispatch();
 
   useEffect(() => {
     const verifyToken = async function () {
@@ -17,19 +20,33 @@ function Redirect() {
 
           if (response.status === 200) {
             setUserData(response.user);
-            navigate("/home");
+
+            const timer = setTimeout(() => {
+              navigate("/home");
+            }, [1000]);
+
+            return timer;
           }
         } catch (error) {
           toast.error("Failed verifying user. Try login again.");
-          resetLoginData();
-          navigate("/login");
+
+          const timer = setTimeout(() => {
+            dispatch(resetLogin());
+            navigate("/login");
+          }, [1000]);
+
+          return timer;
         }
       } else {
         navigate("/login");
       }
     };
 
-    verifyToken();
+    const timer = verifyToken();
+
+    if (timer) {
+      return () => clearTimeout(timer);
+    }
   }, [isLoggedIn, navigate]);
 
   return (
@@ -42,4 +59,4 @@ function Redirect() {
   );
 }
 
-export default Redirect;
+export default VerifyTokenRoutes;

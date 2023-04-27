@@ -1,6 +1,12 @@
-import React, { useLayoutEffect, Suspense } from "react";
+import React, { useLayoutEffect, Suspense, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { Provider } from "react-redux";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Flip, ToastContainer } from "react-toastify";
@@ -20,6 +26,7 @@ import LoginPage from "@/pages/auth/Login.page";
 import SignUpPage from "@/pages/auth/SignUp.page";
 import Loading from "@/components/Loading";
 import "@/components/i18n";
+import VerifyTokenRoutes from "./pages/VerifyTokenRoutes";
 
 const ScrollToTop = ({ children }) => {
   const location = useLocation();
@@ -48,7 +55,7 @@ root.render(
                   newestOnTop={false}
                   closeOnClick
                   rtl={false}
-                  pauseOnFocusLoss
+                  pauseOnFocusLoss={false}
                   draggable
                   transition={Flip}
                   pauseOnHover
@@ -57,7 +64,8 @@ root.render(
                 <Routes>
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/signup" element={<SignUpPage />} />
-                  <Route path="/login/verify" element={<Redirect />} />
+                  <Route path="/login/verify" element={<VerifyTokenRoutes />} />
+                  <Route path="/" element={<VerifyTokenRoutes />} />
                   <Route path="/*" element={<App />} />
                 </Routes>
               </ScrollToTop>

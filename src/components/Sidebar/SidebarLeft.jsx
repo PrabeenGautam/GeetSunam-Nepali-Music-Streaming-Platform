@@ -2,8 +2,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaMusic, FaUserShield } from "react-icons/fa";
 import { FiHeart, FiLogOut, FiMusic, FiTrendingUp } from "react-icons/fi";
 
-import { resetLogin } from "@/redux/slices/userSlice";
-import useGSDispatch from "@/redux/useGSDispatch";
 import { AiFillHome, AiTwotoneSetting } from "react-icons/ai";
 import {
   RiChatUploadFill,
@@ -12,6 +10,10 @@ import {
 } from "react-icons/ri";
 import { MdDashboard, MdRecommend } from "react-icons/md";
 import { useTranslation } from "react-i18next";
+import { useQueryClient } from "react-query";
+
+import { resetLogin } from "@/redux/slices/userSlice";
+import useGSDispatch from "@/redux/useGSDispatch";
 
 function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
   const location = useLocation();
@@ -30,6 +32,7 @@ function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
 function SidebarLeft({ role, setClickUpload }) {
   const dispatch = useGSDispatch();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "leftSideBar",
@@ -37,6 +40,7 @@ function SidebarLeft({ role, setClickUpload }) {
 
   const logoutHandler = function () {
     dispatch(resetLogin());
+    queryClient.removeQueries();
     navigate("/login");
   };
   return (

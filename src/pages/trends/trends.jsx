@@ -1,6 +1,5 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { useDispatch } from "react-redux";
 
 import Spinner from "@/components/Loader/Spinner";
 import RecentPlayed from "@/components/SongsList";
@@ -26,8 +25,6 @@ function Trends() {
   const trending = data && trackDetails(data);
   const loader = isLoading || isError;
 
-  const dispatch = useDispatch();
-
   return (
     <div className="content-container">
       <div className="trends">
@@ -35,7 +32,7 @@ function Trends() {
         <section className="top-trends">
           {!loader ? (
             <img
-              src={trending[0].trackDetails.coverArt}
+              src={trending?.[0]?.trackDetails?.coverArt}
               className="trend-image"
               alt="trending"></img>
           ) : (

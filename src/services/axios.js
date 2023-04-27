@@ -45,21 +45,18 @@ const getApiResponse = async ({
     }
     return result;
   } catch (error) {
-    toast.error(
-      error?.response?.data?.message ||
-        error?.response?.data?.error ||
-        "Something went wrong, please try again later.",
-      {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      }
-    );
+    const hasTokenMessage = error?.response?.data?.message
+      .toLowerCase()
+      .includes("token");
+
+    if (!hasTokenMessage) {
+      toast.error(
+        error?.response?.data?.message ||
+          error?.response?.data?.error ||
+          "Something went wrong, please try again later."
+      );
+    }
+
     return {
       APIFailed: true,
       error: error.response,

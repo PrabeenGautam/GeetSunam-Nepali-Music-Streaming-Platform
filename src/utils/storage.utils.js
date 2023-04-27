@@ -46,7 +46,8 @@ export function isUserLogin() {
 }
 
 export function resetLoginData() {
-  localStorage.clear();
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(USER_DATA_KEY);
   sessionStorage.clear();
 }
 
