@@ -18,6 +18,7 @@ import useGSDispatch from "@/redux/useGSDispatch";
 import ActionCreators from "@/react-mui-player/redux/actionCreators";
 import { updatePlayState } from "@/utils/playerState.utils";
 import { getToken } from "@/utils/storage.utils";
+import Logo from "./Logo";
 
 function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
   const location = useLocation();
@@ -53,14 +54,7 @@ function SidebarLeft({ role, setClickUpload }) {
   };
   return (
     <div className="left-sidebar child-scroll">
-      <div className="logo">
-        <Link to={"/"} id="home">
-          <FaMusic className="logo__music" />
-          <div className="logo__text">
-            <span className="logo__primary">Geet</span>Sunam
-          </div>
-        </Link>
-      </div>
+      <Logo />
       {/* ____________________________________Menu____________________________________  */}
       <div className="menu-list">
         <div className="menu-data">

@@ -19,3 +19,15 @@ export const Btn = styled.button`
     background-color: var(--text);
   }
 `;
+
+export const BtnLanding = styled.button`
+  border-width: 2px;
+  border-radius: 10px;
+  --tw-border-opacity: 1;
+  border-color: rgb(35 42 78 / 0.2);
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  background-color: #232a4e;
+`;
