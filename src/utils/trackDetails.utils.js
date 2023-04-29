@@ -10,7 +10,7 @@ export function trackDetails(songsList) {
           artists: song.artists.fullname,
           artist: song.artists.fullname,
           source: song.stream,
-          isFavourite: song.isFavourite,
+          isFavourite: song.isFavourite || false,
           isFeatured: song.isFeatured,
         },
       };
