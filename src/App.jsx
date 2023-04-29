@@ -59,7 +59,7 @@ function App() {
     [650, 4],
     [550, 3],
     [400, 2],
-    [0, 1],
+    [0, 2],
   ];
 
   const handleSideBar = function () {
@@ -164,7 +164,11 @@ function App() {
     <ProtectedRoute>
       <div className={`main-container ${sidebar ? "toggle" : ""}`}>
         <div>
-          <SidebarLeft setClickUpload={setClickUpload} role={userRole} />
+          <SidebarLeft
+            setClickUpload={setClickUpload}
+            role={userRole}
+            handleSideBar={handleSideBar}
+          />
           <div className="content" ref={elementRef}>
             <Navbar
               handleSideBar={handleSideBar}

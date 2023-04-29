@@ -68,7 +68,7 @@ function EditPlaylistsModelOverlay({ setClick, playlist }) {
   };
 
   return (
-    <div className="model">
+    <div className="model playlists">
       <div
         className="model-container"
         onClick={() => {

@@ -27,14 +27,40 @@
 
 /* Songs table responsive */
 @media screen and (max-width: 1170px) {
-  .recent-container {
+  .recent-container:not(.artists) {
     grid-template-columns:
       1.25rem minmax(2rem, 2.5rem) minmax(8.5rem, 1fr) minmax(7rem, 0.5fr)
       2.5rem 3.125rem 3.125rem;
   }
-  .released-date,
-  .recent-genre {
+
+  .recent-container:is(.artists) {
+    grid-template-columns:
+      1.25rem minmax(2rem, 2.5rem) minmax(8.5rem, 1fr)
+      2.5rem 1rem 3.125rem 3.125rem;
+  }
+
+  .recent-container .released-date,
+  .recent-container:not(.artists) .recent-genre,
+  .recent-container:is(.artists) .skip {
     display: none;
+  }
+
+  .top-trends h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .content-container.edit-song form {
+    display: block;
+  }
+
+  .content .song-preview {
+    max-width: 20rem;
+  }
+
+  .content-container.edit-song .song-details {
+    max-height: unset;
   }
 }
 
@@ -81,6 +107,10 @@
   .content-container {
     padding: 1rem 1.5rem;
   }
+
+  .content-container.edit-song form {
+    display: grid;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -114,6 +144,10 @@
   .land-log .form {
     width: 25rem;
   }
+
+  .content-container.edit-song form {
+    display: block;
+  }
 }
 
 /* Songs Responsive */
@@ -122,18 +156,37 @@
     font-size: 0.8rem !important;
   }
 
+  .recent-container:is(.artists) {
+    grid-template-columns:
+      1.25rem minmax(2rem, 2.5rem) minmax(8.5rem, 1fr)
+      2.5rem 1rem 3.125rem;
+  }
+
   .recent-container .recent-play {
     font-size: 1rem !important;
   }
 
-  .recent-container {
+  .recent-container:not(.artists),
+  .recent-container:not(.current-song) {
     grid-template-columns:
       1.25rem minmax(2rem, 2.5rem) minmax(8.5rem, 1fr) minmax(7rem, 0.5fr)
       2.5rem 3.125rem;
   }
 
+  .current-song {
+    grid-template-columns: 20px 2.5rem 1fr 50px 60px 50px !important;
+  }
+
   .length {
     display: none;
+  }
+
+  .upload-container {
+    width: 90vw;
+  }
+
+  .playlist-details div:nth-child(2) {
+    font-size: 3.5rem;
   }
 }
 
@@ -143,14 +196,40 @@
     font-size: 1.1rem;
   }
 
-  .recent-container .add-more {
+  .recent-container:not(.current-song) .add-more {
     display: none;
   }
 
-  .recent-container {
+  .recent-container:not(.artists),
+  .recent-container:not(.current-song) {
     grid-template-columns:
       1.25rem minmax(2rem, 2.5rem) minmax(8.5rem, 1fr) minmax(7rem, 0.5fr)
       1rem 1rem;
+  }
+
+  .current-song {
+    grid-template-columns: 20px 2.5rem 1fr 50px 60px 50px !important;
+  }
+
+  .trends .top-trends {
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .top-trends h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .trend-section .details * {
+    font-size: 0.75rem;
+  }
+
+  .trend-section button {
+    padding: 9px;
+    height: fit-content;
+    font-size: 1rem;
   }
 }
 
@@ -179,34 +258,131 @@
     margin-top: 5px;
   }
 
-  .recent-container {
+  .recent-container:not(.current-song, .artists) {
     grid-template-columns:
       minmax(2rem, 2.5rem) minmax(8.5rem, 1fr) minmax(7rem, 0.5fr)
       1rem 1rem;
   }
 
-  .recent-container .recent-play,
-  .recent-container .index {
+  .recent-container:is(.artists) {
+    grid-template-columns:
+      1.25rem minmax(8.5rem, 1fr)
+      2.5rem 1rem 1rem;
+  }
+
+  .recent-container:not(.current-song) .recent-play,
+  .recent-container:not(.current-song) .index {
     display: none;
   }
 
   .left-sidebar {
-    transition: 0.01s ease-in-out;
+    transition: 0.25s ease-in-out;
   }
 
   .left-sidebar:hover::-webkit-scrollbar-thumb {
     background-color: transparent;
   }
+
+  .playlist-images {
+    display: none !important;
+  }
+
+  .current-song .status {
+    display: none;
+  }
+
+  .current-song {
+    grid-template-columns: 20px 2.5rem 1fr 60px 50px !important;
+  }
+
+  .content .song-preview {
+    max-width: unset;
+  }
 }
 
 @media screen and (max-width: 500px) {
-  .recent-container {
+  .recent-container:not(.current-song, .artists) {
     grid-template-columns:
-      minmax(2rem, 2.5rem) minmax(8.5rem, 1fr)
+      minmax(2rem, 2.5rem) 1fr
       1rem 1rem;
   }
 
-  .recent-container .artists {
+  .recent-container.artists .song-name,
+  .recent-container.artists .song-name span {
+    font-size: 1rem !important;
+  }
+
+  .recent-container:is(.artists) {
+    grid-template-columns:
+      1.25rem minmax(8.5rem, 1fr)
+      1rem 1rem;
+  }
+
+  .recent-container .artists,
+  .current-song .add-more,
+  .current-song .recent-play,
+  .current-song .index,
+  .recent-container.artists .recent-genre,
+  .trends .details div:last-child {
     display: none;
+  }
+
+  .top-trends h2 {
+    font-size: 1rem;
+  }
+
+  .current-song {
+    grid-template-columns: 2.5rem 1fr 1.5rem 1.5rem !important;
+  }
+
+  .edit-more {
+    display: block;
+  }
+
+  .upload-container .guildlines {
+    display: none;
+  }
+
+  .playlist-container .artists-images {
+    height: 12rem;
+  }
+
+  .playlist-details div:nth-child(2) {
+    font-size: 2.5rem;
+  }
+
+  .playlist-details div:last-child {
+    flex-direction: column;
+  }
+
+  .playlist-details div:last-child > span:nth-child(2) {
+    display: none;
+  }
+
+  .edit-section .input-field {
+    grid-template-columns: 120px 1fr;
+  }
+
+  .edit-section .playlists-image {
+    width: 120px;
+  }
+
+  .edit-section .playlists-image img {
+    height: 120px;
+  }
+
+  .settings .edit-section .playlists-image img {
+    height: 180px;
+  }
+  .playlists .edit-section label {
+    font-size: 0.875rem;
+  }
+
+  .languages-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .languages-grid select {
+    max-height: 32px;
   }
 }

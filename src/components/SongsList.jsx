@@ -109,7 +109,7 @@ function RecentPlayed({
       {data?.length !== 0 ? (
         <section className="song-list">
           <div
-            className={`recent-container  list_heading ${
+            className={`recent-container list_heading ${
               artistContainer ? "artists" : ""
             }`}>
             <span className="index">#</span>

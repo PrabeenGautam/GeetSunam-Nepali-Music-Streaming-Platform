@@ -63,7 +63,8 @@ function Settings() {
           <select
             onChange={handleLanguage}
             defaultValue={localStorage.getItem("i18nextLng")}
-            ref={languageRef}>
+            ref={languageRef}
+            style={{ height: "max(100%, 32px)" }}>
             <option value="en">English (English)</option>
             <option value="np">नेपाली (Nepali)</option>
           </select>

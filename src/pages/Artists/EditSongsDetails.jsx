@@ -100,7 +100,7 @@ function EditSongDetails() {
                   placeholder={t("songPlaceholder")}
                   className="input-text"
                   name="title"
-                  defaultValue={currentSong.title}
+                  defaultValue={currentSong?.title}
                   onChange={inputChange}
                   maxLength={100}
                 />
@@ -112,7 +112,7 @@ function EditSongDetails() {
                   type="date"
                   className="input-text"
                   name="releasedDate"
-                  defaultValue={currentSong.releasedDate}
+                  defaultValue={currentSong?.releasedDate}
                   onChange={inputChange}
                 />
               </div>
@@ -129,8 +129,8 @@ function EditSongDetails() {
                   name="genre"
                   onChange={inputChange}
                   defaultValue={{
-                    label: currentSong.genre.name,
-                    value: currentSong.genre._id,
+                    label: currentSong?.genre?.name,
+                    value: currentSong?.genre?._id,
                   }}
                   menuPortalTarget={document.body}
                   styles={{
@@ -197,17 +197,17 @@ function EditSongDetails() {
               <div className="song-preview-details">
                 <div className="coverArt">
                   {currentSong.coverArt && (
-                    <img src={currentSong.coverArt} alt="image-preview" />
+                    <img src={currentSong?.coverArt} alt="image-preview" />
                   )}
                 </div>
                 <div>
                   <audio controls>
-                    <source src={currentSong.source} />
+                    <source src={currentSong?.source} />
                   </audio>
                 </div>
                 <div style={{ margin: 10 }}>
                   <div className="song-label">{t("filename")}</div>
-                  <div className="song-name">{currentSong.title}</div>
+                  <div className="song-name">{currentSong?.title}</div>
                 </div>
               </div>
 

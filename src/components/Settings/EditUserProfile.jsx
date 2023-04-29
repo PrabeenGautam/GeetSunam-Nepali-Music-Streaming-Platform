@@ -66,7 +66,7 @@ function EditUserModal({ setClick, profile }) {
 
   return (
     <>
-      <div className="model">
+      <div className="model settings">
         <div
           className="model-container"
           onClick={() => {

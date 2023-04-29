@@ -34,7 +34,7 @@ function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
   );
 }
 
-function SidebarLeft({ role, setClickUpload }) {
+function SidebarLeft({ role, setClickUpload, handleSideBar }) {
   const dispatchGS = useGSDispatch();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -137,7 +137,12 @@ function SidebarLeft({ role, setClickUpload }) {
                   <span className="menu-text">{t("manageSongs")}</span>
                 </li>
               </NavLink>
-              <li className="submenus" onClick={() => setClickUpload(true)}>
+              <li
+                className="submenus"
+                onClick={() => {
+                  setClickUpload(true);
+                  handleSideBar(true);
+                }}>
                 <span className="menu-icon">
                   <RiChatUploadFill className="icons" />
                 </span>

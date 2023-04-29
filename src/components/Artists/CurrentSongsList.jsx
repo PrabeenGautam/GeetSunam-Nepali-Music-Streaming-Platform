@@ -2,6 +2,7 @@ import { FiClock, FiTrash } from "react-icons/fi";
 import useCurrentSong from "@/hooks/useCurrentSong";
 import ManageCurrentPlayback from "../PlayerBack/manageCurrentPlayback";
 import { BiLock } from "react-icons/bi";
+import { FaEdit } from "react-icons/fa";
 
 function CurrentSongsList({ data, setDeleteSong, editHandler }) {
   const currentSong = useCurrentSong();
@@ -22,7 +23,7 @@ function CurrentSongsList({ data, setDeleteSong, editHandler }) {
       {data?.length !== 0 ? (
         <section className="song-list">
           <div className={`recent-container current-song  list_heading `}>
-            <span>#</span>
+            <span className="index">#</span>
             <span></span>
             <span className="song-name">name</span>
             <span className="released-date">Released</span>
@@ -30,7 +31,7 @@ function CurrentSongsList({ data, setDeleteSong, editHandler }) {
             <span className="length">
               <FiClock />
             </span>
-            <span>Status</span>
+            <span className="status">Status</span>
             <span style={{ visibility: "hidden" }}>#</span>
           </div>
           {data &&
@@ -49,7 +50,7 @@ function CurrentSongsList({ data, setDeleteSong, editHandler }) {
                   />
 
                   <span className="length">{value.duration || value.time}</span>
-                  <span className="flex-center">
+                  <span className="flex-center status">
                     {value.public ? (
                       ""
                     ) : (
@@ -59,11 +60,16 @@ function CurrentSongsList({ data, setDeleteSong, editHandler }) {
                   <span className="add-more" onClick={() => editHandler(value)}>
                     Edit
                   </span>
+
+                  <FaEdit
+                    className="edit-more"
+                    title="Edit Songs"
+                    onClick={() => editHandler(value)}
+                    style={{ fill: "white" }}
+                  />
+
                   <span className="more" onClick={() => setDeleteSong(value)}>
-                    <FiTrash
-                      style={{ stroke: "white" }}
-                      title="Remove from Playlists"
-                    />
+                    <FiTrash style={{ stroke: "white" }} title="Remove songs" />
                   </span>
                 </div>
               );

@@ -663,6 +663,10 @@ a {
   grid-template-columns: 20px 2.5rem 1fr 100px 80px 60px 50px 60px 50px;
 }
 
+.edit-more {
+  display: none;
+}
+
 .skip {
   height: 100%;
 }
@@ -758,14 +762,15 @@ a {
 }
 
 .trends .top-trends {
-  display: flex;
-  gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
   align-items: flex-end;
 }
 
 .trends .trend-image {
-  width: 450px;
-  height: 300px;
+  max-height: 300px;
+  height: 100%;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -902,8 +907,8 @@ h2:not(.h2) {
 }
 
 .playlist-container .artists-images {
-  width: 15rem;
   height: 15rem;
+  aspect-ratio: 1 / 1;
   align-self: flex-end;
   box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
 }
@@ -1127,6 +1132,12 @@ h3:not(.h3) {
   width: 32.75rem;
 }
 
+.model.playlists .container,
+.model.settings .container {
+  max-width: 32.75rem;
+  width: 100%;
+}
+
 .upload-container {
   width: min(80vmax, 60rem);
   height: min(80vmax, 40rem);
@@ -1261,7 +1272,7 @@ h3:not(.h3) {
   text-align: center;
   line-height: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 10px 0;
+  padding: 10px;
 }
 
 .save-playlist {

@@ -107,7 +107,7 @@ function PlaylistsDetails() {
               backgroundColor: "var(--highlight)",
               padding: "4px 8px",
               color: "white",
-              zIndex: 999,
+              zIndex: 997,
               borderRadius: 4,
               fontSize: 13,
             }}>
