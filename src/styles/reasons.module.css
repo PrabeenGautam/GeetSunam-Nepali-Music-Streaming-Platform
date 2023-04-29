@@ -1,0 +1,80 @@
+#reasons {
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 50vh;
+  padding: 2rem;
+}
+#reasons div {
+  text-align: center;
+  font-size: 1.875rem;
+  color: white;
+  font-weight: bold;
+}
+
+#reasons main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5rem;
+}
+
+.circleMainContainer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.circleSvg {
+  width: 7.5rem;
+  height: 7.5rem;
+  background: linear-gradient(to left, #dc143c, var(--highlight));
+  border-radius: 50%;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circleSvg .icons {
+  position: absolute;
+  color: #fff;
+  font-size: 3rem;
+}
+
+.circleMainContainer p {
+  color: #888;
+  font-size: 12px;
+}
+
+.circleMainContainer h3 {
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#itsFree {
+  width: 100vw;
+  height: 50vh;
+  background: #111;
+}
+
+#itsFree div {
+  text-align: center;
+  color: #fff;
+  font-size: 3rem;
+}
+#itsFree span {
+  text-align: center;
+}
+
+@media screen and (max-width: 1050px) {
+  #reasons main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #reasons main {
+    grid-template-columns: 1fr;
+  }
+}

@@ -18,7 +18,7 @@ function Header() {
             showToggle ? classes["show-menu"] : ""
           }`}>
           <ul className={classes["nav_list"]}>
-            <li>
+            <li onClick={() => setShowToggle(false)}>
               <a
                 href="#"
                 className={`${classes["nav_link"]} ${classes["active"]}`}>
@@ -26,13 +26,20 @@ function Header() {
               </a>
             </li>
 
-            <li>
-              <a href="#" className={classes["nav_link"]}>
+            <li onClick={() => setShowToggle(false)}>
+              <a href="#artist" className={`${classes["nav_link"]} `}>
+                Artists
+              </a>
+            </li>
+
+            <li onClick={() => setShowToggle(false)}>
+              <a href="/login" className={classes["nav_link"]}>
                 Login
               </a>
             </li>
-            <li>
-              <a href="#" className={classes["nav_link"]}>
+
+            <li onClick={() => setShowToggle(false)}>
+              <a href="/signup" className={classes["nav_link"]}>
                 Signup
               </a>
             </li>

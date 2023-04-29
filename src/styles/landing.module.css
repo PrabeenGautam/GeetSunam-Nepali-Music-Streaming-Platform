@@ -9,7 +9,6 @@ li {
   font-weight: 500;
   overflow-x: hidden;
   font-family: "Barlow", sans-serif;
-  font-size: 10px;
 }
 
 .container {
@@ -63,7 +62,7 @@ li {
   left: -100%;
   width: 250px;
   height: 100%;
-  background-color: #00b9c6;
+  background-color: var(--highlight);
   transition: all 0.4s ease-in-out;
   padding: 15px 20px;
   opacity: 0;
@@ -178,7 +177,7 @@ li {
 
 .music-player {
   position: absolute;
-  bottom: -15%;
+  bottom: 0;
   left: 0;
   background-color: #000;
   width: 100%;
@@ -264,7 +263,7 @@ li {
   line-height: 78px !important;
   text-align: center;
   border-radius: 50% !important;
-  background-color: #00b9c6 !important;
+  background-color: #dc143c !important;
   font-size: inherit !important;
 }
 
