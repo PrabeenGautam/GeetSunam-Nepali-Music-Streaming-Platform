@@ -30,6 +30,7 @@ export const SongConfig = {
   GET_SONGS_BY_CURRENT_USER: `/songs/current-user`,
   GET_RECENTLY_PLAYED_SONG: "/users/songs/recent-play",
   GET_TRENDING_SONG: "/songs/trending",
+  GET_RANDOM_SONG: "/songs/random",
 
   GET_SONGS_BY_ID: (id) => `/songs/${id}`,
   UPDATE_SONGS: (id) => `/songs/${id}`,

@@ -116,6 +116,16 @@ export const getCurrentUserSongs = async () => {
   return result.data;
 };
 
+export const getRandomSongs = async () => {
+  const result = await getApiResponse({
+    url: SongConfig.GET_RANDOM_SONG,
+    method: "get",
+  });
+
+  if (result.APIFailed) return null;
+  return result.data;
+};
+
 export const deleteCurrentUserSong = async (id) => {
   const result = await getApiResponse({
     url: SongConfig.DELETE_SONGS(id),

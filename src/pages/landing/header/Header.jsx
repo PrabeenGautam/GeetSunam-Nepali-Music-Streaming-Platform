@@ -1,7 +1,56 @@
-import Logo from "@/components/Sidebar/Logo";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+import classes from "@/styles/landing.module.css";
+import logo from "@/assets/images/landing/logo.png";
 
 function Header() {
-  return <div className=""></div>;
+  const [showToggle, setShowToggle] = useState(false);
+
+  return (
+    <header className={classes["header"]}>
+      <div className={classes["container"]}>
+        <Link to={"/"} className={classes["logo"]}>
+          <img src={logo} alt="logo" />
+        </Link>
+        <nav
+          className={`${classes["nav_menu"]} ${
+            showToggle ? classes["show-menu"] : ""
+          }`}>
+          <ul className={classes["nav_list"]}>
+            <li>
+              <a
+                href="#"
+                className={`${classes["nav_link"]} ${classes["active"]}`}>
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a href="#" className={classes["nav_link"]}>
+                Login
+              </a>
+            </li>
+            <li>
+              <a href="#" className={classes["nav_link"]}>
+                Signup
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <button
+          className={`${classes["nav_toggle"]} ${classes["button"]} ${
+            showToggle ? classes["active"] : ""
+          }`}
+          onClick={() => setShowToggle((prev) => !prev)}>
+          <span className={classes["bar1"]} style={{ display: "block" }}></span>
+          <span className={classes["bar2"]} style={{ display: "block" }}></span>
+          <span className={classes["bar3"]} style={{ display: "block" }}></span>
+        </button>
+      </div>
+    </header>
+  );
 }
 
 export default Header;
