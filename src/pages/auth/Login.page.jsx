@@ -16,6 +16,7 @@ import {
   loginUserThunk,
   googleLoginUserThunk,
 } from "@/redux/middlewares/loginUserThunk";
+import Logo from "@/components/Sidebar/Logo";
 
 function LoginPage() {
   const gsDispatch = useGSDispatch();
@@ -90,12 +91,7 @@ function LoginPage() {
     <div className="log-container">
       <div className="nav-section">
         <div className="logo">
-          <Link to={"/"} style={{ display: "flex", gap: 10 }}>
-            <FaMusic className="logo__music" />
-            <div className="logo__text">
-              <span className="logo__primary">Geet</span>Sunam
-            </div>
-          </Link>
+          <Logo />
         </div>
         <div className="languages">
           <select
@@ -107,7 +103,7 @@ function LoginPage() {
         </div>
       </div>
 
-      <div className="land-log">
+      <div className="land-log login">
         <section className="form-section">
           <div className="form">
             <div className="title">{t("welcome")}</div>

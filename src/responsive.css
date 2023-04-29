@@ -1,0 +1,212 @@
+@media screen and (max-width: 1300px) {
+  .content {
+    margin: 0 0 0 14.5rem;
+  }
+
+  .right-sidebar {
+    display: none;
+  }
+
+  .user-detail .userprofile {
+    display: block;
+    border: none;
+  }
+
+  .user-detail .userprofile .user-name {
+    display: none;
+  }
+
+  .user-detail .userprofile img {
+    width: 2.5rem;
+  }
+
+  .genre-sidebar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Songs table responsive */
+@media screen and (max-width: 1170px) {
+  .recent-container {
+    grid-template-columns:
+      1.25rem minmax(2rem, 2.5rem) minmax(8.5rem, 1fr) minmax(7rem, 0.5fr)
+      2.5rem 3.125rem 3.125rem;
+  }
+  .released-date,
+  .recent-genre {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .left-sidebar {
+    height: 100vh;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transition: 0.25s ease-in;
+  }
+
+  .featured .img {
+    height: 25rem;
+  }
+
+  .main-container.toggle .featured .img {
+    height: 25rem;
+  }
+
+  .left-sidebar {
+    left: -15rem;
+  }
+
+  .main-container.toggle .left-sidebar {
+    left: 0;
+  }
+
+  .navmenu {
+    flex-direction: row-reverse;
+  }
+
+  .content {
+    margin: 0;
+  }
+
+  .recent-container .heart {
+    visibility: visible;
+  }
+
+  .content-container {
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .log-container {
+    background-color: transparent;
+  }
+
+  .log-container .nav-section {
+    padding: 2rem 1.5rem;
+    position: relative;
+  }
+
+  .land-log .art-section {
+    display: none;
+  }
+
+  .land-log {
+    min-height: unset;
+  }
+
+  .land-log {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 3rem 0;
+  }
+
+  .land-log .form .title {
+    font: normal 500 32px "Roboto";
+  }
+
+  .land-log .form {
+    width: 25rem;
+  }
+}
+
+/* Songs Responsive */
+@media screen and (max-width: 700px) {
+  .recent-container *:not(.song-name, .add-more, .playlist-icons, .heart) {
+    font-size: 0.8rem !important;
+  }
+
+  .recent-container .recent-play {
+    font-size: 1rem !important;
+  }
+
+  .recent-container {
+    grid-template-columns:
+      1.25rem minmax(2rem, 2.5rem) minmax(8.5rem, 1fr) minmax(7rem, 0.5fr)
+      2.5rem 3.125rem;
+  }
+
+  .length {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .recent-container .playlist-icons {
+    display: block;
+    font-size: 1.1rem;
+  }
+
+  .recent-container .add-more {
+    display: none;
+  }
+
+  .recent-container {
+    grid-template-columns:
+      1.25rem minmax(2rem, 2.5rem) minmax(8.5rem, 1fr) minmax(7rem, 0.5fr)
+      1rem 1rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .logo img {
+    width: 9rem;
+  }
+
+  .land-log .form {
+    width: 100%;
+  }
+
+  .land-log {
+    display: flex;
+    justify-content: center;
+    margin: 0 2rem 0;
+  }
+
+  .land-log.login {
+    align-items: center;
+    height: calc(100vh - 6rem);
+  }
+
+  .land-log .form .subtitle {
+    font-size: 0.75rem;
+    margin-top: 5px;
+  }
+
+  .recent-container {
+    grid-template-columns:
+      minmax(2rem, 2.5rem) minmax(8.5rem, 1fr) minmax(7rem, 0.5fr)
+      1rem 1rem;
+  }
+
+  .recent-container .recent-play,
+  .recent-container .index {
+    display: none;
+  }
+
+  .left-sidebar {
+    transition: 0.01s ease-in-out;
+  }
+
+  .left-sidebar:hover::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .recent-container {
+    grid-template-columns:
+      minmax(2rem, 2.5rem) minmax(8.5rem, 1fr)
+      1rem 1rem;
+  }
+
+  .recent-container .artists {
+    display: none;
+  }
+}

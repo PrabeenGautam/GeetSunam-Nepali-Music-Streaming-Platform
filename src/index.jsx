@@ -12,6 +12,7 @@ import "./index.css";
 import "@/styles/common.css";
 import "@/styles/keyframes.css";
 import "react-toastify/dist/ReactToastify.css";
+import "./responsive.css";
 
 import geetSunamStore from "@/redux/store";
 import geetSunamStoreContext from "@/redux/storeContext";
@@ -69,6 +70,6 @@ root.render(
         </GoogleOAuthProvider>
       </Provider>
     </Provider>
-    <ReactQueryDevtools initialIsOpen={false} position="top-right" />
+    {/* <ReactQueryDevtools initialIsOpen={false} position="top-right" /> */}
   </QueryClientProvider>
 );

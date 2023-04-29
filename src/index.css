@@ -168,6 +168,10 @@ body {
   width: 18.5rem;
 }
 
+.genre-sidebar {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .player {
   border-top: 1px solid var(--divider);
   background-color: var(--primary);
@@ -185,6 +189,10 @@ body {
 .logo:hover *,
 .logo:hover .logo__primary {
   color: var(--tertiary);
+}
+
+.logo img {
+  width: 200px;
 }
 
 .active {
@@ -638,12 +646,13 @@ a {
 
 .recent-container {
   display: grid;
-  grid-template-columns: 20px 2.5rem 1fr 0.5fr 100px 100px 40px 50px 50px;
+  grid-template-columns:
+    1.25rem minmax(2rem, 2.5rem) minmax(8.5rem, 1fr) minmax(5rem, 0.5fr)
+    6.25rem 6.25rem 2.5rem 3.125rem 3.125rem;
   gap: 20px;
   margin-bottom: 20px;
   align-items: center;
   padding: 5px 20px;
-  user-select: none;
 }
 
 .artists-details {
@@ -682,7 +691,7 @@ a {
 
 .thumbnail-recent {
   width: 2.5rem;
-  height: 2.5rem;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 
@@ -694,6 +703,11 @@ a {
 .recent-container *:not(.song-name, .add-more) {
   color: #7a8580;
   font-size: 0.875rem;
+}
+
+.playlist-icons {
+  display: none;
+  cursor: pointer;
 }
 
 .recent-container .recent-play {
@@ -772,6 +786,12 @@ h2:not(.h2) {
 
 .song-list {
   margin-top: 20px;
+  overflow-x: auto;
+}
+
+.song-list::-webkit-scrollbar {
+  width: 15px;
+  display: block;
 }
 
 .song-list .list_heading {
@@ -1253,11 +1273,19 @@ h3:not(.h3) {
   gap: 20px;
   align-items: center;
   justify-content: center;
+
+  margin-top: 20;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  padding-bottom: 20;
+}
+
+.user-detail .userprofile {
+  display: none;
 }
 
 .userprofile img {
   width: 3rem;
-  height: 3rem;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -1425,7 +1453,6 @@ h3:not(.h3) {
 }
 
 .land-log {
-  width: 90vw;
   min-height: 100vh;
   height: 100%;
   display: grid;
@@ -1439,6 +1466,7 @@ h3:not(.h3) {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .land-log .form-section {
@@ -1446,18 +1474,20 @@ h3:not(.h3) {
   align-items: center;
   justify-content: center;
   height: 100%;
+  width: 100%;
   font-family: "Raleway", sans-serif;
   font-weight: 600;
 }
 
 .land-log .form {
-  min-width: 22rem;
+  width: 22rem;
 }
 
 .log-container .nav-section {
   position: fixed;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 2rem 2.5rem;
   z-index: 1000;
@@ -1730,14 +1760,22 @@ h3:not(.h3) {
   height: 3.75rem;
   background-color: #0f0f0f;
 
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
-  padding: 0 1.5rem;
+  gap: 2rem;
 
   position: sticky;
   top: 0;
   z-index: 998;
   border-bottom: 1px solid rgb(70, 70, 70);
+}
+
+.navmenu-fixed {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .navmenu-hamburger {

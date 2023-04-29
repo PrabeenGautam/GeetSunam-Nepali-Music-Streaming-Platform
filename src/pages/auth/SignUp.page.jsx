@@ -14,6 +14,7 @@ import {
   googleSignUpUserThunk,
 } from "@/redux/middlewares/signupUserThunk";
 import useGSSelector from "@/redux/useGSSelector";
+import Logo from "@/components/Sidebar/Logo";
 
 function SignUpPage() {
   const gsDispatch = useGSDispatch();
@@ -74,14 +75,7 @@ function SignUpPage() {
   return (
     <div className="log-container">
       <div className="nav-section">
-        <div className="logo">
-          <Link to={"/"} style={{ display: "flex", gap: 10 }}>
-            <FaMusic className="logo__music" />
-            <div className="logo__text">
-              <span className="logo__primary">Geet</span>Sunam
-            </div>
-          </Link>
-        </div>
+        <Logo />
         <div className="languages">
           <select
             onChange={handleLanguage}

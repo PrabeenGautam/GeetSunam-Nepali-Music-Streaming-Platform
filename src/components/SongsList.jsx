@@ -11,6 +11,7 @@ import ActionCreators from "@/react-mui-player/redux/actionCreators";
 import { toggleSongsFavourite } from "@/services/musicApi/postSongs.api";
 import { removeSongsFromPlaylists } from "@/services/playlistApi/getPlaylist.api";
 import ManageSongsPlayback from "./PlayerBack/manageSongsPlayback";
+import { MdPlaylistAdd } from "react-icons/md";
 
 function RecentPlayed({
   removeFromPlaylist = false,
@@ -111,11 +112,11 @@ function RecentPlayed({
             className={`recent-container  list_heading ${
               artistContainer ? "artists" : ""
             }`}>
-            <span>#</span>
+            <span className="index">#</span>
             <span></span>
             <span className="song-name">name</span>
             {!artistContainer ? (
-              <span className="artist">artists</span>
+              <span className="artists">artists</span>
             ) : (
               <span className="skip"></span>
             )}
@@ -166,12 +167,21 @@ function RecentPlayed({
                       />
                     </span>
                   ) : (
-                    <span
-                      className="add-more"
-                      title="Add to Playlists"
-                      onClick={() => handlePlaylist(value)}>
-                      Add
-                    </span>
+                    <>
+                      <span
+                        className="add-more"
+                        title="Add to Playlists"
+                        onClick={() => handlePlaylist(value)}>
+                        Add
+                      </span>
+
+                      <MdPlaylistAdd
+                        style={{ stroke: "white" }}
+                        title="Add to Playlists"
+                        className="playlist-icons"
+                        onClick={() => handlePlaylist(value)}
+                      />
+                    </>
                   )}
                 </div>
               );

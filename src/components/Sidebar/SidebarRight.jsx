@@ -6,6 +6,7 @@ import { getGenresApi } from "@/services/musicApi/getGenres.api";
 import Spinner from "../Loader/Spinner";
 import { useQuery } from "react-query";
 import { useTranslation } from "react-i18next";
+import LoginUser from "./LoginUser";
 
 function SidebarRight() {
   const { userData } = useGSSelector((state) => state.userState);
@@ -24,22 +25,12 @@ function SidebarRight() {
 
   return !loader ? (
     <div className="sidebar-right">
-      <Link
-        to="/settings"
-        className="userprofile"
-        style={{
-          marginTop: 20,
-          borderBottom: "1px solid rgba(255,255,255,0.4",
-          paddingBottom: 20,
-        }}>
-        <img src={userData.profileImage} alt="" />
-        <div className="userName">{userData.fullname}</div>
-      </Link>
+      <LoginUser userData={userData} />
 
       {genres && (
         <>
           <div className="sidebar-title">{t("genre")}</div>
-          <div className="grid grid-column-3 gap-sm">
+          <div className="grid genre-sidebar gap-sm">
             {genres.map((value) => {
               return (
                 <div className="genre" key={value._id}>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { SidebarLeft, SidebarRight } from "@/components/Sidebar";
@@ -47,6 +47,7 @@ function App() {
   const elementRef = useRef();
   const previousState = useRef({ totalSecondPlayed: 0 });
   const queryClient = useQueryClient();
+  const { pathname } = useLocation();
 
   const playerState = useSelector((state) => state);
   const currentTime = useSelector((state) => state.currentTime);
@@ -84,6 +85,15 @@ function App() {
   useEffect(() => {
     storePlayerState(playerState);
   }, [playerState]);
+
+  useEffect(() => {
+    if (elementRef) {
+      const width = elementRef?.current?.offsetWidth;
+      if (width <= 900 && sidebar) {
+        setSideBar(false);
+      }
+    }
+  }, [pathname]);
 
   // Storing Play History of the user
   useEffect(() => {
@@ -130,6 +140,7 @@ function App() {
     const handleSize = () => {
       if (elementRef) {
         const width = elementRef?.current?.offsetWidth;
+
         const columnCount = columnCountLookup.find(
           ([minWidth]) => width > minWidth
         )?.[1];

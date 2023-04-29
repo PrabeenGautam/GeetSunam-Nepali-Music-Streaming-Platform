@@ -6,7 +6,7 @@ function Logo() {
   return (
     <div>
       <Link to={"/"} className="logo flex-center">
-        <img src={logo} alt="logo" style={{ width: "90%" }} />
+        <img src={logo} alt="logo" />
       </Link>
 
       {/* <Link to={"/"} id="home">
