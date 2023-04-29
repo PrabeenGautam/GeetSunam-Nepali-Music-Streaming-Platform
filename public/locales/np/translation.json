@@ -39,7 +39,8 @@
     "logout": "लग आउट",
     "dashboard": "ड्यासबोर्ड",
     "manageSongs": "गीतहरू व्यवस्थापन गर्नुहोस्",
-    "uploadSongs": "गीतहरू अपलोड गर्नुहोस्"
+    "uploadSongs": "गीतहरू अपलोड गर्नुहोस्",
+    "genre": "विधाहरू"
   },
   "generalDetails": {
     "name": "नाम",

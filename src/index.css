@@ -172,6 +172,10 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.genre-section {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .player {
   border-top: 1px solid var(--divider);
   background-color: var(--primary);
@@ -300,6 +304,17 @@ a {
   width: 100%;
   height: 60px;
   border-radius: 10px;
+}
+
+.genre-section .genre-image img {
+  width: 150px;
+  aspect-ratio: 1 / 1;
+}
+
+.genre-section .genre-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .genre .genre-name {
@@ -1285,9 +1300,9 @@ h3:not(.h3) {
   align-items: center;
   justify-content: center;
 
-  margin-top: 20;
+  margin-top: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  padding-bottom: 20;
+  padding-bottom: 20px;
 }
 
 .user-detail .userprofile {

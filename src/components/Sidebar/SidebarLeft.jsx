@@ -8,7 +8,7 @@ import {
   RiCompassDiscoverFill,
   RiPlayListFill,
 } from "react-icons/ri";
-import { MdDashboard, MdRecommend } from "react-icons/md";
+import { MdDashboard, MdLibraryMusic, MdRecommend } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
@@ -34,7 +34,12 @@ function NavLink({ to, activeClassName, inactiveClassName, ...rest }) {
   );
 }
 
-function SidebarLeft({ role, setClickUpload, handleSideBar }) {
+function SidebarLeft({
+  role,
+  setClickUpload,
+  handleSideBar,
+  showGenre = false,
+}) {
   const dispatchGS = useGSDispatch();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -77,6 +82,17 @@ function SidebarLeft({ role, setClickUpload, handleSideBar }) {
                 <span className="menu-text">{t("trending")}</span>
               </li>
             </NavLink>
+
+            {showGenre && (
+              <NavLink to="genre" activeClassName="active">
+                <li className="submenus">
+                  <span className="menu-icon">
+                    <MdLibraryMusic className="icons" />
+                  </span>
+                  <span className="menu-text">{t("genre")}</span>
+                </li>
+              </NavLink>
+            )}
           </ul>
         </div>
       </div>

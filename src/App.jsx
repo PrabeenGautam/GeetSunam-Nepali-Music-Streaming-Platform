@@ -38,10 +38,12 @@ import EditSongDetails from "./pages/Artists/EditSongsDetails";
 import { postUserPlayHistory } from "./services/playerState/playerState";
 import { getToken } from "./utils/storage.utils";
 import { useQueryClient } from "react-query";
+import Genre from "./pages/Genre";
 
 function App() {
   const [sidebar, setSideBar] = useState(false);
   const [clickUpload, setClickUpload] = useState(false);
+  const [showGenre, setShowGenre] = useState(false);
   const token = getToken();
 
   const elementRef = useRef();
@@ -92,6 +94,12 @@ function App() {
       if (width <= 900 && sidebar) {
         setSideBar(false);
       }
+
+      if (width <= 1300 && !showGenre) {
+        setShowGenre(true);
+      } else {
+        setShowGenre(false);
+      }
     }
   }, [pathname]);
 
@@ -140,6 +148,13 @@ function App() {
     const handleSize = () => {
       if (elementRef) {
         const width = elementRef?.current?.offsetWidth;
+        const containerWidth = window.innerWidth;
+
+        if (containerWidth <= 1300) {
+          setShowGenre(true);
+        } else {
+          setShowGenre(false);
+        }
 
         const columnCount = columnCountLookup.find(
           ([minWidth]) => width > minWidth
@@ -168,6 +183,7 @@ function App() {
             setClickUpload={setClickUpload}
             role={userRole}
             handleSideBar={handleSideBar}
+            showGenre={showGenre}
           />
           <div className="content" ref={elementRef}>
             <Navbar
@@ -193,6 +209,8 @@ function App() {
 
               {/* Redirect Since Genre List is shown in Sidebar*/}
               <Route path="/*" element={<Navigate replace to="/" />} />
+
+              <Route path="/genre" element={<Genre />} />
               <Route path="/genre/:id" element={<GenreContainer />} />
               <Route path="/results" element={<SearchPages />} />
               <Route path="/results/artists" element={<SearchArtists />} />

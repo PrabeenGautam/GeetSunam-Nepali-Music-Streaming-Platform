@@ -39,7 +39,8 @@
     "logout": "Logout",
     "dashboard": "Dashboard",
     "manageSongs": "Manage Songs",
-    "uploadSongs": "Upload Songs"
+    "uploadSongs": "Upload Songs",
+    "genre": "Genre"
   },
   "generalDetails": {
     "name": "Name",

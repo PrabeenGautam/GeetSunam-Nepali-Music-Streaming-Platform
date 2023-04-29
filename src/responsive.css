@@ -7,6 +7,10 @@
     display: none;
   }
 
+  .navmenu {
+    height: 5rem;
+  }
+
   .user-detail .userprofile {
     display: block;
     border: none;
@@ -16,12 +20,18 @@
     display: none;
   }
 
-  .user-detail .userprofile img {
-    width: 2.5rem;
-  }
-
   .genre-sidebar {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .navmenu-hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navmenu-hamburger svg {
+    font-size: 2rem;
   }
 }
 
@@ -384,5 +394,9 @@
   }
   .languages-grid select {
     max-height: 32px;
+  }
+
+  .genre-section {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
