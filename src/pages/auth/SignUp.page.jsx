@@ -64,10 +64,13 @@ function SignUpPage() {
 
   useEffect(() => {
     if (loginStatus) {
-      navigate("/home", { replace: false });
+      const timer = setTimeout(() => {
+        navigate("/login/verify", { replace: false });
+      }, 1000);
+
+      return () => clearTimeout(timer);
     }
   }, [loginStatus, navigate]);
-
   return (
     <div className="log-container">
       <div className="nav-section">

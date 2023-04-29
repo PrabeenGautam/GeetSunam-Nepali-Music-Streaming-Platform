@@ -78,7 +78,11 @@ function LoginPage() {
 
   useEffect(() => {
     if (loginStatus) {
-      navigate("/login/verify", { replace: false });
+      const timer = setTimeout(() => {
+        navigate("/login/verify", { replace: false });
+      }, 1000);
+
+      return () => clearTimeout(timer);
     }
   }, [loginStatus, navigate]);
 
