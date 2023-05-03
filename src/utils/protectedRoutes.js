@@ -10,6 +10,7 @@ import VerifyUserToken from "@/services/usersApi/verifyToken.api";
 import useGSDispatch from "@/redux/useGSDispatch";
 import { resetLogin } from "@/redux/slices/userSlice";
 import { updatePlayState } from "./playerState.utils";
+import ActionCreators from "@/react-mui-player/redux/actionCreators";
 
 function ProtectedRoute({ children }) {
   const navigate = useNavigate();

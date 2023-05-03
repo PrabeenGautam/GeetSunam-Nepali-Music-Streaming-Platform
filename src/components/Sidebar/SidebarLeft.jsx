@@ -157,7 +157,7 @@ function SidebarLeft({
                 className="submenus"
                 onClick={() => {
                   setClickUpload(true);
-                  handleSideBar(true);
+                  window.innerWidth <= 900 && handleSideBar(true);
                 }}>
                 <span className="menu-icon">
                   <RiChatUploadFill className="icons" />

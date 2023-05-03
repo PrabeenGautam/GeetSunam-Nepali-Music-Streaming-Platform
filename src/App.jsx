@@ -95,7 +95,7 @@ function App() {
         setSideBar(false);
       }
 
-      if (width <= 1300 && !showGenre) {
+      if (width <= 1400) {
         setShowGenre(true);
       } else {
         setShowGenre(false);
@@ -150,7 +150,7 @@ function App() {
         const width = elementRef?.current?.offsetWidth;
         const containerWidth = window.innerWidth;
 
-        if (containerWidth <= 1300) {
+        if (containerWidth <= 1400) {
           setShowGenre(true);
         } else {
           setShowGenre(false);
