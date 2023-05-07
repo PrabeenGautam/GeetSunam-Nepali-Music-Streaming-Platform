@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AiOutlineCloudDownload } from "react-icons/ai";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Select from "react-select";
@@ -14,6 +14,8 @@ function EditSongDetails() {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation("translation", { keyPrefix: "editSong" });
+
+  const checkboxRef = useRef();
 
   const [currentSong, setCurrentSong] = useState(location.state);
   const [coverArt, setCoverArt] = useState("");
@@ -67,8 +69,7 @@ function EditSongDetails() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!formData) return;
+    const checked = checkboxRef.current.checked;
 
     const postData = new FormData();
     if (formData.title) postData.append("title", formData.title);
@@ -78,6 +79,8 @@ function EditSongDetails() {
     if (formData.genre) {
       postData.append("genre", formData.genre);
     }
+
+    postData.append("public", checked);
 
     const response = await updateSongApi({ formData: postData, songId });
     if (response.status === "success") {
@@ -210,7 +213,25 @@ function EditSongDetails() {
                   <div className="song-name">{currentSong?.title}</div>
                 </div>
               </div>
-
+              <div
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  margin: "15px 0 0",
+                }}>
+                <label htmlFor="checkbox" style={{ marginRight: 10 }}>
+                  {t("makePublic")}:{" "}
+                </label>
+                <input
+                  type="checkbox"
+                  name="public"
+                  id="checkbox"
+                  ref={checkboxRef}
+                  defaultChecked={currentSong.public}
+                  style={{ height: 20, width: 20 }}
+                />
+              </div>
               <button className="btn mt-20">{t("save")}</button>
             </div>
           </form>

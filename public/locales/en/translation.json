@@ -178,7 +178,8 @@
     "savedAsPrivate": "Save as Private",
     "singleFile": "Only single file is allowed to be uploaded at once.",
     "mp3File": "Only mp3 files are allowed to be uploaded.",
-    "uploading": "Uploading Files..."
+    "uploading": "Uploading Files...",
+    "makePublic": "Make Songs Public"
   },
   "sidebarRight": {
     "genre": "Genres"

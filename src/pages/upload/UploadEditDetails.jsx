@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Select from "react-select";
 import { AiOutlineCloudDownload } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
@@ -13,6 +13,8 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
   const { data: genres, isFetching } = getGenreData();
   const [coverArt, setCoverArt] = useState("");
   const [formData, setFormData] = useState({});
+
+  const checkboxRef = useRef();
 
   const { t } = useTranslation("translation", { keyPrefix: "editSong" });
 
@@ -88,7 +90,10 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const checked = checkboxRef.current.checked;
+
     const postData = new FormData();
+
     if (formData.title) postData.append("title", formData.title);
 
     if (formData.releasedDate)
@@ -102,6 +107,8 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
       const classifiedResponse = await classifyGenre();
       postData.append("genre", classifiedResponse?.genre?._id);
     }
+
+    postData.append("public", checked);
 
     const updatedData = await updateSong({
       formData: postData,
