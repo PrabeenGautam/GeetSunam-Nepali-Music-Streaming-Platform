@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import React, { useRef, useState } from "react";
 import Select from "react-select";
 import { AiOutlineCloudDownload } from "react-icons/ai";
@@ -15,6 +15,7 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
   const [formData, setFormData] = useState({});
 
   const checkboxRef = useRef();
+  const queryClient = useQueryClient();
 
   const { t } = useTranslation("translation", { keyPrefix: "editSong" });
 
@@ -108,7 +109,7 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
       postData.append("genre", classifiedResponse?.genre?._id);
     }
 
-    postData.append("public", checked);
+    if (uploadedSong.public !== checked) postData.append("public", checked);
 
     const updatedData = await updateSong({
       formData: postData,
@@ -119,7 +120,7 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
       "🚀 ~ file: UploadEditDetails.jsx:100 ~ handleSubmit ~ updatedData:",
       updatedData
     );
-
+    queryClient.invalidateQueries("currentUserSongs");
     setIsEditing(false);
   };
 
@@ -241,7 +242,25 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
                 <div className="song-name">{`${audioFile.name}`}</div>
               </div>
             </div>
-
+            <div
+              style={{
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                margin: "15px 0 0",
+              }}>
+              <label htmlFor="checkbox" style={{ marginRight: 10 }}>
+                {t("makePublic")}:{" "}
+              </label>
+              <input
+                type="checkbox"
+                name="public"
+                id="checkbox"
+                ref={checkboxRef}
+                defaultChecked={uploadedSong.public}
+                style={{ height: 20, width: 20 }}
+              />
+            </div>
             <button className="btn mt-20">{t("save")}</button>
           </div>
         </form>

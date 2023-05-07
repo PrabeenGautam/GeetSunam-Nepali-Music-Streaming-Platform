@@ -80,7 +80,7 @@ function EditSongDetails() {
       postData.append("genre", formData.genre);
     }
 
-    postData.append("public", checked);
+    if (currentSong.public !== checked) postData.append("public", checked);
 
     const response = await updateSongApi({ formData: postData, songId });
     if (response.status === "success") {
