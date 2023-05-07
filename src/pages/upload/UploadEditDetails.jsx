@@ -8,7 +8,7 @@ import { getGenreData } from "@/hooks/useGenresData";
 import { classifySongGenreApi } from "@/services/musicApi/classifySongGenre.api";
 import { updateSongApi } from "@/services/musicApi/postSongs.api";
 
-function UploadEditDetails({ audioFile, genre, uploadedSong }) {
+function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
   const [error, setError] = useState("");
   const { data: genres, isFetching } = getGenreData();
   const [coverArt, setCoverArt] = useState("");
@@ -92,17 +92,16 @@ function UploadEditDetails({ audioFile, genre, uploadedSong }) {
     if (formData.title) postData.append("title", formData.title);
 
     if (formData.releasedDate)
-      postData.append("releaseDate", formData.releasedDate);
+      postData.append("releasedDate", formData.releasedDate);
 
     if (coverArt) postData.append("coverArt", coverArt);
 
     if (formData.genre) {
       postData.append("genre", formData.genre);
+    } else {
+      const classifiedResponse = await classifyGenre();
+      postData.append("genre", classifiedResponse?.genre?._id);
     }
-    /* -------------------------------------------------------------------------- */
-    const classifiedResponse = await classifyGenre();
-    console.log(classifiedResponse, classifiedGenre);
-    postData.append("genre", classifiedResponse?.genre?._id);
 
     const updatedData = await updateSong({
       formData: postData,
@@ -113,6 +112,8 @@ function UploadEditDetails({ audioFile, genre, uploadedSong }) {
       "🚀 ~ file: UploadEditDetails.jsx:100 ~ handleSubmit ~ updatedData:",
       updatedData
     );
+
+    setIsEditing(false);
   };
 
   return (

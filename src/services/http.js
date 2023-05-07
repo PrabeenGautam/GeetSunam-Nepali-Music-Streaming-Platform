@@ -3,7 +3,7 @@ import { getToken } from "@/utils/storage.utils";
 
 const http = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
-  timeout: 10000,
+  timeout: 10 * 60 * 60 * 1000,
 });
 
 http.interceptors.request.use(

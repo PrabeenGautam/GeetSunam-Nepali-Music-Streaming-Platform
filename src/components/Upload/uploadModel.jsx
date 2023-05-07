@@ -59,6 +59,7 @@ function UploadModelOverlay({ setClickUpload }) {
       setShowProgress(false);
       setSongUploaded(true);
       setUploadedSong(response?.data?.song);
+      setIsEditing(true);
       queryClient.invalidateQueries("currentUserSongs");
     }
   };
@@ -113,6 +114,7 @@ function UploadModelOverlay({ setClickUpload }) {
             audioFile={uploadedFiles}
             genre={genre}
             uploadedSong={uploadedSong}
+            setIsEditing={setClickUpload}
           />
         )}
       </div>
