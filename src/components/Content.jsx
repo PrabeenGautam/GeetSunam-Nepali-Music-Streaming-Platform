@@ -64,11 +64,7 @@ function Content() {
     refetchOnWindowFocus: false,
   });
 
-  const {
-    data: songsRecommended,
-    isLoading: isLoadingRecommended,
-    isError: isErrorRecommended,
-  } = useQuery("recommendation", getRecommendedSongs, {
+  useQuery("recommendation", getRecommendedSongs, {
     select: (data) => data.data,
     refetchOnWindowFocus: false,
   });
