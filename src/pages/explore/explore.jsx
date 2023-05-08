@@ -48,7 +48,7 @@ function Explore() {
     isLoading: isLoadingRecommended,
     isError: isErrorRecommended,
   } = useQuery("recommendation", getRecommendedSongs, {
-    select: (data) => data.data.songs,
+    select: (data) => data.data,
     refetchOnWindowFocus: false,
   });
 

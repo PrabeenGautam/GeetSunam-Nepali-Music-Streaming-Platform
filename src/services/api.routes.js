@@ -26,7 +26,7 @@ export const SongConfig = {
   FEATURED_SONGS: "/songs/featured",
   NEW_RELEASES: "/songs/new-releases",
   UPLOAD_SONG: "/songs/upload",
-  RECOMMENDATION: "/songs",
+  RECOMMENDATION: "/users/songs/recommend",
   GET_SONGS_BY_CURRENT_USER: `/songs/current-user`,
   GET_RECENTLY_PLAYED_SONG: "/users/songs/recent-play",
   GET_TRENDING_SONG: "/songs/trending",

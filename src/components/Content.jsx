@@ -16,6 +16,7 @@ import { getFeaturedArtists } from "@/services/artistsApi/getArtistsDetails.api"
 import {
   getNewReleaseLimitedSongs,
   getRecentlyPlayedSongs,
+  getRecommendedSongs,
 } from "@/services/musicApi/getSongs.api";
 
 import {
@@ -60,6 +61,15 @@ function Content() {
     isError: isErrorRecent,
   } = useQuery(["recentlyPlayed"], getRecentlyPlayedSongs, {
     select: (data) => data.data.songs,
+    refetchOnWindowFocus: false,
+  });
+
+  const {
+    data: songsRecommended,
+    isLoading: isLoadingRecommended,
+    isError: isErrorRecommended,
+  } = useQuery("recommendation", getRecommendedSongs, {
+    select: (data) => data.data,
     refetchOnWindowFocus: false,
   });
 

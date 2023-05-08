@@ -14,7 +14,7 @@ function Recommnedations() {
     "recommendedSongs",
     getRecommendedSongs,
     {
-      select: (data) => data.data.songs,
+      select: (data) => data.data,
       refetchOnWindowFocus: false,
     }
   );
@@ -45,6 +45,7 @@ function Recommnedations() {
               <div>{t("createdBy")}</div>
               <div>{t("listen")}</div>
             </span>
+            {console.log(recommendedSongs)}
             {!loader ? (
               <ManagePlayback song={recommendedSongs[0]} />
             ) : (
