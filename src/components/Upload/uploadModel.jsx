@@ -20,9 +20,9 @@ function UploadModelOverlay({ setClickUpload }) {
   const [songUploaded, setSongUploaded] = useState(false);
   const [showProgress, setShowProgress] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState("");
-  const [genre, setGenre] = useState(null);
+  const [isGenreActive, setIsGenreActive] = useState(false);
   const [uploadProgress, setUploadProgress] = useState("");
-  const [uploadedSong, setUploadedSong] = useState("");
+  const [uploadedSong, setUploadedSong] = useState(null);
 
   const [error, setError] = useState("");
   const logoUploadRef = useRef();
@@ -59,14 +59,13 @@ function UploadModelOverlay({ setClickUpload }) {
       setShowProgress(false);
       setSongUploaded(true);
       setUploadedSong(response?.data?.song);
-      setIsEditing(true);
       queryClient.invalidateQueries("currentUserSongs");
     }
   };
 
   useEffect(() => {
     if (songUploaded) {
-      setGenre(true);
+      setIsGenreActive(true);
       setUploadProgress("Saved as Private");
       setShowProgress(false);
     }
@@ -76,7 +75,8 @@ function UploadModelOverlay({ setClickUpload }) {
     <div className="model">
       <div
         className="model-container"
-        onClick={() => !songUploaded && setClickUpload(false)}></div>
+        onClick={() => !songUploaded && setClickUpload(false)}
+      ></div>
       <div className="upload-container">
         <div className="header">
           <div className="header-details">
@@ -112,7 +112,7 @@ function UploadModelOverlay({ setClickUpload }) {
         {songUploaded && (
           <UploadEditDetails
             audioFile={uploadedFiles}
-            genre={genre}
+            isGenreActive={isGenreActive}
             uploadedSong={uploadedSong}
             setIsEditing={setClickUpload}
           />
