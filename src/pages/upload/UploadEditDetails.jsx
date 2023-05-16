@@ -6,7 +6,6 @@ import { AiOutlineCloudDownload } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 
 import { getGenreData } from "@/hooks/useGenresData";
-import { classifySongGenreApi } from "@/services/musicApi/classifySongGenre.api";
 import { updateSongApi } from "@/services/musicApi/postSongs.api";
 import { SongConfig } from "@/services/api.routes";
 import { getToken } from "@/utils/storage.utils";
@@ -21,39 +20,16 @@ function UploadEditDetails({
   const { data: genres, isFetching } = getGenreData();
   const [coverArt, setCoverArt] = useState("");
   const [formData, setFormData] = useState({});
-  const [classifiedGenre, setClassifiedGenre] = useState(null);
+  const [isClassifiedFromML, setIsClassifiedFromML] = useState(false);
+  const [selectedGenre, setSelectedGenre] = useState(null);
 
   const checkboxRef = useRef();
   const queryClient = useQueryClient();
 
   const { t } = useTranslation("translation", { keyPrefix: "editSong" });
 
-  // const {
-  //   mutateAsync: classifyGenre,
-  //   data: classifiedGenre,
-  //   isLoading: isClassifyGenreLoading,
-  // } = useMutation({
-  //   mutationFn: () => classifySongGenreApi({ songId: uploadedSong._id }),
-  //   onSuccess: (data) => {
-  //     console.log({ data }, "genre classified data");
-  //   },
-  //   onError: (error) => {
-  //     console.log({ error }, "error on classifing");
-  //   },
-  // });
-
-  const {
-    mutateAsync: updateSong,
-    data: updateSongData,
-    isLoading: isUpdatedSongLoading,
-  } = useMutation({
+  const { mutateAsync: updateSong } = useMutation({
     mutationFn: (postData) => updateSongApi(postData),
-    onSuccess: (data) => {
-      console.log({ data }, "Successfully updated genre");
-    },
-    onError: (error) => {
-      console.log({ error }, "Error on  updated genre");
-    },
   });
 
   const getURL = (file) => {
@@ -86,7 +62,6 @@ function UploadEditDetails({
     setError("");
     setCoverArt(files[0]);
 
-    console.log(files);
   };
 
   const inputChange = (e) => {
@@ -111,16 +86,13 @@ function UploadEditDetails({
 
     if (coverArt) postData.append("coverArt", coverArt);
 
-    if (formData.genre) {
-      postData.append("genre", formData.genre);
+    if (selectedGenre) {
+      postData.append("genre", selectedGenre.value);
     }
-    // else {
-    //   const classifiedResponse = await classifyGenre();
-    // }
 
     if (uploadedSong.public !== checked) postData.append("public", checked);
 
-    const updatedData = await updateSong({
+    await updateSong({
       formData: postData,
       songId: uploadedSong._id,
     });
@@ -136,7 +108,7 @@ function UploadEditDetails({
   };
 
   useEffect(() => {
-    if (classifiedGenre) {
+    if (isClassifiedFromML) {
       return;
     }
 
@@ -149,23 +121,18 @@ function UploadEditDetails({
       console.log("Classification SSE connection opened");
     };
 
-    // event.data example
-    //     {
-    //     "genre": {
-    //         "_id": "63b28aa4918fd29e1727e097",
-    //         "name": "Rock",
-    //         "image": "https://geetsunam.onrender.com/imgs/genres/genres-8-1673367531123.png"
-    //     }
-    // }
     eventSource.onmessage = (event) => {
       let eventData;
       if (event.data) {
         eventData = JSON.parse(event.data);
-        setClassifiedGenre(eventData);
+        setIsClassifiedFromML(true);
+        setSelectedGenre({
+          label: eventData.genre.name,
+          value: eventData.genre._id,
+        });
         toast.success(
           "Genre classified success. Please select your respective genre"
         );
-        // TODO: set genre in Select component once classified
         eventSource.close();
       }
     };
@@ -213,9 +180,10 @@ function UploadEditDetails({
                 className="react-select-container"
                 classNamePrefix="react-select"
                 options={genreSelectOptions}
-                isDisabled={!Boolean(isGenreActive)}
+                isDisabled={!Boolean(isClassifiedFromML)}
                 maxMenuHeight={180}
-                onChange={inputChange}
+                onChange={setSelectedGenre}
+                value={selectedGenre}
                 name="genre"
                 menuPortalTarget={document.body}
                 styles={{
@@ -248,9 +216,8 @@ function UploadEditDetails({
                 })}
               />
             </div>
-            {classifiedGenre && (
+            {isClassifiedFromML && (
               <p className="mt-10 song-info" style={{ color: "#22c252" }}>
-                {" "}
                 We have automatically recommended the song's genre. Please
                 re-select if you think the song belongs to other genre.
               </p>
