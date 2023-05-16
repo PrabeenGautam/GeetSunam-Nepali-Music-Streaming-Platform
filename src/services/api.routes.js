@@ -40,6 +40,10 @@ export const SongConfig = {
   CLASSIFY_SONG_GENRE: (songId) => `/song/predict-class/${songId}`,
   RECOMMEND_SONG_BASED_ON_CURRENT: (songId) =>
     `/song/recommend-top-n-songs/${songId}`,
+  CLASSIFICATION_SSE_STREAM: (songId) =>
+    `${
+      import.meta.env.VITE_API_BASE_URL
+    }/songs/${songId}/shared-genre-classification-stream`,
 };
 
 export const PlayerConfig = {

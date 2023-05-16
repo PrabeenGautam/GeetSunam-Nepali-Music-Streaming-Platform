@@ -1,5 +1,6 @@
+import React, { useRef, useState, useEffect } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import React, { useRef, useState } from "react";
+import { toast } from "react-toastify";
 import Select from "react-select";
 import { AiOutlineCloudDownload } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
@@ -7,31 +8,39 @@ import { useTranslation } from "react-i18next";
 import { getGenreData } from "@/hooks/useGenresData";
 import { classifySongGenreApi } from "@/services/musicApi/classifySongGenre.api";
 import { updateSongApi } from "@/services/musicApi/postSongs.api";
+import { SongConfig } from "@/services/api.routes";
+import { getToken } from "@/utils/storage.utils";
 
-function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
+function UploadEditDetails({
+  audioFile,
+  isGenreActive,
+  uploadedSong,
+  setIsEditing,
+}) {
   const [error, setError] = useState("");
   const { data: genres, isFetching } = getGenreData();
   const [coverArt, setCoverArt] = useState("");
   const [formData, setFormData] = useState({});
+  const [classifiedGenre, setClassifiedGenre] = useState(null);
 
   const checkboxRef = useRef();
   const queryClient = useQueryClient();
 
   const { t } = useTranslation("translation", { keyPrefix: "editSong" });
 
-  const {
-    mutateAsync: classifyGenre,
-    data: classifiedGenre,
-    isLoading: isClassifyGenreLoading,
-  } = useMutation({
-    mutationFn: () => classifySongGenreApi({ songId: uploadedSong._id }),
-    onSuccess: (data) => {
-      console.log({ data }, "genre classified data");
-    },
-    onError: (error) => {
-      console.log({ error }, "error on classifing");
-    },
-  });
+  // const {
+  //   mutateAsync: classifyGenre,
+  //   data: classifiedGenre,
+  //   isLoading: isClassifyGenreLoading,
+  // } = useMutation({
+  //   mutationFn: () => classifySongGenreApi({ songId: uploadedSong._id }),
+  //   onSuccess: (data) => {
+  //     console.log({ data }, "genre classified data");
+  //   },
+  //   onError: (error) => {
+  //     console.log({ error }, "error on classifing");
+  //   },
+  // });
 
   const {
     mutateAsync: updateSong,
@@ -104,10 +113,10 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
 
     if (formData.genre) {
       postData.append("genre", formData.genre);
-    } else {
-      const classifiedResponse = await classifyGenre();
-      postData.append("genre", classifiedResponse?.genre?._id);
     }
+    // else {
+    //   const classifiedResponse = await classifyGenre();
+    // }
 
     if (uploadedSong.public !== checked) postData.append("public", checked);
 
@@ -116,13 +125,55 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
       songId: uploadedSong._id,
     });
 
-    console.log(
-      "🚀 ~ file: UploadEditDetails.jsx:100 ~ handleSubmit ~ updatedData:",
-      updatedData
-    );
     queryClient.invalidateQueries("currentUserSongs");
     setIsEditing(false);
   };
+
+  const eventSourceConfig = {
+    headers: new Headers({
+      Authorization: `Bearer ${getToken()}`,
+    }),
+  };
+
+  useEffect(() => {
+    if (classifiedGenre) {
+      return;
+    }
+
+    const eventSource = new EventSource(
+      SongConfig.CLASSIFICATION_SSE_STREAM(uploadedSong?._id),
+      eventSourceConfig
+    );
+
+    eventSource.onopen = () => {
+      console.log("Classification SSE connection opened");
+    };
+
+    // event.data example
+    //     {
+    //     "genre": {
+    //         "_id": "63b28aa4918fd29e1727e097",
+    //         "name": "Rock",
+    //         "image": "https://geetsunam.onrender.com/imgs/genres/genres-8-1673367531123.png"
+    //     }
+    // }
+    eventSource.onmessage = (event) => {
+      let eventData;
+      if (event.data) {
+        eventData = JSON.parse(event.data);
+        setClassifiedGenre(eventData);
+        toast.success(
+          "Genre classified success. Please select your respective genre"
+        );
+        // TODO: set genre in Select component once classified
+        eventSource.close();
+      }
+    };
+
+    return () => {
+      eventSource.close();
+    };
+  }, []);
 
   return (
     <React.Fragment>
@@ -162,7 +213,7 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
                 className="react-select-container"
                 classNamePrefix="react-select"
                 options={genreSelectOptions}
-                isDisabled={!Boolean(genre)}
+                isDisabled={!Boolean(isGenreActive)}
                 maxMenuHeight={180}
                 onChange={inputChange}
                 name="genre"
@@ -197,6 +248,13 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
                 })}
               />
             </div>
+            {classifiedGenre && (
+              <p className="mt-10 song-info" style={{ color: "#22c252" }}>
+                {" "}
+                We have automatically recommended the song's genre. Please
+                re-select if you think the song belongs to other genre.
+              </p>
+            )}
 
             <div className="mt-20 mb-10">{t("coverArt")}</div>
             <div className="song-info">{t("coverArtDesc")}</div>
@@ -248,7 +306,8 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
                 display: "flex",
                 alignItems: "center",
                 margin: "15px 0 0",
-              }}>
+              }}
+            >
               <label htmlFor="checkbox" style={{ marginRight: 10 }}>
                 {t("makePublic")}:{" "}
               </label>
