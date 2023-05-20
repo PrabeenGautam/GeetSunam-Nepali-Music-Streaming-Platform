@@ -4,13 +4,14 @@ import { setUserLogin } from "@/utils/storage.utils";
 
 export const signUpUserThunk = createAsyncThunk(
   "users/signup",
-  async ({ email, password, fullname, confirmPassword }, thunkAPI) => {
+  async ({ email, password, fullname, confirmPassword, role }, thunkAPI) => {
     try {
       const response = await signUpApi({
         email,
         password,
         fullname,
         confirmPassword,
+        role,
       });
       if (response) {
         response.isRememberMe = true;

@@ -6,6 +6,7 @@ const signUpApi = async ({
   password = "",
   fullname = "",
   confirmPassword = "",
+  role = "user",
 }) => {
   const result = await getApiResponse({
     url: UserAuthConfig.SIGN_UP(),
@@ -15,6 +16,7 @@ const signUpApi = async ({
       password,
       fullname,
       confirmPassword,
+      role,
     },
   });
 
@@ -22,12 +24,13 @@ const signUpApi = async ({
   return result.data;
 };
 
-const googleSignUpApi = async ({ googleAccessToken }) => {
+const googleSignUpApi = async ({ googleAccessToken, role }) => {
   const result = await getApiResponse({
     url: UserAuthConfig.GOOGLE_SIGNUP(),
     method: "post",
     data: {
       googleAccessToken,
+      role,
     },
   });
 

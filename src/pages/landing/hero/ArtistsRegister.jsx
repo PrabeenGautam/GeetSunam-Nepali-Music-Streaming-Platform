@@ -1,7 +1,13 @@
 import classes from "@/styles/artists.module.css";
 import artists from "@/assets/images/landing/featured.png";
+import { useNavigate } from "react-router-dom";
 
 function ArtistsRegister() {
+  const navigate = useNavigate();
+
+  const handleArtistRegister = () => {
+    navigate("/signup", { state: { role: "artists" } });
+  };
   return (
     <section id="artist" className={`${classes["artist"]} flex-center`}>
       <div className={classes["row"]}>
@@ -16,10 +22,10 @@ function ArtistsRegister() {
             <li>Showcase your creation</li>
             <li>Get analytics of how well a song perform</li>
           </ul>
-          <div className={classes["btn-register"]}>
-            <a href="#" className={classes["btn"]}>
-              Register as an artist
-            </a>
+          <div
+            className={classes["btn-register"]}
+            onClick={handleArtistRegister}>
+            <div className={classes["btn"]}>Register as an artist</div>
           </div>
         </div>
         <div className={classes["artists-img"]}>

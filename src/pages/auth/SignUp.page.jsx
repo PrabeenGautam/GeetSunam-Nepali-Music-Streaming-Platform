@@ -1,5 +1,5 @@
 import { FaMusic } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
@@ -19,6 +19,9 @@ import Logo from "@/components/Sidebar/Logo";
 function SignUpPage() {
   const gsDispatch = useGSDispatch();
   const loginStatus = useGSSelector((state) => state.userState.loginStatus);
+  const state = useLocation().state;
+
+  const role = state?.role || "user";
 
   const [passwordShown, setPasswordShow] = useState(false);
   const { t, i18n } = useTranslation("translation", { keyPrefix: "signUp" });
@@ -45,7 +48,9 @@ function SignUpPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password, fullname, confirmPassword } = formData;
-    gsDispatch(signUpUserThunk({ email, password, fullname, confirmPassword }));
+    gsDispatch(
+      signUpUserThunk({ email, password, fullname, confirmPassword, role })
+    );
   };
 
   const handleGoogleLogin = useGoogleLogin({
@@ -53,6 +58,7 @@ function SignUpPage() {
       gsDispatch(
         googleSignUpUserThunk({
           googleAccessToken: data.access_token,
+          role,
         })
       );
     },
