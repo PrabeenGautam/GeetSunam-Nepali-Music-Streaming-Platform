@@ -74,11 +74,11 @@ function Hero() {
               anywhere and anytime 100% free
             </p>
 
-            <div className={classes["hero-wrapper"]}>
+            {/*   <div className={classes["hero-wrapper"]}>
               <button className={classes["button"]}>
                 <img src={btn1} alt="download" />
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
 
