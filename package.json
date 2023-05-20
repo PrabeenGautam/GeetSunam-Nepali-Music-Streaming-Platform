@@ -38,7 +38,8 @@
   "scripts": {
     "start": "vite --host",
     "build": "vite build",
-    "preview": "vite preview --port 8080"
+    "preview": "vite preview --port 8080",
+    "dev": "npm run start"
   },
   "eslintConfig": {
     "extends": [
