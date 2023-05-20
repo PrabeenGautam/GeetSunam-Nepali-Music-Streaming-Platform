@@ -151,7 +151,7 @@ function LoginPage() {
                     />
                     <label htmlFor="rememberMe">{t("rememberMe")}</label>
                   </div>
-                  <Link to="/forgetpassword" className="links">
+                  <Link to="/forget-password" className="links">
                     {t("forgetPassword")}
                   </Link>
                 </div>

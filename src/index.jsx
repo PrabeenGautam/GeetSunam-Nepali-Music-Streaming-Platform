@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Flip, ToastContainer } from "react-toastify";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
 
 import App from "@/App";
 import "./index.css";
@@ -23,6 +22,8 @@ import Loading from "@/components/Loading";
 import "@/components/i18n";
 import VerifyTokenRoutes from "./pages/VerifyTokenRoutes";
 import LandingPage from "./pages/landing/Landing";
+import ForgetPassword from "./pages/Password/ForgetPassword";
+import ResetPassword from "./pages/Password/ResetPassword";
 
 const ScrollToTop = ({ children }) => {
   const location = useLocation();
@@ -61,6 +62,13 @@ root.render(
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/signup" element={<SignUpPage />} />
                   <Route path="/login/verify" element={<VerifyTokenRoutes />} />
+                  <Route path="/forget-password" element={<ForgetPassword />} />
+                  <Route path="/reset-password" element={<ResetPassword />} />
+                  <Route
+                    path="/reset-password/:token"
+                    element={<ResetPassword />}
+                  />
+
                   <Route path="/" element={<LandingPage />} />
                   <Route path="/*" element={<App />} />
                 </Routes>

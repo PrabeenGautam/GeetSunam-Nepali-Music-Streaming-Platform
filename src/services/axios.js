@@ -31,7 +31,7 @@ const getApiResponse = async ({
 
     if (method !== "get") {
       if (result.data.message && displaySuccessMessage) {
-        toast.success("success", {
+        toast.success(result.data.message || "Success", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
