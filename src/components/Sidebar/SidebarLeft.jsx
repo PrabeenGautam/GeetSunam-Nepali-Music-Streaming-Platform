@@ -83,16 +83,17 @@ function SidebarLeft({
               </li>
             </NavLink>
 
-            {showGenre && (
-              <NavLink to="genre" activeClassName="active">
-                <li className="submenus">
-                  <span className="menu-icon">
-                    <MdLibraryMusic className="icons" />
-                  </span>
-                  <span className="menu-text">{t("genre")}</span>
-                </li>
-              </NavLink>
-            )}
+            <NavLink
+              to="genre"
+              activeClassName="active"
+              className="genre-sidebar">
+              <li className="submenus">
+                <span className="menu-icon">
+                  <MdLibraryMusic className="icons" />
+                </span>
+                <span className="menu-text">{t("genre")}</span>
+              </li>
+            </NavLink>
           </ul>
         </div>
       </div>

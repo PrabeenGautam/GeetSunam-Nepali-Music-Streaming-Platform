@@ -462,6 +462,10 @@ a {
   vertical-align: middle;
 }
 
+.genre-sidebar {
+  display: none;
+}
+
 .play-featured {
   margin-top: 1.875rem;
   display: flex;
