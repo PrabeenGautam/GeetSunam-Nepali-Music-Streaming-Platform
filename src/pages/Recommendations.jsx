@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 function Recommnedations() {
   const { data, isLoading, isError } = useQuery(
-    "recommendedSongs",
+    "recommendation",
     getRecommendedSongs,
     {
       select: (data) => data.data,
