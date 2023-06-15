@@ -17,6 +17,9 @@ import styled from "@mui/material/styles/styled";
 import Playlist from "./Playlist.jsx";
 
 import { RepeatMode } from "../../redux/types";
+import AddToPlaylists from "../AddToPlaylists";
+import Favourite from "../Favourite";
+import VolumeControl from "../VolumeControl";
 
 const PREFIX = "PlaylistControl";
 
@@ -134,6 +137,20 @@ export default function PlaylistControl(props) {
           }}>
           <PlaylistIcon />
         </ToggleButton>
+
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <span
+            style={{
+              fontSize: 24,
+              userSelect: "none",
+            }}>
+            |
+          </span>
+        </div>
+
+        <VolumeControl />
+        <Favourite />
+        <AddToPlaylists />
       </BouttonContainer>
 
       {playlistViewMode === "popover" ? (

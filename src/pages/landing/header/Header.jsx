@@ -33,15 +33,15 @@ function Header() {
             </li>
 
             <li onClick={() => setShowToggle(false)}>
-              <a href="/login" className={classes["nav_link"]}>
+              <Link to="/login" className={classes["nav_link"]}>
                 Login
-              </a>
+              </Link>
             </li>
 
             <li onClick={() => setShowToggle(false)}>
-              <a href="/signup" className={classes["nav_link"]}>
+              <Link to="/signup" className={classes["nav_link"]}>
                 Signup
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

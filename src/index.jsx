@@ -42,7 +42,7 @@ root.render(
       <Provider store={geetSunamStore} context={geetSunamStoreContext}>
         <GoogleOAuthProvider
           clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || ""}>
-          <BrowserRouter basename={import.meta.env.VITE_BASE_URL || "/"}>
+          <BrowserRouter basename={import.meta.env.VITE_BASEURL || "/"}>
             <Suspense fallback={<Loading />}>
               <ScrollToTop>
                 <ToastContainer

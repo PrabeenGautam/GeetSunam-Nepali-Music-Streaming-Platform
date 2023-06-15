@@ -29,9 +29,8 @@ export default function TrackDetails(props) {
     <Box sx={sx} onClick={handleClick}>
       {title ? (
         <div
-          width="120px"
           className="bounce"
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", width: 120 }}
           onMouseEnter={(e) => {
             e.target.classList.remove("innerText");
           }}
