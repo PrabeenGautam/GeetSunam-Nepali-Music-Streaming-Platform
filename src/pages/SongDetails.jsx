@@ -49,8 +49,6 @@ function SongDetails() {
   const recommendedSongDetails =
     recommendedSong && trackDetails(recommendedSong);
 
-  console.log(recommendedSongDetails);
-
   const loader = isLoadingRecommendation || isErrorRecommendation;
 
   const handleFavourite = async () => {

@@ -19,29 +19,16 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
 
   const { t } = useTranslation("translation", { keyPrefix: "editSong" });
 
-  const {
-    mutateAsync: classifyGenre,
-    data: classifiedGenre,
-    isLoading: isClassifyGenreLoading,
-  } = useMutation({
+  const { mutateAsync: classifyGenre } = useMutation({
     mutationFn: () => classifySongGenreApi({ songId: uploadedSong._id }),
-    onSuccess: (data) => {
-      console.log({ data }, "genre classified data");
-    },
     onError: (error) => {
       console.log({ error }, "error on classifing");
     },
   });
 
-  const {
-    mutateAsync: updateSong,
-    data: updateSongData,
-    isLoading: isUpdatedSongLoading,
-  } = useMutation({
+  const { mutateAsync: updateSong } = useMutation({
     mutationFn: (postData) => updateSongApi(postData),
-    onSuccess: (data) => {
-      console.log({ data }, "Successfully updated genre");
-    },
+
     onError: (error) => {
       console.log({ error }, "Error on  updated genre");
     },
@@ -76,8 +63,6 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
 
     setError("");
     setCoverArt(files[0]);
-
-    console.log(files);
   };
 
   const inputChange = (e) => {
@@ -116,10 +101,6 @@ function UploadEditDetails({ audioFile, genre, uploadedSong, setIsEditing }) {
       songId: uploadedSong._id,
     });
 
-    console.log(
-      "🚀 ~ file: UploadEditDetails.jsx:100 ~ handleSubmit ~ updatedData:",
-      updatedData
-    );
     queryClient.invalidateQueries("currentUserSongs");
     setIsEditing(false);
   };
