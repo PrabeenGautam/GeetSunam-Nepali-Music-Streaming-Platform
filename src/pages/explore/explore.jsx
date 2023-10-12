@@ -85,7 +85,18 @@ function Explore() {
 
         <div className="content-section">
           {!loaderRecommendation ? (
-            <RecommendedSlider data={recommendedSongs} />
+            recommendedSongs.length > 0 ? (
+              <RecommendedSlider data={recommendedSongs} />
+            ) : (
+              <p
+                style={{
+                  color: "rgba(255, 255, 255, 0.8)",
+                  marginTop: "-10px",
+                  marginBottom: "20px",
+                }}>
+                No recommendations
+              </p>
+            )
           ) : (
             <SongsSwiperLoader />
           )}
