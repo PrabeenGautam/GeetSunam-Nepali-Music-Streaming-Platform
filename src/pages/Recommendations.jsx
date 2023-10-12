@@ -45,8 +45,7 @@ function Recommnedations() {
               <div>{t("createdBy")}</div>
               <div>{t("listen")}</div>
             </span>
-            {console.log(recommendedSongs)}
-            {!loader ? (
+            {!loader && recommendedSongs.length > 0 ? (
               <ManagePlayback song={recommendedSongs[0]} />
             ) : (
               <button className="btn btn-disabled">{t("play")}</button>

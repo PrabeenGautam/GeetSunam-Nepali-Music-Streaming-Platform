@@ -91,7 +91,9 @@
     "madeForYou": "Made For You",
     "description": "Songs Specially Created for you",
     "createdBy": "Created by GeetSunam",
-    "geetsunam": "GeetSunam"
+    "geetsunam": "GeetSunam",
+    "play": "Play",
+    "listen": "Listen to best songs"
   },
   "playlistsPage": {
     "createPlaylist": "Create Playlist",
